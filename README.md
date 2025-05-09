@@ -1,12 +1,24 @@
+<p align="center">
+  <picture>
+    <img alt="" src="res/icons/icon.svg" width=256 height=256>
+  </picture>
+  <br>
+  <a href="https://discord.gg/pqEHdWDf8z"><img src="https://i.imgur.com/VMdA0q7.png" height="60px"/> </a>
+  <!-- <a href="https://www.nexusmods.com/site/mods/545/"><img src="https://i.imgur.com/STsBXT6.png" height="60px"/> </a> -->
+  <a href="https://ko-fi.com/cutleast"><img src="https://i.imgur.com/KcPrhK5.png" height="60px"/> </a>
+  <br>
+</p>
+
 # FOMOD Creation Kit
 
 A tool for editing and creating FOMOD installers.
 
+# ❗Disclaimer
+
+This project has just started and is very early in development! Expect issues and not implemented features.
+Contributions are always welcome, see instructions below.
+
 # 🫶Contributing
-
-## Feedback (Suggestions/Issues)
-
-If you encountered an issue/error or have a suggestion, open an issue with sufficient information.
 
 ## Code contributions
 
@@ -43,6 +55,10 @@ For example, to generate a file for French, the new line would look like this: `
 5. For your language to show up in MMM's settings: add a line, similar to the existing languages, under `class Language(BaseEnum):` in [localisation.py](./src/core/utilities/localisation.py). For example, for French: `French = "fr_FR"`.
 6. Optional: Run `compile_qts.bat && uv run src\main.py` and change the language in *Settings* to your translation (and restart) to see your translation in action.
 7. Create a pull request from your changes and I will check over it and merge it if there are no issues with it.
+
+## Feedback (Suggestions/Issues)
+
+If you encountered an issue/error or have a suggestion, open an issue with sufficient information.
 
 # 🔗Credits
 

@@ -73,7 +73,7 @@ class App(QApplication):
         self.setApplicationName(App.APP_NAME)
         self.setApplicationDisplayName(f"{App.APP_NAME} v{App.APP_VERSION}")
         self.setApplicationVersion(App.APP_VERSION)
-        self.setWindowIcon(QIcon(":/icons/mmm.ico"))
+        self.setWindowIcon(QIcon(":/icons/icon.svg"))
         self.load_translation()
 
         ui_mode: UIMode = UIMode.get(self.app_config.ui_mode, UIMode.System)

@@ -79,14 +79,14 @@ def run_cx_freeze() -> None:
             "main.py",
             base="gui",
             target_name="FCK.exe",
-            icon="../res/icons/fck.ico",
+            icon="../res/icons/icon.ico",
             copyright=project_license,
         ),
         Executable(
             "main.py",
             base="console",
             target_name="FCK_cli.exe",
-            icon="../res/icons/fck.ico",
+            icon="../res/icons/icon.ico",
             copyright=project_license,
         ),
     ]
