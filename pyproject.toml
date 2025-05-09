@@ -10,10 +10,11 @@ dependencies = [
     "darkdetect",
     "jstyleson",
     "pydantic",
+    "pydantic-xml",
     "pyside6",
-    "pywin32>=310",
+    "pywin32",
     "qtawesome",
-    "requests>=2.32.3",
+    "requests",
     "semantic-version",
 ]
 
