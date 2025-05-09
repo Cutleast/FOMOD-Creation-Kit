@@ -25,6 +25,13 @@ jobs:
       - name: Set up virtual environment with uv
         run: |
           uv sync
+      
+      - name: Build resources
+        run: |
+          update_lupdate_file.bat
+          update_qts.bat
+          compile_qts.bat
+          compile_qrc.bat
 
       - name: Run Ruff
         run: |
