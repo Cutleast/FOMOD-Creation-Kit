@@ -1,0 +1,36 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource>
+        <!-- Icons -->
+        <file>icons/arrow_down_dark.svg</file>
+        <file>icons/arrow_down_light.svg</file>
+        <file>icons/arrow_left_dark.svg</file>
+        <file>icons/arrow_left_light.svg</file>
+        <file>icons/arrow_right_dark.svg</file>
+        <file>icons/arrow_right_light.svg</file>
+        <file>icons/arrow_up_dark.svg</file>
+        <file>icons/arrow_up_light.svg</file>
+        <file>icons/checkmark_dark.svg</file>
+        <file>icons/checkmark_light.svg</file>
+        <file>icons/close.svg</file>
+        <file>icons/discord.png</file>
+        <file>icons/exit_dark.svg</file>
+        <file>icons/exit_light.svg</file>
+        <file>icons/grip_dark.png</file>
+        <file>icons/grip_light.png</file>
+        <file>icons/ko-fi.png</file>
+        <file>icons/nexus_mods.png</file>
+        <file>icons/search_dark.svg</file>
+        <file>icons/search_light.svg</file>
+
+        <!-- Localisation Files -->
+        <file>loc/de.qm</file>
+
+        <!-- Stylesheets & Theme files -->
+        <file>base_stylesheet.qss</file>
+        <file>dark_stylesheet.qss</file>
+        <file>dark_theme.json</file>
+        <file>light_stylesheet.qss</file>
+        <file>light_theme.json</file>
+    </qresource>
+</RCC>
