@@ -206,11 +206,11 @@ requires-dist = [
     { name = "darkdetect" },
     { name = "jstyleson" },
     { name = "pydantic" },
-    { name = "pydantic-xml", specifier = ">=2.16.0" },
+    { name = "pydantic-xml" },
     { name = "pyside6" },
-    { name = "pywin32", specifier = ">=310" },
+    { name = "pywin32" },
     { name = "qtawesome" },
-    { name = "requests", specifier = ">=2.32.3" },
+    { name = "requests" },
     { name = "semantic-version" },
 ]
 
