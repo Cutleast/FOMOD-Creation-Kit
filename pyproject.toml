@@ -9,6 +9,7 @@ license = { file = "LICENSE" }
 dependencies = [
     "darkdetect",
     "jstyleson",
+    "lxml",
     "pydantic",
     "pydantic-xml",
     "pyside6",

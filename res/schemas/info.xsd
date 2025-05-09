@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Based on https://fomod-docs.readthedocs.io/en/latest/specs.html#info-file -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="5.x">
+    <xs:element name="fomod">
+        <xs:annotation>
+            <xs:documentation>This file contains the metadata of a FOMOD installer.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Name" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Name of the mod</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Author" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Name of the mod's author</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Version" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Version of the mod</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="MachineVersion" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>This attribute is used for providing a machine-readable version. Examples can be found here - https://en.wikipedia.org/wiki/Software_versioning Semantic versioning is recommended - https://semver.org/</xs:documentation>
+                                    </xs:annotation>
+                                </xs:attribute>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Description" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>A short description of the mod</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Website" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>URL to the mod's website, eg. mod page on Nexus Mods</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Id" type="xs:string" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>Unknown, probably mod id?</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:any processContents="skip" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation> This element is used solely for allowing extensions since this is merely a proposed schema. </xs:documentation>
+                    </xs:annotation>
+                </xs:any>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
