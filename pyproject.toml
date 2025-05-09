@@ -28,6 +28,7 @@ dev = [
     "pytest-mock",
     "pytest-qt",
     "ruff",
+    "types-lxml",
 ]
 
 [tool.pytest.ini_options]

@@ -48,12 +48,12 @@ class TestFomodInfo(BaseTest):
         # given
         fomod_info_file: Path = data_folder / "TestFomodInfo" / "info.xml"
         output_info_file: Path = Path("info.xml")
-        fomod_info: FomodInfo = FomodInfo.from_xml(fomod_info_file.read_bytes())
+        fomod_info: FomodInfo = FomodInfo.load(fomod_info_file.read_bytes())
 
         # when
         fomod_info.name = "New Name"
         output_info_file.write_bytes(fomod_info.dump())
-        edited_fomod_info: FomodInfo = FomodInfo.from_xml(output_info_file.read_bytes())
+        edited_fomod_info: FomodInfo = FomodInfo.load(output_info_file.read_bytes())
 
         # then
         assert edited_fomod_info.name == "New Name"

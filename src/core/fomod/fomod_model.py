@@ -47,17 +47,14 @@ class FomodModel(BaseXmlModel):
         raw_xml: bytes = super().to_xml(  # type: ignore
             pretty_print=True, skip_empty=True
         )
-        root = etree.fromstring(raw_xml)  # type: ignore
+        root = etree.fromstring(raw_xml)
 
         schema_url: Optional[str] = self.get_schema_url()
         if schema_url is not None:
             xsi = "http://www.w3.org/2001/XMLSchema-instance"
-            root.set("xsi", xsi)
+            root.nsmap["xsi"] = xsi
             root.set("{%s}noNamespaceSchemaLocation" % xsi, schema_url)
 
         return etree.tostring(
-            root,
-            pretty_print=True,  # type: ignore
-            encoding="UTF-8",  # type: ignore
-            standalone=True,  # type: ignore
+            root, pretty_print=True, encoding="UTF-8", standalone=True
         )
