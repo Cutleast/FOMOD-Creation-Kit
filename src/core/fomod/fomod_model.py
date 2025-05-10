@@ -9,6 +9,8 @@ from typing import Optional
 from lxml import etree
 from pydantic_xml import BaseXmlModel
 
+from core.utilities.xml import validate_against_schema
+
 
 class FomodModel(BaseXmlModel):
     """
@@ -36,18 +38,23 @@ class FomodModel(BaseXmlModel):
 
         return cls.from_xml(xml_text)
 
-    def dump(self) -> bytes:
+    def dump(self, validate: bool = True) -> bytes:
         """
         Dumps this model to an XML text.
+
+        Args:
+            validate (bool, optional):
+                Whether to validate the XML text against the schema if one is available.
+                Defaults to True.
 
         Returns:
             bytes: Serialized XML text
         """
 
-        raw_xml: bytes = super().to_xml(  # type: ignore
+        xml_text: bytes = super().to_xml(  # type: ignore
             pretty_print=True, skip_empty=True
         )
-        root = etree.fromstring(raw_xml)
+        root = etree.fromstring(xml_text)
 
         schema_url: Optional[str] = self.get_schema_url()
         if schema_url is not None:
@@ -55,6 +62,11 @@ class FomodModel(BaseXmlModel):
             root.nsmap["xsi"] = xsi
             root.set("{%s}noNamespaceSchemaLocation" % xsi, schema_url)
 
-        return etree.tostring(
+        xml_text = etree.tostring(
             root, pretty_print=True, encoding="UTF-8", standalone=True
         )
+
+        if schema_url is not None and validate:
+            validate_against_schema(schema_url, xml_text)
+
+        return xml_text
