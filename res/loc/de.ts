@@ -73,58 +73,68 @@
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="38"/>
+        <location filename="src/ui/menubar.py" line="40"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="41"/>
+        <location filename="src/ui/menubar.py" line="43"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="49"/>
+        <location filename="src/ui/menubar.py" line="51"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="58"/>
+        <location filename="src/ui/menubar.py" line="60"/>
+        <source>Extras</source>
+        <translation>Extras</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="63"/>
+        <source>Validate XML file...</source>
+        <translation>XML-Datei validieren...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="70"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="61"/>
+        <location filename="src/ui/menubar.py" line="73"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="71"/>
+        <location filename="src/ui/menubar.py" line="83"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="76"/>
+        <location filename="src/ui/menubar.py" line="88"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="83"/>
+        <location filename="src/ui/menubar.py" line="95"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="89"/>
-        <location filename="src/ui/menubar.py" line="111"/>
+        <location filename="src/ui/menubar.py" line="101"/>
+        <location filename="src/ui/menubar.py" line="126"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="101"/>
+        <location filename="src/ui/menubar.py" line="116"/>
         <source>No Updates Available</source>
         <translation>Keine Updates verfügbar</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="102"/>
+        <location filename="src/ui/menubar.py" line="117"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
     </message>
@@ -244,6 +254,45 @@
         <location filename="src/ui/widgets/updater_dialog.py" line="65"/>
         <source>Download Update</source>
         <translation>Update herunterladen</translation>
+    </message>
+</context>
+<context>
+    <name>XmlValidatorDialog</name>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="39"/>
+        <source>Validate XML file against XSD schema</source>
+        <translation>XML-Datei mit XSD-Schema validieren</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="62"/>
+        <source>XML Files</source>
+        <translation>XML-Dateien</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="63"/>
+        <source>Path to XML file:</source>
+        <translation>Pfad zur XML-Datei:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="66"/>
+        <source>URL to XSD schema:</source>
+        <translation>URL zum XSD-Schema:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="69"/>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="81"/>
+        <source>Validate</source>
+        <translation>Validieren</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="90"/>
+        <source>Invalid: </source>
+        <translation>Ungültig: </translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="92"/>
+        <source>Valid</source>
+        <translation>Gültig</translation>
     </message>
 </context>
 </TS>

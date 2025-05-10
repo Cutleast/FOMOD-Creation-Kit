@@ -15,6 +15,7 @@ from ui.settings.settings_dialog import SettingsDialog
 from ui.utilities.ui_mode import UIMode
 from ui.widgets.about_dialog import AboutDialog
 from ui.widgets.menu import Menu
+from ui.widgets.xml_validator_dialog import XmlValidatorDialog
 
 
 class MenuBar(QMenuBar):
@@ -32,6 +33,7 @@ class MenuBar(QMenuBar):
         super().__init__()
 
         self.__init_file_menu()
+        self.__init_extras_menu()
         self.__init_help_menu()
 
     def __init_file_menu(self) -> None:
@@ -53,6 +55,16 @@ class MenuBar(QMenuBar):
             else QIcon(":/icons/exit_light.svg")
         )
         exit_action.triggered.connect(QApplication.exit)
+
+    def __init_extras_menu(self) -> None:
+        extras_menu = Menu(title=self.tr("Extras"))
+        self.addMenu(extras_menu)
+
+        xml_validator_action = extras_menu.addAction(self.tr("Validate XML file..."))
+        xml_validator_action.setIcon(
+            qta.icon("mdi6.file-check", color=self.palette().text().color())
+        )
+        xml_validator_action.triggered.connect(self.__open_xml_validator)
 
     def __init_help_menu(self) -> None:
         help_menu = Menu(title=self.tr("Help"))
@@ -91,6 +103,9 @@ class MenuBar(QMenuBar):
 
     def __open_settings(self) -> None:
         SettingsDialog(AppContext.get_app().app_config).exec()
+
+    def __open_xml_validator(self) -> None:
+        XmlValidatorDialog(AppContext.get_app().main_window).exec()
 
     def __check_for_updates(self) -> None:
         upd = Updater(AppContext.get_app().APP_VERSION)

@@ -63,6 +63,13 @@ class BrowseLineEdit(QLineEdit):
 
         self.__file_dialog.setFileMode(mode)
 
+    def setNameFilters(self, filters: list[str]) -> None:
+        """
+        Redirects `filters` to `QFileDialog.setNameFilters()`.
+        """
+
+        self.__file_dialog.setNameFilters(filters)
+
     @override
     def setText(self, text: str) -> None:
         old_text: str = self.text()
