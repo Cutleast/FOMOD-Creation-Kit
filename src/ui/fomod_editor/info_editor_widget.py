@@ -25,6 +25,7 @@ from core.fomod_editor.exceptions import (
 )
 from ui.utilities.rounded_pixmap import rounded_pixmap
 from ui.widgets.browse_edit import BrowseLineEdit
+from ui.widgets.url_edit import UrlEdit
 
 from .base_editor_widget import BaseEditorWidget
 
@@ -42,7 +43,7 @@ class InfoEditorWidget(BaseEditorWidget):
     __name_entry: QLineEdit
     __author_entry: QLineEdit
     __version_entry: QLineEdit
-    __website_entry: QLineEdit
+    __website_entry: UrlEdit
     __description_entry: QPlainTextEdit
     __image_path_entry: BrowseLineEdit
     __image_label: QLabel
@@ -102,7 +103,7 @@ class InfoEditorWidget(BaseEditorWidget):
         self.__version_entry.setText(self._fomod.info.version.version)
         self.__flayout.addRow(self.tr("Version:"), self.__version_entry)
 
-        self.__website_entry = QLineEdit()
+        self.__website_entry = UrlEdit()
         self.__website_entry.setText(self._fomod.info.website)
         self.__flayout.addRow(self.tr("Website:"), self.__website_entry)
 

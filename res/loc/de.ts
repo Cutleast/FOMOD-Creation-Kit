@@ -103,42 +103,42 @@
 <context>
     <name>InfoEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="95"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="96"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="99"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="100"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="103"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="104"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="107"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="108"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="111"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="112"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="116"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="117"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="118"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="119"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="176"/>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="177"/>
         <source>No FOMOD path is set!</source>
         <translation>Es wurde kein FOMOD-Pfad gesetzt!</translation>
     </message>
@@ -422,6 +422,14 @@
         <location filename="src/ui/widgets/updater_dialog.py" line="65"/>
         <source>Download Update</source>
         <translation>Update herunterladen</translation>
+    </message>
+</context>
+<context>
+    <name>UrlEdit</name>
+    <message>
+        <location filename="src/ui/widgets/url_edit.py" line="30"/>
+        <source>Open URL in default browser...</source>
+        <translation>URL im Standardbrowser öffnen...</translation>
     </message>
 </context>
 <context>
