@@ -7,9 +7,9 @@ from typing import override
 from .base_editor_widget import BaseEditorWidget
 
 
-class ModuleConfigEditorWidget(BaseEditorWidget):
+class StepsEditorWidget(BaseEditorWidget):
     """
-    Widget class for editing the module configuration of a FOMOD installer.
+    Widget class for editing the install steps (pages) of a FOMOD installer.
     """
 
     @override

@@ -75,14 +75,29 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="87"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="98"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="99"/>
-        <source>Module Config</source>
-        <translation>Modulkonfiguration</translation>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="108"/>
+        <source>Module Dependencies</source>
+        <translation>Modulabhängigkeiten</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="120"/>
+        <source>Required Files</source>
+        <translation>Erforderliche Dateien</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="130"/>
+        <source>Steps</source>
+        <translation>Schritte</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="144"/>
+        <source>Conditional Files</source>
+        <translation>Bedingte Dateien</translation>
     </message>
 </context>
 <context>

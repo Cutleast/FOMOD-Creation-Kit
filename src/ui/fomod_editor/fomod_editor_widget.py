@@ -10,8 +10,11 @@ from PySide6.QtWidgets import QTabWidget
 
 from core.fomod.fomod import Fomod
 
+from .conditional_files_editor_widget import ConditionalFilesEditorWidget
+from .dependency_editor_widget import DependencyEditorWidget
 from .info_editor_widget import InfoEditorWidget
-from .module_config_editor_widget import ModuleConfigEditorWidget
+from .required_files_editor_widget import RequiredFilesEditorWidget
+from .steps_editor_widget import StepsEditorWidget
 
 
 class FomodEditorWidget(QTabWidget):
@@ -31,7 +34,10 @@ class FomodEditorWidget(QTabWidget):
     __current_fomod: Optional[Fomod] = None
 
     __info_editor_widget: Optional[InfoEditorWidget] = None
-    __module_config_editor_widget: Optional[ModuleConfigEditorWidget] = None
+    __dependency_editor_widget: Optional[DependencyEditorWidget] = None
+    __required_files_editor_widget: Optional[RequiredFilesEditorWidget] = None
+    __steps_editor_widget: Optional[StepsEditorWidget] = None
+    __conditional_files_editor_widget: Optional[ConditionalFilesEditorWidget] = None
 
     def __init__(self) -> None:
         super().__init__()
@@ -50,7 +56,9 @@ class FomodEditorWidget(QTabWidget):
 
         self.__current_fomod = None
         self.__info_editor_widget = None
-        self.__module_config_editor_widget = None
+        self.__dependency_editor_widget = None
+        self.__steps_editor_widget = None
+        self.__conditional_files_editor_widget = None
 
     def get_fomod(self) -> Optional[Fomod]:
         """
@@ -72,7 +80,10 @@ class FomodEditorWidget(QTabWidget):
 
         self.__current_fomod = fomod
         self.__init_info_editor_widget()
-        self.__init_module_config_editor_widget()
+        self.__init_dependency_editor_widget()
+        self.__init_required_files_editor_widget()
+        self.__init_steps_editor_widget()
+        self.__init_conditional_files_editor_widget()
 
         self.changed.emit(self.__current_fomod, False)
 
@@ -86,17 +97,51 @@ class FomodEditorWidget(QTabWidget):
         )
         self.addTab(self.__info_editor_widget, self.tr("Info"))
 
-    def __init_module_config_editor_widget(self) -> None:
+    def __init_dependency_editor_widget(self) -> None:
         if self.__current_fomod is None:
             raise ValueError("No FOMOD is set")
 
-        self.__module_config_editor_widget = ModuleConfigEditorWidget(
-            self.__current_fomod
-        )
-        self.__module_config_editor_widget.changed.connect(
+        self.__dependency_editor_widget = DependencyEditorWidget(self.__current_fomod)
+        self.__dependency_editor_widget.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
         )
-        self.addTab(self.__module_config_editor_widget, self.tr("Module Config"))
+        self.addTab(self.__dependency_editor_widget, self.tr("Module Dependencies"))
+
+    def __init_required_files_editor_widget(self) -> None:
+        if self.__current_fomod is None:
+            raise ValueError("No FOMOD is set")
+
+        self.__required_files_editor_widget = RequiredFilesEditorWidget(
+            self.__current_fomod
+        )
+        self.__required_files_editor_widget.changed.connect(
+            lambda: self.changed.emit(self.__current_fomod, True)
+        )
+        self.addTab(self.__required_files_editor_widget, self.tr("Required Files"))
+
+    def __init_steps_editor_widget(self) -> None:
+        if self.__current_fomod is None:
+            raise ValueError("No FOMOD is set")
+
+        self.__steps_editor_widget = StepsEditorWidget(self.__current_fomod)
+        self.__steps_editor_widget.changed.connect(
+            lambda: self.changed.emit(self.__current_fomod, True)
+        )
+        self.addTab(self.__steps_editor_widget, self.tr("Steps"))
+
+    def __init_conditional_files_editor_widget(self) -> None:
+        if self.__current_fomod is None:
+            raise ValueError("No FOMOD is set")
+
+        self.__conditional_files_editor_widget = ConditionalFilesEditorWidget(
+            self.__current_fomod
+        )
+        self.__conditional_files_editor_widget.changed.connect(
+            lambda: self.changed.emit(self.__current_fomod, True)
+        )
+        self.addTab(
+            self.__conditional_files_editor_widget, self.tr("Conditional Files")
+        )
 
     def save(self, path: Optional[Path] = None) -> None:
         """
@@ -126,8 +171,17 @@ class FomodEditorWidget(QTabWidget):
         if self.__info_editor_widget is not None:
             self.__info_editor_widget.save()
 
-        if self.__module_config_editor_widget is not None:
-            self.__module_config_editor_widget.save()
+        if self.__dependency_editor_widget is not None:
+            self.__dependency_editor_widget.save()
+
+        if self.__required_files_editor_widget is not None:
+            self.__required_files_editor_widget.save()
+
+        if self.__steps_editor_widget is not None:
+            self.__steps_editor_widget.save()
+
+        if self.__conditional_files_editor_widget is not None:
+            self.__conditional_files_editor_widget.save()
 
         self.__current_fomod.save()
         self.changed.emit(self.__current_fomod, False)
@@ -136,5 +190,14 @@ class FomodEditorWidget(QTabWidget):
         if self.__info_editor_widget is not None:
             self.__info_editor_widget.validate()
 
-        if self.__module_config_editor_widget is not None:
-            self.__module_config_editor_widget.validate()
+        if self.__dependency_editor_widget is not None:
+            self.__dependency_editor_widget.validate()
+
+        if self.__required_files_editor_widget is not None:
+            self.__required_files_editor_widget.validate()
+
+        if self.__steps_editor_widget is not None:
+            self.__steps_editor_widget.validate()
+
+        if self.__conditional_files_editor_widget is not None:
+            self.__conditional_files_editor_widget.validate()
