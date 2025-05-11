@@ -40,7 +40,7 @@ Contributions are always welcome, see instructions below.
 ### 3. Compile and build executable
 
 1. Run `build.bat` from the root folder of this repo.
-2. The executable and all dependencies are built in the `dist/MMM`-Folder and get packed in a `dist/Mod Manager Migrator v[version].zip`.
+2. The executable and all dependencies are built in the `dist/FCK`-Folder and get packed in a `dist/FOMOD Creation Kit v[version].zip`.
 
 ## Translations
 
@@ -51,8 +51,8 @@ Make sure to follow the steps under [Code contributions](#code-contributions) ab
 For example, to generate a file for French, the new line would look like this: `--add-translation=res/loc/fr.ts ^`
 2. Run `update_lupdate_file.bat && update_qts.bat` to generate the translation file for your language.
 3. Open the translation file in Qt Linguist with `uv run pyside6-linguist res/loc/<language>.ts`, eg. `uv run pyside6-linguist res/loc/fr.ts`.
-4. Translate MMM and save the file with Ctrl+S.
-5. For your language to show up in MMM's settings: add a line, similar to the existing languages, under `class Language(BaseEnum):` in [localisation.py](./src/core/utilities/localisation.py). For example, for French: `French = "fr_FR"`.
+4. Translate the app and save the file with Ctrl+S.
+5. For your language to show up in FCK's settings: add a line, similar to the existing languages, under `class Language(BaseEnum):` in [localisation.py](./src/core/utilities/localisation.py). For example, for French: `French = "fr_FR"`.
 6. Optional: Run `compile_qts.bat && uv run src\main.py` and change the language in *Settings* to your translation (and restart) to see your translation in action.
 7. Create a pull request from your changes and I will check over it and merge it if there are no issues with it.
 
@@ -66,6 +66,7 @@ If you encountered an issue/error or have a suggestion, open an issue with suffi
 - Icon, modpage images and idea by Wuerfelhusten ([NexusMods](https://next.nexusmods.com/profile/Wuerfelhusten))
 - Qt by The [Qt Company Ltd](https://qt.io)
 - FontAwesome Icons by [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
+- [fomod 5.x Documentation by Daniel Nunes and the fomod team](https://fomod-docs.readthedocs.io/en/latest/index.html)
 
 See [licenses.py](./src/core/utilities/licenses.py) for a full list of used libraries, dependencies and their respective licenses.
 
