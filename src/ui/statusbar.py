@@ -9,7 +9,6 @@ from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QStatusBar
 
-from app_context import AppContext
 from core.utilities.logger import Logger
 from core.utilities.trim import trim_string
 from ui.widgets.link_button import LinkButton
@@ -29,10 +28,10 @@ class StatusBar(QStatusBar):
 
     __log_window: Optional[LogWindow] = None
 
-    def __init__(self) -> None:
+    def __init__(self, logger: Logger) -> None:
         super().__init__()
 
-        self.logger = AppContext.get_app().logger
+        self.logger = logger
         self.logger.set_callback(self.log_signal.emit)
 
         self.status_label = QLabel()

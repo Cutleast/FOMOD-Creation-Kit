@@ -5,14 +5,14 @@ Copyright (c) Cutleast
 import webbrowser
 
 import qtawesome as qta
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication, QMenuBar, QMessageBox
+from PySide6.QtWidgets import QMenuBar, QMessageBox
 
 from app_context import AppContext
 from core.utilities.updater import Updater
 from ui.settings.settings_dialog import SettingsDialog
-from ui.utilities.ui_mode import UIMode
+from ui.utilities.icon_provider import get_icon_name_for_palette
 from ui.widgets.about_dialog import AboutDialog
 from ui.widgets.menu import Menu
 from ui.widgets.xml_validator_dialog import XmlValidatorDialog
@@ -22,6 +22,24 @@ class MenuBar(QMenuBar):
     """
     Menu bar for main window.
     """
+
+    create_new_fomod_signal = Signal()
+    """Signal emitted when the user clicks on the create new FOMOD button."""
+
+    open_fomod_from_file_signal = Signal()
+    """Signal emitted when the user clicks on the open from file button."""
+
+    open_fomod_from_folder_signal = Signal()
+    """Signal emitted when the user clicks on the open from folder button."""
+
+    save_fomod_signal = Signal()
+    """Signal emitted when the user clicks on the save button."""
+
+    save_fomod_as_signal = Signal()
+    """Signal emitted when the user clicks on the save as button."""
+
+    exit_signal = Signal()
+    """Signal emitted when the user clicks on the exit button."""
 
     DISCORD_URL: str = "https://discord.gg/pqEHdWDf8z"
     """URL to our Discord server."""
@@ -40,6 +58,55 @@ class MenuBar(QMenuBar):
         file_menu = Menu(title=self.tr("File"))
         self.addMenu(file_menu)
 
+        new_fomod_action = file_menu.addAction(self.tr("Create new FOMOD installer..."))
+        new_fomod_action.setIcon(
+            qta.icon("mdi6.plus", color=self.palette().text().color())
+        )
+        new_fomod_action.setShortcut("Ctrl+N")
+        new_fomod_action.triggered.connect(self.create_new_fomod_signal.emit)
+
+        file_menu.addSeparator()
+
+        open_fomod_folder_action = file_menu.addAction(
+            self.tr("Load FOMOD installer from folder...")
+        )
+        open_fomod_folder_action.setIcon(
+            qta.icon("mdi6.folder-open", color=self.palette().text().color())
+        )
+        open_fomod_folder_action.setShortcut("Ctrl+O")
+        open_fomod_folder_action.triggered.connect(
+            self.open_fomod_from_folder_signal.emit
+        )
+
+        open_fomod_file_action = file_menu.addAction(
+            self.tr("Load FOMOD installer from file...")
+        )
+        open_fomod_file_action.setIcon(
+            qta.icon("mdi6.folder-open", color=self.palette().text().color())
+        )
+        open_fomod_file_action.setShortcut("Ctrl+Shift+O")
+        open_fomod_file_action.triggered.connect(self.open_fomod_from_file_signal.emit)
+
+        file_menu.addSeparator()
+
+        save_fomod_action = file_menu.addAction(self.tr("Save FOMOD installer"))
+        save_fomod_action.setIcon(
+            qta.icon("mdi6.content-save", color=self.palette().text().color())
+        )
+        save_fomod_action.setShortcut("Ctrl+S")
+        save_fomod_action.triggered.connect(self.save_fomod_signal.emit)
+
+        save_fomod_as_action = file_menu.addAction(
+            self.tr("Save FOMOD installer as...")
+        )
+        save_fomod_as_action.setIcon(
+            qta.icon("mdi6.content-save", color=self.palette().text().color())
+        )
+        save_fomod_as_action.setShortcut("Ctrl+Shift+S")
+        save_fomod_as_action.triggered.connect(self.save_fomod_as_signal.emit)
+
+        file_menu.addSeparator()
+
         settings_action = file_menu.addAction(self.tr("Settings"))
         settings_action.setIcon(
             qta.icon("mdi6.cog", color=self.palette().text().color())
@@ -50,11 +117,9 @@ class MenuBar(QMenuBar):
 
         exit_action = file_menu.addAction(self.tr("Exit"))
         exit_action.setIcon(
-            QIcon(":/icons/exit_dark.svg")
-            if AppContext.get_app().stylesheet_processor.ui_mode == UIMode.Light
-            else QIcon(":/icons/exit_light.svg")
+            QIcon(":/icons/" + get_icon_name_for_palette("exit", self.palette()))
         )
-        exit_action.triggered.connect(QApplication.exit)
+        exit_action.triggered.connect(self.exit_signal.emit)
 
     def __init_extras_menu(self) -> None:
         extras_menu = Menu(title=self.tr("Extras"))

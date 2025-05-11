@@ -161,6 +161,17 @@
 			{
 				"type": "debugpy",
 				"request": "launch",
+				"name": "Debug FOMOD Creation Kit with Test FOMOD",
+				"program": "${workspaceFolder}/src/main.py",
+				"args": [
+					"${workspaceFolder}/tests/data/TestFomodEditorWidget/fomod"
+				],
+				"cwd": "${workspaceFolder}",
+				"preLaunchTask": "compile-qrc"
+			},
+			{
+				"type": "debugpy",
+				"request": "launch",
 				"name": "Debug current file",
 				"program": "${file}",
 				"cwd": "${workspaceFolder}",

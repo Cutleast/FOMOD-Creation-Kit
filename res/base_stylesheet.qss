@@ -42,28 +42,28 @@ QLCDNumber
 }
 
 /* Buttons */
-QPushButton
+QAbstractButton
 {
     padding: 7px;
     margin: 2px;
     border: 1px solid;
     border-radius: 5px;
 }
-QPushButton#primary
+QAbstractButton#primary
 {
     background: <accent_color>;
     border-color: <accent_color>;
 }
-QPushButton#primary:hover:!disabled
+QAbstractButton#primary:hover:!disabled
 {
     background: <highlighted_accent>;
 }
-QPushButton#primary:disabled
+QAbstractButton#primary:disabled
 {
     background: #666666;
     border-color: #666666;
 }
-QPushButton:checked
+QAbstractButton:checked
 {
     border-color: <accent_color>;
 }
@@ -82,7 +82,8 @@ QStatusBar::item
 /* Text Fields */
 QLineEdit,
 QSpinBox,
-QDoubleSpinBox
+QDoubleSpinBox,
+QPlainTextEdit
 {
     border: 2px solid;
     border-radius: 5px;
@@ -429,27 +430,36 @@ QTabWidget::pane
 QTabBar
 {
     border-radius: 8px;
+}
+QTabBar:top
+{
     margin-left: 12px;
     margin-right: 12px;
+}
+QTabBar:left
+{
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 QTabBar::tab
 {
     background: transparent;
     border: 0px solid;
-    height: 25px;
     padding: 4px;
-    padding-left: 16px;
-    padding-right: 16px;
     margin: 4px;
     border-radius: 4px;
 }
-QTabBar::tab:first
+QTabBar::tab:top
 {
-    margin-left: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 25px;
 }
-QTabBar::tab:last
+QTabBar::tab:left
 {
-    margin-right: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 25px;
 }
 QTabBar::tab:selected
 {

@@ -6,108 +6,130 @@ from typing import Optional
 
 import qtawesome as qta
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication, QLabel, QMessageBox, QPushButton, QWidget
+from PySide6.QtWidgets import (
+    QApplication,
+    QDialog,
+    QHBoxLayout,
+    QLabel,
+    QPlainTextEdit,
+    QPushButton,
+    QStyle,
+    QVBoxLayout,
+    QWidget,
+)
 
 
-class ErrorDialog(QMessageBox):
+class ErrorDialog(QDialog):
     """
-    Custom error messagebox with short text
-    and detailed text functionality.
-
-    Parameters:
-        parent: QWidget (parent window)
-        app: MainApp (for localisation of buttons)
-        title: str (window title)
-        text: str (short message)
-        details: str (will be displayed when details are shown)
-        yesno: bool (determines if 'continue' and 'cancel' buttons are shown
-        or only an 'ok' button)
+    Custom error dialog.
     """
+
+    __text: str
+    __details: str
+    __yesno: bool
+
+    __vlayout: QVBoxLayout
+
+    __details_box: QPlainTextEdit
+    __toggle_details_button: QPushButton
 
     def __init__(
         self,
         parent: Optional[QWidget],
         title: str,
         text: str,
-        details: str = "",
+        details: str,
         yesno: bool = True,
-    ):
+    ) -> None:
         super().__init__(parent)
 
-        # Basic configuration
+        self.__text = text
+        self.__details = details
+        self.__yesno = yesno
+
         self.setWindowTitle(title)
-        self.setIcon(QMessageBox.Icon.Critical)
-        self.setText(text)
 
-        # Show 'continue' and 'cancel' button
-        if yesno:
-            self.setStandardButtons(
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-            )
-            self.button(QMessageBox.StandardButton.Yes).setText(self.tr("Continue"))
-            self.button(QMessageBox.StandardButton.No).setText(self.tr("Exit"))
+        self.__init_ui()
 
-        # Only show 'ok' button
+    def __init_ui(self) -> None:
+        self.__vlayout = QVBoxLayout()
+        self.setLayout(self.__vlayout)
+
+        hlayout = QHBoxLayout()
+        hlayout.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        self.__vlayout.addLayout(hlayout)
+
+        icon_label = QLabel()
+        icon_label.setPixmap(
+            self.style()
+            .standardIcon(QStyle.StandardPixmap.SP_MessageBoxCritical)
+            .pixmap(32, 32)
+        )
+        hlayout.addWidget(icon_label)
+
+        text_label = QLabel(self.__text)
+        hlayout.addWidget(text_label)
+
+        self.__details_box = QPlainTextEdit(self.__details)
+        self.__details_box.setObjectName("protocol")
+        self.__details_box.setMinimumHeight(50)
+        self.__details_box.setReadOnly(True)
+        self.__vlayout.addWidget(self.__details_box)
+        self.__details_box.hide()
+
+        hlayout = QHBoxLayout()
+        self.__vlayout.addLayout(hlayout)
+
+        hlayout.addStretch()
+
+        if self.__yesno:
+            yes_button = QPushButton(self.tr("Continue"))
+            yes_button.setObjectName("accent_button")
+            yes_button.setDefault(True)
+            yes_button.clicked.connect(self.reject)
+            hlayout.addWidget(yes_button)
+
+            no_button = QPushButton(self.tr("Exit"))
+            no_button.clicked.connect(self.accept)
+            hlayout.addWidget(no_button)
         else:
-            self.setStandardButtons(QMessageBox.StandardButton.Ok)
+            ok_button = QPushButton(self.tr("Ok"))
+            ok_button.setObjectName("accent_button")
+            ok_button.setDefault(True)
+            ok_button.clicked.connect(self.reject)
+            hlayout.addWidget(ok_button)
 
-        # Add details button if details are given
-        if details:
-            self.details_button: QPushButton = self.addButton(
-                self.tr("Show details..."), QMessageBox.ButtonRole.AcceptRole
-            )
-            self.details_button.setIcon(
+        copy_button = QPushButton()
+        copy_button.setToolTip(self.tr("Copy error details..."))
+        copy_button.setIcon(
+            qta.icon("mdi6.content-copy", color=self.palette().text().color())
+        )
+        copy_button.clicked.connect(
+            lambda: QApplication.clipboard().setText(self.__details)
+        )
+        hlayout.addWidget(copy_button)
+
+        if self.__details:
+            self.__toggle_details_button = QPushButton()
+            self.__toggle_details_button.setToolTip(self.tr("Show details..."))
+            self.__toggle_details_button.setIcon(
                 qta.icon("fa5s.chevron-down", color=self.palette().text().color())
             )
+            self.__toggle_details_button.clicked.connect(self.__toggle_details)
+            hlayout.addWidget(self.__toggle_details_button)
 
-            self.copy_button: QPushButton = self.addButton(
-                "", QMessageBox.ButtonRole.YesRole
+    def __toggle_details(self) -> None:
+        if not self.__details_box.isVisible():
+            self.__details_box.show()
+            self.__toggle_details_button.setIcon(
+                qta.icon("fa5s.chevron-up", color=self.palette().text().color())
             )
-            self.copy_button.setText("")
-            self.copy_button.setIcon(
-                qta.icon("mdi6.content-copy", color=self.palette().text().color())
+            self.__toggle_details_button.setToolTip(self.tr("Hide details..."))
+        else:
+            self.__details_box.hide()
+            self.__toggle_details_button.setIcon(
+                qta.icon("fa5s.chevron-down", color=self.palette().text().color())
             )
-            self.copy_button.clicked.disconnect()
-            self.copy_button.clicked.connect(
-                lambda: QApplication.clipboard().setText(details)
-            )
+            self.__toggle_details_button.setToolTip(self.tr("Show details..."))
 
-            self._details = False
-            label: Optional[QLabel] = self.findChild(QLabel)
-
-            def toggle_details() -> None:
-                # toggle details
-                if not self._details:
-                    self._details = True
-                    self.details_button.setText(self.tr("Hide details..."))
-                    self.details_button.setIcon(
-                        qta.icon("fa5s.chevron-up", color=self.palette().text().color())
-                    )
-                    self.setInformativeText(
-                        f"<font><p style='font-family: Consolas;font-size: 12px'>{details}</p>"
-                    )
-                    if label is not None:
-                        label.setTextInteractionFlags(
-                            Qt.TextInteractionFlag.TextSelectableByMouse
-                        )
-                        label.setCursor(Qt.CursorShape.IBeamCursor)
-                else:
-                    self._details = False
-                    self.details_button.setText(self.tr("Show details..."))
-                    self.details_button.setIcon(
-                        qta.icon(
-                            "fa5s.chevron-down", color=self.palette().text().color()
-                        )
-                    )
-                    self.setInformativeText("")
-                    if label is not None:
-                        label.setTextInteractionFlags(
-                            Qt.TextInteractionFlag.NoTextInteraction
-                        )
-                        label.setCursor(Qt.CursorShape.ArrowCursor)
-
-                # update messagebox size
-                self.adjustSize()
-
-            self.details_button.clicked.disconnect()
-            self.details_button.clicked.connect(toggle_details)
+        self.adjustSize()

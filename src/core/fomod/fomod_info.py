@@ -23,7 +23,7 @@ class FomodInfo(FomodModel, tag="fomod", search_mode="unordered"):
     author: str = element(tag="Author", default="")
     """The author of the mod."""
 
-    version: FomodVersion = element(tag="Version", default="")
+    version: FomodVersion = element(tag="Version", default_factory=FomodVersion)
     """The version of the mod."""
 
     website: str = element(tag="Website", default="")

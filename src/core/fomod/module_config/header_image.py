@@ -7,6 +7,9 @@ from typing import Optional
 
 from pydantic_xml import BaseXmlModel, attr
 
+SUPPORTED_TYPES: list[str] = [".jpg", ".jpeg", ".png", ".gif"]
+"""List of supported image types."""
+
 
 class HeaderImage(BaseXmlModel, search_mode="unordered"):
     """

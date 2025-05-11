@@ -22,7 +22,7 @@ class ModuleConfig(FomodModel, tag="config", search_mode="unordered"):
     Describes the configuration of a module.
     """
 
-    module_name: ModuleTitle = element(tag="moduleName")
+    module_name: ModuleTitle = element(tag="moduleName", default_factory=ModuleTitle)
     """The name of the module."""
 
     header_image: Optional[HeaderImage] = element(tag="moduleImage", default=None)

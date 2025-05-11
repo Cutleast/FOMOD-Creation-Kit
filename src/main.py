@@ -17,7 +17,15 @@ def __init_argparser() -> ArgumentParser:
     parser = ArgumentParser(
         prog=sys.executable,
         description=f"{App.APP_NAME} v{App.APP_VERSION} (c) Cutleast "
-        "- A tool for migrating your modlists.",
+        "- A tool for editing and creating FOMOD installers.",
+    )
+
+    parser.add_argument(
+        "fomod",
+        type=str,
+        default=None,
+        nargs="?",
+        help="FOMOD to open.",
     )
 
     return parser

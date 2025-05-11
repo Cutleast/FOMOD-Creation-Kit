@@ -79,7 +79,7 @@ class App(QApplication):
         ui_mode: UIMode = UIMode.get(self.app_config.ui_mode, UIMode.System)
         self.stylesheet_processor = StylesheetProcessor(self, ui_mode)
         self.exception_handler = ExceptionHandler(self)
-        self.main_window = MainWindow(self.app_config)
+        self.main_window = MainWindow(self.app_config, self.logger)
 
         self.log_basic_info()
         self.app_config.print_settings_to_log()
@@ -135,6 +135,11 @@ class App(QApplication):
         except Exception as ex:
             self.log.warning(f"Failed to check for updates: {ex}", exc_info=ex)
 
+        if self.args.fomod:
+            self.main_window.open_fomod(Path(self.args.fomod))
+        else:
+            self.main_window.create_new_fomod()
+
         self.main_window.show()
 
         retcode: int = super().exec()
@@ -144,6 +149,21 @@ class App(QApplication):
         self.log.info("Exiting application...")
 
         return retcode
+
+    @override
+    def exit(self, retcode: int = 0) -> bool:
+        """
+        Exits application.
+
+        Returns:
+            bool: Whether the application was exited or the user chose to cancel.
+        """
+
+        if self.main_window.close():
+            super().exit(retcode)
+            return True
+
+        return False
 
     def clean(self) -> None:
         """
@@ -164,8 +184,6 @@ class App(QApplication):
         Restarts the application.
         """
 
-        self.log.info("Restarting application...")
-
-        os.startfile(subprocess.list2cmdline(sys.argv))
-
-        self.exit()
+        if self.exit():
+            self.log.info("Restarting application...")
+            os.startfile(subprocess.list2cmdline(sys.argv))

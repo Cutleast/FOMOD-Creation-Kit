@@ -12,7 +12,7 @@ class FomodVersion(BaseXmlModel):
     Model representing the Version tag of the info.xml.
     """
 
-    value: str = ""
+    version: str = ""
     """The version of the mod."""
 
     machine_version: Optional[str] = attr(name="MachineVersion", default=None)

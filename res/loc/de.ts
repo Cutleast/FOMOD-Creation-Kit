@@ -28,23 +28,33 @@
 <context>
     <name>ErrorDialog</name>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="47"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="86"/>
         <source>Continue</source>
         <translation>Fortfahren</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="48"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="92"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="57"/>
         <location filename="src/ui/widgets/error_dialog.py" line="96"/>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/error_dialog.py" line="103"/>
+        <source>Copy error details...</source>
+        <translation>Fehlerdetails kopieren...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/error_dialog.py" line="114"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="133"/>
         <source>Show details...</source>
         <translation>Details anzeigen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="82"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="127"/>
         <source>Hide details...</source>
         <translation>Details verstecken...</translation>
     </message>
@@ -63,6 +73,62 @@
     </message>
 </context>
 <context>
+    <name>FomodEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="87"/>
+        <source>Info</source>
+        <translation>Info</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="99"/>
+        <source>Module Config</source>
+        <translation>Modulkonfiguration</translation>
+    </message>
+</context>
+<context>
+    <name>InfoEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="95"/>
+        <source>Name:</source>
+        <translation>Name:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="99"/>
+        <source>Author:</source>
+        <translation>Autor:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="103"/>
+        <source>Version:</source>
+        <translation>Version:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="107"/>
+        <source>Website:</source>
+        <translation>Webseite:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="111"/>
+        <source>Description:</source>
+        <translation>Beschreibung:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="116"/>
+        <source>Image Files</source>
+        <translation>Bilddateien</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="118"/>
+        <source>Image:</source>
+        <translation>Bild:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="176"/>
+        <source>No FOMOD path is set!</source>
+        <translation>Es wurde kein FOMOD-Pfad gesetzt!</translation>
+    </message>
+</context>
+<context>
     <name>LogWindow</name>
     <message>
         <location filename="src/ui/widgets/log_window.py" line="18"/>
@@ -71,70 +137,157 @@
     </message>
 </context>
 <context>
+    <name>MainWidget</name>
+    <message>
+        <location filename="src/ui/main_widget.py" line="104"/>
+        <source>Load FOMOD installer from file...</source>
+        <translation>FOMOD-Installer aus Datei laden...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="108"/>
+        <source>FOMOD metadata file</source>
+        <translation>FOMOD Metadaten Datei</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="109"/>
+        <source>FOMOD module config file</source>
+        <translation>FOMOD Modulkonfiguration Datei</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="126"/>
+        <source>Load FOMOD installer from folder...</source>
+        <translation>FOMOD-Installer aus Ordner laden...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="153"/>
+        <source>Save FOMOD installer as...</source>
+        <translation>FOMOD-Installer speichern unter...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="188"/>
+        <source>Close unsaved FOMOD?</source>
+        <translation>Ungespeichertes FOMOD schließen?</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="194"/>
+        <source>Are you sure you want to close the current FOMOD? There are unsaved changes that will be lost.</source>
+        <translation>Bist du sicher, dass du das aktuelle FOMOD schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="203"/>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="207"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_widget.py" line="211"/>
+        <source>Save and close</source>
+        <translation>Speichern und schließen</translation>
+    </message>
+</context>
+<context>
+    <name>MainWindow</name>
+    <message>
+        <location filename="src/ui/main_window.py" line="71"/>
+        <location filename="src/ui/main_window.py" line="75"/>
+        <source>Unnamed</source>
+        <translation>Unbenannt</translation>
+    </message>
+</context>
+<context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="40"/>
+        <location filename="src/ui/menubar.py" line="58"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="43"/>
+        <location filename="src/ui/menubar.py" line="61"/>
+        <source>Create new FOMOD installer...</source>
+        <translation>Neuen FOMOD-Installer erstellen...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="72"/>
+        <source>Load FOMOD installer from folder...</source>
+        <translation>FOMOD-Installer aus Ordner laden...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="83"/>
+        <source>Load FOMOD installer from file...</source>
+        <translation>FOMOD-Installer aus Datei laden...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="92"/>
+        <source>Save FOMOD installer</source>
+        <translation>FOMOD-Installer speichern</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="101"/>
+        <source>Save FOMOD installer as...</source>
+        <translation>FOMOD-Installer speichern unter...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="110"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="51"/>
+        <location filename="src/ui/menubar.py" line="118"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="60"/>
+        <location filename="src/ui/menubar.py" line="125"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="63"/>
+        <location filename="src/ui/menubar.py" line="128"/>
         <source>Validate XML file...</source>
         <translation>XML-Datei validieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="70"/>
+        <location filename="src/ui/menubar.py" line="135"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="73"/>
+        <location filename="src/ui/menubar.py" line="138"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="83"/>
+        <location filename="src/ui/menubar.py" line="148"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="88"/>
+        <location filename="src/ui/menubar.py" line="153"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="95"/>
+        <location filename="src/ui/menubar.py" line="160"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="101"/>
-        <location filename="src/ui/menubar.py" line="126"/>
+        <location filename="src/ui/menubar.py" line="166"/>
+        <location filename="src/ui/menubar.py" line="191"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="116"/>
+        <location filename="src/ui/menubar.py" line="181"/>
         <source>No Updates Available</source>
         <translation>Keine Updates verfügbar</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="117"/>
+        <location filename="src/ui/menubar.py" line="182"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
     </message>
@@ -223,17 +376,17 @@
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="src/ui/statusbar.py" line="52"/>
+        <location filename="src/ui/statusbar.py" line="51"/>
         <source>Support me on Ko-fi</source>
         <translation>Unterstütze mich auf Ko-Fi</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="67"/>
+        <location filename="src/ui/statusbar.py" line="66"/>
         <source>Copy log to clipboard</source>
         <translation>Protokoll in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="77"/>
+        <location filename="src/ui/statusbar.py" line="76"/>
         <source>View log</source>
         <translation>Protokoll anzeigen</translation>
     </message>
@@ -293,6 +446,47 @@
         <location filename="src/ui/widgets/xml_validator_dialog.py" line="92"/>
         <source>Valid</source>
         <translation>Gültig</translation>
+    </message>
+</context>
+<context>
+    <name>exceptions</name>
+    <message>
+        <location filename="src/core/fomod/exceptions.py" line="28"/>
+        <source>The path (&apos;{0}&apos;) does not point to a FOMOD installer!</source>
+        <translation>Der Pfad (&apos;{0}&apos;) zeigt nicht auf einen FOMOD-Installer!</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/exceptions.py" line="42"/>
+        <source>Failed to save the FOMOD installer! Could not validate &apos;{0}&apos;.</source>
+        <translation>Speichern des FOMOD-Installers fehlgeschlagen! Konnte &apos;{0}&apos; nicht validieren.</translation>
+    </message>
+</context>
+<context>
+    <name>fomod_editor</name>
+    <message>
+        <location filename="src/core/fomod_editor/exceptions.py" line="35"/>
+        <source>The path
+&apos;{0}&apos;
+is outside the FOMOD folder
+&apos;{1}&apos;!</source>
+        <translation>Der Pfad
+&apos;{0}&apos;
+liegt außerhalb des FOMOD Ordners
+&apos;{1}&apos;!</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod_editor/exceptions.py" line="51"/>
+        <source>The image type &apos;{0}&apos; is not supported by FOMOD installers!</source>
+        <translation>Der Bildtyp &apos;{0}&apos; wird nicht vom FOMOD Installer unterstützt!</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod_editor/exceptions.py" line="64"/>
+        <source>The file
+&apos;{0}&apos;
+does not exist!</source>
+        <translation>Die Datei
+&apos;{0}&apos;
+existiert nicht!</translation>
     </message>
 </context>
 </TS>
