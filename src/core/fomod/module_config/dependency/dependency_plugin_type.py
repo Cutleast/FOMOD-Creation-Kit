@@ -4,8 +4,8 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, element
 
+from ..plugin_type import PluginType
 from .dependency_pattern_list import DependencyPatternList
-from .plugin_type import PluginType
 
 
 class DependencyPluginType(BaseXmlModel, search_mode="unordered"):

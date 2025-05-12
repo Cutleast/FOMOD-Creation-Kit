@@ -7,8 +7,8 @@ from typing import Optional, override
 from pydantic_xml import element
 
 from ..fomod_model import FomodModel
-from .composite_dependency import CompositeDependency
-from .conditional_file_install_list import ConditionalFileInstallList
+from .condition.conditional_file_install_list import ConditionalFileInstallList
+from .dependency.composite_dependency import CompositeDependency
 from .file_list import FileList
 from .header_image import HeaderImage
 from .module_title import ModuleTitle

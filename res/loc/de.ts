@@ -26,6 +26,42 @@
     </message>
 </context>
 <context>
+    <name>CompositeDependency</name>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="45"/>
+        <source>And</source>
+        <translation>Und</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="48"/>
+        <source>Or</source>
+        <translation>Oder</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="60"/>
+        <source>All contained dependencies must be satisfied in order for this dependency to be satisfied.</source>
+        <translation>Alle enthaltenen Abhängigkeiten müssen erfüllt sein, damit diese Abhängigkeit als erfüllt gilt.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="65"/>
+        <source>At least one listed dependency must be satisfied in order for this dependency to be satisfied.</source>
+        <translation>Mindestens eine der gelisteten Abhängigkeiten muss erfüllt sein, damit diese Abhängigkeit als erfüllt gilt.</translation>
+    </message>
+</context>
+<context>
+    <name>CompositeDependencyEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/composite_dependency/composite_dependency_editor_widget.py" line="39"/>
+        <source>Composite dependencies are used to group multiple dependencies together.</source>
+        <translation>Zusammengesetzte Abhängigkeiten werden zum Gruppieren von mehreren Abhängigkeiten verwendet.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/composite_dependency/composite_dependency_editor_widget.py" line="46"/>
+        <source>Operator:</source>
+        <translation>Operator:</translation>
+    </message>
+</context>
+<context>
     <name>ErrorDialog</name>
     <message>
         <location filename="src/ui/widgets/error_dialog.py" line="86"/>
@@ -80,24 +116,77 @@
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="137"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="139"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="159"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="161"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="179"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="183"/>
         <source>Installation steps (pages)</source>
         <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="201"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="205"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
+    </message>
+</context>
+<context>
+    <name>Group</name>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="51"/>
+        <source>Select at least one</source>
+        <translation>Mindestens ein Element auswählen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="54"/>
+        <source>Select at most one</source>
+        <translation>Maximal ein Element auswählen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="57"/>
+        <source>Select exactly one</source>
+        <translation>Exakt ein Element auswählen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="58"/>
+        <source>Select all</source>
+        <translation>Alle auswählen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="59"/>
+        <source>Select any</source>
+        <translation>Beliebige auswählen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="70"/>
+        <source>At least one plugin in the group must be selected.</source>
+        <translation>Mindestens ein Plugin in der Gruppe muss ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="74"/>
+        <source>At most one plugin in the group must be selected.</source>
+        <translation>Maximal ein Plugin in der Gruppe muss ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="78"/>
+        <source>Exactly one plugin in the group must be selected.</source>
+        <translation>Exakt ein Plugin muss ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="82"/>
+        <source>All plugins in the group must be selected.</source>
+        <translation>Alle Plugins in der Gruppe müssen ausgewählt werden.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/group.py" line="86"/>
+        <source>Any number of plugins in the group may be selected.</source>
+        <translation>Eine beliebige Anzahl Plugins in der Gruppe darf ausgewählt werden.</translation>
     </message>
 </context>
 <context>
@@ -305,6 +394,59 @@
         <location filename="src/ui/menubar.py" line="182"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
+    </message>
+</context>
+<context>
+    <name>PluginType</name>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="50"/>
+        <source>Required</source>
+        <translation>Erforderlich</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="53"/>
+        <source>Optional</source>
+        <translation>Optional</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="56"/>
+        <source>Recommended</source>
+        <translation>Empfohlen</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="59"/>
+        <source>Not usable</source>
+        <translation>Nicht verwendbar</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="62"/>
+        <source>Could be usable</source>
+        <translation>Könnte verwendbar sein</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="72"/>
+        <source>The plugin must be installed.</source>
+        <translation>Das Plugin muss installiert werden.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="75"/>
+        <source>The plugin is optional.</source>
+        <translation>Das Plugin ist optional.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="78"/>
+        <source>The plugin is recommended for stability.</source>
+        <translation>Das Plugin wird zugunsten von Stabilität empfohlen.</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="83"/>
+        <source>Using the plugin could result in instability (i.e., a prerequisite plugin is missing).</source>
+        <translation>Das Plugin könnte zu Instabilität führen (d.h. eine Pluginabhängigkeit fehlt).</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin_type.py" line="89"/>
+        <source>Using the plugin could result in instability if loaded with the currently active plugins (i.e., a prerequisite plugin is missing), but that the prerequisite plugin is installed, just not activated.</source>
+        <translation>Das Plugin könnte mit den derzeit aktiven Plugins zu Instabilität führen (d.h. eine Pluginabhängigkeit fehlt), aber die Abhängigkeit ist installiert und deaktiviert.</translation>
     </message>
 </context>
 <context>

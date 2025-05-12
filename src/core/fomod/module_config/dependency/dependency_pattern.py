@@ -4,8 +4,8 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, element
 
+from ..plugin_type import PluginType
 from .composite_dependency import CompositeDependency
-from .plugin_type import PluginType
 
 
 class DependencyPattern(BaseXmlModel, search_mode="unordered"):

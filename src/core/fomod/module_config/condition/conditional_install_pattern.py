@@ -4,8 +4,8 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, element
 
-from .composite_dependency import CompositeDependency
-from .file_list import FileList
+from ..dependency.composite_dependency import CompositeDependency
+from ..file_list import FileList
 
 
 class ConditionalInstallPattern(

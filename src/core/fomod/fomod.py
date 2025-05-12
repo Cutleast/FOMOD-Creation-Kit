@@ -166,7 +166,7 @@ class Fomod:
                                                     ),
                                                     type_descriptor=PluginTypeDescriptor(
                                                         type=PluginType(
-                                                            name=PluginType.PluginTypeEnum.Required
+                                                            name=PluginType.Type.Required
                                                         )
                                                     ),
                                                 )
