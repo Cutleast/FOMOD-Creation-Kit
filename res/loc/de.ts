@@ -75,29 +75,29 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="98"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="117"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="108"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="137"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="120"/>
-        <source>Required Files</source>
-        <translation>Erforderliche Dateien</translation>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="159"/>
+        <source>Required files to install</source>
+        <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="130"/>
-        <source>Steps</source>
-        <translation>Schritte</translation>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="179"/>
+        <source>Installation steps (pages)</source>
+        <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="144"/>
-        <source>Conditional Files</source>
-        <translation>Bedingte Dateien</translation>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="201"/>
+        <source>Conditional files to install</source>
+        <translation>Bedingte zu installierende Dateien</translation>
     </message>
 </context>
 <context>

@@ -472,9 +472,25 @@ QTabBar::close-button
     padding: 3px;
     border-radius: 1px;
 }
-QTabWidget::tab-bar#centered_tab
+QTabWidget::tab-bar#centered_tab,
+QTabWidget::tab-bar#icon_bar
 {
     alignment: center;
+}
+QTabWidget::tab-bar#icon_bar
+{
+    padding: 16px;
+}
+QTabWidget#icon_bar QTabBar::tab
+{
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+}
+QTabWidget#icon_bar QTabBar::tab:left
+{
+    padding-top: -8px;
+    padding-bottom: 8px;
 }
 
 /* Tooltips */

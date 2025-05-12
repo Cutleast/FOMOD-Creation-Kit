@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from PySide6.QtGui import QPalette
+from PySide6.QtGui import QIcon, QPalette
 
 
 def get_icon_name_for_palette(icon_name: str, palette: QPalette) -> str:
@@ -30,3 +30,23 @@ def get_icon_name_for_palette(icon_name: str, palette: QPalette) -> str:
             return f"{icon_name}_light.svg"
         case _:
             raise ValueError(f"Unknown text color: {text_color}")
+
+
+def get_icon_for_palette(icon_name: str, palette: QPalette) -> QIcon:
+    """
+    Provides an icon for the text color of the specified palette.
+
+    Args:
+        icon_name (str): Base name of the icon
+        palette (QPalette): Palette
+
+    Raises:
+        ValueError:
+            when text color of the specified palette is neither #000000 nor #FFFFFF
+
+    Returns:
+        QIcon: Icon
+    """
+
+    full_icon_name: str = ":/icons/" + get_icon_name_for_palette(icon_name, palette)
+    return QIcon(full_icon_name)
