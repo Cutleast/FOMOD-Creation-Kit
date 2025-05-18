@@ -127,6 +127,18 @@ class CompositeDependency(BaseXmlModel, tag="dependencies", search_mode="unorder
     operator: Operator = attr(name="operator", default=Operator.And)
     """The relation of the contained dependencies."""
 
+    def get_display_name(self) -> str:
+        """
+        Returns:
+            str: A display name generated from the dependencies.
+        """
+
+        return self.dependencies.get_display_name()
+
+    @override
+    def __str__(self) -> str:
+        return self.get_display_name()
+
 
 CompositeDependency.model_rebuild()
 CompositeDependency.DependencyTypesGroup.model_rebuild()

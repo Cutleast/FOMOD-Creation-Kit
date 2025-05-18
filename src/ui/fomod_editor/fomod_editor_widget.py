@@ -200,7 +200,12 @@ class FomodEditorWidget(QTabWidget):
         )
         self.setTabToolTip(i, self.tr("Conditional files to install"))
 
-    def save(self, path: Optional[Path] = None) -> None:
+    def save(
+        self,
+        path: Optional[Path] = None,
+        validate_xml: bool = True,
+        encoding: str = "utf-8",
+    ) -> None:
         """
         Saves the current FOMOD installer (if any). Does nothing if no FOMOD is set.
 
@@ -208,6 +213,10 @@ class FomodEditorWidget(QTabWidget):
             path (Optional[Path], optional):
                 The path to save the FOMOD installer to. Defaults to the FOMOD's current
                 path.
+            validate_xml (bool, optional):
+                Whether to validate the XML files before saving. Defaults to True.
+            encoding (str, optional):
+                The encoding to use for the XML files. Defaults to "utf-8".
 
         Raises:
             ValueError: if no FOMOD path is set
@@ -240,7 +249,7 @@ class FomodEditorWidget(QTabWidget):
         if self.__conditional_files_editor_widget is not None:
             self.__conditional_files_editor_widget.save()
 
-        self.__current_fomod.save()
+        self.__current_fomod.save(validate_xml, encoding)
         self.changed.emit(self.__current_fomod, False)
 
     def __validate(self) -> None:
