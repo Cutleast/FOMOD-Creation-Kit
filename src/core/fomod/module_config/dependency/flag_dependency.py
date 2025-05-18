@@ -2,10 +2,12 @@
 Copyright (c) Cutleast
 """
 
-from pydantic_xml import BaseXmlModel, attr
+from pydantic_xml import attr
+
+from .dependency import Dependency
 
 
-class FlagDependency(BaseXmlModel, search_mode="unordered"):
+class FlagDependency(Dependency, tag="flagDependency"):
     """
     A condition flag upon which the type of a plugin depends.
     """
@@ -15,3 +17,5 @@ class FlagDependency(BaseXmlModel, search_mode="unordered"):
 
     value: str = attr(name="value")
     """The value of the condition flag upon which a the plugin depends."""
+
+    TYPE: Dependency.Type = Dependency.Type.Flag

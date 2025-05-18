@@ -4,13 +4,15 @@ Copyright (c) Cutleast
 
 from typing import override
 
-from pydantic_xml import BaseXmlModel, attr
+from pydantic_xml import attr
 from PySide6.QtWidgets import QApplication
 
 from core.utilities.localized_enum import LocalizedEnum
 
+from .dependency import Dependency
 
-class FileDependency(BaseXmlModel, search_mode="unordered"):
+
+class FileDependency(Dependency, tag="fileDependency"):
     """
     Model representing the fileDependency tag of the ModuleConfig.xml.
 
@@ -68,3 +70,5 @@ class FileDependency(BaseXmlModel, search_mode="unordered"):
 
     state: State = attr(name="state")
     """The state of the mod file."""
+
+    TYPE: Dependency.Type = Dependency.Type.File
