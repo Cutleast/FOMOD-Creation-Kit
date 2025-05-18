@@ -48,8 +48,6 @@ class TestMainWindow(UiTest):
         main_window.show()
         return main_window
 
-    # TODO: Fix the combination of FakeFilesystem and QtAwesome
-    @pytest.mark.skip("FakeFilesystem has issues with QtAwesome's assets")
     def test_initial_state(self, test_fs: FakeFilesystem, widget: MainWindow) -> None:
         """
         Tests the initial state of the MainWindow.

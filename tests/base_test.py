@@ -30,6 +30,15 @@ class BaseTest:
         return Path("tests") / "data"
 
     @pytest.fixture
+    def real_cwd(self) -> Path:
+        """
+        Returns:
+            Path: The real current working directory (outside of the fake filesystem).
+        """
+
+        return Path.cwd()
+
+    @pytest.fixture
     def app_config(self, data_folder: Path) -> AppConfig:
         """
         Returns the application config for the tests.
@@ -41,7 +50,9 @@ class BaseTest:
         return AppConfig.load(data_folder / "config")
 
     @pytest.fixture
-    def test_fs(self, data_folder: Path, fs: FakeFilesystem) -> FakeFilesystem:
+    def test_fs(
+        self, real_cwd: Path, data_folder: Path, fs: FakeFilesystem
+    ) -> FakeFilesystem:
         """
         Creates a fake filesystem for testing.
 
@@ -53,7 +64,7 @@ class BaseTest:
 
         # Add qtawesome fonts
         fs.add_real_directory(
-            Path(".venv") / "lib" / "site-packages" / "qtawesome" / "fonts"
+            real_cwd / ".venv" / "lib" / "site-packages" / "qtawesome" / "fonts"
         )
 
         return fs
