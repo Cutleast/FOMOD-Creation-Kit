@@ -10,6 +10,7 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 
 import resources_rc  # type: ignore # noqa: F401
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 from core.utilities.logger import Logger
 
 
@@ -48,6 +49,17 @@ class BaseTest:
         """
 
         return AppConfig.load(data_folder / "config")
+
+    @pytest.fixture
+    def behavior_config(self, data_folder: Path) -> BehaviorConfig:
+        """
+        Returns the behavior config for the tests.
+
+        Returns:
+            BehaviorConfig: The behavior config.
+        """
+
+        return BehaviorConfig.load(data_folder / "config")
 
     @pytest.fixture
     def test_fs(

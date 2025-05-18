@@ -7,7 +7,9 @@ from typing import override
 from PySide6.QtCore import QEvent, QObject, Qt, Signal
 from PySide6.QtGui import QWheelEvent
 from PySide6.QtWidgets import (
+    QCheckBox,
     QComboBox,
+    QFormLayout,
     QGridLayout,
     QGroupBox,
     QLabel,
@@ -17,9 +19,11 @@ from PySide6.QtWidgets import (
 )
 
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 from core.utilities.localisation import Language
 from core.utilities.logger import Logger
 from ui.utilities.ui_mode import UIMode
+from ui.widgets.enum_dropdown import EnumDropdown
 from ui.widgets.smooth_scroll_area import SmoothScrollArea
 
 
@@ -39,6 +43,7 @@ class SettingsWidget(SmoothScrollArea):
     """
 
     __app_config: AppConfig
+    __behavior_config: BehaviorConfig
 
     __vlayout: QVBoxLayout
 
@@ -47,10 +52,14 @@ class SettingsWidget(SmoothScrollArea):
     __language_box: QComboBox
     __ui_mode_box: QComboBox
 
-    def __init__(self, app_config: AppConfig) -> None:
+    __validate_xml_checkbox: QCheckBox
+    __module_config_encoding_dropdown: EnumDropdown[BehaviorConfig.ModuleConfigEncoding]
+
+    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
         super().__init__()
 
         self.__app_config = app_config
+        self.__behavior_config = behavior_config
 
         self.__init_ui()
 
@@ -64,6 +73,7 @@ class SettingsWidget(SmoothScrollArea):
         scroll_widget.setLayout(self.__vlayout)
 
         self.__init_app_settings()
+        self.__init_behavior_settings()
 
     def __init_app_settings(self) -> None:
         app_settings_group = QGroupBox(self.tr("App settings"))
@@ -132,6 +142,33 @@ class SettingsWidget(SmoothScrollArea):
         )
         app_settings_glayout.addWidget(self.__ui_mode_box, 3, 1)
 
+    def __init_behavior_settings(self) -> None:
+        behavior_settings_group = QGroupBox(self.tr("Behavior settings"))
+        self.__vlayout.addWidget(behavior_settings_group)
+
+        behavior_settings_flayout = QFormLayout()
+        behavior_settings_group.setLayout(behavior_settings_flayout)
+
+        self.__validate_xml_checkbox = QCheckBox(self.tr("Validate XML files on save"))
+        self.__validate_xml_checkbox.setChecked(
+            self.__behavior_config.validate_xml_on_save
+        )
+        self.__validate_xml_checkbox.stateChanged.connect(lambda _: self.changed.emit())
+        behavior_settings_flayout.addRow(self.__validate_xml_checkbox)
+
+        self.__module_config_encoding_dropdown = EnumDropdown(
+            BehaviorConfig.ModuleConfigEncoding,
+            self.__behavior_config.module_config_encoding,
+        )
+        self.__module_config_encoding_dropdown.installEventFilter(self)
+        self.__module_config_encoding_dropdown.currentValueChanged.connect(
+            lambda _: self.changed.emit()
+        )
+        behavior_settings_flayout.addRow(
+            QLabel(self.tr("Encoding used for ModuleConfig.xml:")),
+            self.__module_config_encoding_dropdown,
+        )
+
     @override
     def eventFilter(self, source: QObject, event: QEvent) -> bool:
         if (
@@ -155,3 +192,10 @@ class SettingsWidget(SmoothScrollArea):
         self.__app_config.log_num_of_files = self.__log_num_of_files_box.value()
         self.__app_config.language = Language[self.__language_box.currentText()]
         self.__app_config.ui_mode = UIMode[self.__ui_mode_box.currentText()]
+
+        self.__behavior_config.validate_xml_on_save = (
+            self.__validate_xml_checkbox.isChecked()
+        )
+        self.__behavior_config.module_config_encoding = (
+            self.__module_config_encoding_dropdown.getCurrentValue()
+        )

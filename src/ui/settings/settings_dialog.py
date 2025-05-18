@@ -15,6 +15,7 @@ from PySide6.QtWidgets import (
 
 from app_context import AppContext
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 
 from .settings_widget import SettingsWidget
 
@@ -25,6 +26,7 @@ class SettingsDialog(QDialog):
     """
 
     __app_config: AppConfig
+    __behavior_config: BehaviorConfig
 
     __vlayout: QVBoxLayout
 
@@ -33,15 +35,16 @@ class SettingsDialog(QDialog):
 
     __restart_required: bool = False
 
-    def __init__(self, app_config: AppConfig) -> None:
+    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
         super().__init__()
 
         self.__app_config = app_config
+        self.__behavior_config = behavior_config
 
         self.__init_ui()
         self.setWindowTitle(self.tr("Settings"))
-        self.setMinimumSize(500, 400)
-        self.resize(500, 400)
+        self.setMinimumSize(600, 535)
+        self.resize(600, 535)
 
     def __init_ui(self) -> None:
         self.__vlayout = QVBoxLayout()
@@ -70,7 +73,9 @@ class SettingsDialog(QDialog):
         self.__vlayout.addSpacing(15)
 
     def __init_settings_widget(self) -> None:
-        self.__settings_widget = SettingsWidget(self.__app_config)
+        self.__settings_widget = SettingsWidget(
+            self.__app_config, self.__behavior_config
+        )
         self.__settings_widget.changed.connect(self.__on_change)
         self.__settings_widget.restart_required.connect(self.__on_restart_required)
         self.__vlayout.addWidget(self.__settings_widget)
@@ -103,6 +108,7 @@ class SettingsDialog(QDialog):
     def __save(self) -> None:
         self.__settings_widget.apply_settings()
         self.__app_config.save()
+        self.__behavior_config.save()
 
         self.accept()
 

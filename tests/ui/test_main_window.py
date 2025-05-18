@@ -7,6 +7,7 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 from pytestqt.qtbot import QtBot
 
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 from core.utilities.logger import Logger
 from tests.utils import Utils
 from ui.main_widget import MainWidget
@@ -36,6 +37,7 @@ class TestMainWindow(UiTest):
         self,
         test_fs: FakeFilesystem,
         app_config: AppConfig,
+        behavior_config: BehaviorConfig,
         logger: Logger,
         qtbot: QtBot,
     ) -> MainWindow:
@@ -43,7 +45,7 @@ class TestMainWindow(UiTest):
         Fixture to create and provide a MainWindow instance for tests.
         """
 
-        main_window = MainWindow(app_config, logger)
+        main_window = MainWindow(app_config, behavior_config, logger)
         qtbot.addWidget(main_window)
         main_window.show()
         return main_window

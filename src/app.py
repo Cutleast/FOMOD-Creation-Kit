@@ -17,6 +17,7 @@ from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 from core.utilities.exception_handler import ExceptionHandler
 from core.utilities.localisation import Language, detect_system_locale
 from core.utilities.logger import Logger
@@ -36,6 +37,7 @@ class App(QApplication):
 
     args: Namespace
     app_config: AppConfig
+    behavior_config: BehaviorConfig
 
     cur_path: Path = Path.cwd()
     data_path: Path = cur_path / "data"
@@ -63,6 +65,7 @@ class App(QApplication):
         """
 
         self.app_config = AppConfig.load(self.config_path)
+        self.behavior_config = BehaviorConfig.load(self.config_path)
 
         log_file: Path = self.log_path / time.strftime(self.app_config.log_file_name)
         self.logger = Logger(
@@ -79,7 +82,9 @@ class App(QApplication):
         ui_mode: UIMode = UIMode.get(self.app_config.ui_mode, UIMode.System)
         self.stylesheet_processor = StylesheetProcessor(self, ui_mode)
         self.exception_handler = ExceptionHandler(self)
-        self.main_window = MainWindow(self.app_config, self.logger)
+        self.main_window = MainWindow(
+            self.app_config, self.behavior_config, self.logger
+        )
 
         self.log_basic_info()
         self.app_config.print_settings_to_log()

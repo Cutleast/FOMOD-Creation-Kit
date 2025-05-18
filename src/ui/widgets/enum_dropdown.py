@@ -1,0 +1,68 @@
+"""
+Copyright (c) Cutleast
+"""
+
+from enum import Enum
+from typing import Optional
+
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QComboBox
+
+from core.utilities.localized_enum import LocalizedEnum
+
+
+class EnumDropdown[E: Enum](QComboBox):
+    """
+    QComboBox specialized for enums. Has support for localized enums.
+    """
+
+    currentValueChanged = Signal(Enum)
+    """
+    This signal gets emitted when the selected enum value changes.
+
+    Args:
+        E: The selected enum value
+    """
+
+    __enum_type: type[E]
+
+    def __init__(self, enum_type: type[E], initial_value: Optional[E] = None) -> None:
+        super().__init__()
+
+        self.__enum_type = enum_type
+
+        if issubclass(enum_type, LocalizedEnum):
+            for i, e in enumerate(enum_type):
+                self.addItem(e.get_localized_name())
+                self.setItemData(
+                    i, e.get_localized_description(), role=Qt.ItemDataRole.ToolTipRole
+                )
+
+        else:
+            for e in enum_type:
+                self.addItem(e.name)
+                if e.__doc__ is not None:
+                    self.setItemData(
+                        self.count() - 1, e.__doc__, role=Qt.ItemDataRole.ToolTipRole
+                    )
+
+        if initial_value is not None:
+            if isinstance(initial_value, LocalizedEnum):
+                self.setCurrentText(initial_value.get_localized_name())
+            else:
+                self.setCurrentText(initial_value.name)
+
+        self.currentTextChanged.connect(
+            lambda _: self.currentValueChanged.emit(self.getCurrentValue())
+        )
+
+    def getCurrentValue(self) -> E:
+        """
+        Returns:
+            E: The currently selected enum member.
+        """
+
+        if issubclass(self.__enum_type, LocalizedEnum):
+            return self.__enum_type.get_by_localized_name(self.currentText())
+        else:
+            return self.__enum_type[self.currentText()]

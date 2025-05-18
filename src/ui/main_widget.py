@@ -16,6 +16,7 @@ from PySide6.QtWidgets import (
 
 from app_context import AppContext
 from core.config.app_config import AppConfig
+from core.config.behavior_config import BehaviorConfig
 from core.fomod.fomod import Fomod
 
 from .fomod_editor.fomod_editor_widget import FomodEditorWidget
@@ -38,14 +39,16 @@ class MainWidget(QWidget):
     __changes_pending: bool = False
 
     app_config: AppConfig
+    behavior_config: BehaviorConfig
 
     __vlayout: QVBoxLayout
     __fomod_editor_widget: FomodEditorWidget
 
-    def __init__(self, app_config: AppConfig) -> None:
+    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
         super().__init__()
 
         self.app_config = app_config
+        self.behavior_config = behavior_config
 
         self.__init_ui()
         self.__fomod_editor_widget.changed.connect(self.changed.emit)
@@ -143,7 +146,10 @@ class MainWidget(QWidget):
             self.save_fomod_as()
 
         elif fomod is not None:
-            self.__fomod_editor_widget.save()
+            self.__fomod_editor_widget.save(
+                validate_xml=self.behavior_config.validate_xml_on_save,
+                encoding=self.behavior_config.module_config_encoding.value,
+            )
 
     def save_fomod_as(self) -> None:
         """
@@ -157,7 +163,11 @@ class MainWidget(QWidget):
             fomod_path = Path(file_dialog.selectedFiles()[0])
             if fomod_path.parts[-1].lower() != "fomod":
                 fomod_path /= "fomod"
-            self.__fomod_editor_widget.save(fomod_path)
+            self.__fomod_editor_widget.save(
+                fomod_path,
+                validate_xml=self.behavior_config.validate_xml_on_save,
+                encoding=self.behavior_config.module_config_encoding.value,
+            )
 
     @override
     def close(self) -> bool:

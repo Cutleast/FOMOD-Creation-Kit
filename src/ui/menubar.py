@@ -167,7 +167,9 @@ class MenuBar(QMenuBar):
         about_qt_action.triggered.connect(self.__show_about_qt)
 
     def __open_settings(self) -> None:
-        SettingsDialog(AppContext.get_app().app_config).exec()
+        SettingsDialog(
+            AppContext.get_app().app_config, AppContext.get_app().behavior_config
+        ).exec()
 
     def __open_xml_validator(self) -> None:
         XmlValidatorDialog(AppContext.get_app().main_window).exec()

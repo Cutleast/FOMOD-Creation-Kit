@@ -49,9 +49,15 @@ class Fomod:
         self.info = info
         self.module_config = module_config
 
-    def save(self) -> None:
+    def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """
         Saves the FOMOD installer to its path.
+
+        Args:
+            validate_xml (bool, optional):
+                Whether to validate the XML files before saving. Defaults to True.
+            encoding (str, optional):
+                The encoding to use for the XML files. Defaults to "utf-8".
         """
 
         if self.path is None:
@@ -73,23 +79,29 @@ class Fomod:
         self.log.info(f"Saving ModuleConfig.xml to '{module_config_path}'...")
 
         try:
-            module_config_path.write_bytes(self.module_config.dump())
+            module_config_path.write_bytes(self.module_config.dump(validate_xml))
         except etree.DocumentInvalid as ex:
             raise XmlValidationError(module_config_path.name) from ex
 
         self.log.info(f"Saved FOMOD installer to '{self.path}'.")
 
-    def save_as(self, path: Path) -> None:
+    def save_as(
+        self, path: Path, validate_xml: bool = True, encoding: str = "utf-8"
+    ) -> None:
         """
         Saves the FOMOD installer to the specified path.
         This changes this FOMOD instance's path.
 
         Args:
             path (Path): The path to save the FOMOD installer to.
+            validate_xml (bool, optional):
+                Whether to validate the XML files before saving. Defaults to True.
+            encoding (str, optional):
+                The encoding to use for the XML files. Defaults to "utf-8".
         """
 
         self.path = path
-        self.save()
+        self.save(validate_xml, encoding)
 
     @staticmethod
     def load(path: Path) -> Fomod:
