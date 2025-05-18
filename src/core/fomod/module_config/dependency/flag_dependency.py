@@ -17,5 +17,3 @@ class FlagDependency(Dependency, tag="flagDependency"):
 
     value: str = attr(name="value")
     """The value of the condition flag upon which a the plugin depends."""
-
-    TYPE: Dependency.Type = Dependency.Type.Flag

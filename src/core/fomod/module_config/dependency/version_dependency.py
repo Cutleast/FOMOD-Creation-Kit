@@ -14,5 +14,3 @@ class VersionDependency(Dependency, tag="versionDependency"):
 
     version: str = attr(name="version")
     """The required minimum version of the item."""
-
-    TYPE: Dependency.Type = Dependency.Type.Version

@@ -71,8 +71,6 @@ class FileDependency(Dependency, tag="fileDependency"):
     state: State = attr(name="state")
     """The state of the mod file."""
 
-    TYPE: Dependency.Type = Dependency.Type.File
-
     @override
     def __str__(self) -> str:
         return f"{self.file}: {self.state.get_localized_name()}"
