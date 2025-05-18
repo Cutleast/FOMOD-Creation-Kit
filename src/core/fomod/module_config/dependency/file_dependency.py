@@ -2,9 +2,12 @@
 Copyright (c) Cutleast
 """
 
-from enum import Enum
+from typing import override
 
 from pydantic_xml import BaseXmlModel, attr
+from PySide6.QtWidgets import QApplication
+
+from core.utilities.localized_enum import LocalizedEnum
 
 
 class FileDependency(BaseXmlModel, search_mode="unordered"):
@@ -17,7 +20,7 @@ class FileDependency(BaseXmlModel, search_mode="unordered"):
     file: str = attr(name="file")
     """The file of the mod upon which a plugin depends."""
 
-    class State(Enum):
+    class State(LocalizedEnum):
         """
         Enum for the states of a mod file.
         """
@@ -30,6 +33,38 @@ class FileDependency(BaseXmlModel, search_mode="unordered"):
 
         Active = "Active"
         """Indicates the mod file is installed and active."""
+
+        @override
+        def get_localized_name(self) -> str:
+            locs: dict[FileDependency.State, str] = {
+                FileDependency.State.Missing: QApplication.translate(
+                    "FileDependency", "Missing"
+                ),
+                FileDependency.State.Inactive: QApplication.translate(
+                    "FileDependency", "Inactive"
+                ),
+                FileDependency.State.Active: QApplication.translate(
+                    "FileDependency", "Active"
+                ),
+            }
+
+            return locs[self]
+
+        @override
+        def get_localized_description(self) -> str:
+            locs: dict[FileDependency.State, str] = {
+                FileDependency.State.Missing: QApplication.translate(
+                    "FileDependency", "The mod file is not installed."
+                ),
+                FileDependency.State.Inactive: QApplication.translate(
+                    "FileDependency", "The mod file is installed, but is not active."
+                ),
+                FileDependency.State.Active: QApplication.translate(
+                    "FileDependency", "The mod file is installed and active."
+                ),
+            }
+
+            return locs[self]
 
     state: State = attr(name="state")
     """The state of the mod file."""
