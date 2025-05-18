@@ -21,7 +21,9 @@ class TestFomodInfo(BaseTest):
         """
 
         # given
-        fomod_info_file: Path = data_folder / "TestFomodInfo" / "info.xml"
+        fomod_info_file: Path = (
+            data_folder / "Dynamic Interface Patcher FOMOD" / "fomod" / "info.xml"
+        )
 
         # when
         fomod_info: FomodInfo = FomodInfo.load(fomod_info_file.read_bytes())
@@ -46,7 +48,9 @@ class TestFomodInfo(BaseTest):
         """
 
         # given
-        fomod_info_file: Path = data_folder / "TestFomodInfo" / "info.xml"
+        fomod_info_file: Path = (
+            data_folder / "Dynamic Interface Patcher FOMOD" / "fomod" / "info.xml"
+        )
         output_info_file: Path = Path("info.xml")
         fomod_info: FomodInfo = FomodInfo.load(fomod_info_file.read_bytes())
 

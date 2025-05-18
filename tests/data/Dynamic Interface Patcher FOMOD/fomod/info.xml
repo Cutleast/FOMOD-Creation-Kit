@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes'?>
+<fomod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/Cutleast/FOMOD-Creation-Kit/master/res/schemas/info.xsd">
+  <Name>Dynamic Interface Patcher - DIP</Name>
+  <Author>Cutleast</Author>
+  <Version>2.1.5</Version>
+  <Website>https://www.nexusmods.com/skyrimspecialedition/mods/96891</Website>
+  <Description>A dynamic patching tool for ui mods with strict permissions like RaceMenu or MiniMap.</Description>
+</fomod>
