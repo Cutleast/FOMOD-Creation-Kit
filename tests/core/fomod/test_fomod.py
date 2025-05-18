@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from pathlib import Path
+
 from core.fomod.fomod import Fomod
 from tests.base_test import BaseTest
 
@@ -10,6 +12,22 @@ class TestFomod(BaseTest):
     """
     Tests `core.fomod.fomod.Fomod`.
     """
+
+    def test_load(self, data_folder: Path) -> None:
+        """
+        Test `Fomod.load()`.
+        """
+
+        # given
+        fomod_path: Path = (
+            data_folder / "JK's Interiors Patch Collection FOMOD" / "fomod"
+        )
+
+        # when
+        fomod: Fomod = Fomod.load(fomod_path)
+
+        # then
+        assert fomod.info.name == "JK's Interiors Patch Collection"
 
     def test_create(self) -> None:
         """
