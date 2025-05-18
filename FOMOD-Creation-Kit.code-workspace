@@ -164,7 +164,7 @@
 				"name": "Debug FOMOD Creation Kit with Test FOMOD",
 				"program": "${workspaceFolder}/src/main.py",
 				"args": [
-					"${workspaceFolder}/tests/data/TestFomodEditorWidget/fomod"
+					"${workspaceFolder}/tests/data/JK's Interiors Patch Collection FOMOD/fomod"
 				],
 				"cwd": "${workspaceFolder}",
 				"preLaunchTask": "compile-qrc"
