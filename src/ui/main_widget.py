@@ -18,6 +18,7 @@ from app_context import AppContext
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod.fomod import Fomod
+from core.fomod_editor.exceptions import ValidationError
 
 from .fomod_editor.fomod_editor_widget import FomodEditorWidget
 
@@ -194,6 +195,14 @@ class MainWidget(QWidget):
         return True
 
     def __show_close_unsaved_messagebox(self) -> QMessageBox.StandardButton:
+        valid: bool = False
+
+        try:
+            self.__fomod_editor_widget.validate()
+            valid = True
+        except ValidationError:
+            pass
+
         message_box = QMessageBox(self)
         message_box.setWindowTitle(self.tr("Close unsaved FOMOD?"))
         message_box.setText(
@@ -202,12 +211,18 @@ class MainWidget(QWidget):
                 "There are unsaved changes that will be lost."
             )
         )
-        message_box.setStandardButtons(
-            QMessageBox.StandardButton.No
-            | QMessageBox.StandardButton.Discard
-            | QMessageBox.StandardButton.Save
-        )
-        message_box.setDefaultButton(QMessageBox.StandardButton.Save)
+        if valid:
+            message_box.setStandardButtons(
+                QMessageBox.StandardButton.No
+                | QMessageBox.StandardButton.Discard
+                | QMessageBox.StandardButton.Save
+            )
+            message_box.setDefaultButton(QMessageBox.StandardButton.Save)
+        else:
+            message_box.setStandardButtons(
+                QMessageBox.StandardButton.No | QMessageBox.StandardButton.Discard
+            )
+            message_box.setDefaultButton(QMessageBox.StandardButton.No)
 
         no_button: QAbstractButton = message_box.button(QMessageBox.StandardButton.No)
         no_button.setText(self.tr("No"))
@@ -215,11 +230,15 @@ class MainWidget(QWidget):
             QMessageBox.StandardButton.Discard
         )
         yes_button.setText(self.tr("Yes"))
-        save_button: QAbstractButton = message_box.button(
-            QMessageBox.StandardButton.Save
-        )
-        save_button.setText(self.tr("Save and close"))
-        save_button.setObjectName("primary")
+
+        if valid:
+            save_button: QAbstractButton = message_box.button(
+                QMessageBox.StandardButton.Save
+            )
+            save_button.setText(self.tr("Save and close"))
+            save_button.setObjectName("primary")
+        else:
+            no_button.setObjectName("primary")
 
         # Reapply stylesheet as setObjectName() doesn't update the style by itself
         message_box.setStyleSheet(AppContext.get_app().styleSheet())

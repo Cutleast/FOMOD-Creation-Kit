@@ -232,7 +232,7 @@ class FomodEditorWidget(QTabWidget):
         if path is not None:
             self.__current_fomod.path = path
 
-        self.__validate()
+        self.validate()
 
         if self.__info_editor_widget is not None:
             self.__info_editor_widget.save()
@@ -252,7 +252,14 @@ class FomodEditorWidget(QTabWidget):
         self.__current_fomod.save(validate_xml, encoding)
         self.changed.emit(self.__current_fomod, False)
 
-    def __validate(self) -> None:
+    def validate(self) -> None:
+        """
+        Validates the current FOMOD.
+
+        Raises:
+            ValidationError: if the FOMOD is invalid
+        """
+
         if self.__info_editor_widget is not None:
             self.__info_editor_widget.validate()
 
