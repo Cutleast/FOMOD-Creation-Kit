@@ -79,7 +79,9 @@ class Fomod:
         self.log.info(f"Saving ModuleConfig.xml to '{module_config_path}'...")
 
         try:
-            module_config_path.write_bytes(self.module_config.dump(validate_xml))
+            module_config_path.write_bytes(
+                self.module_config.dump(validate_xml, encoding)
+            )
         except etree.DocumentInvalid as ex:
             raise XmlValidationError(module_config_path.name) from ex
 
