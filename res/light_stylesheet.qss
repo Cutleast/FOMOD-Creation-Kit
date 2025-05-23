@@ -22,16 +22,16 @@ QPushButton
     background: #ffffff;
     border-color: #20000000;
 }
-QPushButton:hover:!disabled
+QPushButton:hover:!disabled, QToolButton:hover:!disabled
 {
     background: #0c000000;
 }
-QPushButton:pressed
+QPushButton:pressed, QToolButton:pressed
 {
     background: #20000000;
     border-color: #40000000;
 }
-QPushButton#primary:disabled
+QPushButton#primary:disabled, QToolButton#primary:disabled
 {
     color: #ffffff;
 }

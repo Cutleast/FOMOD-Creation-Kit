@@ -54,18 +54,29 @@ QAbstractButton#primary
     background: <accent_color>;
     border-color: <accent_color>;
 }
-QAbstractButton#primary:hover:!disabled
+QToolButton#primary
+{
+    border-bottom-color: <accent_color>;
+}
+QAbstractButton#primary:hover:!disabled, QToolButton#primary:hover:!disabled
 {
     background: <highlighted_accent>;
 }
-QAbstractButton#primary:disabled
+QAbstractButton#primary:disabled, QToolButton#primary:disabled
 {
     background: #666666;
     border-color: #666666;
 }
-QAbstractButton:checked
+QAbstractButton:checked, QToolButton:checked
 {
     border-color: <accent_color>;
+}
+QToolButton
+{
+    background: transparent;
+    border-color: transparent;
+    width: 20px;
+    height: 20px;
 }
 QStatusBar QPushButton
 {
@@ -176,6 +187,7 @@ QCheckBox,
 QRadioButton
 {
     background: transparent;
+    border: 0px solid;
 }
 QCheckBox::indicator,
 QRadioButton::indicator,
