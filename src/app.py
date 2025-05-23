@@ -130,7 +130,7 @@ class App(QApplication):
             self.log.info(f"Loaded localisation for {language}.")
 
     @override
-    def exec(self) -> int:
+    def exec(self) -> int:  # type: ignore
         """
         Executes application and shows main window.
         """
@@ -156,7 +156,7 @@ class App(QApplication):
         return retcode
 
     @override
-    def exit(self, retcode: int = 0) -> bool:
+    def exit(self, retcode: int = 0) -> bool:  # type: ignore
         """
         Exits application.
 

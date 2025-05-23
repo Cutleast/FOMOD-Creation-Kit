@@ -82,7 +82,7 @@ class Logger(logging.Logger):
         sys.stderr = self
 
     @override
-    def setLevel(self, level: Level) -> None:
+    def setLevel(self, level: Level) -> None:  # type: ignore
         """
         Sets logging level.
 
