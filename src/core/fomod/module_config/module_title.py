@@ -14,7 +14,7 @@ class ModuleTitle(BaseXmlModel):
     Describes the display properties of the module title.
     """
 
-    title: str = ""
+    title: str
     """The title of the module."""
 
     class Position(Enum):

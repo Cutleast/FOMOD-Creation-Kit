@@ -42,12 +42,14 @@ class TestFomod(BaseTest):
         assert fomod.module_config is not None
         assert fomod.path is None
 
-        assert fomod.info.name == ""
+        assert fomod.info.name == "default"
         assert fomod.info.author == ""
         assert fomod.info.version.version == ""
         assert fomod.info.version.machine_version is None
         assert fomod.info.description == ""
         assert fomod.info.website == ""
+
+        assert fomod.module_config.module_name.title == "default"
 
         fomod.info.dump()
         fomod.module_config.dump()

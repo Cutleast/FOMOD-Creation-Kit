@@ -20,6 +20,7 @@ from .module_config.group import Group
 from .module_config.group_list import GroupList
 from .module_config.install_step import InstallStep
 from .module_config.module_config import ModuleConfig
+from .module_config.module_title import ModuleTitle
 from .module_config.plugin import Plugin
 from .module_config.plugin_list import PluginList
 from .module_config.plugin_type_descriptor import PluginTypeDescriptor
@@ -156,8 +157,9 @@ class Fomod:
 
         return Fomod(
             path=None,
-            info=FomodInfo(),
+            info=FomodInfo(name="default"),
             module_config=ModuleConfig(
+                module_name=ModuleTitle(title="default"),
                 install_steps=StepList(
                     install_steps=[
                         InstallStep(
