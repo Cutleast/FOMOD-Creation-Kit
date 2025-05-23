@@ -14,7 +14,7 @@ class DependencyPattern(BaseXmlModel, search_mode="unordered"):
     type of a plugin.
     """
 
-    dependencies: list[CompositeDependency] = element(tag="dependencies")
+    dependencies: CompositeDependency = element(tag="dependencies")
     """
     The list of mods and their states against which to match the user's installation.
     """
