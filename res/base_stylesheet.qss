@@ -21,6 +21,10 @@
 }
 
 /* Headings */
+#h1, #h2, #h3
+{
+    font-family: 'Orbitron';
+}
 #h1
 {
     font-size: 36pt;
@@ -523,7 +527,7 @@ QGroupBox
     padding: 5px;
     padding-top: 10px;
     font-size: 22px;
-    font-family: 'Bebas Neue Book';
+    font-family: 'Orbitron';
 }
 
 QGroupBox::title

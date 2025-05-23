@@ -6,7 +6,7 @@ import logging
 from typing import Literal, Optional
 
 import darkdetect
-from PySide6.QtGui import QPalette
+from PySide6.QtGui import QFontDatabase, QPalette
 from PySide6.QtWidgets import QApplication
 
 from core.utilities.qt_res_provider import load_json_resource, read_resource
@@ -30,7 +30,19 @@ class StylesheetProcessor:
         self.app = app
         self.ui_mode = ui_mode
 
+        self.__load_font()
+
         self.apply_app_stylesheet()
+
+    def __load_font(self) -> None:
+        """
+        Loads font from resources and adds them to the QFontDatabase.
+        """
+
+        font_id: int = QFontDatabase.addApplicationFont(":/fonts/Orbitron-Regular.ttf")
+
+        if font_id == -1:
+            self.log.error("Failed to load font!")
 
     def set_ui_mode(self, ui_mode: UIMode) -> None:
         """
