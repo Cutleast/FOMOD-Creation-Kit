@@ -21,6 +21,10 @@ class SearchBar(QLineEdit):
     """
     This signal is emitted when the search text changes
     or when the case sensitivity is toggled or when a return is pressed.
+
+    Args:
+        str: The search text
+        bool: The case sensitivity
     """
 
     __cs_toggle: QPushButton
