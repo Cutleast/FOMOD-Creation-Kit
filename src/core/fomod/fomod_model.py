@@ -4,11 +4,13 @@ Copyright (c) Cutleast
 
 from __future__ import annotations
 
+import logging
 from typing import Optional
 
 from lxml import etree
 from pydantic_xml import BaseXmlModel
 
+from core.utilities.cache import cache
 from core.utilities.xml import validate_against_schema
 
 
@@ -38,7 +40,12 @@ class FomodModel(BaseXmlModel):
 
         return cls.from_xml(xml_text)
 
-    def dump(self, validate: bool = True) -> bytes:
+    @classmethod
+    @cache
+    def __get_logger(cls) -> logging.Logger:
+        return logging.getLogger(cls.__name__)
+
+    def dump(self, validate: bool = True, encoding: str = "utf-8") -> bytes:
         """
         Dumps this model to an XML text.
 
@@ -46,13 +53,20 @@ class FomodModel(BaseXmlModel):
             validate (bool, optional):
                 Whether to validate the XML text against the schema if one is available.
                 Defaults to True.
+            encoding (str, optional):
+                The encoding to use for the XML text. Defaults to "utf-8".
+
+        Raises:
+            DocumentInvalid: when `validate` is True and the dumped xml is invalid
 
         Returns:
             bytes: Serialized XML text
         """
 
+        log: logging.Logger = self.__get_logger()
+
         xml_text: bytes = super().to_xml(  # type: ignore
-            pretty_print=True, skip_empty=True
+            pretty_print=True, skip_empty=True, exclude_unset=True
         )
         root = etree.fromstring(xml_text)
 
@@ -62,11 +76,16 @@ class FomodModel(BaseXmlModel):
             root.nsmap["xsi"] = xsi
             root.set("{%s}noNamespaceSchemaLocation" % xsi, schema_url)
 
+        etree.indent(root, space="\t")
         xml_text = etree.tostring(
-            root, pretty_print=True, encoding="UTF-8", standalone=True
+            root, pretty_print=True, encoding=encoding, standalone=True
         )
 
         if schema_url is not None and validate:
-            validate_against_schema(schema_url, xml_text)
+            try:
+                validate_against_schema(schema_url, xml_text)
+            except etree.DocumentInvalid as ex:
+                log.debug("XML text:\n" + xml_text.decode(encoding))
+                raise ex
 
         return xml_text
