@@ -69,27 +69,30 @@
 <context>
     <name>ConditionalFilesEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/conditional_files_editor_widget.py" line="26"/>
+        <location filename="src/ui/fomod_editor/conditional_files_editor_tab.py" line="26"/>
         <source>Edit conditional files...</source>
         <translation>Bedingte Dateien bearbeiten...</translation>
     </message>
 </context>
 <context>
-    <name>DependencyEditorWidget</name>
+    <name>DependencyEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_widget.py" line="37"/>
-        <source>Edit module dependencies...</source>
-        <translation>Modulabhängigkeiten bearbeiten...</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_widget.py" line="47"/>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="47"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_widget.py" line="51"/>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="51"/>
         <source>These are the dependencies the mod depends on.</source>
         <translation>Dies sind die Abhängigkeiten, von denen die Mod abhängt.</translation>
+    </message>
+</context>
+<context>
+    <name>DependencyEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="37"/>
+        <source>Edit module dependencies...</source>
+        <translation>Modulabhängigkeiten bearbeiten...</translation>
     </message>
 </context>
 <context>
@@ -282,6 +285,32 @@
     </message>
 </context>
 <context>
+    <name>FileListEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="83"/>
+        <source>Edit file list...</source>
+        <translation>Dateiliste bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="95"/>
+        <source>The file list defines how files are copied to the destination folder.</source>
+        <translation>Diese Liste definiert, wie Dateien in den Zielordner kopiert werden.</translation>
+    </message>
+</context>
+<context>
+    <name>FileListTreeWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="46"/>
+        <source>Source</source>
+        <translation>Quelle</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="47"/>
+        <source>Destination</source>
+        <translation>Ziel</translation>
+    </message>
+</context>
+<context>
     <name>FlagDependencyEditorWidget</name>
     <message>
         <location filename="src/ui/fomod_editor/dependency_editor/flag_dependency_editor_widget.py" line="36"/>
@@ -330,6 +359,99 @@
         <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="215"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
+    </message>
+</context>
+<context>
+    <name>FsItemEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="57"/>
+        <source>Edit file system item...</source>
+        <translation>Datei- oder Ordnerelement bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="69"/>
+        <source>A file or folder to be copied to a destination folder.</source>
+        <translation>Eine Datei oder ein Ordner, welche in einen Zielordner kopiert werden.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="103"/>
+        <source>Source:</source>
+        <translation>Quelle:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="82"/>
+        <source>The path to the file or folder in the FOMOD folder.</source>
+        <translation>Der Pfad zur Datei oder zum Ordner innerhalb des FOMOD-Ordners.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="83"/>
+        <source>eg. &quot;..\core\test.esp&quot;</source>
+        <translation>z.B. &quot;..\core\test.esp&quot;</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="88"/>
+        <source>File</source>
+        <translation>Datei</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="92"/>
+        <source>Folder</source>
+        <translation>Ordner</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="111"/>
+        <source>The path to which the file or folder should be installed. If omitted, the destination is the same as the source.</source>
+        <translation>Der Pfad, zu dem die Datei oder der Ordner installiert werden sollen. Wenn leergelassen, ist der Zielpfad gleich mit dem Quellpfad.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="114"/>
+        <source>eg. &quot;test.esp&quot; (leave empty to be the same as the source)</source>
+        <translation>z.B. &quot;test.esp&quot; (leer lassen, um mit Quellpfad gleich zu sein)</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="117"/>
+        <source>Destination (optional):</source>
+        <translation>Ziel (optional):</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="119"/>
+        <source>Always install</source>
+        <translation>Immer installieren</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="125"/>
+        <source>Indicates that the file or folder should always be installed, regardless of whether or not the plugin has been selected.</source>
+        <translation>Gibt an, dass die Datei oder der Ordner immer installiert werden soll, unabhängig davon, ob das Plugin ausgewählt wurde oder nicht.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="129"/>
+        <source>Install if usable</source>
+        <translation>Installieren, wenn verwendbar</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="136"/>
+        <source>Indicates that the file or folder should always be installed if the plugin is not NotUsable, regardless of whether or not the plugin has been selected.</source>
+        <translation>Gibt an, dass die Datei oder der Ordner immer installiert werden soll, wenn das Plugin nicht NotUsable ist, unabhängig davon, ob das Plugin ausgewählt wurde oder nicht.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="147"/>
+        <source>A number describing the relative priority of the file or folder. A higher number indicates the file or folder should be installed after the items with lower numbers. This value does not have to be unique.</source>
+        <translation>Eine Zahl, die die relative Priorität der Datei oder des Ordners angibt. Eine höhere Zahl bedeutet, dass die Datei oder der Ordner nach den Elementen mit niedrigeren Zahlen installiert werden sollte. Dieser Wert muss nicht eindeutig sein.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="150"/>
+        <source>Priority:</source>
+        <translation>Priorität:</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="155"/>
+        <source>The source path must not be empty!</source>
+        <translation>Der Quellpfad darf nicht leer sein!</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="161"/>
+        <source>The source path must be an existing file or folder!</source>
+        <translation>Der Quellpfad muss auf eine existierende Datei oder einen existierenden Ordner verweisen!</translation>
     </message>
 </context>
 <context>
@@ -386,51 +508,54 @@
     </message>
 </context>
 <context>
-    <name>InfoEditorWidget</name>
+    <name>InfoEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="80"/>
-        <source>Edit FOMOD info...</source>
-        <translation>FOMOD-Info bearbeiten...</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="102"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="102"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="106"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="106"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="110"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="110"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="114"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="114"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="118"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="118"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="123"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="123"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="125"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="125"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_widget.py" line="186"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="186"/>
         <source>No FOMOD path is set!</source>
         <translation>Es wurde kein FOMOD-Pfad gesetzt!</translation>
+    </message>
+</context>
+<context>
+    <name>InfoEditorWidget</name>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="80"/>
+        <source>Edit FOMOD info...</source>
+        <translation>FOMOD-Info bearbeiten...</translation>
     </message>
 </context>
 <context>
@@ -651,9 +776,22 @@
     </message>
 </context>
 <context>
+    <name>RequiredFilesEditorTab</name>
+    <message>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="45"/>
+        <source>Required files to install</source>
+        <translation>Erforderliche zu installierende Dateien</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="54"/>
+        <source>This list defines which files and folders must be installed by the installer.</source>
+        <translation>Diese Liste definiert, welche Dateien und Ordner vom Installer installiert werden müssen.</translation>
+    </message>
+</context>
+<context>
     <name>RequiredFilesEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/required_files_editor_widget.py" line="26"/>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="35"/>
         <source>Edit required file installs...</source>
         <translation>Erforderliche zu installierende Dateien bearbeiten...</translation>
     </message>
@@ -775,7 +913,7 @@
 <context>
     <name>StepsEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/steps_editor_widget.py" line="24"/>
+        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="24"/>
         <source>Edit installation steps...</source>
         <translation>Installationsschritte bearbeiten...</translation>
     </message>

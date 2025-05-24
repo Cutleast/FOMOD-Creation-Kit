@@ -59,3 +59,17 @@ def are_children_visible(item: QTreeWidgetItem) -> bool:
             return True
 
     return False
+
+
+def get_item_text(item: QTreeWidgetItem) -> str:
+    """
+    Gets the texts of all columns of a tree item.
+
+    Args:
+        item (QTreeWidgetItem): Tree item
+
+    Returns:
+        str: Text of the tree item
+    """
+
+    return " ".join(item.text(i) for i in range(item.columnCount()))

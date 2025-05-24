@@ -16,7 +16,7 @@ from PySide6.QtWidgets import (
 
 from core.utilities.filter import matches_filter
 from core.utilities.reference_dict import ReferenceDict
-from ui.utilities.tree_widget import iter_toplevel_items
+from ui.utilities.tree_widget import get_item_text, iter_toplevel_items
 
 from .search_bar import SearchBar
 
@@ -46,10 +46,10 @@ class TreeWidgetEditor[T: object](QWidget):
         T: Item that was double clicked
     """
 
-    __items: ReferenceDict[T, QTreeWidgetItem]
+    _items: ReferenceDict[T, QTreeWidgetItem]
 
-    __vlayout: QVBoxLayout
-    __tree_widget: QTreeWidget
+    _vlayout: QVBoxLayout
+    _tree_widget: QTreeWidget
 
     def __init__(self, initial_items: list[T] = []) -> None:
         """
@@ -60,27 +60,27 @@ class TreeWidgetEditor[T: object](QWidget):
 
         super().__init__()
 
-        self.__init_ui()
+        self._init_ui()
 
-        self.__items = ReferenceDict()
+        self._items = ReferenceDict()
         # addItem() can't be taken here as that would emit the changed signal
         for item in initial_items:
             tree_widget_item = QTreeWidgetItem([str(item)])
-            self.__tree_widget.addTopLevelItem(tree_widget_item)
-            self.__items[item] = tree_widget_item
+            self._tree_widget.addTopLevelItem(tree_widget_item)
+            self._items[item] = tree_widget_item
 
-        self.__search_bar.searchChanged.connect(self.__filter)
+        self.__search_bar.searchChanged.connect(self._filter)
 
-    def __init_ui(self) -> None:
-        self.__vlayout = QVBoxLayout()
-        self.setLayout(self.__vlayout)
+    def _init_ui(self) -> None:
+        self._vlayout = QVBoxLayout()
+        self.setLayout(self._vlayout)
 
         self.__init_header()
         self.__init_tree_widget()
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
-        self.__vlayout.addLayout(hlayout)
+        self._vlayout.addLayout(hlayout)
 
         tool_bar = QToolBar()
         hlayout.addWidget(tool_bar)
@@ -103,44 +103,46 @@ class TreeWidgetEditor[T: object](QWidget):
         hlayout.addWidget(self.__search_bar)
 
     def __init_tree_widget(self) -> None:
-        self.__tree_widget = QTreeWidget()
-        self.__tree_widget.setHeaderHidden(True)
-        self.__tree_widget.setSelectionMode(QTreeWidget.SelectionMode.ExtendedSelection)
-        self.__tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
-        self.__tree_widget.itemSelectionChanged.connect(self.__on_selection_change)
-        self.__vlayout.addWidget(self.__tree_widget)
+        self._tree_widget = QTreeWidget()
+        self._tree_widget.setHeaderHidden(True)
+        self._tree_widget.setSelectionMode(QTreeWidget.SelectionMode.ExtendedSelection)
+        self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
+        self._tree_widget.itemSelectionChanged.connect(self.__on_selection_change)
+        self._vlayout.addWidget(self._tree_widget)
 
     def __item_double_clicked(self, item: QTreeWidgetItem, column: int) -> None:
         items: dict[QTreeWidgetItem, T] = {
             item: edited_item
-            for edited_item, item in self.__items.items()
+            for edited_item, item in self._items.items()
             if item.isSelected()
         }
 
         self.onEdit.emit(items[item])
 
     def __on_selection_change(self) -> None:
-        self.__remove_action.setDisabled(len(self.__tree_widget.selectedItems()) == 0)
+        self.__remove_action.setDisabled(len(self._tree_widget.selectedItems()) == 0)
 
     def __remove_selected_items(self) -> None:
         items: dict[QTreeWidgetItem, T] = {
             item: edited_item
-            for edited_item, item in self.__items.items()
+            for edited_item, item in self._items.items()
             if item.isSelected()
         }
 
-        for selected_item in self.__tree_widget.selectedItems():
-            self.__tree_widget.takeTopLevelItem(
-                self.__tree_widget.indexOfTopLevelItem(selected_item)
+        for selected_item in self._tree_widget.selectedItems():
+            self._tree_widget.takeTopLevelItem(
+                self._tree_widget.indexOfTopLevelItem(selected_item)
             )
-            self.__items.pop(items[selected_item])
+            self._items.pop(items[selected_item])
 
         if items:
             self.changed.emit()
 
-    def __filter(self, text: str, case_sensitive: bool) -> None:
-        for item in iter_toplevel_items(self.__tree_widget):
-            item.setHidden(not matches_filter(item.text(0), text, case_sensitive))
+    def _filter(self, text: str, case_sensitive: bool) -> None:
+        for item in iter_toplevel_items(self._tree_widget):
+            item.setHidden(
+                not matches_filter(get_item_text(item), text, case_sensitive)
+            )
 
     def addItem(self, item: T) -> None:
         """
@@ -150,10 +152,10 @@ class TreeWidgetEditor[T: object](QWidget):
             item (T): Item to add
         """
 
-        if item not in self.__items:
+        if item not in self._items:
             tree_widget_item = QTreeWidgetItem([str(item)])
-            self.__tree_widget.addTopLevelItem(tree_widget_item)
-            self.__items[item] = tree_widget_item
+            self._tree_widget.addTopLevelItem(tree_widget_item)
+            self._items[item] = tree_widget_item
 
             self.changed.emit()
 
@@ -166,8 +168,8 @@ class TreeWidgetEditor[T: object](QWidget):
             item (T): Item to update
         """
 
-        if item in self.__items:
-            tree_widget_item: QTreeWidgetItem = self.__items[item]
+        if item in self._items:
+            tree_widget_item: QTreeWidgetItem = self._items[item]
             tree_widget_item.setText(0, str(item))
 
             self.changed.emit()
@@ -180,10 +182,10 @@ class TreeWidgetEditor[T: object](QWidget):
             item (T): Item to remove
         """
 
-        if item in self.__items:
-            tree_widget_item: QTreeWidgetItem = self.__items.pop(item)
-            self.__tree_widget.takeTopLevelItem(
-                self.__tree_widget.indexOfTopLevelItem(tree_widget_item)
+        if item in self._items:
+            tree_widget_item: QTreeWidgetItem = self._items.pop(item)
+            self._tree_widget.takeTopLevelItem(
+                self._tree_widget.indexOfTopLevelItem(tree_widget_item)
             )
 
             self.changed.emit()
@@ -194,4 +196,4 @@ class TreeWidgetEditor[T: object](QWidget):
             list[T]: List of items currently in the tree widget
         """
 
-        return list(self.__items.keys())
+        return list(self._items.keys())

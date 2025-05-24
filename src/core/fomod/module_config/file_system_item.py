@@ -3,6 +3,7 @@ Copyright (c) Cutleast
 """
 
 from pathlib import Path
+from typing import Optional
 
 from pydantic_xml import BaseXmlModel, attr
 
@@ -17,7 +18,7 @@ class FileSystemItem(BaseXmlModel, search_mode="unordered"):
     source: Path = attr(name="source")
     """The path to the file or folder in the FOMOD."""
 
-    destination: Path = attr(name="destination", default=None)
+    destination: Optional[Path] = attr(name="destination", default=None)
     """
     The path to which the file or folder should be installed. If omitted, the 
     destination is the same as the source.
