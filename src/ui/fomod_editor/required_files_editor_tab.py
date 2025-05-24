@@ -11,7 +11,7 @@ from core.fomod.module_config.file_list import FileList
 from .base_editor_widget import BaseEditorWidget
 
 
-class RequiredFilesEditorWidget(BaseEditorWidget[FileList]):
+class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
     """
     Widget class for editing the required install files of a FOMOD installer.
     """

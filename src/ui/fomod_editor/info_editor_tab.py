@@ -31,7 +31,7 @@ from ui.widgets.url_edit import UrlEdit
 from .base_editor_widget import BaseEditorWidget
 
 
-class InfoEditorWidget(BaseEditorWidget[Fomod]):
+class InfoEditorTab(BaseEditorWidget[Fomod]):
     """
     Widget for editing the metadata of a FOMOD installer.
     """
@@ -89,10 +89,10 @@ class InfoEditorWidget(BaseEditorWidget[Fomod]):
     def __init_form(self) -> None:
         self.__image_label = QLabel()
         self.__image_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.__image_label.setFixedHeight(InfoEditorWidget.IMAGE_HEIGHT)
+        self.__image_label.setFixedHeight(InfoEditorTab.IMAGE_HEIGHT)
         self.__image_label.setPixmap(
             qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
-                InfoEditorWidget.IMAGE_HEIGHT, InfoEditorWidget.IMAGE_HEIGHT
+                InfoEditorTab.IMAGE_HEIGHT, InfoEditorTab.IMAGE_HEIGHT
             )
         )
         self.__flayout.addRow(self.__image_label)
@@ -135,7 +135,7 @@ class InfoEditorWidget(BaseEditorWidget[Fomod]):
             self.__image_label.setPixmap(
                 rounded_pixmap(
                     QPixmap(str(image_path)).scaledToHeight(
-                        InfoEditorWidget.IMAGE_HEIGHT,
+                        InfoEditorTab.IMAGE_HEIGHT,
                         mode=Qt.TransformationMode.SmoothTransformation,
                     )
                 )
@@ -143,7 +143,7 @@ class InfoEditorWidget(BaseEditorWidget[Fomod]):
         else:
             self.__image_label.setPixmap(
                 qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
-                    InfoEditorWidget.IMAGE_HEIGHT, InfoEditorWidget.IMAGE_HEIGHT
+                    InfoEditorTab.IMAGE_HEIGHT, InfoEditorTab.IMAGE_HEIGHT
                 )
             )
 

@@ -15,7 +15,7 @@ from .dependency_editor.composite_dependency_editor_widget import (
 )
 
 
-class DependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
+class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
     """
     Widget class for editing the module dependencies of a FOMOD installer.
     """

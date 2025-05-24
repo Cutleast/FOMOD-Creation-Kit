@@ -11,7 +11,7 @@ from core.fomod.module_config.module_config import ConditionalFileInstallList
 from .base_editor_widget import BaseEditorWidget
 
 
-class ConditionalFilesEditorWidget(BaseEditorWidget[ConditionalFileInstallList]):
+class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
     """
     Widget class for editing the conditional install files of a FOMOD installer.
     """

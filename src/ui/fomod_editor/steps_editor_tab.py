@@ -11,7 +11,7 @@ from core.fomod.module_config.step_list import StepList
 from .base_editor_widget import BaseEditorWidget
 
 
-class StepsEditorWidget(BaseEditorWidget[StepList]):
+class StepsEditorTab(BaseEditorWidget[StepList]):
     """
     Widget class for editing the install steps (pages) of a FOMOD installer.
     """
