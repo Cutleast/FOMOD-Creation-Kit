@@ -5,10 +5,13 @@ Copyright (c) Cutleast
 from __future__ import annotations
 
 import logging
+import shutil
 from pathlib import Path
 from typing import Optional
 
 from lxml import etree
+
+from core.fomod.module_config.plugin import Plugin
 
 from .exceptions import NotAFomodError, XmlValidationError
 from .fomod_info import FomodInfo
@@ -38,6 +41,96 @@ class Fomod:
         self.path = path
         self.info = info
         self.module_config = module_config
+
+    def finalize(
+        self,
+        path: Optional[Path] = None,
+        validate_xml: bool = True,
+        encoding: str = "utf-8",
+    ) -> None:
+        """
+        Saves and finalizes the FOMOD by fetching all files and folders referenced by
+        absolute paths in the installer, moving them to the root folder of the installer
+        and updating the paths to be relative. Practically makes the entire mod ready
+        to be packed in a zip file and distributed.
+
+        Args:
+            path (Path, optional):
+                The path to finalize the FOMOD installer to. Defaults to the current.
+            validate_xml (bool, optional):
+                Whether to validate the XML files before saving. Defaults to True.
+            encoding (str, optional):
+                The encoding to use for the XML files. Defaults to "utf-8".
+        """
+
+        if path is not None:
+            self.path = path
+
+        if self.path is None:
+            raise ValueError("FOMOD path is not set.")
+
+        self.log.info(f"Finalizing FOMOD installer to '{self.path}'...")
+        self.path.mkdir(parents=True, exist_ok=True)
+
+        self.__include_images()
+
+        self.save(validate_xml, encoding)
+        self.log.info("FOMOD finalized.")
+
+    def __include_images(self) -> None:
+        if self.path is None:
+            raise ValueError("FOMOD path is not set.")
+
+        self.log.info("Including images...")
+
+        images_path = self.path / "images"
+
+        if images_path.is_dir():
+            shutil.rmtree(images_path)
+
+        images_path.mkdir(parents=True)
+
+        if (
+            self.module_config.module_image is not None
+            and self.module_config.module_image.path is not None
+            and self.module_config.module_image.path.is_absolute()
+            and not self.module_config.module_image.path.is_relative_to(
+                self.path.parent
+            )
+        ):
+            image_path = images_path / (
+                "module" + self.module_config.module_image.path.suffix
+            )
+
+            shutil.copyfile(self.module_config.module_image.path, image_path)
+            self.log.debug(
+                f"Copied '{self.module_config.module_image.path}' to '{image_path}'."
+            )
+
+            self.module_config.module_image.path = image_path.relative_to(
+                self.path.parent
+            )
+
+        if self.module_config.install_steps is None:
+            return
+
+        plugins: list[Plugin] = [
+            plugin
+            for install_step in self.module_config.install_steps.install_steps
+            for group in install_step.optional_file_groups.groups
+            for plugin in group.plugins.plugins
+        ]
+
+        for plugin in plugins:
+            if plugin.image is not None and not plugin.image.path.is_relative_to(
+                self.path.parent
+            ):
+                image_path = images_path / (plugin.name + plugin.image.path.suffix)
+
+                shutil.copyfile(plugin.image.path, image_path)
+                self.log.debug(f"Copied '{plugin.image.path}' to '{image_path}'.")
+
+                plugin.image.path = image_path.relative_to(self.path.parent)
 
     def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """

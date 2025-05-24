@@ -216,6 +216,7 @@ class FomodEditorWidget(QTabWidget):
 
     def save(
         self,
+        finalize: bool,
         path: Optional[Path] = None,
         validate_xml: bool = True,
         encoding: str = "utf-8",
@@ -224,6 +225,8 @@ class FomodEditorWidget(QTabWidget):
         Saves the current FOMOD installer (if any). Does nothing if no FOMOD is set.
 
         Args:
+            finalize (bool):
+                Whether to finalize the FOMOD before saving.
             path (Optional[Path], optional):
                 The path to save the FOMOD installer to. Defaults to the FOMOD's current
                 path.
@@ -271,7 +274,13 @@ class FomodEditorWidget(QTabWidget):
                 self.__conditional_files_editor_tab.save()
             )
 
-        self.__current_fomod.save(validate_xml, encoding)
+        if finalize:
+            self.__current_fomod.finalize(validate_xml=validate_xml, encoding=encoding)
+
+            # Reload the FOMOD as the finalize step might have changed it
+            self.set_fomod(self.__current_fomod)
+        else:
+            self.__current_fomod.save(validate_xml, encoding)
         self.changed.emit(self.__current_fomod, False)
 
     def validate(self) -> None:

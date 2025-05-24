@@ -13,6 +13,9 @@ class BehaviorConfig(BaseConfig):
     Class for managing behavior settings.
     """
 
+    finalize_on_save: bool = True
+    """Whether to finalize the FOMOD installer when saving it."""
+
     validate_xml_on_save: bool = False
     """Whether to validate the XML files when saving a FOMOD installer."""
 

@@ -148,6 +148,7 @@ class MainWidget(QWidget):
 
         elif fomod is not None:
             self.__fomod_editor_widget.save(
+                finalize=self.behavior_config.finalize_on_save,
                 validate_xml=self.behavior_config.validate_xml_on_save,
                 encoding=self.behavior_config.module_config_encoding.value,
             )
@@ -165,7 +166,8 @@ class MainWidget(QWidget):
             if fomod_path.parts[-1].lower() != "fomod":
                 fomod_path /= "fomod"
             self.__fomod_editor_widget.save(
-                fomod_path,
+                finalize=self.behavior_config.finalize_on_save,
+                path=fomod_path,
                 validate_xml=self.behavior_config.validate_xml_on_save,
                 encoding=self.behavior_config.module_config_encoding.value,
             )

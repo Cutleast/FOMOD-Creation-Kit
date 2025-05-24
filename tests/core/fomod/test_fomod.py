@@ -4,9 +4,12 @@ Copyright (c) Cutleast
 
 from pathlib import Path
 
+from pyfakefs.fake_filesystem import FakeFilesystem
+
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.group import Group
+from core.fomod.module_config.header_image import HeaderImage
 from core.fomod.module_config.install_step import InstallStep
 from core.fomod.module_config.plugin import Plugin
 from tests.base_test import BaseTest
@@ -84,3 +87,42 @@ class TestFomod(BaseTest):
 
         fomod.info.dump()
         fomod.module_config.dump()
+
+    def test_finalize(self, data_folder: Path, test_fs: FakeFilesystem) -> None:
+        """
+        Tests the finalization of a FOMOD installer and the correct inclusion of files
+        from outside of it.
+        """
+
+        # given
+        fomod: Fomod = Fomod.create()
+        fomod_path = Path("test_output") / "fomod"
+        fomod.module_config.module_image = HeaderImage(
+            path=data_folder.absolute()
+            / "Dynamic Interface Patcher FOMOD"
+            / "fomod"
+            / "Image.jpg"
+        )
+
+        # when
+        fomod.finalize(fomod_path)
+
+        # then
+        assert fomod.path is not None
+        assert fomod.path == fomod_path
+        assert fomod.path.is_dir()
+
+        # when
+        images_path: Path = fomod.path / "images"
+
+        # then
+        assert images_path.is_dir()
+
+        # when
+        image_path: Path = images_path / "module.jpg"
+
+        # then
+        assert image_path.is_file()
+        assert fomod.module_config.module_image.path == image_path.relative_to(
+            fomod.path.parent
+        )

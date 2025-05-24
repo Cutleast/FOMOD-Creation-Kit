@@ -510,50 +510,45 @@
 <context>
     <name>InfoEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="102"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="100"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="106"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="104"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="110"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="108"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="114"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="112"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="118"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="116"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="123"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="121"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="125"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="123"/>
         <source>Image:</source>
         <translation>Bild:</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="186"/>
-        <source>No FOMOD path is set!</source>
-        <translation>Es wurde kein FOMOD-Pfad gesetzt!</translation>
     </message>
 </context>
 <context>
     <name>InfoEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="80"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="78"/>
         <source>Edit FOMOD info...</source>
         <translation>FOMOD-Info bearbeiten...</translation>
     </message>
@@ -589,32 +584,32 @@
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="160"/>
+        <location filename="src/ui/main_widget.py" line="161"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="207"/>
+        <location filename="src/ui/main_widget.py" line="209"/>
         <source>Close unsaved FOMOD?</source>
         <translation>Ungespeichertes FOMOD schließen?</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="213"/>
+        <location filename="src/ui/main_widget.py" line="215"/>
         <source>Are you sure you want to close the current FOMOD? There are unsaved changes that will be lost.</source>
         <translation>Bist du sicher, dass du das aktuelle FOMOD schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="228"/>
+        <location filename="src/ui/main_widget.py" line="230"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="232"/>
+        <location filename="src/ui/main_widget.py" line="234"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="238"/>
+        <location filename="src/ui/main_widget.py" line="240"/>
         <source>Save and close</source>
         <translation>Speichern und schließen</translation>
     </message>
@@ -852,42 +847,54 @@
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="79"/>
+        <location filename="src/ui/settings/settings_widget.py" line="80"/>
         <source>App settings</source>
         <translation>Appeinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="86"/>
+        <location filename="src/ui/settings/settings_widget.py" line="87"/>
         <source>Log level:</source>
         <translation>Protokoll-Level:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="104"/>
+        <location filename="src/ui/settings/settings_widget.py" line="105"/>
         <source>Number of newest log files to keep:</source>
         <translation>Anzahl der neuesten zu behaltenden Protokolldateien:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="117"/>
+        <location filename="src/ui/settings/settings_widget.py" line="118"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="131"/>
+        <location filename="src/ui/settings/settings_widget.py" line="132"/>
         <source>UI mode:</source>
         <translation>UI Modus:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="146"/>
+        <location filename="src/ui/settings/settings_widget.py" line="147"/>
         <source>Behavior settings</source>
         <translation>Verhaltenseinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="152"/>
+        <location filename="src/ui/settings/settings_widget.py" line="153"/>
+        <source>Finalize on save (recommended)</source>
+        <translation>Beim Speichern finalisieren (empfohlen)</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/settings_widget.py" line="161"/>
+        <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
+This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
+        <translation>Finalisieren bedeutet, dass alle Dateien von außerhalb des FOMODs in das Verzeichnis des FOMODs kopiert werden und dessen Pfade relativ gemacht werden.
+Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/settings_widget.py" line="166"/>
         <source>Validate XML files on save</source>
         <translation>XML-Dateien beim Speichern validieren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="168"/>
+        <location filename="src/ui/settings/settings_widget.py" line="182"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Für ModuleConfig.xml verwendeter Zeichensatz:</translation>
     </message>

@@ -22,7 +22,6 @@ from core.fomod.module_config.header_image import SUPPORTED_TYPES, HeaderImage
 from core.fomod_editor.exceptions import (
     FileDoesNotExistError,
     ImageTypeNotSupportedError,
-    PathNotInFomodError,
 )
 from ui.utilities.rounded_pixmap import rounded_pixmap
 from ui.widgets.browse_edit import BrowseLineEdit
@@ -67,10 +66,9 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             and self._item.module_config.module_image.path is not None
             and self._item.path is not None
         ):
-            image_path: Path = (
-                self._item.path.parent / self._item.module_config.module_image.path
+            self.__image_path_entry.setText(
+                str(self._item.module_config.module_image.path)
             )
-            self.__image_path_entry.setText(str(image_path))
 
     @override
     @classmethod
@@ -131,6 +129,13 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             else None
         )
 
+        if (
+            image_path is not None
+            and not image_path.is_absolute()
+            and self._item.path is not None
+        ):
+            image_path = self._item.path.parent / image_path
+
         if image_path is not None and image_path.is_file():
             self.__image_label.setPixmap(
                 rounded_pixmap(
@@ -164,9 +169,9 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         if image_path is not None and self._item.path is not None:
             if self._item.module_config.module_image is None:
                 self._item.module_config.module_image = HeaderImage()
-            self._item.module_config.module_image.path = image_path.relative_to(
-                self._item.path.parent
-            )
+            if image_path.is_relative_to(self._item.path.parent):
+                image_path = image_path.relative_to(self._item.path.parent)
+            self._item.module_config.module_image.path = image_path
         else:
             self._item.module_config.module_image = None
 
@@ -181,15 +186,15 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             else None
         )
 
-        if image_path is not None:
-            if self._item.path is None:
-                raise ValueError(self.tr("No FOMOD path is set!"))
+        if image_path is not None and self._item.path is not None:
+            if not image_path.is_absolute():
+                image_path = self._item.path.parent / image_path
 
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
 
-            if not image_path.is_relative_to(self._item.path.parent):
-                raise PathNotInFomodError(image_path, self._item.path.parent)
+            # if not image_path.is_relative_to(self._item.path.parent):
+            #     raise PathNotInFomodError(image_path, self._item.path.parent)
 
             if image_path.suffix.lower() not in SUPPORTED_TYPES:
                 raise ImageTypeNotSupportedError(image_path.suffix)

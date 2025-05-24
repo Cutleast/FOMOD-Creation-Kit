@@ -52,6 +52,7 @@ class SettingsWidget(SmoothScrollArea):
     __language_box: QComboBox
     __ui_mode_box: QComboBox
 
+    __finalize_checkbox: QCheckBox
     __validate_xml_checkbox: QCheckBox
     __module_config_encoding_dropdown: EnumDropdown[BehaviorConfig.ModuleConfigEncoding]
 
@@ -148,6 +149,19 @@ class SettingsWidget(SmoothScrollArea):
 
         behavior_settings_flayout = QFormLayout()
         behavior_settings_group.setLayout(behavior_settings_flayout)
+
+        self.__finalize_checkbox = QCheckBox(self.tr("Finalize on save (recommended)"))
+        self.__finalize_checkbox.setToolTip(
+            self.tr(
+                "Finalizing means copying all files from outside of the FOMOD "
+                "into the FOMOD's folder and making the paths relative.\n"
+                "This makes the entire mod practically ready to be packed in a zip file "
+                "and distributed."
+            )
+        )
+        self.__finalize_checkbox.setChecked(self.__behavior_config.finalize_on_save)
+        self.__finalize_checkbox.stateChanged.connect(lambda _: self.changed.emit())
+        behavior_settings_flayout.addRow(self.__finalize_checkbox)
 
         self.__validate_xml_checkbox = QCheckBox(self.tr("Validate XML files on save"))
         self.__validate_xml_checkbox.setChecked(
