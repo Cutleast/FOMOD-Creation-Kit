@@ -96,7 +96,7 @@ class TestPlugin(BaseTest):
         assert len(composite_dependency.flag_dependencies) == 0
         assert composite_dependency.game_dependency is None
         assert composite_dependency.fomm_dependency is None
-        assert composite_dependency.dependencies is None
+        assert composite_dependency.dependencies == []
 
         # when
         file_dependency: FileDependency = composite_dependency.file_dependencies[0]

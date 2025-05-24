@@ -17,6 +17,31 @@ class ValidationError(ExceptionBase):
     """
 
 
+class SpecificValidationError(ValidationError):
+    """
+    ValidationError with a custom message.
+    """
+
+    def __init__(self, message: str) -> None:
+        super().__init__(message)
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return "{0}"
+
+
+class EmptyError(ValidationError):
+    """
+    Exception when no field is filled.
+    """
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate(
+            "fomod_editor", "At least one item has to be specified!"
+        )
+
+
 class PathNotInFomodError(ValidationError):
     """
     Exception when the path of an image or a file is outside the FOMOD folder.
@@ -61,3 +86,33 @@ class FileDoesNotExistError(ValidationError):
         return QApplication.translate(
             "fomod_editor", "The file\n'{0}'\ndoes not exist!"
         )
+
+
+class FileNameIsMissingError(ValidationError):
+    """
+    Exception when the file name is missing.
+    """
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate("fomod_editor", "The file name is missing!")
+
+
+class NameIsMissingError(ValidationError):
+    """
+    Exception when a name is missing.
+    """
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate("fomod_editor", "The name is missing!")
+
+
+class ValueIsMissingError(ValidationError):
+    """
+    Exception when a value is missing.
+    """
+
+    @override
+    def getLocalizedMessage(self) -> str:
+        return QApplication.translate("fomod_editor", "The value is missing!")

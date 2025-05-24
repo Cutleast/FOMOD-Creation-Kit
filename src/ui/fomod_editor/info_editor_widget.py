@@ -9,6 +9,7 @@ import qtawesome as qta
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (
+    QApplication,
     QFileDialog,
     QFormLayout,
     QLabel,
@@ -30,7 +31,7 @@ from ui.widgets.url_edit import UrlEdit
 from .base_editor_widget import BaseEditorWidget
 
 
-class InfoEditorWidget(BaseEditorWidget):
+class InfoEditorWidget(BaseEditorWidget[Fomod]):
     """
     Widget for editing the metadata of a FOMOD installer.
     """
@@ -62,14 +63,19 @@ class InfoEditorWidget(BaseEditorWidget):
         )
 
         if (
-            self._fomod.module_config.header_image is not None
-            and self._fomod.module_config.header_image.path is not None
-            and self._fomod.path is not None
+            self._item.module_config.module_image is not None
+            and self._item.module_config.module_image.path is not None
+            and self._item.path is not None
         ):
             image_path: Path = (
-                self._fomod.path.parent / self._fomod.module_config.header_image.path
+                self._item.path.parent / self._item.module_config.module_image.path
             )
             self.__image_path_entry.setText(str(image_path))
+
+    @override
+    @classmethod
+    def get_display_name(cls) -> str:
+        return QApplication.translate("InfoEditorWidget", "Edit FOMOD info...")
 
     @override
     def _init_ui(self) -> None:
@@ -92,23 +98,23 @@ class InfoEditorWidget(BaseEditorWidget):
         self.__flayout.addRow(self.__image_label)
 
         self.__name_entry = QLineEdit()
-        self.__name_entry.setText(self._fomod.info.name)
+        self.__name_entry.setText(self._item.info.name)
         self.__flayout.addRow(self.tr("Name:"), self.__name_entry)
 
         self.__author_entry = QLineEdit()
-        self.__author_entry.setText(self._fomod.info.author)
+        self.__author_entry.setText(self._item.info.author)
         self.__flayout.addRow(self.tr("Author:"), self.__author_entry)
 
         self.__version_entry = QLineEdit()
-        self.__version_entry.setText(self._fomod.info.version.version)
+        self.__version_entry.setText(self._item.info.version.version)
         self.__flayout.addRow(self.tr("Version:"), self.__version_entry)
 
         self.__website_entry = UrlEdit()
-        self.__website_entry.setText(self._fomod.info.website)
+        self.__website_entry.setText(self._item.info.website)
         self.__flayout.addRow(self.tr("Website:"), self.__website_entry)
 
         self.__description_entry = QPlainTextEdit()
-        self.__description_entry.setPlainText(self._fomod.info.description)
+        self.__description_entry.setPlainText(self._item.info.description)
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
         self.__image_path_entry = BrowseLineEdit()
@@ -142,27 +148,30 @@ class InfoEditorWidget(BaseEditorWidget):
             )
 
     @override
-    def save(self) -> None:
-        self._fomod.info.name = self.__name_entry.text()
-        self._fomod.module_config.module_name.title = self.__name_entry.text()
-        self._fomod.info.author = self.__author_entry.text()
-        self._fomod.info.version.version = self.__version_entry.text()
-        self._fomod.info.website = self.__website_entry.text()
-        self._fomod.info.description = self.__description_entry.toPlainText()
+    def save(self) -> Fomod:
+        self._item.info.name = self.__name_entry.text()
+        self._item.module_config.module_name.title = self.__name_entry.text()
+        self._item.info.author = self.__author_entry.text()
+        self._item.info.version.version = self.__version_entry.text()
+        self._item.info.website = self.__website_entry.text()
+        self._item.info.description = self.__description_entry.toPlainText()
 
         image_path: Optional[Path] = (
             Path(self.__image_path_entry.text().strip())
             if self.__image_path_entry.text().strip()
             else None
         )
-        if image_path is not None and self._fomod.path is not None:
-            if self._fomod.module_config.header_image is None:
-                self._fomod.module_config.header_image = HeaderImage()
-            self._fomod.module_config.header_image.path = image_path.relative_to(
-                self._fomod.path.parent
+        if image_path is not None and self._item.path is not None:
+            if self._item.module_config.module_image is None:
+                self._item.module_config.module_image = HeaderImage()
+            self._item.module_config.module_image.path = image_path.relative_to(
+                self._item.path.parent
             )
         else:
-            self._fomod.module_config.header_image = None
+            self._item.module_config.module_image = None
+
+        self.saved.emit(self._item)
+        return self._item
 
     @override
     def validate(self) -> None:
@@ -173,14 +182,14 @@ class InfoEditorWidget(BaseEditorWidget):
         )
 
         if image_path is not None:
-            if self._fomod.path is None:
+            if self._item.path is None:
                 raise ValueError(self.tr("No FOMOD path is set!"))
 
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
 
-            if not image_path.is_relative_to(self._fomod.path.parent):
-                raise PathNotInFomodError(image_path, self._fomod.path.parent)
+            if not image_path.is_relative_to(self._item.path.parent):
+                raise PathNotInFomodError(image_path, self._item.path.parent)
 
             if image_path.suffix.lower() not in SUPPORTED_TYPES:
                 raise ImageTypeNotSupportedError(image_path.suffix)

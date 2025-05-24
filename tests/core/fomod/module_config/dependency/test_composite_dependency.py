@@ -31,4 +31,4 @@ class TestCompositeDependency(BaseTest):
         # then
         assert composite_dependency.operator == CompositeDependency.Operator.Or
         assert composite_dependency.file_dependencies[0].file == "test.txt"
-        assert composite_dependency.dependencies is None
+        assert composite_dependency.dependencies == []

@@ -11,6 +11,12 @@ from PySide6.QtGui import QTransform
 from PySide6.QtWidgets import QTabWidget
 
 from core.fomod.fomod import Fomod
+from core.fomod.module_config.condition.conditional_file_install_list import (
+    ConditionalFileInstallList,
+)
+from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
+from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.step_list import StepList
 from ui.utilities.icon_provider import get_icon_for_palette
 
 from .conditional_files_editor_widget import ConditionalFilesEditorWidget
@@ -51,6 +57,7 @@ class FomodEditorWidget(QTabWidget):
         self.setTabPosition(QTabWidget.TabPosition.West)
         self.tabBar().setExpanding(True)
         self.setObjectName("icon_bar")
+        self.tabBar().setObjectName("icon_bar")
         self.tabBar().setIconSize(
             QSize(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
         )
@@ -120,7 +127,10 @@ class FomodEditorWidget(QTabWidget):
         if self.__current_fomod is None:
             raise ValueError("No FOMOD is set")
 
-        self.__dependency_editor_widget = DependencyEditorWidget(self.__current_fomod)
+        self.__dependency_editor_widget = DependencyEditorWidget(
+            self.__current_fomod.module_config.module_dependencies
+            or CompositeDependency()
+        )
         self.__dependency_editor_widget.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
         )
@@ -141,7 +151,7 @@ class FomodEditorWidget(QTabWidget):
             raise ValueError("No FOMOD is set")
 
         self.__required_files_editor_widget = RequiredFilesEditorWidget(
-            self.__current_fomod
+            self.__current_fomod.module_config.required_install_files or FileList()
         )
         self.__required_files_editor_widget.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -162,7 +172,10 @@ class FomodEditorWidget(QTabWidget):
         if self.__current_fomod is None:
             raise ValueError("No FOMOD is set")
 
-        self.__steps_editor_widget = StepsEditorWidget(self.__current_fomod)
+        self.__steps_editor_widget = StepsEditorWidget(
+            self.__current_fomod.module_config.install_steps
+            or StepList(install_steps=[])
+        )
         self.__steps_editor_widget.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
         )
@@ -183,7 +196,8 @@ class FomodEditorWidget(QTabWidget):
             raise ValueError("No FOMOD is set")
 
         self.__conditional_files_editor_widget = ConditionalFilesEditorWidget(
-            self.__current_fomod
+            self.__current_fomod.module_config.conditional_file_installs
+            or ConditionalFileInstallList(patterns=[])
         )
         self.__conditional_files_editor_widget.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -238,16 +252,24 @@ class FomodEditorWidget(QTabWidget):
             self.__info_editor_widget.save()
 
         if self.__dependency_editor_widget is not None:
-            self.__dependency_editor_widget.save()
+            self.__current_fomod.module_config.module_dependencies = (
+                self.__dependency_editor_widget.save()
+            )
 
         if self.__required_files_editor_widget is not None:
-            self.__required_files_editor_widget.save()
+            self.__current_fomod.module_config.required_install_files = (
+                self.__required_files_editor_widget.save()
+            )
 
         if self.__steps_editor_widget is not None:
-            self.__steps_editor_widget.save()
+            self.__current_fomod.module_config.install_steps = (
+                self.__steps_editor_widget.save()
+            )
 
         if self.__conditional_files_editor_widget is not None:
-            self.__conditional_files_editor_widget.save()
+            self.__current_fomod.module_config.conditional_file_installs = (
+                self.__conditional_files_editor_widget.save()
+            )
 
         self.__current_fomod.save(validate_xml, encoding)
         self.changed.emit(self.__current_fomod, False)

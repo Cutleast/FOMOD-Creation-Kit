@@ -89,7 +89,7 @@ class TestModuleConfig(BaseTest):
 
     def test_dump(self, data_folder: Path, test_fs: FakeFilesystem) -> None:
         """
-        Tests the saving of a FOMOD info file.
+        Tests the saving of a FOMOD module config file.
         """
 
         # given
@@ -106,6 +106,19 @@ class TestModuleConfig(BaseTest):
 
         # then
         assert edited_module_config.module_name.title == "New Name"
+        assert (
+            edited_module_config.module_dependencies
+            == module_config.module_dependencies
+        )
+        assert (
+            edited_module_config.required_install_files
+            == module_config.required_install_files
+        )
+        assert edited_module_config.install_steps == module_config.install_steps
+        assert (
+            edited_module_config.conditional_file_installs
+            == module_config.conditional_file_installs
+        )
 
     def test_add_module_dependency(self, test_fs: FakeFilesystem) -> None:
         """

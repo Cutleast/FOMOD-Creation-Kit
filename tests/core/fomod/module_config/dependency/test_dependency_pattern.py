@@ -46,7 +46,7 @@ class TestDependencyPattern(BaseTest):
         assert len(dependency.flag_dependencies) == 0
         assert dependency.game_dependency is None
         assert dependency.fomm_dependency is None
-        assert dependency.dependencies is None
+        assert dependency.dependencies == []
 
         assert dependency.file_dependencies[0].file == "JK's Angelines Aromatics.esp"
         assert dependency.file_dependencies[0].state == FileDependency.State.Active
