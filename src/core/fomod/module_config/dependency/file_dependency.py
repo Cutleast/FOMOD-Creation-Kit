@@ -12,7 +12,7 @@ from core.utilities.localized_enum import LocalizedEnum
 from .dependency import Dependency
 
 
-class FileDependency(Dependency, tag="fileDependency"):
+class FileDependency(Dependency):
     """
     Model representing the fileDependency tag of the ModuleConfig.xml.
 

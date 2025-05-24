@@ -7,7 +7,7 @@ from pydantic_xml import attr
 from .dependency import Dependency
 
 
-class FlagDependency(Dependency, tag="flagDependency"):
+class FlagDependency(Dependency):
     """
     A condition flag upon which the type of a plugin depends.
     """

@@ -8,7 +8,7 @@ from .dependency.composite_dependency import CompositeDependency
 from .group_list import GroupList
 
 
-class InstallStep(BaseXmlModel, tag="installStep", search_mode="unordered"):
+class InstallStep(BaseXmlModel, search_mode="unordered"):
     """
     Model representing the installStep tag of the ModuleConfig.xml.
 

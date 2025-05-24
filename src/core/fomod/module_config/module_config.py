@@ -25,31 +25,27 @@ class ModuleConfig(FomodModel, tag="config", search_mode="unordered"):
     module_name: ModuleTitle = element(tag="moduleName")
     """The name of the module."""
 
-    header_image: Optional[HeaderImage] = element(tag="moduleImage", default=None)
+    module_image: Optional[HeaderImage] = element(tag="moduleImage", default=None)
     """The module logo."""
 
-    module_dependencies: list[CompositeDependency] = element(
-        tag="moduleDependencies", default_factory=list
+    module_dependencies: Optional[CompositeDependency] = element(
+        tag="moduleDependencies", default=None
     )
     """Items upon which the module depends."""
 
-    required_install_files: FileList = element(
-        tag="requiredInstallFiles",
-        default_factory=lambda: FileList(files=[], folders=[]),
+    required_install_files: Optional[FileList] = element(
+        tag="requiredInstallFiles", default=None
     )
     """The list of files and folders that must be installed for this module."""
 
-    install_steps: StepList = element(
-        tag="installSteps", default_factory=lambda: StepList(install_steps=[])
-    )
+    install_steps: Optional[StepList] = element(tag="installSteps", default=None)
     """
     The list of install steps that determine which files (or plugins) that may optionally
     be installed for this module.
     """
 
-    conditional_file_installs: ConditionalFileInstallList = element(
-        tag="conditionalFileInstalls",
-        default_factory=lambda: ConditionalFileInstallList(patterns=[]),
+    conditional_file_installs: Optional[ConditionalFileInstallList] = element(
+        tag="conditionalFileInstalls", default=None
     )
     """
     The list of optional files that may optionally be installed for this module, based on

@@ -10,21 +10,10 @@ from typing import Optional
 
 from lxml import etree
 
-from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.file_system_item import FileSystemItem
-from core.fomod.module_config.plugin_type import PluginType
-
 from .exceptions import NotAFomodError, XmlValidationError
 from .fomod_info import FomodInfo
-from .module_config.group import Group
-from .module_config.group_list import GroupList
-from .module_config.install_step import InstallStep
 from .module_config.module_config import ModuleConfig
 from .module_config.module_title import ModuleTitle
-from .module_config.plugin import Plugin
-from .module_config.plugin_list import PluginList
-from .module_config.plugin_type_descriptor import PluginTypeDescriptor
-from .module_config.step_list import StepList
 
 
 class Fomod:
@@ -158,42 +147,5 @@ class Fomod:
         return Fomod(
             path=None,
             info=FomodInfo(name="default"),
-            module_config=ModuleConfig(
-                module_name=ModuleTitle(title="default"),
-                install_steps=StepList(
-                    install_steps=[
-                        InstallStep(
-                            name="default",
-                            optional_file_groups=GroupList(
-                                groups=[
-                                    Group(
-                                        name="default",
-                                        plugins=PluginList(
-                                            plugins=[
-                                                Plugin(
-                                                    name="default",
-                                                    description="default",
-                                                    files=FileList(
-                                                        files=[
-                                                            FileSystemItem(
-                                                                source=Path("default"),
-                                                            )
-                                                        ]
-                                                    ),
-                                                    type_descriptor=PluginTypeDescriptor(
-                                                        type=PluginType(
-                                                            name=PluginType.Type.Required
-                                                        )
-                                                    ),
-                                                )
-                                            ]
-                                        ),
-                                        type=Group.Type.SelectAtLeastOne,
-                                    )
-                                ]
-                            ),
-                        )
-                    ]
-                )
-            ),
+            module_config=ModuleConfig(module_name=ModuleTitle(title="default")),
         )

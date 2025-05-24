@@ -7,7 +7,7 @@ from pathlib import Path
 from pydantic_xml import BaseXmlModel, attr
 
 
-class Image(BaseXmlModel, tag="image"):
+class Image(BaseXmlModel):
     """
     Model representing an image.
     """

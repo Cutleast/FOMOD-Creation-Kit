@@ -7,7 +7,7 @@ from pydantic_xml import BaseXmlModel, element
 from .file_system_item import FileSystemItem
 
 
-class FileList(BaseXmlModel, tag="files", search_mode="unordered"):
+class FileList(BaseXmlModel, search_mode="unordered"):
     """
     Model representing the fileList tag of the ModuleConfig.xml.
 

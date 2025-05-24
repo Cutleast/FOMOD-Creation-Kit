@@ -16,68 +16,37 @@ from .flag_dependency import FlagDependency
 from .version_dependency import VersionDependency
 
 
-class CompositeDependency(BaseXmlModel, tag="dependencies", search_mode="unordered"):
+class CompositeDependency(BaseXmlModel, search_mode="unordered"):
     """
     Model representing the compositeDependency tag of the ModuleConfig.xml.
 
     A dependency that is made up of one or more dependencies.
     """
 
-    class DependencyTypesGroup(BaseXmlModel, search_mode="unordered"):
-        """
-        Model representing a group of possible dependencies.
-        """
-
-        file_dependencies: list[FileDependency] = element(
-            tag="fileDependency", default_factory=list
-        )
-        """List of file dependencies."""
-
-        flag_dependencies: list[FlagDependency] = element(
-            tag="flagDependency", default_factory=list
-        )
-        """List of flag dependencies."""
-
-        game_dependency: Optional[VersionDependency] = element(
-            tag="gameDependency", default=None
-        )
-        """Specifies a minimum required version of the installed game."""
-
-        fomm_dependency: Optional[VersionDependency] = element(
-            tag="fommDependency", default=None
-        )
-        """Specifies a minimum required version of FOMM."""
-
-        dependencies: Optional[CompositeDependency] = element(
-            tag="dependencies", default=None
-        )
-        """A list of mods and their states against which to match the user's installation."""
-
-        def get_display_name(self) -> str:
-            """
-            Returns:
-                str: A display name generated from the dependencies.
-            """
-
-            return ", ".join(
-                [dep.file for dep in self.file_dependencies]
-                + [dep.flag for dep in self.flag_dependencies]
-                + [
-                    dep.version
-                    for dep in [self.game_dependency, self.fomm_dependency]
-                    if dep is not None
-                ]
-                + (
-                    [self.dependencies.get_display_name()]
-                    if self.dependencies is not None
-                    else []
-                )
-            )
-
-    dependencies: DependencyTypesGroup = element(
-        tag="dependencies", default_factory=DependencyTypesGroup
+    file_dependencies: list[FileDependency] = element(
+        tag="fileDependency", default_factory=list
     )
-    """A list of dependencies."""
+    """List of file dependencies."""
+
+    flag_dependencies: list[FlagDependency] = element(
+        tag="flagDependency", default_factory=list
+    )
+    """List of flag dependencies."""
+
+    game_dependency: Optional[VersionDependency] = element(
+        tag="gameDependency", default=None
+    )
+    """Specifies a minimum required version of the installed game."""
+
+    fomm_dependency: Optional[VersionDependency] = element(
+        tag="fommDependency", default=None
+    )
+    """Specifies a minimum required version of FOMM."""
+
+    dependencies: list[CompositeDependency] = element(
+        tag="dependencies", default_factory=list
+    )
+    """A list of mods and their states against which to match the user's installation."""
 
     class Operator(LocalizedEnum):
         """Enum for the relation of the contained dependencies."""
@@ -133,7 +102,19 @@ class CompositeDependency(BaseXmlModel, tag="dependencies", search_mode="unorder
             str: A display name generated from the dependencies.
         """
 
-        return self.dependencies.get_display_name()
+        return ", ".join(
+            [
+                f"{dep.file} ({dep.state.get_localized_name()})"
+                for dep in self.file_dependencies
+            ]
+            + [f"{dep.flag}={dep.value}" for dep in self.flag_dependencies]
+            + [
+                dep.version
+                for dep in [self.game_dependency, self.fomm_dependency]
+                if dep is not None
+            ]
+            + [dep.get_display_name() for dep in self.dependencies]
+        )
 
     @override
     def __str__(self) -> str:
@@ -141,4 +122,3 @@ class CompositeDependency(BaseXmlModel, tag="dependencies", search_mode="unorder
 
 
 CompositeDependency.model_rebuild()
-CompositeDependency.DependencyTypesGroup.model_rebuild()

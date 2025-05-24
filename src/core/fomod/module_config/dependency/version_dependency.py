@@ -7,7 +7,7 @@ from pydantic_xml import attr
 from .dependency import Dependency
 
 
-class VersionDependency(Dependency, tag="versionDependency"):
+class VersionDependency(Dependency):
     """
     Model representing a required minimum version of an item.
     """

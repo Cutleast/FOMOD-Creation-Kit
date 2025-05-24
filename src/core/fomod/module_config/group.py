@@ -12,7 +12,7 @@ from core.utilities.localized_enum import LocalizedEnum
 from .plugin_list import PluginList
 
 
-class Group(BaseXmlModel, tag="group", search_mode="unordered"):
+class Group(BaseXmlModel, search_mode="unordered"):
     """
     Model representing a group of plugins.
     """

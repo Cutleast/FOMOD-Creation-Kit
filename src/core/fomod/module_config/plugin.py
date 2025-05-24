@@ -12,7 +12,7 @@ from .image import Image
 from .plugin_type_descriptor import PluginTypeDescriptor
 
 
-class Plugin(BaseXmlModel, tag="plugin", search_mode="unordered"):
+class Plugin(BaseXmlModel, search_mode="unordered"):
     """
     Model representing a plugin.
     """
