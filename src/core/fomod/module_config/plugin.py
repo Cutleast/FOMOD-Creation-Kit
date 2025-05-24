@@ -20,10 +20,10 @@ class Plugin(BaseXmlModel, search_mode="unordered"):
     name: str = attr(name="name")
     """The name of the plugin."""
 
-    description: str = element(name="description", default="")
+    description: str = element(tag="description", default="")
     """The description of the plugin."""
 
-    image: Optional[Image] = element(name="image", default=None)
+    image: Optional[Image] = element(tag="image", default=None)
     """The optional image associated with the plugin."""
 
     files: Optional[FileList] = element(tag="files", default=None)
