@@ -152,22 +152,34 @@ class Fomod:
             return
 
         for install_file in self.module_config.required_install_files.files:
-            if not install_file.source.is_relative_to(self.path.parent):
+            if (
+                install_file.source.is_absolute()
+                and not install_file.source.is_relative_to(self.path.parent)
+            ):
                 file_path = files_path / install_file.source.name
 
                 shutil.copyfile(install_file.source, file_path)
                 self.log.debug(f"Copied '{install_file.source}' to '{file_path}'.")
 
                 install_file.source = file_path.relative_to(self.path.parent)
+            elif install_file.source.is_relative_to(self.path.parent):
+                install_file.source = install_file.source.relative_to(self.path.parent)
 
         for install_folder in self.module_config.required_install_files.folders:
-            if not install_folder.source.is_relative_to(self.path.parent):
+            if (
+                install_folder.source.is_absolute()
+                and not install_folder.source.is_relative_to(self.path.parent)
+            ):
                 folder_path = files_path / install_folder.source.name
 
                 shutil.copytree(install_folder.source, folder_path)
                 self.log.debug(f"Copied '{install_folder.source}' to '{folder_path}'.")
 
                 install_folder.source = folder_path.relative_to(self.path.parent)
+            elif install_folder.source.is_relative_to(self.path.parent):
+                install_folder.source = install_folder.source.relative_to(
+                    self.path.parent
+                )
 
     def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """

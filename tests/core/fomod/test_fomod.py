@@ -2,6 +2,7 @@
 Copyright (c) Cutleast
 """
 
+import shutil
 from pathlib import Path
 
 from pyfakefs.fake_filesystem import FakeFilesystem
@@ -105,9 +106,15 @@ class TestFomod(BaseTest):
             / "fomod"
             / "Image.jpg"
         )
+        existing_file_in_fomod = fomod_path / "files" / "Image.jpg"
+        existing_file_in_fomod.parent.mkdir(parents=True)
+        shutil.copyfile(image_path, existing_file_in_fomod)
         fomod.module_config.module_image = HeaderImage(path=image_path)
         fomod.module_config.required_install_files = FileList(
-            files=[FileSystemItem(source=image_path)]
+            files=[
+                FileSystemItem(source=image_path),
+                FileSystemItem(source=existing_file_in_fomod),
+            ]
         )
 
         # when
@@ -147,3 +154,8 @@ class TestFomod(BaseTest):
         assert fomod.module_config.required_install_files.files[
             0
         ].source == image_path.relative_to(fomod.path.parent)
+
+        assert existing_file_in_fomod.is_file()
+        assert fomod.module_config.required_install_files.files[
+            1
+        ].source == existing_file_in_fomod.relative_to(fomod.path.parent)
