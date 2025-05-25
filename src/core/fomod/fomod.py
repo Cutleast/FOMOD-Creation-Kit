@@ -73,6 +73,7 @@ class Fomod:
         self.path.mkdir(parents=True, exist_ok=True)
 
         self.__include_images()
+        self.__include_required_files()
 
         self.save(validate_xml, encoding)
         self.log.info("FOMOD finalized.")
@@ -85,10 +86,11 @@ class Fomod:
 
         images_path = self.path / "images"
 
-        if images_path.is_dir():
-            shutil.rmtree(images_path)
+        # TODO: Implement better way to clean up
+        # if images_path.is_dir():
+        #     shutil.rmtree(images_path)
 
-        images_path.mkdir(parents=True)
+        images_path.mkdir(parents=True, exist_ok=True)
 
         if (
             self.module_config.module_image is not None
@@ -131,6 +133,41 @@ class Fomod:
                 self.log.debug(f"Copied '{plugin.image.path}' to '{image_path}'.")
 
                 plugin.image.path = image_path.relative_to(self.path.parent)
+
+    def __include_required_files(self) -> None:
+        if self.path is None:
+            raise ValueError("FOMOD path is not set.")
+
+        self.log.info("Including required install files...")
+
+        files_path = self.path / "required_files"
+
+        # TODO: Implement better way to clean up
+        # if files_path.is_dir():
+        #     shutil.rmtree(files_path)
+
+        files_path.mkdir(parents=True, exist_ok=True)
+
+        if self.module_config.required_install_files is None:
+            return
+
+        for install_file in self.module_config.required_install_files.files:
+            if not install_file.source.is_relative_to(self.path.parent):
+                file_path = files_path / install_file.source.name
+
+                shutil.copyfile(install_file.source, file_path)
+                self.log.debug(f"Copied '{install_file.source}' to '{file_path}'.")
+
+                install_file.source = file_path.relative_to(self.path.parent)
+
+        for install_folder in self.module_config.required_install_files.folders:
+            if not install_folder.source.is_relative_to(self.path.parent):
+                folder_path = files_path / install_folder.source.name
+
+                shutil.copytree(install_folder.source, folder_path)
+                self.log.debug(f"Copied '{install_folder.source}' to '{folder_path}'.")
+
+                install_folder.source = folder_path.relative_to(self.path.parent)
 
     def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """

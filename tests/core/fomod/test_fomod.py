@@ -8,6 +8,8 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
+from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system_item import FileSystemItem
 from core.fomod.module_config.group import Group
 from core.fomod.module_config.header_image import HeaderImage
 from core.fomod.module_config.install_step import InstallStep
@@ -97,11 +99,15 @@ class TestFomod(BaseTest):
         # given
         fomod: Fomod = Fomod.create()
         fomod_path = Path("test_output") / "fomod"
-        fomod.module_config.module_image = HeaderImage(
-            path=data_folder.absolute()
+        image_path: Path = (
+            data_folder.absolute()
             / "Dynamic Interface Patcher FOMOD"
             / "fomod"
             / "Image.jpg"
+        )
+        fomod.module_config.module_image = HeaderImage(path=image_path)
+        fomod.module_config.required_install_files = FileList(
+            files=[FileSystemItem(source=image_path)]
         )
 
         # when
@@ -119,10 +125,25 @@ class TestFomod(BaseTest):
         assert images_path.is_dir()
 
         # when
-        image_path: Path = images_path / "module.jpg"
+        image_path = images_path / "module.jpg"
 
         # then
         assert image_path.is_file()
         assert fomod.module_config.module_image.path == image_path.relative_to(
             fomod.path.parent
         )
+
+        # when
+        files_path: Path = fomod.path / "required_files"
+
+        # then
+        assert files_path.is_dir()
+
+        # when
+        image_path = files_path / "Image.jpg"
+
+        # then
+        assert image_path.is_file()
+        assert fomod.module_config.required_install_files.files[
+            0
+        ].source == image_path.relative_to(fomod.path.parent)
