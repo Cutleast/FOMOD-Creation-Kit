@@ -86,7 +86,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         hlayout.addWidget(self.__source_entry)
 
         file_radiobutton = QRadioButton(self.tr("File"))
-        file_radiobutton.setChecked(self._item.source.is_file())
+        file_radiobutton.setChecked(True)
         hlayout.addWidget(file_radiobutton)
 
         folder_radiobutton = QRadioButton(self.tr("Folder"))
