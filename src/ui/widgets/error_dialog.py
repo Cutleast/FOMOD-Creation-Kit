@@ -68,6 +68,7 @@ class ErrorDialog(QDialog):
         hlayout.addWidget(icon_label)
 
         text_label = QLabel(self.__text)
+        text_label.setWordWrap(True)
         hlayout.addWidget(text_label)
 
         self.__details_box = QPlainTextEdit(self.__details)
