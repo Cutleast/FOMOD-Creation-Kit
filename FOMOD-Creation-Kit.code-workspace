@@ -146,6 +146,9 @@
 		"python.analysis.typeCheckingMode": "strict",
 		"python.analysis.stubPath": "stubs",
 		"git.diagnosticsCommitHook.Enabled": true,
+		"github-actions.workflows.pinned.workflows": [
+			".github/workflows/lint_and_test.yaml"
+		],
 	},
 	"launch": {
 		"version": "0.2.0",
