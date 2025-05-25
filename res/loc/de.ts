@@ -184,33 +184,33 @@
 <context>
     <name>ErrorDialog</name>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="86"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="87"/>
         <source>Continue</source>
         <translation>Fortfahren</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="92"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="93"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="96"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="97"/>
         <source>Ok</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="103"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="104"/>
         <source>Copy error details...</source>
         <translation>Fehlerdetails kopieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="114"/>
-        <location filename="src/ui/widgets/error_dialog.py" line="133"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="115"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="134"/>
         <source>Show details...</source>
         <translation>Details anzeigen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="127"/>
+        <location filename="src/ui/widgets/error_dialog.py" line="128"/>
         <source>Hide details...</source>
         <translation>Details verstecken...</translation>
     </message>
