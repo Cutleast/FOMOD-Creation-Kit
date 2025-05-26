@@ -94,7 +94,11 @@ class TreeWidgetEditor[T: object](QWidget):
         add_action.triggered.connect(self.onAdd.emit)
 
         self.__remove_action = tool_bar.addAction(
-            qta.icon("mdi6.minus", color=self.palette().text().color()),
+            qta.icon(
+                "mdi6.minus",
+                color=self.palette().text().color(),
+                color_disabled="#666666",
+            ),
             self.tr("Remove selected item(s)..."),
         )
         self.__remove_action.setDisabled(True)
