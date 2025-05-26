@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from collections.abc import Sequence
+
 import qtawesome as qta
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QAction
@@ -51,10 +53,10 @@ class TreeWidgetEditor[T: object](QWidget):
     _vlayout: QVBoxLayout
     _tree_widget: QTreeWidget
 
-    def __init__(self, initial_items: list[T] = []) -> None:
+    def __init__(self, initial_items: Sequence[T] = []) -> None:
         """
         Args:
-            initial_items (list[T], optional):
+            initial_items (Sequence[T], optional):
                 Initial list of items to add to the tree widget. Defaults to [].
         """
 

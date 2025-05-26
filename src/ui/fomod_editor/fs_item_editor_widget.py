@@ -3,7 +3,7 @@ Copyright (c) Cutleast
 """
 
 from pathlib import Path
-from typing import override
+from typing import Optional, override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -18,7 +18,9 @@ from PySide6.QtWidgets import (
     QSpinBox,
 )
 
+from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_system_item import FileSystemItem
+from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificValidationError
 from ui.widgets.browse_edit import BrowseLineEdit
 
@@ -31,6 +33,8 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
     """
 
     __source_entry: BrowseLineEdit
+    __file_radiobutton: QRadioButton
+
     __destination_entry: QLineEdit
     __always_install_checkbox: QCheckBox
     __install_if_usable_checkbox: QCheckBox
@@ -40,6 +44,15 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         super().__init__(item)
 
         self.__source_entry.textChanged.connect(lambda _: self.changed.emit())
+        self.__file_radiobutton.toggled.connect(
+            lambda checked: self.__source_entry.setFileMode(
+                QFileDialog.FileMode.ExistingFile
+                if checked
+                else QFileDialog.FileMode.Directory
+            )
+        )
+        self.__file_radiobutton.toggled.connect(lambda _: self.changed.emit())
+
         self.__destination_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__always_install_checkbox.stateChanged.connect(
             lambda _: self.changed.emit()
@@ -85,21 +98,13 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             self.__source_entry.setText(str(self._item.source))
         hlayout.addWidget(self.__source_entry)
 
-        file_radiobutton = QRadioButton(self.tr("File"))
-        file_radiobutton.setChecked(True)
-        hlayout.addWidget(file_radiobutton)
+        self.__file_radiobutton = QRadioButton(self.tr("File"))
+        self.__file_radiobutton.setChecked(isinstance(self._item, FileItem))
+        hlayout.addWidget(self.__file_radiobutton)
 
         folder_radiobutton = QRadioButton(self.tr("Folder"))
-        folder_radiobutton.setChecked(self._item.source.is_dir())
+        folder_radiobutton.setChecked(isinstance(self._item, FolderItem))
         hlayout.addWidget(folder_radiobutton)
-
-        file_radiobutton.toggled.connect(
-            lambda checked: self.__source_entry.setFileMode(
-                QFileDialog.FileMode.ExistingFile
-                if checked
-                else QFileDialog.FileMode.Directory
-            )
-        )
         flayout.addRow(self.tr("Source:"), hlayout)
 
         self.__destination_entry = QLineEdit()
@@ -162,15 +167,32 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
 
     @override
     def save(self) -> FileSystemItem:
-        self._item.source = Path(self.__source_entry.text().strip())
-        self._item.destination = (
+        source = Path(self.__source_entry.text().strip())
+        destination: Optional[Path] = (
             Path(self.__destination_entry.text().strip())
             if self.__destination_entry.text().strip()
             else None
         )
-        self._item.always_install = self.__always_install_checkbox.isChecked()
-        self._item.install_if_usable = self.__install_if_usable_checkbox.isChecked()
-        self._item.priority = self.__priority_entry.value()
+        always_install: bool = self.__always_install_checkbox.isChecked()
+        install_if_usable: bool = self.__install_if_usable_checkbox.isChecked()
+        priority: int = self.__priority_entry.value()
+
+        if self.__file_radiobutton.isChecked():
+            self._item = FileItem(
+                source=source,
+                destination=destination,
+                always_install=always_install,
+                install_if_usable=install_if_usable,
+                priority=priority,
+            )
+        else:
+            self._item = FolderItem(
+                source=source,
+                destination=destination,
+                always_install=always_install,
+                install_if_usable=install_if_usable,
+                priority=priority,
+            )
 
         self.saved.emit(self._item)
         return self._item

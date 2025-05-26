@@ -79,3 +79,11 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         Raises:
             ValidationError: If the item is invalid.
         """
+
+    def get_item(self) -> T:
+        """
+        Returns:
+            T: The current item
+        """
+
+        return self._item

@@ -3,14 +3,14 @@ Copyright (c) Cutleast
 """
 
 import shutil
-from pathlib import Path
+from pathlib import Path, WindowsPath
 
 from pyfakefs.fake_filesystem import FakeFilesystem
 
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
+from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.file_system_item import FileSystemItem
 from core.fomod.module_config.group import Group
 from core.fomod.module_config.header_image import HeaderImage
 from core.fomod.module_config.install_step import InstallStep
@@ -112,8 +112,8 @@ class TestFomod(BaseTest):
         fomod.module_config.module_image = HeaderImage(path=image_path)
         fomod.module_config.required_install_files = FileList(
             files=[
-                FileSystemItem(source=image_path),
-                FileSystemItem(source=existing_file_in_fomod),
+                FileItem(source=image_path),
+                FileItem(source=existing_file_in_fomod),
             ]
         )
 
@@ -159,3 +159,67 @@ class TestFomod(BaseTest):
         assert fomod.module_config.required_install_files.files[
             1
         ].source == existing_file_in_fomod.relative_to(fomod.path.parent)
+
+    def test_finalize_keeps_same(
+        self, data_folder: Path, test_fs: FakeFilesystem
+    ) -> None:
+        """
+        Tests that repeated finalization keeps the same without removing or deleting
+        anything.
+        """
+
+        self.test_finalize(data_folder, test_fs)
+
+        # given
+        fomod_path = Path("test_output") / "fomod"
+        fomod: Fomod = Fomod.load(fomod_path)
+
+        # then
+        assert fomod.path is not None
+        assert (fomod.path / "images" / "module.jpg").is_file()
+        assert (fomod.path / "required_files" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "Image.jpg").is_file()
+
+        assert fomod.module_config.module_image is not None
+        assert (
+            fomod.module_config.module_image.path
+            == WindowsPath("fomod") / "images" / "module.jpg"
+        )
+
+        assert fomod.module_config.required_install_files is not None
+        assert (
+            fomod.module_config.required_install_files.files[0].source
+            == WindowsPath("fomod") / "required_files" / "Image.jpg"
+        )
+        assert (
+            fomod.module_config.required_install_files.files[1].source
+            == WindowsPath("fomod") / "files" / "Image.jpg"
+        )
+
+        # when
+        fomod.finalize()
+        fomod = Fomod.load(fomod_path)
+        fomod.finalize()
+        fomod = Fomod.load(fomod_path)
+
+        # then
+        assert fomod.path is not None
+        assert (fomod.path / "images" / "module.jpg").is_file()
+        assert (fomod.path / "required_files" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "Image.jpg").is_file()
+
+        assert fomod.module_config.module_image is not None
+        assert (
+            fomod.module_config.module_image.path
+            == WindowsPath("fomod") / "images" / "module.jpg"
+        )
+
+        assert fomod.module_config.required_install_files is not None
+        assert (
+            fomod.module_config.required_install_files.files[0].source
+            == WindowsPath("fomod") / "required_files" / "Image.jpg"
+        )
+        assert (
+            fomod.module_config.required_install_files.files[1].source
+            == WindowsPath("fomod") / "files" / "Image.jpg"
+        )

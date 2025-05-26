@@ -2,13 +2,16 @@
 Copyright (c) Cutleast
 """
 
+from collections.abc import Sequence
 from pathlib import Path
 from typing import override
 
 from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
 
+from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.file_system_item import FileSystemItem
+from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import EmptyError
 from ui.fomod_editor.editor_dialog import EditorDialog
 from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget
@@ -27,7 +30,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         Tree widget editor adapted for file system items.
         """
 
-        def __init__(self, initial_items: list[FileSystemItem] = []) -> None:
+        def __init__(self, initial_items: Sequence[FileSystemItem] = []) -> None:
             super().__init__()
 
             for item in initial_items:
@@ -102,21 +105,24 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         self._vlayout.addWidget(self.__tree_widget)
 
     def __add_filesystem_item(self) -> None:
-        fs_item = FileSystemItem(source=Path("__default__"))
-        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
-            FsItemEditorWidget(fs_item), validate_on_init=True
+        editor: FsItemEditorWidget = FsItemEditorWidget(
+            FileItem(source=Path("__default__"))
         )
+        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(editor)
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.addItem(fs_item)
+            self.__tree_widget.addItem(editor.get_item())
 
     def __edit_filesystem_item(self, item: FileSystemItem) -> None:
+        editor: FsItemEditorWidget = FsItemEditorWidget(item)
         dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
-            FsItemEditorWidget(item)
+            editor, validate_on_init=True
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.updateItem(item)
+            # self.__tree_widget.updateItem(item)
+            self.__tree_widget.removeItem(item)
+            self.__tree_widget.addItem(editor.get_item())
 
     @override
     def validate(self) -> None:
@@ -126,12 +132,10 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
     @override
     def save(self) -> FileList:
         fs_items: list[FileSystemItem] = self.__tree_widget.getItems()
-        file_items: list[FileSystemItem] = list(
-            filter(lambda x: x.source.is_file(), fs_items)
-        )
-        folder_items: list[FileSystemItem] = list(
-            filter(lambda x: x.source.is_dir(), fs_items)
-        )
+        file_items: list[FileItem] = [x for x in fs_items if isinstance(x, FileItem)]
+        folder_items: list[FolderItem] = [
+            x for x in fs_items if isinstance(x, FolderItem)
+        ]
 
         self._item.files = file_items
         self._item.folders = folder_items
