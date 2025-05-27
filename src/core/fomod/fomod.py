@@ -74,6 +74,7 @@ class Fomod:
 
         self.__include_images()
         self.__include_required_files()
+        self.__include_conditional_files()
 
         self.save(validate_xml, encoding)
         self.log.info("FOMOD finalized.")
@@ -172,7 +173,7 @@ class Fomod:
             ):
                 folder_path = files_path / install_folder.source.name
 
-                shutil.copytree(install_folder.source, folder_path)
+                shutil.copytree(install_folder.source, folder_path, dirs_exist_ok=True)
                 self.log.debug(f"Copied '{install_folder.source}' to '{folder_path}'.")
 
                 install_folder.source = folder_path.relative_to(self.path.parent)
@@ -180,6 +181,60 @@ class Fomod:
                 install_folder.source = install_folder.source.relative_to(
                     self.path.parent
                 )
+
+    def __include_conditional_files(self) -> None:
+        if self.path is None:
+            raise ValueError("FOMOD path is not set.")
+
+        self.log.info("Including conditional install files...")
+
+        files_path = self.path / "conditional_files"
+
+        # TODO: Implement better way to clean up
+        # if files_path.is_dir():
+        #     shutil.rmtree(files_path)
+
+        files_path.mkdir(parents=True, exist_ok=True)
+
+        if self.module_config.conditional_file_installs is None:
+            return
+
+        for pattern in self.module_config.conditional_file_installs.patterns.patterns:
+            for install_file in pattern.files.files:
+                if (
+                    install_file.source.is_absolute()
+                    and not install_file.source.is_relative_to(self.path.parent)
+                ):
+                    file_path = files_path / install_file.source.name
+
+                    shutil.copyfile(install_file.source, file_path)
+                    self.log.debug(f"Copied '{install_file.source}' to '{file_path}'.")
+
+                    install_file.source = file_path.relative_to(self.path.parent)
+                elif install_file.source.is_relative_to(self.path.parent):
+                    install_file.source = install_file.source.relative_to(
+                        self.path.parent
+                    )
+
+            for install_folder in pattern.files.folders:
+                if (
+                    install_folder.source.is_absolute()
+                    and not install_folder.source.is_relative_to(self.path.parent)
+                ):
+                    folder_path = files_path / install_folder.source.name
+
+                    shutil.copytree(
+                        install_folder.source, folder_path, dirs_exist_ok=True
+                    )
+                    self.log.debug(
+                        f"Copied '{install_folder.source}' to '{folder_path}'."
+                    )
+
+                    install_folder.source = folder_path.relative_to(self.path.parent)
+                elif install_folder.source.is_relative_to(self.path.parent):
+                    install_folder.source = install_folder.source.relative_to(
+                        self.path.parent
+                    )
 
     def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """

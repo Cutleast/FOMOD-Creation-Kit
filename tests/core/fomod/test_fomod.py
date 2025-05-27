@@ -8,7 +8,17 @@ from pathlib import Path, WindowsPath
 from pyfakefs.fake_filesystem import FakeFilesystem
 
 from core.fomod.fomod import Fomod
+from core.fomod.module_config.condition.conditional_file_install_list import (
+    ConditionalFileInstallList,
+)
+from core.fomod.module_config.condition.conditional_install_pattern import (
+    ConditionalInstallPattern,
+)
+from core.fomod.module_config.condition.conditional_install_pattern_list import (
+    ConditionalInstallPatternList,
+)
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
+from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.group import Group
@@ -66,6 +76,45 @@ class TestFomod(BaseTest):
         assert yes_plugin.condition_flags.flags[0].value == "On"
         assert yes_plugin.type_descriptor.dependency_type is not None
 
+        assert fomod.module_config.conditional_file_installs is not None
+
+        # when
+        patterns: ConditionalInstallPatternList = (
+            fomod.module_config.conditional_file_installs.patterns
+        )
+
+        # then
+        assert len(patterns.patterns) == 1
+
+        # when
+        pattern: ConditionalInstallPattern = patterns.patterns[0]
+
+        # then
+        assert len(pattern.files.files) == 1
+        assert len(pattern.files.folders) == 0
+
+        # when
+        file: FileItem = pattern.files.files[0]
+
+        # then
+        assert file.source == WindowsPath(
+            "JKs Blue Palace - Imperial Mail - SSewers consistency patch.esp"
+        )
+
+        # when
+        composite_dependency: CompositeDependency = pattern.dependencies
+
+        # then
+        assert composite_dependency.operator == CompositeDependency.Operator.And
+        assert len(composite_dependency.file_dependencies) == 0
+        assert composite_dependency.flag_dependencies == [
+            FlagDependency(flag="BluePalaceImperialMail", value="On"),
+            FlagDependency(flag="BluePalaceSSewers", value="On"),
+        ]
+        assert composite_dependency.game_dependency is None
+        assert composite_dependency.fomm_dependency is None
+        assert len(composite_dependency.dependencies) == 0
+
     def test_create(self) -> None:
         """
         Tests `Fomod.create()`.
@@ -116,6 +165,23 @@ class TestFomod(BaseTest):
                 FileItem(source=existing_file_in_fomod),
             ]
         )
+        fomod.module_config.conditional_file_installs = ConditionalFileInstallList(
+            patterns=ConditionalInstallPatternList(
+                patterns=[
+                    ConditionalInstallPattern(
+                        dependencies=CompositeDependency(
+                            flag_dependencies=[FlagDependency(flag="test", value="On")]
+                        ),
+                        files=FileList(
+                            files=[
+                                FileItem(source=image_path),
+                                FileItem(source=existing_file_in_fomod),
+                            ]
+                        ),
+                    )
+                ]
+            )
+        )
 
         # when
         fomod.finalize(fomod_path)
@@ -159,6 +225,26 @@ class TestFomod(BaseTest):
         assert fomod.module_config.required_install_files.files[
             1
         ].source == existing_file_in_fomod.relative_to(fomod.path.parent)
+
+        # when
+        files_path = fomod.path / "conditional_files"
+
+        # then
+        assert files_path.is_dir()
+
+        # when
+        image_path = files_path / "Image.jpg"
+
+        # then
+        assert image_path.is_file()
+        assert fomod.module_config.conditional_file_installs.patterns.patterns[
+            0
+        ].files.files[0].source == image_path.relative_to(fomod.path.parent)
+
+        assert existing_file_in_fomod.is_file()
+        assert fomod.module_config.conditional_file_installs.patterns.patterns[
+            0
+        ].files.files[1].source == existing_file_in_fomod.relative_to(fomod.path.parent)
 
     def test_finalize_keeps_same(
         self, data_folder: Path, test_fs: FakeFilesystem

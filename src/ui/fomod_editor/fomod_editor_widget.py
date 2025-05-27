@@ -14,6 +14,9 @@ from core.fomod.fomod import Fomod
 from core.fomod.module_config.condition.conditional_file_install_list import (
     ConditionalFileInstallList,
 )
+from core.fomod.module_config.condition.conditional_install_pattern_list import (
+    ConditionalInstallPatternList,
+)
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.step_list import StepList
@@ -197,7 +200,7 @@ class FomodEditorWidget(QTabWidget):
 
         self.__conditional_files_editor_tab = ConditionalFilesEditorTab(
             self.__current_fomod.module_config.conditional_file_installs
-            or ConditionalFileInstallList(patterns=[])
+            or ConditionalFileInstallList(patterns=ConditionalInstallPatternList())
         )
         self.__conditional_files_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)

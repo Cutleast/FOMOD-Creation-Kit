@@ -13,7 +13,7 @@ class ConditionalFileInstallList(BaseXmlModel):
     module, based on condition flags.
     """
 
-    patterns: list[ConditionalInstallPatternList] = element(tag="patterns")
+    patterns: ConditionalInstallPatternList = element(tag="patterns")
     """
     The list of patterns against which to match the conditional flags and installed
     files. All matching patterns will have their files installed.

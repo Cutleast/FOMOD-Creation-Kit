@@ -16,7 +16,7 @@ class ConditionalInstallPattern(
     whether to install specific files.
     """
 
-    dependencies: list[CompositeDependency] = element(tag="dependencies")
+    dependencies: CompositeDependency = element(tag="dependencies")
     """The list of mods and their states against which to match the user's installation."""
 
     files: FileList = element(tag="files")

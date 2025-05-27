@@ -4,17 +4,27 @@ Copyright (c) Cutleast
 
 from typing import override
 
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QLabel
 
 from core.fomod.module_config.module_config import ConditionalFileInstallList
 
 from .base_editor_widget import BaseEditorWidget
+from .condition_editor.install_pattern_list_editor_widget import (
+    InstallPatternListEditorWidget,
+)
 
 
 class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
     """
     Widget class for editing the conditional install files of a FOMOD installer.
     """
+
+    __editor_widget: InstallPatternListEditorWidget
+
+    def __init__(self, item: ConditionalFileInstallList) -> None:
+        super().__init__(item)
+
+        self.__editor_widget.changed.connect(self.changed.emit)
 
     @override
     @classmethod
@@ -24,9 +34,28 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
         )
 
     @override
-    def validate(self) -> None: ...
+    def _init_ui(self) -> None:
+        super()._init_ui()
+
+        self.__init_header()
+        self.__init_editor_widget()
+
+    def __init_header(self) -> None:
+        title_label = QLabel(self.tr("Conditional files to install"))
+        title_label.setObjectName("h2")
+        self._vlayout.addWidget(title_label)
+
+    def __init_editor_widget(self) -> None:
+        self.__editor_widget = InstallPatternListEditorWidget(self._item.patterns)
+        self._vlayout.addWidget(self.__editor_widget)
+
+    @override
+    def validate(self) -> None:
+        self.__editor_widget.validate()
 
     @override
     def save(self) -> ConditionalFileInstallList:
+        self._item.patterns = self.__editor_widget.save()
+
         self.saved.emit(self._item)
         return self._item

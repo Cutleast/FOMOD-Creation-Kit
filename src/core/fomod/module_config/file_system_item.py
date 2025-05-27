@@ -3,7 +3,7 @@ Copyright (c) Cutleast
 """
 
 from pathlib import Path
-from typing import Optional
+from typing import Optional, override
 
 from pydantic_xml import BaseXmlModel, attr
 
@@ -42,3 +42,10 @@ class FileSystemItem(BaseXmlModel, search_mode="unordered"):
     number indicates the file or folder should be installed after the items 
     with lower numbers. This value does not have to be unique.
     """
+
+    @override
+    def __str__(self) -> str:
+        if self.destination is not None:
+            return f"'{self.source}' → '{self.destination}'"
+        else:
+            return f"'{self.source}'"
