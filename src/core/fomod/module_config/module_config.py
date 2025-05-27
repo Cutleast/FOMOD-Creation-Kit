@@ -11,8 +11,8 @@ from .condition.conditional_file_install_list import ConditionalFileInstallList
 from .dependency.composite_dependency import CompositeDependency
 from .file_list import FileList
 from .header_image import HeaderImage
+from .install_step.step_list import StepList
 from .module_title import ModuleTitle
-from .step_list import StepList
 
 
 class ModuleConfig(FomodModel, tag="config", search_mode="unordered"):

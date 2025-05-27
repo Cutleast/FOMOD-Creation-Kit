@@ -7,7 +7,7 @@ from typing import Optional, Self
 from pydantic import model_validator
 from pydantic_xml import BaseXmlModel, element
 
-from .dependency.dependency_plugin_type import DependencyPluginType
+from ..dependency.dependency_plugin_type import DependencyPluginType
 from .plugin_type import PluginType
 
 

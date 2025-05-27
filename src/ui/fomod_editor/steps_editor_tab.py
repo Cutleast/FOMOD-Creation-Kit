@@ -6,7 +6,7 @@ from typing import override
 
 from PySide6.QtWidgets import QApplication
 
-from core.fomod.module_config.step_list import StepList
+from core.fomod.module_config.install_step.step_list import StepList
 
 from .base_editor_widget import BaseEditorWidget
 

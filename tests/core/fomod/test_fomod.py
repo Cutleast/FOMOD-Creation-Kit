@@ -21,10 +21,10 @@ from core.fomod.module_config.dependency.composite_dependency import CompositeDe
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.group import Group
 from core.fomod.module_config.header_image import HeaderImage
-from core.fomod.module_config.install_step import InstallStep
-from core.fomod.module_config.plugin import Plugin
+from core.fomod.module_config.install_step.group import Group
+from core.fomod.module_config.install_step.install_step import InstallStep
+from core.fomod.module_config.plugin.plugin import Plugin
 from tests.base_test import BaseTest
 
 

@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, attr, element
 
-from .dependency.composite_dependency import CompositeDependency
+from ..dependency.composite_dependency import CompositeDependency
 from .group_list import GroupList
 
 

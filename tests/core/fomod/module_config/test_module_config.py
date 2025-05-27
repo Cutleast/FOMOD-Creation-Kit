@@ -9,14 +9,14 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.dependency.file_dependency import FileDependency
-from core.fomod.module_config.file_system_item import FileSystemItem
-from core.fomod.module_config.group import Group
-from core.fomod.module_config.install_step import InstallStep
+from core.fomod.module_config.file_system.file_system_item import FileSystemItem
+from core.fomod.module_config.install_step.group import Group
+from core.fomod.module_config.install_step.install_step import InstallStep
+from core.fomod.module_config.install_step.order import Order
 from core.fomod.module_config.module_config import ModuleConfig
-from core.fomod.module_config.order import Order
-from core.fomod.module_config.plugin import Plugin
-from core.fomod.module_config.plugin_type import PluginType
-from core.fomod.module_config.plugin_type_descriptor import PluginTypeDescriptor
+from core.fomod.module_config.plugin.plugin import Plugin
+from core.fomod.module_config.plugin.plugin_type import PluginType
+from core.fomod.module_config.plugin.plugin_type_descriptor import PluginTypeDescriptor
 from tests.base_test import BaseTest
 
 

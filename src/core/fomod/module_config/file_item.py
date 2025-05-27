@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from .file_system_item import FileSystemItem
+from .file_system.file_system_item import FileSystemItem
 
 
 class FileItem(FileSystemItem):

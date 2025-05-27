@@ -4,8 +4,8 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, attr, element
 
+from ..plugin.plugin import Plugin
 from .order import Order
-from .plugin import Plugin
 
 
 class PluginList(BaseXmlModel):

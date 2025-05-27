@@ -10,7 +10,7 @@ from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
 
 from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.file_system_item import FileSystemItem
+from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import EmptyError
 from ui.fomod_editor.editor_dialog import EditorDialog

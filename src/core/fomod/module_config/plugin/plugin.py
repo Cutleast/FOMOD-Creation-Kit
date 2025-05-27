@@ -6,9 +6,9 @@ from typing import Optional
 
 from pydantic_xml import BaseXmlModel, attr, element
 
-from .condition.condition_flag_list import ConditionFlagList
-from .file_list import FileList
-from .image import Image
+from ..condition.condition_flag_list import ConditionFlagList
+from ..file_list import FileList
+from ..image import Image
 from .plugin_type_descriptor import PluginTypeDescriptor
 
 

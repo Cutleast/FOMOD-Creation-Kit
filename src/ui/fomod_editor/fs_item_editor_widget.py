@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (
 )
 
 from core.fomod.module_config.file_item import FileItem
-from core.fomod.module_config.file_system_item import FileSystemItem
+from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificValidationError
 from ui.widgets.browse_edit import BrowseLineEdit

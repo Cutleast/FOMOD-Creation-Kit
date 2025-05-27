@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.dependency.dependency_pattern import DependencyPattern
 from core.fomod.module_config.dependency.file_dependency import FileDependency
-from core.fomod.module_config.plugin_type import PluginType
+from core.fomod.module_config.plugin.plugin_type import PluginType
 from tests.base_test import BaseTest
 
 

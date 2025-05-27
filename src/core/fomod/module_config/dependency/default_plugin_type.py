@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from ..plugin_type import PluginType
+from ..plugin.plugin_type import PluginType
 
 
 class DefaultPluginType(PluginType, tag="defaultType"):

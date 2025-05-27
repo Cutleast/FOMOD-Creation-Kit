@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from core.fomod.module_config.plugin_type_descriptor import PluginTypeDescriptor
+from core.fomod.module_config.plugin.plugin_type_descriptor import PluginTypeDescriptor
 from tests.base_test import BaseTest
 
 

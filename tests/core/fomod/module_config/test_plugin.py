@@ -11,9 +11,9 @@ from core.fomod.module_config.dependency.dependency_plugin_type import (
     DependencyPluginType,
 )
 from core.fomod.module_config.dependency.file_dependency import FileDependency
-from core.fomod.module_config.plugin import Plugin
-from core.fomod.module_config.plugin_type import PluginType
-from core.fomod.module_config.plugin_type_descriptor import PluginTypeDescriptor
+from core.fomod.module_config.plugin.plugin import Plugin
+from core.fomod.module_config.plugin.plugin_type import PluginType
+from core.fomod.module_config.plugin.plugin_type_descriptor import PluginTypeDescriptor
 from tests.base_test import BaseTest
 
 

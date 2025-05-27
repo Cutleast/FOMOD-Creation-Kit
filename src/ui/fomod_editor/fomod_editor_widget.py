@@ -19,7 +19,7 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
 )
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.step_list import StepList
+from core.fomod.module_config.install_step.step_list import StepList
 from ui.utilities.icon_provider import get_icon_for_palette
 
 from .conditional_files_editor_tab import ConditionalFilesEditorTab

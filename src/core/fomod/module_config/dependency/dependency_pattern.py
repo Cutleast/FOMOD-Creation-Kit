@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from pydantic_xml import BaseXmlModel, element
 
-from ..plugin_type import PluginType
+from ..plugin.plugin_type import PluginType
 from .composite_dependency import CompositeDependency
 
 

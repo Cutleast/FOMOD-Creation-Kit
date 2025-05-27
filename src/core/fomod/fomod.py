@@ -11,7 +11,7 @@ from typing import Optional
 
 from lxml import etree
 
-from core.fomod.module_config.plugin import Plugin
+from core.fomod.module_config.plugin.plugin import Plugin
 
 from .exceptions import NotAFomodError, XmlValidationError
 from .fomod_info import FomodInfo
