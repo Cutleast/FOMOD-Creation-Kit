@@ -101,13 +101,7 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
 
     @override
     def reject(self) -> None:
-        valid: bool = False
-
-        try:
-            self.__editor_widget.validate()
-            valid = True
-        except ValidationError:
-            pass
+        valid: bool = self.__save_button.isEnabled()
 
         if self.__changes_pending:
             message_box = QMessageBox(self)
