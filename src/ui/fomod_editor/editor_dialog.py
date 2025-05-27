@@ -9,6 +9,7 @@ from PySide6.QtWidgets import (
     QAbstractButton,
     QDialog,
     QHBoxLayout,
+    QLabel,
     QMessageBox,
     QPushButton,
     QVBoxLayout,
@@ -16,7 +17,8 @@ from PySide6.QtWidgets import (
 
 from app_context import AppContext
 from core.fomod_editor.exceptions import ValidationError
-from ui.fomod_editor.base_editor_widget import BaseEditorWidget
+
+from .base_editor_widget import BaseEditorWidget
 
 
 class EditorDialog[T: BaseEditorWidget](QDialog):
@@ -28,6 +30,7 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
 
     __vlayout: QVBoxLayout
     __editor_widget: T
+    __validation_status_label: QLabel
 
     def __init__(self, editor_widget: T, validate_on_init: bool = False) -> None:
         """
@@ -82,7 +85,13 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
         cancel_button.clicked.connect(self.reject)
         hlayout.addWidget(cancel_button)
 
-        hlayout.addStretch()
+        self.__validation_status_label = QLabel()
+        self.__validation_status_label.setObjectName("status_label")
+        self.__validation_status_label.setAlignment(
+            Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
+        )
+        self.__validation_status_label.setWordWrap(True)
+        hlayout.addWidget(self.__validation_status_label, stretch=1)
 
         self.__save_button = QPushButton(self.tr("Save"))
         self.__save_button.setObjectName("primary")
@@ -166,5 +175,7 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
         try:
             self.__editor_widget.validate()
             self.__save_button.setEnabled(True)
-        except ValidationError:
+            self.__validation_status_label.setText("")
+        except ValidationError as ex:
             self.__save_button.setDisabled(True)
+            self.__validation_status_label.setText(str(ex))

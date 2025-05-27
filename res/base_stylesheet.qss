@@ -20,6 +20,11 @@
     font-size: 9pt;
 }
 
+#status_label
+{
+    font-style: bold;
+}
+
 /* Headings */
 #h1, #h2, #h3
 {
