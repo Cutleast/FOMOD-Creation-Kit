@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from collections.abc import Sequence
 
 import qtawesome as qta
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (
     QHBoxLayout,
@@ -110,6 +110,7 @@ class TreeWidgetEditor[T: object](QWidget):
 
     def __init_tree_widget(self) -> None:
         self._tree_widget = QTreeWidget()
+        self._tree_widget.setTextElideMode(Qt.TextElideMode.ElideMiddle)
         self._tree_widget.setHeaderHidden(True)
         self._tree_widget.setSelectionMode(QTreeWidget.SelectionMode.ExtendedSelection)
         self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
