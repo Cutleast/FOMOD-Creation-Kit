@@ -38,7 +38,7 @@ class EmptyError(ValidationError):
     @override
     def getLocalizedMessage(self) -> str:
         return QApplication.translate(
-            "fomod_editor", "At least one item has to be specified!"
+            "fomod_editor", "At least one item or field has to be specified!"
         )
 
 
