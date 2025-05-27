@@ -36,8 +36,6 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self._vlayout.setContentsMargins(0, 0, 0, 0)
-
         self.__init_header()
         self.__init_editor_widget()
 
@@ -56,7 +54,6 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
 
     def __init_editor_widget(self) -> None:
         self.__file_list_editor_widget = FileListEditorWidget(self._item)
-        self.__file_list_editor_widget.setContentsMargins(0, 0, 0, 0)
         self._vlayout.addWidget(self.__file_list_editor_widget)
 
     @override

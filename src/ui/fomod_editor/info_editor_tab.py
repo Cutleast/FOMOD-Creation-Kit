@@ -80,6 +80,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         super()._init_ui()
 
         self.__flayout = QFormLayout()
+        self.__flayout.setContentsMargins(5, 5, 5, 5)
         self._vlayout.addLayout(self.__flayout)
 
         self.__init_form()

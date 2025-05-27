@@ -73,8 +73,6 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self._vlayout.setContentsMargins(0, 0, 0, 0)
-
         self.__tab_widget = QTabWidget()
         self.__tab_widget.setObjectName("centered_tab")
         self.__tab_widget.tabBar().setDocumentMode(True)

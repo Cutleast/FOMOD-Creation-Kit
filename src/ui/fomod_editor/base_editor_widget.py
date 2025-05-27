@@ -49,10 +49,9 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         self.setWidget(scroll_widget)
 
         self._vlayout = QVBoxLayout()
+        self._vlayout.setContentsMargins(0, 0, 0, 0)
         self._vlayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         scroll_widget.setLayout(self._vlayout)
-
-        self.setContentsMargins(0, 0, 0, 0)
 
     @classmethod
     @abstractmethod
