@@ -51,6 +51,8 @@ class EnumDropdown[E: Enum](QComboBox):
                 self.setCurrentText(initial_value.get_localized_name())
             else:
                 self.setCurrentText(initial_value.name)
+        else:
+            self.setCurrentIndex(0)
 
         self.currentTextChanged.connect(
             lambda _: self.currentValueChanged.emit(self.getCurrentValue())
