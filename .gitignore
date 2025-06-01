@@ -5,6 +5,7 @@
 /src/resources_rc.py
 /.pytest_cache
 /.venv
+/.vscode
 __pycache__
 *.old
 *.prof
