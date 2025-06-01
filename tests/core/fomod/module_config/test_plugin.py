@@ -55,7 +55,7 @@ class TestPlugin(BaseTest):
 
         # then
         assert plugin.name == "JK's Angeline's Aromatics"
-        assert plugin.description == ""
+        assert plugin.description == "JK's Angeline's Aromatics"
         assert plugin.condition_flags is not None
         assert plugin.files is None
 
