@@ -3,10 +3,11 @@ Copyright (c) Cutleast
 """
 
 from collections.abc import Sequence
+from typing import Optional, override
 
 import qtawesome as qta
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QDropEvent
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QToolBar,
@@ -18,6 +19,7 @@ from PySide6.QtWidgets import (
 
 from core.utilities.filter import matches_filter
 from core.utilities.reference_dict import ReferenceDict
+from core.utilities.reverse_dict import reverse_dict
 from ui.utilities.tree_widget import get_item_text, iter_toplevel_items
 
 from .search_bar import SearchBar
@@ -31,6 +33,20 @@ class TreeWidgetEditor[T: object](QWidget):
     supported by the used `ReferenceDict` and therefore lose the mapping to their
     item within the tree widget when altered outside of this widget.
     """
+
+    class TreeWidget(QTreeWidget):
+        """
+        Subclass of QTreeWidget that emits a signal when items are reordered per
+        drag'n drop.
+        """
+
+        itemMoved = Signal()
+        """This signal gets emitted when items are reordered."""
+
+        @override
+        def dropEvent(self, event: QDropEvent) -> None:
+            super().dropEvent(event)
+            self.itemMoved.emit()
 
     changed = Signal()
     """
@@ -48,10 +64,20 @@ class TreeWidgetEditor[T: object](QWidget):
         T: Item that was double clicked
     """
 
+    currentItemChanged = Signal(object)
+    """
+    This signal gets emitted when the currently selected item changes.
+
+    Args:
+        Optional[T]: The new selected item or None if no item is selected
+    """
+
     _items: ReferenceDict[T, QTreeWidgetItem]
 
     _vlayout: QVBoxLayout
-    _tree_widget: QTreeWidget
+    _remove_action: QAction
+    __search_bar: SearchBar
+    _tree_widget: TreeWidget
 
     def __init__(self, initial_items: Sequence[T] = []) -> None:
         """
@@ -65,13 +91,14 @@ class TreeWidgetEditor[T: object](QWidget):
         self._init_ui()
 
         self._items = ReferenceDict()
-        # addItem() can't be taken here as that would emit the changed signal
         for item in initial_items:
-            tree_widget_item = QTreeWidgetItem([str(item)])
-            self._tree_widget.addTopLevelItem(tree_widget_item)
-            self._items[item] = tree_widget_item
+            self.__add_item(item)
 
         self.__search_bar.searchChanged.connect(self._filter)
+        self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
+        self._tree_widget.itemSelectionChanged.connect(self._on_selection_change)
+        self._tree_widget.itemChanged.connect(lambda item, col: self.changed.emit())
+        self._tree_widget.itemMoved.connect(self.changed.emit)
 
     def _init_ui(self) -> None:
         self._vlayout = QVBoxLayout()
@@ -79,6 +106,8 @@ class TreeWidgetEditor[T: object](QWidget):
 
         self.__init_header()
         self.__init_tree_widget()
+
+        self.setMinimumWidth(310)
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
@@ -88,12 +117,16 @@ class TreeWidgetEditor[T: object](QWidget):
         hlayout.addWidget(tool_bar)
 
         add_action: QAction = tool_bar.addAction(
-            qta.icon("mdi6.plus", color=self.palette().text().color()),
+            qta.icon(
+                "mdi6.plus",
+                color=self.palette().text().color(),
+                color_disabled="#666666",
+            ),
             self.tr("Add new item..."),
         )
         add_action.triggered.connect(self.onAdd.emit)
 
-        self.__remove_action = tool_bar.addAction(
+        self._remove_action = tool_bar.addAction(
             qta.icon(
                 "mdi6.minus",
                 color=self.palette().text().color(),
@@ -101,20 +134,19 @@ class TreeWidgetEditor[T: object](QWidget):
             ),
             self.tr("Remove selected item(s)..."),
         )
-        self.__remove_action.setDisabled(True)
-        self.__remove_action.setShortcut("Delete")
-        self.__remove_action.triggered.connect(self.__remove_selected_items)
+        self._remove_action.setDisabled(True)
+        self._remove_action.setShortcut("Delete")
+        self._remove_action.triggered.connect(self.__remove_selected_items)
 
         self.__search_bar = SearchBar()
         hlayout.addWidget(self.__search_bar)
 
     def __init_tree_widget(self) -> None:
-        self._tree_widget = QTreeWidget()
+        self._tree_widget = TreeWidgetEditor.TreeWidget()
         self._tree_widget.setTextElideMode(Qt.TextElideMode.ElideMiddle)
         self._tree_widget.setHeaderHidden(True)
         self._tree_widget.setSelectionMode(QTreeWidget.SelectionMode.ExtendedSelection)
-        self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
-        self._tree_widget.itemSelectionChanged.connect(self.__on_selection_change)
+        self._tree_widget.setDragDropMode(QTreeWidget.DragDropMode.InternalMove)
         self._vlayout.addWidget(self._tree_widget)
 
     def __item_double_clicked(self, item: QTreeWidgetItem, column: int) -> None:
@@ -126,8 +158,15 @@ class TreeWidgetEditor[T: object](QWidget):
 
         self.onEdit.emit(items[item])
 
-    def __on_selection_change(self) -> None:
-        self.__remove_action.setDisabled(len(self._tree_widget.selectedItems()) == 0)
+    def _on_selection_change(self) -> None:
+        self._remove_action.setDisabled(len(self._tree_widget.selectedItems()) == 0)
+
+        items: dict[QTreeWidgetItem, T] = {
+            item: edited_item for edited_item, item in self._items.items()
+        }
+
+        if self._tree_widget.currentItem() is not None:  # type: ignore
+            self.currentItemChanged.emit(items[self._tree_widget.currentItem()])
 
     def __remove_selected_items(self) -> None:
         items: dict[QTreeWidgetItem, T] = {
@@ -151,19 +190,41 @@ class TreeWidgetEditor[T: object](QWidget):
                 not matches_filter(get_item_text(item), text, case_sensitive)
             )
 
+    def __add_item(self, item: T) -> None:
+        if item not in self._items:
+            tree_widget_item = QTreeWidgetItem([str(item)])
+            tree_widget_item.setFlags(
+                tree_widget_item.flags() ^ Qt.ItemFlag.ItemIsDropEnabled
+            )
+            self._tree_widget.addTopLevelItem(tree_widget_item)
+            self._items[item] = tree_widget_item
+
+    def setItems(self, items: Sequence[T]) -> None:
+        """
+        Sets the items of the tree widget. In contrast to addItem() this method will not
+        emit the changed signal.
+
+        Args:
+            items (Sequence[T]): Items to set
+        """
+
+        self._tree_widget.clear()
+        self._items.clear()
+
+        for item in items:
+            self.__add_item(item)
+
     def addItem(self, item: T) -> None:
         """
-        Adds the given item to the tree widget.
+        Adds the given item to the tree widget. Emits the changed signal if the item is
+        new.
 
         Args:
             item (T): Item to add
         """
 
         if item not in self._items:
-            tree_widget_item = QTreeWidgetItem([str(item)])
-            self._tree_widget.addTopLevelItem(tree_widget_item)
-            self._items[item] = tree_widget_item
-
+            self.__add_item(item)
             self.changed.emit()
 
     def updateItem(self, item: T) -> None:
@@ -183,7 +244,8 @@ class TreeWidgetEditor[T: object](QWidget):
 
     def removeItem(self, item: T) -> None:
         """
-        Removes the given item from the tree widget.
+        Removes the given item from the tree widget. Emits the changed signal if the item
+        was in the tree widget.
 
         Args:
             item (T): Item to remove
@@ -197,10 +259,38 @@ class TreeWidgetEditor[T: object](QWidget):
 
             self.changed.emit()
 
+    def getCurrentItem(self) -> Optional[T]:
+        """
+        Returns:
+            Optional[T]: The currently selected item or None.
+        """
+
+        if self._tree_widget.currentItem() is not None:  # type: ignore
+            return reverse_dict(self._items)[self._tree_widget.currentItem()]
+
+    def setCurrentItem(self, item: T) -> None:
+        """
+        Sets the specified item as the currently selected.
+        Does nothing if the item is not in the tree widget.
+
+        Args:
+            item (T): Item to select
+        """
+
+        if item in self._items:
+            self._tree_widget.setCurrentItem(self._items[item])
+
     def getItems(self) -> list[T]:
         """
         Returns:
             list[T]: List of items currently in the tree widget
         """
 
-        return list(self._items.keys())
+        return list(
+            sorted(
+                self._items.keys(),
+                key=lambda item: self._tree_widget.indexOfTopLevelItem(
+                    self._items[item]
+                ),
+            )
+        )
