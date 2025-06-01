@@ -78,6 +78,7 @@ class SettingsWidget(SmoothScrollArea):
 
     def __init_app_settings(self) -> None:
         app_settings_group = QGroupBox(self.tr("App settings"))
+        app_settings_group.setObjectName("title")
         self.__vlayout.addWidget(app_settings_group)
 
         app_settings_glayout = QGridLayout()
@@ -145,6 +146,7 @@ class SettingsWidget(SmoothScrollArea):
 
     def __init_behavior_settings(self) -> None:
         behavior_settings_group = QGroupBox(self.tr("Behavior settings"))
+        behavior_settings_group.setObjectName("title")
         self.__vlayout.addWidget(behavior_settings_group)
 
         behavior_settings_flayout = QFormLayout()

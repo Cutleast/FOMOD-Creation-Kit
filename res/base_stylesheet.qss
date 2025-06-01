@@ -26,7 +26,7 @@
 }
 
 /* Headings */
-#h1, #h2, #h3
+#h1, #h2, #h3, #title
 {
     font-family: 'Orbitron';
 }
@@ -532,7 +532,6 @@ QGroupBox
     padding: 5px;
     padding-top: 10px;
     font-size: 22px;
-    font-family: 'Orbitron';
 }
 
 QGroupBox::title
