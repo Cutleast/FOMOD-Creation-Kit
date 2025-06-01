@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from collections.abc import Callable
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any, Optional, get_origin
 
 
 class Utils:
@@ -73,10 +73,10 @@ class Utils:
 
         field: Optional[Any] = getattr(obj, field_name, None)
 
-        if not isinstance(field, field_type):
+        if not isinstance(field, get_origin(field_type) or field_type):
             raise TypeError(f"{field_name!r} ({type(field)}) is not a {field_type}!")
 
-        return field
+        return field  # type: ignore
 
     @staticmethod
     def get_protected_field[T](obj: object, field_name: str, field_type: type[T]) -> T:
@@ -103,10 +103,10 @@ class Utils:
 
         field: Optional[Any] = getattr(obj, field_name, None)
 
-        if not isinstance(field, field_type):
+        if not isinstance(field, get_origin(field_type) or field_type):
             raise TypeError(f"{field_name!r} ({type(field)}) is not a {field_type}!")
 
-        return field
+        return field  # type: ignore
 
     @staticmethod
     def compare_path_list(list1: list[Path], list2: list[Path]) -> bool:
