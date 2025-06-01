@@ -68,3 +68,16 @@ class EnumDropdown[E: Enum](QComboBox):
             return self.__enum_type.get_by_localized_name(self.currentText())
         else:
             return self.__enum_type[self.currentText()]
+
+    def setCurrentValue(self, value: E) -> None:
+        """
+        Sets the specified enum value as the currently selected.
+
+        Args:
+            value (E): Enum value to select
+        """
+
+        if isinstance(value, LocalizedEnum):
+            self.setCurrentText(value.get_localized_name())
+        else:
+            self.setCurrentText(value.name)
