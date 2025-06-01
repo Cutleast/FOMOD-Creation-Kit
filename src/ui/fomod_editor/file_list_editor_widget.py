@@ -106,7 +106,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
     def __add_filesystem_item(self) -> None:
         editor: FsItemEditorWidget = FsItemEditorWidget(
-            FileItem(source=Path("__default__")), self._fomod_path
+            FileItem.create(), self._fomod_path
         )
         dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
             editor, validate_on_init=True

@@ -14,7 +14,6 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QLineEdit,
-    QRadioButton,
     QSpinBox,
 )
 
@@ -22,7 +21,10 @@ from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificValidationError
+from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
+from ui.widgets.enum_dropdown import LocalizedEnum
+from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 
 from .base_editor_widget import BaseEditorWidget
 
@@ -33,7 +35,34 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
     """
 
     __source_entry: BrowseLineEdit
-    __file_radiobutton: QRadioButton
+
+    class ItemType(LocalizedEnum):
+        """Enum for the possible file system item types."""
+
+        File = 0
+        """A file."""
+
+        Folder = 1
+        """A folder."""
+
+        @override
+        def get_localized_name(self) -> str:
+            locs: dict[FsItemEditorWidget.ItemType, str] = {
+                FsItemEditorWidget.ItemType.File: QApplication.translate(
+                    "FsItemEditorWidget", "File"
+                ),
+                FsItemEditorWidget.ItemType.Folder: QApplication.translate(
+                    "FsItemEditorWidget", "Folder"
+                ),
+            }
+
+            return locs[self]
+
+        @override
+        def get_localized_description(self) -> str:
+            return ""
+
+    __type_selector: EnumRadiobuttonsWidget[ItemType]
 
     __destination_entry: QLineEdit
     __always_install_checkbox: QCheckBox
@@ -44,14 +73,14 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         super().__init__(item, fomod_path)
 
         self.__source_entry.textChanged.connect(lambda _: self.changed.emit())
-        self.__file_radiobutton.toggled.connect(
-            lambda checked: self.__source_entry.setFileMode(
+        self.__type_selector.currentValueChanged.connect(
+            lambda item_type: self.__source_entry.setFileMode(
                 QFileDialog.FileMode.ExistingFile
-                if checked
+                if item_type == FsItemEditorWidget.ItemType.File
                 else QFileDialog.FileMode.Directory
             )
         )
-        self.__file_radiobutton.toggled.connect(lambda _: self.changed.emit())
+        self.__type_selector.currentValueChanged.connect(lambda _: self.changed.emit())
 
         self.__destination_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__always_install_checkbox.stateChanged.connect(
@@ -98,13 +127,13 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             self.__source_entry.setText(str(self._item.source))
         hlayout.addWidget(self.__source_entry)
 
-        self.__file_radiobutton = QRadioButton(self.tr("File"))
-        self.__file_radiobutton.setChecked(isinstance(self._item, FileItem))
-        hlayout.addWidget(self.__file_radiobutton)
-
-        folder_radiobutton = QRadioButton(self.tr("Folder"))
-        folder_radiobutton.setChecked(isinstance(self._item, FolderItem))
-        hlayout.addWidget(folder_radiobutton)
+        self.__type_selector = EnumRadiobuttonsWidget(
+            FsItemEditorWidget.ItemType,
+            FsItemEditorWidget.ItemType.File
+            if isinstance(self._item, FileItem)
+            else FsItemEditorWidget.ItemType.Folder,
+        )
+        hlayout.addWidget(self.__type_selector)
         flayout.addRow(self.tr("Source:"), hlayout)
 
         self.__destination_entry = QLineEdit()
@@ -159,11 +188,19 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         if not self.__source_entry.text().strip():
             raise SpecificValidationError(self.tr("The source path must not be empty!"))
 
-        source_path: Path = Path(self.__source_entry.text().strip())
-        if not source_path.is_file() and not source_path.is_dir():
-            raise SpecificValidationError(
-                self.tr("The source path must be an existing file or folder!")
-            )
+        source_path: Path = get_joined_path_if_relative(
+            Path(self.__source_entry.text().strip()), base_path=self._fomod_path
+        )
+        if self.__type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File:
+            if not source_path.is_file():
+                raise SpecificValidationError(
+                    self.tr("The source path must be an existing file!")
+                )
+        else:
+            if not source_path.is_dir():
+                raise SpecificValidationError(
+                    self.tr("The source path must be an existing folder!")
+                )
 
     @override
     def save(self) -> FileSystemItem:
@@ -177,7 +214,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         install_if_usable: bool = self.__install_if_usable_checkbox.isChecked()
         priority: int = self.__priority_entry.value()
 
-        if self.__file_radiobutton.isChecked():
+        if self.__type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File:
             self._item = FileItem(
                 source=source,
                 destination=destination,

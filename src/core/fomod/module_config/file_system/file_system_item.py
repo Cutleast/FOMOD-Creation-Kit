@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from __future__ import annotations
+
 from pathlib import Path
 from typing import Optional, override
 
@@ -49,3 +51,14 @@ class FileSystemItem(BaseXmlModel, search_mode="unordered"):
             return f"'{self.source}' → '{self.destination}'"
         else:
             return f"'{self.source}'"
+
+    @classmethod
+    def create[T: FileSystemItem](cls: type[T]) -> T:
+        """
+        Creates a file system item with the bare minimum.
+
+        Returns:
+            T: The new file system item
+        """
+
+        return cls(source=Path("__default__"))

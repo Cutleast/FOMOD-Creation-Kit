@@ -95,3 +95,13 @@ class EnumRadiobuttonsWidget[E: Enum](QWidget):
                 return enum_value
 
         raise ValueError("No radio button is checked")
+
+    def setCurrentValue(self, enum_value: E) -> None:
+        """
+        Sets the specified enum value as the currently selected.
+
+        Args:
+            enum_value (E): Enum value to select
+        """
+
+        self.__enum_items[enum_value].setChecked(True)
