@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from __future__ import annotations
+
 from pydantic_xml import BaseXmlModel, element
 
 from ..plugin.plugin_type import PluginType
@@ -21,3 +23,17 @@ class DependencyPattern(BaseXmlModel, search_mode="unordered"):
 
     type: PluginType = element(tag="type")
     """The type of the plugin."""
+
+    @staticmethod
+    def create() -> DependencyPattern:
+        """
+        Creates a dependency pattern with the bare minimum.
+
+        Returns:
+            DependencyPattern: The new dependency pattern
+        """
+
+        return DependencyPattern(
+            dependencies=CompositeDependency(),
+            type=PluginType(name=PluginType.Type.Recommended),
+        )

@@ -2,7 +2,8 @@
 Copyright (c) Cutleast
 """
 
-from typing import Sequence, override
+from pathlib import Path
+from typing import Optional, Sequence, override
 
 from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
 
@@ -75,8 +76,10 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
 
     __tree_widget: InstallPatternTreeWidget
 
-    def __init__(self, item: ConditionalInstallPatternList) -> None:
-        super().__init__(item)
+    def __init__(
+        self, item: ConditionalInstallPatternList, fomod_path: Optional[Path]
+    ) -> None:
+        super().__init__(item, fomod_path)
 
         self.__tree_widget.changed.connect(self.changed.emit)
         self.__tree_widget.onAdd.connect(self.__add_install_pattern_item)
@@ -116,7 +119,7 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
             dependencies=CompositeDependency(), files=FileList()
         )
         dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(item), validate_on_init=True
+            InstallPatternEditorWidget(item, self._fomod_path), validate_on_init=True
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -124,7 +127,7 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
 
     def __edit_install_pattern_item(self, item: ConditionalInstallPattern) -> None:
         dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(item)
+            InstallPatternEditorWidget(item, self._fomod_path)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

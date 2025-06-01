@@ -120,5 +120,21 @@ class CompositeDependency(BaseXmlModel, search_mode="unordered"):
     def __str__(self) -> str:
         return self.get_display_name()
 
+    def is_empty(self) -> bool:
+        """
+        Returns:
+            bool: Whether this dependency is empty.
+        """
+
+        return any(
+            [
+                self.file_dependencies,
+                self.flag_dependencies,
+                self.game_dependency,
+                self.fomm_dependency,
+                self.dependencies,
+            ]
+        )
+
 
 CompositeDependency.model_rebuild()

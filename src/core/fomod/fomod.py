@@ -125,9 +125,7 @@ class Fomod:
         ]
 
         for plugin in plugins:
-            if plugin.image is not None and not plugin.image.path.is_relative_to(
-                self.path.parent
-            ):
+            if plugin.image is not None and plugin.image.path.is_absolute():
                 image_path = images_path / (plugin.name + plugin.image.path.suffix)
 
                 shutil.copyfile(plugin.image.path, image_path)

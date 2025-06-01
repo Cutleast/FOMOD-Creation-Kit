@@ -2,7 +2,8 @@
 Copyright (c) Cutleast
 """
 
-from typing import override
+from pathlib import Path
+from typing import Optional, override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel
@@ -24,8 +25,10 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
     __dependency_group_editor_widget: DependencyGroupEditorWidget
     __operator_selector: EnumRadiobuttonsWidget[CompositeDependency.Operator]
 
-    def __init__(self, item: CompositeDependency) -> None:
-        super().__init__(item)
+    def __init__(
+        self, item: CompositeDependency, fomod_path: Optional[Path] = None
+    ) -> None:
+        super().__init__(item, fomod_path)
 
         self.__operator_selector.currentValueChanged.connect(
             lambda value: self.changed.emit()
@@ -77,7 +80,9 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
         hlayout.addStretch()
 
     def __init_dependency_group_editor_widget(self) -> None:
-        self.__dependency_group_editor_widget = DependencyGroupEditorWidget(self._item)
+        self.__dependency_group_editor_widget = DependencyGroupEditorWidget(
+            self._item, self._fomod_path
+        )
         self._vlayout.addWidget(self.__dependency_group_editor_widget)
 
     @override
@@ -87,8 +92,8 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     @override
     def save(self) -> CompositeDependency:
+        self._item = self.__dependency_group_editor_widget.save()
         self._item.operator = self.__operator_selector.getCurrentValue()
-        self.__dependency_group_editor_widget.save()
 
         self.saved.emit(self._item)
         return self._item

@@ -8,14 +8,7 @@ from typing import Optional, override
 import qtawesome as qta
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import (
-    QApplication,
-    QFileDialog,
-    QFormLayout,
-    QLabel,
-    QLineEdit,
-    QPlainTextEdit,
-)
+from PySide6.QtWidgets import QApplication, QFileDialog, QFormLayout, QLabel, QLineEdit
 
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.header_image import SUPPORTED_TYPES, HeaderImage
@@ -23,8 +16,9 @@ from core.fomod_editor.exceptions import (
     FileDoesNotExistError,
     ImageTypeNotSupportedError,
 )
-from ui.utilities.rounded_pixmap import rounded_pixmap
 from ui.widgets.browse_edit import BrowseLineEdit
+from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
+from ui.widgets.image_label import ImageLabel
 from ui.widgets.url_edit import UrlEdit
 
 from .base_editor_widget import BaseEditorWidget
@@ -44,12 +38,12 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
     __author_entry: QLineEdit
     __version_entry: QLineEdit
     __website_entry: UrlEdit
-    __description_entry: QPlainTextEdit
+    __description_entry: CollapsibleTextEdit
     __image_path_entry: BrowseLineEdit
-    __image_label: QLabel
+    __image_label: ImageLabel
 
-    def __init__(self, fomod: Fomod) -> None:
-        super().__init__(fomod)
+    def __init__(self, item: Fomod, fomod_path: Optional[Path]) -> None:
+        super().__init__(item, fomod_path)
 
         self.__name_entry.textChanged.connect(lambda text: self.changed.emit())
         self.__author_entry.textChanged.connect(lambda text: self.changed.emit())
@@ -80,20 +74,25 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         super()._init_ui()
 
         self.__flayout = QFormLayout()
+        self.__flayout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.__flayout.setContentsMargins(5, 5, 5, 5)
         self._vlayout.addLayout(self.__flayout)
 
         self.__init_form()
 
+        placeholder = QLabel()
+        placeholder.setMinimumHeight(0)
+        placeholder.setBaseSize(0, 0)
+        self.__flayout.addRow(placeholder)
+
     def __init_form(self) -> None:
-        self.__image_label = QLabel()
-        self.__image_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        self.__image_label.setFixedHeight(InfoEditorTab.IMAGE_HEIGHT)
-        self.__image_label.setPixmap(
+        self.__image_label = ImageLabel(
             qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
                 InfoEditorTab.IMAGE_HEIGHT, InfoEditorTab.IMAGE_HEIGHT
-            )
+            ),
+            round_pixmap=True,
         )
+        self.__image_label.setFixedHeight(InfoEditorTab.IMAGE_HEIGHT)
         self.__flayout.addRow(self.__image_label)
 
         self.__name_entry = QLineEdit()
@@ -112,7 +111,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self.__website_entry.setText(self._item.info.website)
         self.__flayout.addRow(self.tr("Website:"), self.__website_entry)
 
-        self.__description_entry = QPlainTextEdit()
+        self.__description_entry = CollapsibleTextEdit()
         self.__description_entry.setPlainText(self._item.info.description)
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
@@ -138,14 +137,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             image_path = self._item.path.parent / image_path
 
         if image_path is not None and image_path.is_file():
-            self.__image_label.setPixmap(
-                rounded_pixmap(
-                    QPixmap(str(image_path)).scaledToHeight(
-                        InfoEditorTab.IMAGE_HEIGHT,
-                        mode=Qt.TransformationMode.SmoothTransformation,
-                    )
-                )
-            )
+            self.__image_label.setPixmap(QPixmap(str(image_path)))
         else:
             self.__image_label.setPixmap(
                 qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
@@ -193,9 +185,6 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
-
-            # if not image_path.is_relative_to(self._item.path.parent):
-            #     raise PathNotInFomodError(image_path, self._item.path.parent)
 
             if image_path.suffix.lower() not in SUPPORTED_TYPES:
                 raise ImageTypeNotSupportedError(image_path.suffix)

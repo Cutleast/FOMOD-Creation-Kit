@@ -32,7 +32,7 @@ class MainWindow(QMainWindow):
     ) -> None:
         super().__init__()
 
-        self.resize(1000, 700)
+        self.resize(1100, 720)
 
         self.__init_ui(app_config, behavior_config, logger)
 

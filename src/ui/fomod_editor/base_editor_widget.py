@@ -3,7 +3,8 @@ Copyright (c) Cutleast
 """
 
 from abc import abstractmethod
-from typing import Sequence
+from pathlib import Path
+from typing import Optional, Sequence
 
 from pydantic_xml import BaseXmlModel
 from PySide6.QtCore import Qt, Signal
@@ -32,13 +33,22 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
     """
 
     _item: T
+    _fomod_path: Optional[Path]
 
     _vlayout: QVBoxLayout
 
-    def __init__(self, item: T) -> None:
+    def __init__(self, item: T, fomod_path: Optional[Path]) -> None:
+        """
+        Args:
+            item (T): Edited item
+            fomod_path (Optional[Path]):
+                Path to the FOMOD, if any. Used for validation and display of images.
+        """
+
         super().__init__()
 
         self._item = item
+        self._fomod_path = fomod_path
 
         self._init_ui()
 

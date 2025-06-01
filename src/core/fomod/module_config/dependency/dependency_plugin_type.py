@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from __future__ import annotations
+
 from pydantic_xml import BaseXmlModel, element
 
 from .default_plugin_type import DefaultPluginType
@@ -24,3 +26,17 @@ class DependencyPluginType(BaseXmlModel, tag="dependencyType", search_mode="unor
     The list of dependency patterns against which to match the user's installation. The
     first pattern that matches the user's installation determines the type of the plugin.
     """
+
+    @staticmethod
+    def create() -> DependencyPluginType:
+        """
+        Creates a dependency plugin type with the bare minimum.
+
+        Returns:
+            DependencyPluginType: The new dependency plugin type
+        """
+
+        return DependencyPluginType(
+            default_type=DefaultPluginType(name=DefaultPluginType.Type.Optional),
+            patterns=DependencyPatternList(patterns=[]),
+        )

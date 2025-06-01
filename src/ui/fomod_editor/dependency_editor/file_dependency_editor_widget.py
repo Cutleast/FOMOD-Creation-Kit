@@ -2,7 +2,8 @@
 Copyright (c) Cutleast
 """
 
-from typing import override
+from pathlib import Path
+from typing import Optional, override
 
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit
 
@@ -21,8 +22,8 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
     __file_name_entry: QLineEdit
     __state_dropdown: EnumDropdown[FileDependency.State]
 
-    def __init__(self, item: FileDependency) -> None:
-        super().__init__(item)
+    def __init__(self, item: FileDependency, fomod_path: Optional[Path]) -> None:
+        super().__init__(item, fomod_path)
 
         self.__file_name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__state_dropdown.currentValueChanged.connect(lambda _: self.changed.emit())

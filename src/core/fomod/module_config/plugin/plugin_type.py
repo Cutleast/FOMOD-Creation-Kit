@@ -93,3 +93,7 @@ class PluginType(BaseXmlModel):
 
     name: Type = attr(name="name")
     """The name of the plugin type."""
+
+    @override
+    def __str__(self) -> str:
+        return self.name.get_localized_name()

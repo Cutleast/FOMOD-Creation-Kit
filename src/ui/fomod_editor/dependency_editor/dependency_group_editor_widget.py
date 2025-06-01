@@ -2,7 +2,8 @@
 Copyright (c) Cutleast
 """
 
-from typing import override
+from pathlib import Path
+from typing import Optional, override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -43,8 +44,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     __dependencies_tree_widget_editor: TreeWidgetEditor[CompositeDependency]
 
-    def __init__(self, item: CompositeDependency) -> None:
-        super().__init__(item)
+    def __init__(self, item: CompositeDependency, fomod_path: Optional[Path]) -> None:
+        super().__init__(item, fomod_path)
 
         self.__files_tree_widget_editor.changed.connect(self.changed.emit)
         self.__files_tree_widget_editor.onAdd.connect(self.__add_file_dependency)
@@ -93,7 +94,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __add_file_dependency(self) -> None:
         file_dependency = FileDependency(file="", state=FileDependency.State.Active)
         dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(file_dependency), validate_on_init=True
+            FileDependencyEditorWidget(file_dependency, self._fomod_path),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -101,7 +103,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __edit_file_dependency(self, item: FileDependency) -> None:
         dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(item)
+            FileDependencyEditorWidget(item, self._fomod_path)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -116,7 +118,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __add_flag_dependency(self) -> None:
         flag_dependency = FlagDependency(flag="", value="")
         dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(flag_dependency), validate_on_init=True
+            FlagDependencyEditorWidget(flag_dependency, self._fomod_path),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -124,7 +127,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __edit_flag_dependency(self, item: FlagDependency) -> None:
         dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(item)
+            FlagDependencyEditorWidget(item, self._fomod_path)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

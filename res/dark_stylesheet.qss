@@ -224,9 +224,13 @@ QToolButton
 }
 
 /* Splitter */
-QSplitter::handle
+QSplitter::handle:horizontal
 {
-    image: url(:/icons/grip_light.png);
+    image: url(:/icons/vertical_grip_light.png);
+}
+QSplitter::handle:vertical
+{
+    image: url(:/icons/horizontal_grip_light.png);
 }
 
 /* Tab Widget & Tab Bar */
@@ -267,4 +271,14 @@ QGroupBox
 QGroupBox::title
 {
     background-color: #202020;
+}
+
+/* Section Area Widget */
+SectionAreaWidget
+{
+    background: #1cffffff;
+}
+SectionAreaWidget QPushButton#toggle_button:hover
+{
+    background: #1cffffff;
 }

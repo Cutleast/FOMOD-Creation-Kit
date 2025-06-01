@@ -110,7 +110,9 @@ class FomodEditorWidget(QTabWidget):
         if self.__current_fomod is None:
             raise ValueError("No FOMOD is set")
 
-        self.__info_editor_tab = InfoEditorTab(self.__current_fomod)
+        self.__info_editor_tab = InfoEditorTab(
+            self.__current_fomod, self.__current_fomod.path
+        )
         self.__info_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
         )
@@ -132,7 +134,8 @@ class FomodEditorWidget(QTabWidget):
 
         self.__dependency_editor_tab = DependencyEditorTab(
             self.__current_fomod.module_config.module_dependencies
-            or CompositeDependency()
+            or CompositeDependency(),
+            self.__current_fomod.path,
         )
         self.__dependency_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -154,7 +157,8 @@ class FomodEditorWidget(QTabWidget):
             raise ValueError("No FOMOD is set")
 
         self.__required_files_editor_tab = RequiredFilesEditorTab(
-            self.__current_fomod.module_config.required_install_files or FileList()
+            self.__current_fomod.module_config.required_install_files or FileList(),
+            self.__current_fomod.path,
         )
         self.__required_files_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -177,7 +181,8 @@ class FomodEditorWidget(QTabWidget):
 
         self.__steps_editor_tab = StepsEditorTab(
             self.__current_fomod.module_config.install_steps
-            or StepList(install_steps=[])
+            or StepList(install_steps=[]),
+            self.__current_fomod.path,
         )
         self.__steps_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -200,7 +205,8 @@ class FomodEditorWidget(QTabWidget):
 
         self.__conditional_files_editor_tab = ConditionalFilesEditorTab(
             self.__current_fomod.module_config.conditional_file_installs
-            or ConditionalFileInstallList(patterns=ConditionalInstallPatternList())
+            or ConditionalFileInstallList(patterns=ConditionalInstallPatternList()),
+            self.__current_fomod.path,
         )
         self.__conditional_files_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)

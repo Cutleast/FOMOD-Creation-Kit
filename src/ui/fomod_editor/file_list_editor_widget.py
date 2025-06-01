@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from collections.abc import Sequence
 from pathlib import Path
-from typing import override
+from typing import Optional, override
 
 from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
 
@@ -71,8 +71,8 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
     __tree_widget: FileListTreeWidget
 
-    def __init__(self, item: FileList) -> None:
-        super().__init__(item)
+    def __init__(self, item: FileList, fomod_path: Optional[Path] = None) -> None:
+        super().__init__(item, fomod_path)
 
         self.__tree_widget.changed.connect(self.changed.emit)
         self.__tree_widget.onAdd.connect(self.__add_filesystem_item)
@@ -106,15 +106,17 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
     def __add_filesystem_item(self) -> None:
         editor: FsItemEditorWidget = FsItemEditorWidget(
-            FileItem(source=Path("__default__"))
+            FileItem(source=Path("__default__")), self._fomod_path
         )
-        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(editor)
+        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
+            editor, validate_on_init=True
+        )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
             self.__tree_widget.addItem(editor.get_item())
 
     def __edit_filesystem_item(self, item: FileSystemItem) -> None:
-        editor: FsItemEditorWidget = FsItemEditorWidget(item)
+        editor: FsItemEditorWidget = FsItemEditorWidget(item, self._fomod_path)
         dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
             editor, validate_on_init=True
         )

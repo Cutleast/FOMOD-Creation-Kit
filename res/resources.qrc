@@ -16,8 +16,8 @@
         <file>icons/discord.png</file>
         <file>icons/exit_dark.svg</file>
         <file>icons/exit_light.svg</file>
-        <file>icons/grip_dark.png</file>
-        <file>icons/grip_light.png</file>
+        <file>icons/horizontal_grip_dark.png</file>
+        <file>icons/horizontal_grip_light.png</file>
         <file>icons/icon.svg</file>
         <file>icons/ko-fi.png</file>
         <file>icons/nexus_mods.png</file>
@@ -25,6 +25,8 @@
         <file>icons/quick_reference_light.svg</file>
         <file>icons/search_dark.svg</file>
         <file>icons/search_light.svg</file>
+        <file>icons/vertical_grip_dark.png</file>
+        <file>icons/vertical_grip_light.png</file>
 
         <!-- Fonts -->
         <file>fonts/Orbitron-Regular.ttf</file>

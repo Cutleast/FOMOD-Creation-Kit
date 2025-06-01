@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from __future__ import annotations
+
 from typing import override
 
 from pydantic_xml import BaseXmlModel, attr, element
@@ -90,3 +92,20 @@ class Group(BaseXmlModel, search_mode="unordered"):
 
     type: Type = attr(name="type")
     """The type of the group."""
+
+    @override
+    def __str__(self) -> str:
+        return self.name or "<" + QApplication.translate("Group", "unnamed") + ">"
+
+    @staticmethod
+    def create() -> Group:
+        """
+        Creates a group with the bare minimum.
+
+        Returns:
+            Group: The new group.
+        """
+
+        return Group(
+            name="", plugins=PluginList(plugins=[]), type=Group.Type.SelectAtLeastOne
+        )

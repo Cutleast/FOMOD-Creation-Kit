@@ -2,11 +2,13 @@
 Copyright (c) Cutleast
 """
 
-from typing import override
+from pathlib import Path
+from typing import Optional, override
 
 from PySide6.QtWidgets import QApplication, QLabel
 
 from core.fomod.module_config.module_config import ConditionalFileInstallList
+from core.fomod_editor.exceptions import EmptyError
 
 from .base_editor_widget import BaseEditorWidget
 from .condition_editor.install_pattern_list_editor_widget import (
@@ -21,8 +23,10 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
 
     __editor_widget: InstallPatternListEditorWidget
 
-    def __init__(self, item: ConditionalFileInstallList) -> None:
-        super().__init__(item)
+    def __init__(
+        self, item: ConditionalFileInstallList, fomod_path: Optional[Path]
+    ) -> None:
+        super().__init__(item, fomod_path)
 
         self.__editor_widget.changed.connect(self.changed.emit)
 
@@ -46,12 +50,17 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
         self._vlayout.addWidget(title_label)
 
     def __init_editor_widget(self) -> None:
-        self.__editor_widget = InstallPatternListEditorWidget(self._item.patterns)
+        self.__editor_widget = InstallPatternListEditorWidget(
+            self._item.patterns, self._fomod_path
+        )
         self._vlayout.addWidget(self.__editor_widget)
 
     @override
     def validate(self) -> None:
-        self.__editor_widget.validate()
+        try:
+            self.__editor_widget.validate()
+        except EmptyError:
+            pass
 
     @override
     def save(self) -> ConditionalFileInstallList:

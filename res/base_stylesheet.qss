@@ -111,7 +111,8 @@ QPlainTextEdit
 }
 QLineEdit:focus,
 QSpinBox:focus,
-QDoubleSpinBox:focus
+QDoubleSpinBox:focus,
+CollapsibleTextEdit[expanded=false]:focus
 {
     border-bottom-color: <accent_color>;
 }
@@ -119,21 +120,32 @@ BrowseLineEdit,
 CopyLineEdit,
 PasteLineEdit,
 SearchBar
+/* CollapsibleTextEdit */
 {
     padding-right: 40px;
 }
-QLineEdit QPushButton
+QLineEdit QPushButton,
+QPlainTextEdit QPushButton
 {
     background: transparent;
     border-color: transparent;
 }
-QPlainTextEdit
-{
-    border-radius: 5px;
-}
 QPlainTextEdit#protocol
 {
     font-size: 10pt;
+}
+CollapsibleTextEdit /*[expanded=false]*/
+{
+    /* padding: 5px; */
+    spacing: -50px;
+}
+CollapsibleTextEdit QPushButton#toggle_button
+{
+    border: 0px solid;
+    width: 16px;
+    height: 16px;
+    margin-right: 0px;
+    margin-top: 0px;
 }
 
 /* Spinbox */
@@ -435,11 +447,24 @@ QSplitter
 QSplitter::handle
 {
     border-radius: 4px;
-    height: 15px;
+}
+QSplitter::handle:horizontal
+{
+    width: 10px;
+    height: 40px;
     padding-left: 2px;
     padding-right: 2px;
     margin-left: 2px;
     margin-right: 2px;
+}
+QSplitter::handle:vertical
+{
+    height: 15px;
+    width: 60px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /* Tab Widget & Tab Bar */
@@ -541,4 +566,11 @@ QGroupBox::title
     padding-top: 10px;
     padding-left: 15px;
     margin-right: 5px;
+}
+
+/* Section Area Widget */
+SectionAreaWidget QPushButton#toggle_button
+{
+    border: 0px solid;
+    background: transparent;
 }

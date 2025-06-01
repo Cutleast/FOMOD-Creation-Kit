@@ -7,20 +7,20 @@ from typing import Optional, override
 
 from PySide6.QtWidgets import QApplication, QLabel, QLineEdit
 
-from core.fomod.module_config.dependency.flag_dependency import FlagDependency
+from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
 from core.fomod_editor.exceptions import NameIsMissingError, ValueIsMissingError
 from ui.fomod_editor.base_editor_widget import BaseEditorWidget
 
 
-class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
+class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
     """
-    Widget for editing a FlagDependency.
+    Widget for editing a SetConditionFlag.
     """
 
     __name_entry: QLineEdit
     __value_entry: QLineEdit
 
-    def __init__(self, item: FlagDependency, fomod_path: Optional[Path]) -> None:
+    def __init__(self, item: SetConditionFlag, fomod_path: Optional[Path]) -> None:
         super().__init__(item, fomod_path)
 
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
@@ -32,14 +32,12 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        help_label = QLabel(
-            self.tr("A flag the dependency depends on to be fulfilled.")
-        )
+        help_label = QLabel(self.tr("A flag to be set when the plugin is selected."))
         self._vlayout.addWidget(help_label)
 
         self.__name_entry = QLineEdit()
         self.__name_entry.setPlaceholderText(self.tr('Name of the flag, eg. "test"'))
-        self.__name_entry.setText(self._item.flag)
+        self.__name_entry.setText(self._item.name)
         self._vlayout.addWidget(self.__name_entry)
 
         self.__value_entry = QLineEdit()
@@ -53,7 +51,7 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "FlagDependencyEditorWidget", "Edit flag dependency..."
+            "SetConditionFlagEditorWidget", "Edit set condition flag..."
         )
 
     @override
@@ -65,8 +63,8 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
             raise ValueIsMissingError
 
     @override
-    def save(self) -> FlagDependency:
-        self._item.flag = self.__name_entry.text().strip()
+    def save(self) -> SetConditionFlag:
+        self._item.name = self.__name_entry.text().strip()
         self._item.value = self.__value_entry.text().strip()
 
         self.saved.emit(self._item)

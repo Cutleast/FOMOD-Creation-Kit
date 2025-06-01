@@ -40,8 +40,8 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
     __install_if_usable_checkbox: QCheckBox
     __priority_entry: QSpinBox
 
-    def __init__(self, item: FileSystemItem) -> None:
-        super().__init__(item)
+    def __init__(self, item: FileSystemItem, fomod_path: Optional[Path]) -> None:
+        super().__init__(item, fomod_path)
 
         self.__source_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__file_radiobutton.toggled.connect(

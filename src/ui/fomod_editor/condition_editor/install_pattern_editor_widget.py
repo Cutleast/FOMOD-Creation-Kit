@@ -2,7 +2,8 @@
 Copyright (c) Cutleast
 """
 
-from typing import override
+from pathlib import Path
+from typing import Optional, override
 
 from PySide6.QtWidgets import QApplication
 
@@ -25,8 +26,10 @@ class InstallPatternEditorWidget(BaseEditorWidget[ConditionalInstallPattern]):
     __dependency_editor_widget: CompositeDependencyEditorWidget
     __file_list_editor_widget: FileListEditorWidget
 
-    def __init__(self, item: ConditionalInstallPattern) -> None:
-        super().__init__(item)
+    def __init__(
+        self, item: ConditionalInstallPattern, fomod_path: Optional[Path]
+    ) -> None:
+        super().__init__(item, fomod_path)
 
         self.__dependency_editor_widget.changed.connect(self.changed.emit)
         self.__file_list_editor_widget.changed.connect(self.changed.emit)

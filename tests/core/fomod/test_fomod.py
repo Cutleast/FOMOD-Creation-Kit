@@ -55,7 +55,11 @@ class TestFomod(BaseTest):
 
         # then
         assert install_step.name == "Additional files verification"
-        assert install_step.visible[0].operator == CompositeDependency.Operator.And
+        assert install_step.visible is not None
+        assert (
+            install_step.visible.dependencies.operator
+            == CompositeDependency.Operator.And
+        )
 
         # when
         group: Group = install_step.optional_file_groups.groups[0]
