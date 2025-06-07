@@ -64,6 +64,7 @@ class EnumRadiobuttonsWidget[E: Enum](QWidget):
         else:
             self.__layout = QVBoxLayout()
 
+        self.__layout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.__layout)
 
         self.__init_radiobuttons()

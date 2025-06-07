@@ -118,6 +118,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         self._vlayout.addLayout(flayout)
 
         hlayout = QHBoxLayout()
+        hlayout.setContentsMargins(0, 0, 0, 0)
         self.__source_entry = BrowseLineEdit()
         self.__source_entry.setToolTip(
             self.tr("The path to the file or folder in the FOMOD folder.")
@@ -132,6 +133,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             FsItemEditorWidget.ItemType.File
             if isinstance(self._item, FileItem)
             else FsItemEditorWidget.ItemType.Folder,
+            orientation=Qt.Orientation.Horizontal,
         )
         hlayout.addWidget(self.__type_selector)
         flayout.addRow(self.tr("Source:"), hlayout)
