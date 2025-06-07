@@ -28,7 +28,7 @@ class BaseTest:
             Path: The path to the test data folder.
         """
 
-        return Path("tests") / "data"
+        return Path("tests").absolute() / "data"
 
     @pytest.fixture
     def real_cwd(self) -> Path:
@@ -95,3 +95,16 @@ class BaseTest:
         log_file: Path = log_path / time.strftime(app_config.log_file_name)
 
         return Logger(log_file, app_config.log_format, app_config.log_date_format)
+
+    @pytest.fixture
+    def trashbin(self, monkeypatch: pytest.MonkeyPatch) -> list[Path]:
+        """
+        Fixture to mock the trashbin using a list of paths.
+        Patches `send2trash.send2trash` to append the path to the list.
+        """
+
+        trashbin: list[Path] = []
+
+        monkeypatch.setattr("send2trash.send2trash", trashbin.append)
+
+        return trashbin

@@ -17,7 +17,7 @@ def create_folder_list(folder: Path) -> list[Path]:
         list[Path]: List of relative file paths from folder and all subdirectories.
     """
 
-    return [item.relative_to(folder) for item in folder.glob("**/*") if item.is_file()]
+    return [item.relative_to(folder) for item in folder.rglob("*") if item.is_file()]
 
 
 def get_common_files(
@@ -57,7 +57,7 @@ def clean_fs_string(text: str) -> str:
 
     illegal_chars: str = r"""<>\/|*?":"""
     output: str = "".join([c for c in text if c not in illegal_chars])
-    output = output.strip().rstrip(".")
+    output = output.strip().rstrip(" .")
 
     return output
 

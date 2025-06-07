@@ -21,6 +21,7 @@ from core.fomod.module_config.dependency.composite_dependency import CompositeDe
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.install_step.step_list import StepList
 from ui.utilities.icon_provider import get_icon_for_palette
+from ui.widgets.loading_dialog import LoadingDialog
 
 from .conditional_files_editor_tab import ConditionalFilesEditorTab
 from .dependency_editor_tab import DependencyEditorTab
@@ -284,7 +285,12 @@ class FomodEditorWidget(QTabWidget):
             )
 
         if finalize:
-            self.__current_fomod.finalize(validate_xml=validate_xml, encoding=encoding)
+            fomod: Fomod = self.__current_fomod
+            LoadingDialog.run_callable(
+                target=lambda ldialog: fomod.finalize(
+                    validate_xml=validate_xml, encoding=encoding, ldialog=ldialog
+                )
+            )
 
             # Reload the FOMOD as the finalize step might have changed it
             self.set_fomod(self.__current_fomod)

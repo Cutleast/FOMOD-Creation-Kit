@@ -195,23 +195,15 @@ class TestFomod(BaseTest):
         assert fomod.path == fomod_path
         assert fomod.path.is_dir()
 
-        # when
-        images_path: Path = fomod.path / "images"
-
         # then
-        assert images_path.is_dir()
-
-        # when
-        image_path = images_path / "module.jpg"
-
-        # then
-        assert image_path.is_file()
-        assert fomod.module_config.module_image.path == image_path.relative_to(
-            fomod.path.parent
+        assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
+        assert (
+            fomod.module_config.module_image.path
+            == Path("fomod") / "ModuleImage" / "Image.jpg"
         )
 
         # when
-        files_path: Path = fomod.path / "required_files"
+        files_path: Path = fomod.path / "files" / "required_install_files"
 
         # then
         assert files_path.is_dir()
@@ -231,7 +223,7 @@ class TestFomod(BaseTest):
         ].source == existing_file_in_fomod.relative_to(fomod.path.parent)
 
         # when
-        files_path = fomod.path / "conditional_files"
+        files_path = fomod.path / "files" / "conditional_install_files.0"
 
         # then
         assert files_path.is_dir()
@@ -266,20 +258,20 @@ class TestFomod(BaseTest):
 
         # then
         assert fomod.path is not None
-        assert (fomod.path / "images" / "module.jpg").is_file()
-        assert (fomod.path / "required_files" / "Image.jpg").is_file()
+        assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "required_install_files" / "Image.jpg").is_file()
         assert (fomod.path / "files" / "Image.jpg").is_file()
 
         assert fomod.module_config.module_image is not None
         assert (
             fomod.module_config.module_image.path
-            == WindowsPath("fomod") / "images" / "module.jpg"
+            == WindowsPath("fomod") / "ModuleImage" / "Image.jpg"
         )
 
         assert fomod.module_config.required_install_files is not None
         assert (
             fomod.module_config.required_install_files.files[0].source
-            == WindowsPath("fomod") / "required_files" / "Image.jpg"
+            == WindowsPath("fomod") / "files" / "required_install_files" / "Image.jpg"
         )
         assert (
             fomod.module_config.required_install_files.files[1].source
@@ -294,20 +286,20 @@ class TestFomod(BaseTest):
 
         # then
         assert fomod.path is not None
-        assert (fomod.path / "images" / "module.jpg").is_file()
-        assert (fomod.path / "required_files" / "Image.jpg").is_file()
+        assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "required_install_files" / "Image.jpg").is_file()
         assert (fomod.path / "files" / "Image.jpg").is_file()
 
         assert fomod.module_config.module_image is not None
         assert (
             fomod.module_config.module_image.path
-            == WindowsPath("fomod") / "images" / "module.jpg"
+            == WindowsPath("fomod") / "ModuleImage" / "Image.jpg"
         )
 
         assert fomod.module_config.required_install_files is not None
         assert (
             fomod.module_config.required_install_files.files[0].source
-            == WindowsPath("fomod") / "required_files" / "Image.jpg"
+            == WindowsPath("fomod") / "files" / "required_install_files" / "Image.jpg"
         )
         assert (
             fomod.module_config.required_install_files.files[1].source
