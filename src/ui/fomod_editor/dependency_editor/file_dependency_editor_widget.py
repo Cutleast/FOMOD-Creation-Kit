@@ -5,7 +5,8 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout
 
 from core.fomod.module_config.dependency.file_dependency import FileDependency
 from core.fomod_editor.exceptions import FileNameIsMissingError
@@ -28,7 +29,7 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
         self.__file_name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__state_dropdown.currentValueChanged.connect(lambda _: self.changed.emit())
 
-        self.setBaseSize(500, 150)
+        self.setBaseSize(500, 200)
 
     @override
     def _init_ui(self) -> None:
@@ -46,16 +47,29 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
         self.__file_name_entry.setText(self._item.file)
         self._vlayout.addWidget(self.__file_name_entry)
 
+        self._vlayout.addSpacing(10)
+
         hlayout = QHBoxLayout()
         self._vlayout.addLayout(hlayout)
 
-        hlayout.addWidget(QLabel(self.tr("State:")))
+        hlayout.addWidget(
+            QLabel(self.tr("State:")), alignment=Qt.AlignmentFlag.AlignTop
+        )
+        hlayout.addSpacing(25)
+
+        vlayout = QVBoxLayout()
+        vlayout.setContentsMargins(0, 0, 0, 0)
+        vlayout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        hlayout.addLayout(vlayout, stretch=1)
 
         self.__state_dropdown = EnumDropdown(
             enum_type=FileDependency.State,
             initial_value=self._item.state,
         )
-        hlayout.addWidget(self.__state_dropdown)
+        vlayout.addWidget(self.__state_dropdown)
+
+        state_help_label = QLabel(FileDependency.State.get_localized_summary())
+        vlayout.addWidget(state_help_label)
 
     @override
     @classmethod

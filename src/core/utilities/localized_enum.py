@@ -46,3 +46,16 @@ class LocalizedEnum(BaseEnum):
         Returns:
             str: Localized description for this enum member
         """
+
+    @classmethod
+    def get_localized_summary(cls) -> str:
+        """
+        Gets a localized summary of the enum's member names and descriptions.
+
+        Returns:
+            str: Localized summary
+        """
+
+        return "\n".join(
+            f"{e.get_localized_name()}: {e.get_localized_description()}" for e in cls
+        )
