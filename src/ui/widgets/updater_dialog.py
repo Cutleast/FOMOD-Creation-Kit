@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from PySide6.QtGui import QFont
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (
 )
 from semantic_version import Version
 
-from ui.widgets.link_button import LinkButton
+from .link_button import LinkButton
 
 
 class UpdaterDialog(QDialog):
@@ -35,20 +35,33 @@ class UpdaterDialog(QDialog):
         self.setLayout(vlayout)
 
         title_label = QLabel(self.tr("An Update is available to download!"))
-        title_label.setObjectName("title_label")
+        title_label.setObjectName("h2")
         vlayout.addWidget(title_label)
 
         version_label = QLabel(
-            f"\
-{self.tr('Installed Version')}: {installed_version} \
-{self.tr('Latest Version')}: {latest_version}"
+            self.tr("Installed version")
+            + f": {installed_version}"
+            + " | "
+            + self.tr("Latest version")
+            + f": {latest_version}"
         )
-        version_label.setObjectName("h3")
+        version_label.setTextInteractionFlags(
+            version_label.textInteractionFlags()
+            | Qt.TextInteractionFlag.TextSelectableByMouse
+        )
+        version_label.setCursor(Qt.CursorShape.IBeamCursor)
         vlayout.addWidget(version_label)
 
+        vlayout.addSpacing(15)
+
+        changelog_label = QLabel(self.tr("What's new?"))
+        changelog_label.setObjectName("h3")
+        vlayout.addWidget(changelog_label)
+
         changelog_box = QTextBrowser()
+        changelog_box.setObjectName("transparent")
+        changelog_box.setOpenExternalLinks(True)
         changelog_box.setMarkdown(changelog)
-        changelog_box.setCurrentFont(QFont("Arial"))
         vlayout.addWidget(changelog_box, 1)
 
         hlayout = QHBoxLayout()
@@ -63,10 +76,10 @@ class UpdaterDialog(QDialog):
         download_button = LinkButton(
             url=download_url, display_text=self.tr("Download Update")
         )
-        download_button.setObjectName("primary")
+        download_button.setDefault(True)
         download_button.clicked.connect(self.accept)
         hlayout.addWidget(download_button)
 
         self.show()
-        self.resize(700, 400)
+        self.resize(800, 500)
         self.exec()

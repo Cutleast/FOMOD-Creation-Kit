@@ -1317,12 +1317,27 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
         <translation>Ein Update ist verfügbar!</translation>
     </message>
     <message>
+        <location filename="src/ui/widgets/updater_dialog.py" line="43"/>
+        <source>Installed version</source>
+        <translation>Installierte Version</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/updater_dialog.py" line="46"/>
+        <source>Latest version</source>
+        <translation>Aktuelle Version</translation>
+    </message>
+    <message>
         <location filename="src/ui/widgets/updater_dialog.py" line="57"/>
+        <source>What&apos;s new?</source>
+        <translation>Was ist neu?</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/updater_dialog.py" line="70"/>
         <source>Ignore Update</source>
         <translation>Update ignorieren</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="65"/>
+        <location filename="src/ui/widgets/updater_dialog.py" line="78"/>
         <source>Download Update</source>
         <translation>Update herunterladen</translation>
     </message>

@@ -40,7 +40,7 @@
 }
 #h3
 {
-    font-size: 22pt;
+    font-size: 20pt;
 }
 
 /* LCDNumber */
@@ -58,7 +58,8 @@ QAbstractButton
     border: 1px solid;
     border-radius: 5px;
 }
-QAbstractButton#primary
+QAbstractButton#primary,
+QPushButton[default=true]
 {
     background: <accent_color>;
     border-color: <accent_color>;
@@ -67,11 +68,15 @@ QToolButton#primary
 {
     border-bottom-color: <accent_color>;
 }
-QAbstractButton#primary:hover:!disabled, QToolButton#primary:hover:!disabled
+QAbstractButton#primary:hover:!disabled,
+QToolButton#primary:hover:!disabled,
+QPushButton[default=true]:hover:!disabled
 {
     background: <highlighted_accent>;
 }
-QAbstractButton#primary:disabled, QToolButton#primary:disabled
+QAbstractButton#primary:disabled,
+QToolButton#primary:disabled,
+QPushButton[default=true]:disabled
 {
     background: #666666;
     border-color: #666666;
@@ -103,6 +108,7 @@ QStatusBar::item
 QLineEdit,
 QSpinBox,
 QDoubleSpinBox,
+QTextEdit,
 QPlainTextEdit
 {
     border: 2px solid;
@@ -125,11 +131,13 @@ SearchBar
     padding-right: 40px;
 }
 QLineEdit QPushButton,
+QTextEdit QPushButton,
 QPlainTextEdit QPushButton
 {
     background: transparent;
     border-color: transparent;
 }
+QTextEdit#protocol,
 QPlainTextEdit#protocol
 {
     font-size: 10pt;

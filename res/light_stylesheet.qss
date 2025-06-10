@@ -36,7 +36,9 @@ QPushButton:pressed, QToolButton:pressed
     background: #20000000;
     border-color: #40000000;
 }
-QPushButton#primary:disabled, QToolButton#primary:disabled
+QPushButton#primary:disabled,
+QToolButton#primary:disabled,
+QPushButton[default=true]:disabled
 {
     color: #ffffff;
 }
@@ -45,6 +47,7 @@ QPushButton#primary:disabled, QToolButton#primary:disabled
 QLineEdit,
 QSpinBox,
 QDoubleSpinBox,
+QTextEdit,
 QPlainTextEdit
 {
     background: #ffffff;

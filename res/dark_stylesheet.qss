@@ -36,7 +36,9 @@ QPushButton:hover:!disabled, QToolButton:hover:!disabled
 {
     background: #15ffffff;
 }
-QPushButton#primary:disabled, QToolButton#primary:disabled
+QPushButton#primary:disabled,
+QToolButton#primary:disabled,
+QPushButton[default=true]:disabled
 {
     color: #ffffff;
 }
@@ -45,6 +47,7 @@ QPushButton#primary:disabled, QToolButton#primary:disabled
 QLineEdit,
 QSpinBox,
 QDoubleSpinBox,
+QTextEdit,
 QPlainTextEdit
 {
     background: #0cffffff;
@@ -56,6 +59,7 @@ QDoubleSpinBox:hover:!disabled:!focus
 {
     background: #15ffffff;
 }
+QTextEdit#protocol,
 QPlainTextEdit#protocol
 {
     background: #202020;
