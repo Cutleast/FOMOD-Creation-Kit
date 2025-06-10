@@ -93,7 +93,7 @@ class SettingsDialog(QDialog):
         hlayout.addStretch()
 
         self.__save_button = QPushButton(self.tr("Save"))
-        self.__save_button.setObjectName("primary")
+        self.__save_button.setDefault(True)
         self.__save_button.clicked.connect(self.__save)
         self.__save_button.setDisabled(True)
         hlayout.addWidget(self.__save_button)

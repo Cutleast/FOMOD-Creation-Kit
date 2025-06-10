@@ -49,6 +49,8 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
                 [self.tr("Source"), self.tr("Destination")]
             )
 
+            self._tree_widget.header().resizeSection(0, 400)
+
         @override
         def addItem(self, item: FileSystemItem) -> None:
             if item not in self._items:

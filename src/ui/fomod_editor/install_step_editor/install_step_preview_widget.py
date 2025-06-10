@@ -180,6 +180,15 @@ class InstallStepPreviewWidget(SmoothScrollArea):
         self.setMinimumWidth(610)
 
     def __init_header(self) -> None:
+        help_label = QLabel(
+            self.tr(
+                "This is just a non-functional preview below. Edit the step by clicking "
+                "on the edit button next to the title."
+            )
+        )
+        help_label.setWordWrap(True)
+        self.__vlayout.addWidget(help_label)
+
         hlayout = QHBoxLayout()
         self.__vlayout.addLayout(hlayout)
 
@@ -189,7 +198,12 @@ class InstallStepPreviewWidget(SmoothScrollArea):
         hlayout.addWidget(self.__title_label, stretch=1)
 
         self.__edit_button = QPushButton(
-            qta.icon("mdi6.pencil", color=self.palette().text().color()), ""
+            qta.icon(
+                "mdi6.pencil",
+                color=self.palette().text().color(),
+                color_disabled="#666666",
+            ),
+            "",
         )
         self.__edit_button.setIconSize(QSize(32, 32))
         self.__edit_button.setToolTip(self.tr("Edit install step..."))

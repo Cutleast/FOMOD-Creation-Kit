@@ -238,9 +238,6 @@ class MainWidget(QWidget):
                 QMessageBox.StandardButton.Save
             )
             save_button.setText(self.tr("Save and close"))
-            save_button.setObjectName("primary")
-        else:
-            no_button.setObjectName("primary")
 
         # Reapply stylesheet as setObjectName() doesn't update the style by itself
         message_box.setStyleSheet(AppContext.get_app().styleSheet())

@@ -67,7 +67,7 @@ class XmlValidatorDialog(QDialog):
 
     def __init_footer(self) -> None:
         self.__validate_button = QPushButton(self.tr("Validate"))
-        self.__validate_button.setObjectName("primary")
+        self.__validate_button.setDefault(True)
         self.__validate_button.setDisabled(True)
         self.__vlayout.addWidget(self.__validate_button)
 

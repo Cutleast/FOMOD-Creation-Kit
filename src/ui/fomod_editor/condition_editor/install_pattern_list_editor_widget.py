@@ -54,6 +54,8 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
                 [self.tr("Dependencies"), self.tr("Files")]
             )
 
+            self._tree_widget.header().resizeSection(0, 400)
+
         @override
         def addItem(self, item: ConditionalInstallPattern) -> None:
             if item not in self._items:

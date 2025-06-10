@@ -298,22 +298,22 @@
 <context>
     <name>FileDependencyEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="39"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="40"/>
         <source>A file the dependency depends on to be fulfilled.</source>
         <translation>Eine Datei, die diese Abhängigkeit erfordert, um gültig zu sein.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="45"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="46"/>
         <source>File name, eg. &quot;skse_loader64.exe&quot;</source>
         <translation>Dateiname, z.B. &quot;skse_loader64.exe&quot;</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="52"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="56"/>
         <source>State:</source>
         <translation>Zustand:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="67"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/file_dependency_editor_widget.py" line="81"/>
         <source>Edit file dependency...</source>
         <translation>Dateiabhängigkeit bearbeiten...</translation>
     </message>
@@ -321,12 +321,12 @@
 <context>
     <name>FileListEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="86"/>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="88"/>
         <source>Edit file list...</source>
         <translation>Dateiliste bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="98"/>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="100"/>
         <source>The file list defines how files are copied to the destination folder.</source>
         <translation>Diese Liste definiert, wie Dateien in den Zielordner kopiert werden.</translation>
     </message>
@@ -653,12 +653,12 @@
 <context>
     <name>InstallPatternListEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/condition_editor/install_pattern_list_editor_widget.py" line="95"/>
+        <location filename="src/ui/fomod_editor/condition_editor/install_pattern_list_editor_widget.py" line="97"/>
         <source>Edit conditional install patterns...</source>
         <translation>Bedingte Installationen bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/condition_editor/install_pattern_list_editor_widget.py" line="108"/>
+        <location filename="src/ui/fomod_editor/condition_editor/install_pattern_list_editor_widget.py" line="110"/>
         <source>This list defines patterns of mod files and conditional flags that determine whether to install specific files.</source>
         <translation>Diese Liste definiert Kombinationen aus Moddateien und Bedingungen, die bestimmen, ob bestimmte Dateien installiert werden sollen.</translation>
     </message>
@@ -730,17 +730,22 @@
 <context>
     <name>InstallStepPreviewWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="195"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="188"/>
+        <source>This is just a non-functional preview below. Edit the step by clicking on the edit button next to the title.</source>
+        <translation>Das ist bloß eine nicht-funktionale Vorschau unten. Der Installationsschritt kann über die Bearbeiten-Schaltfläche neben der Überschrift bearbeitet werden.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="209"/>
         <source>Edit install step...</source>
         <translation>Installationsschritt bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="202"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="216"/>
         <source>Visible when:</source>
         <translation>Sichtbar wenn:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="222"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="236"/>
         <source>Always visible</source>
         <translation>Immer sichtbar</translation>
     </message>

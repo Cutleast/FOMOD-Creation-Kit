@@ -94,7 +94,7 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
         hlayout.addWidget(self.__validation_status_label, stretch=1)
 
         self.__save_button = QPushButton(self.tr("Save"))
-        self.__save_button.setObjectName("primary")
+        self.__save_button.setDefault(True)
         self.__save_button.clicked.connect(self.accept)
         self.__save_button.setDisabled(True)
         hlayout.addWidget(self.__save_button)
@@ -138,9 +138,6 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
                     QMessageBox.StandardButton.Save
                 )
                 save_button.setText(self.tr("Save and close"))
-                save_button.setObjectName("primary")
-            else:
-                no_button.setObjectName("primary")
 
             # Reapply stylesheet as setObjectName() doesn't update the style by itself
             message_box.setStyleSheet(AppContext.get_app().styleSheet())
