@@ -97,7 +97,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self.__flayout.addRow(self.__image_label)
 
         self.__name_entry = QLineEdit()
-        self.__name_entry.setText(self._item.info.name)
+        self.__name_entry.setText(self._item.name)
         self.__flayout.addRow(self.tr("Name:"), self.__name_entry)
 
         self.__author_entry = QLineEdit()
@@ -151,8 +151,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
     @override
     def save(self) -> Fomod:
-        self._item.info.name = self.__name_entry.text()
-        self._item.module_config.module_name.title = self.__name_entry.text()
+        self._item.name = self.__name_entry.text()
         self._item.info.author = self.__author_entry.text()
         self._item.info.version.version = self.__version_entry.text()
         self._item.info.website = self.__website_entry.text()

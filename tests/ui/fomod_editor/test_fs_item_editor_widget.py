@@ -10,7 +10,7 @@ from PySide6.QtWidgets import QCheckBox, QLineEdit, QSpinBox
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.file_item import FileItem
-from core.fomod_editor.exceptions import SpecificValidationError
+from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
 from tests.utils import Utils
 from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget
 from ui.widgets.browse_edit import BrowseLineEdit
@@ -95,7 +95,7 @@ class TestFsItemEditorWidget(UiTest):
         assert priority_entry.value() == 0
 
         with pytest.raises(
-            SpecificValidationError, match="The source path must not be empty!"
+            SpecificEmptyError, match="The source path must not be empty!"
         ):
             widget.validate()
 
@@ -116,7 +116,7 @@ class TestFsItemEditorWidget(UiTest):
 
         # when/then
         with pytest.raises(
-            SpecificValidationError, match="The source path must not be empty!"
+            SpecificEmptyError, match="The source path must not be empty!"
         ):
             widget.validate()
 

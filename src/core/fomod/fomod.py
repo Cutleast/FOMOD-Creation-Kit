@@ -41,6 +41,26 @@ class Fomod:
         self.info = info
         self.module_config = module_config
 
+    @property
+    def name(self) -> str:
+        """
+        The name of the FOMOD installer.
+        """
+
+        return self.info.name
+
+    @name.setter
+    def name(self, new_name: str) -> None:
+        """
+        Sets the name of the FOMOD installer.
+
+        Args:
+            new_name (str): The new name of the FOMOD installer.
+        """
+
+        self.info.name = new_name
+        self.module_config.module_name.title = new_name
+
     def finalize(
         self,
         path: Optional[Path] = None,

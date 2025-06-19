@@ -128,6 +128,7 @@ class TestModuleConfig(BaseTest):
 
         # given
         fomod: Fomod = Fomod.create()
+        fomod.name = "Test FOMOD"
         dependency = CompositeDependency(
             file_dependencies=[
                 FileDependency(file="test.esp", state=FileDependency.State.Inactive)
