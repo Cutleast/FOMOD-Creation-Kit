@@ -15,6 +15,7 @@ from core.fomod.module_config.header_image import SUPPORTED_TYPES, HeaderImage
 from core.fomod_editor.exceptions import (
     FileDoesNotExistError,
     ImageTypeNotSupportedError,
+    NameIsMissingError,
 )
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
@@ -174,6 +175,9 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
     @override
     def validate(self) -> None:
+        if not self.__name_entry.text().strip():
+            raise NameIsMissingError
+
         image_path: Optional[Path] = (
             Path(self.__image_path_entry.text().strip())
             if self.__image_path_entry.text().strip()
