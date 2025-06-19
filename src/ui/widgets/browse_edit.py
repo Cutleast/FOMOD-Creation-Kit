@@ -3,7 +3,7 @@ Copyright (c) Cutleast
 """
 
 import os
-from typing import Any, override
+from typing import Any, Optional, override
 
 import qtawesome as qta
 from PySide6.QtCore import Qt, Signal
@@ -24,6 +24,10 @@ class BrowseLineEdit(QLineEdit):
     """
     This signal gets emitted when a file is selected in the QFileDialog.
     It emits the current text and the selected file.
+
+    Args:
+        str: Current path
+        str: New path
     """
 
     def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:
@@ -71,10 +75,10 @@ class BrowseLineEdit(QLineEdit):
         self.__file_dialog.setNameFilters(filters)
 
     @override
-    def setText(self, text: str) -> None:
+    def setText(self, text: Optional[str]) -> None:
         old_text: str = self.text()
         super().setText(text)
-        self.pathChanged.emit(old_text, text)
+        self.pathChanged.emit(old_text, text or "")
 
     def __browse(self) -> None:
         current_text: str = self.text().strip()
