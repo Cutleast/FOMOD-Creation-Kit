@@ -107,7 +107,7 @@ class TreeWidgetEditor[T: object](QWidget):
         self.__init_header()
         self.__init_tree_widget()
 
-        self.setMinimumWidth(310)
+        self.setMinimumSize(310, 200)
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
