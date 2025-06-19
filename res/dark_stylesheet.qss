@@ -8,6 +8,10 @@
 {
     color: #ff6262;
 }
+#status_banner
+{
+    background: #ff6262;
+}
 
 /* Windows, Messageboxes and Dialogs */
 QMainWindow, QDialog

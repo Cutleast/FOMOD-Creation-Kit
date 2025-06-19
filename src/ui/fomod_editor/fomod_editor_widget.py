@@ -3,12 +3,12 @@ Copyright (c) Cutleast
 """
 
 from pathlib import Path
-from typing import Optional, override
+from typing import Optional
 
 import qtawesome as qta
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QTransform
-from PySide6.QtWidgets import QTabWidget
+from PySide6.QtGui import QIcon, QPixmap, QTransform
+from PySide6.QtWidgets import QLabel, QTabWidget, QVBoxLayout, QWidget
 
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.condition.conditional_file_install_list import (
@@ -20,6 +20,7 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.install_step.step_list import StepList
+from core.fomod_editor.exceptions import ValidationError
 from ui.utilities.icon_provider import get_icon_for_palette
 from ui.widgets.loading_dialog import LoadingDialog
 
@@ -30,7 +31,7 @@ from .required_files_editor_tab import RequiredFilesEditorTab
 from .steps_editor_tab import StepsEditorTab
 
 
-class FomodEditorWidget(QTabWidget):
+class FomodEditorWidget(QWidget):
     """
     Widget for editing FOMOD installers.
     """
@@ -49,6 +50,9 @@ class FomodEditorWidget(QTabWidget):
 
     __current_fomod: Optional[Fomod] = None
 
+    __vlayout: QVBoxLayout
+    __status_banner: QLabel
+    __tab_widget: QTabWidget
     __info_editor_tab: Optional[InfoEditorTab] = None
     __dependency_editor_tab: Optional[DependencyEditorTab] = None
     __required_files_editor_tab: Optional[RequiredFilesEditorTab] = None
@@ -58,21 +62,37 @@ class FomodEditorWidget(QTabWidget):
     def __init__(self) -> None:
         super().__init__()
 
-        self.setTabPosition(QTabWidget.TabPosition.West)
-        self.tabBar().setExpanding(True)
-        self.setObjectName("icon_bar")
-        self.tabBar().setObjectName("icon_bar")
-        self.tabBar().setIconSize(
+        self.changed.connect(lambda fomod, changed: self.__update_status_banner())
+
+        self.__init_ui()
+
+    def __init_ui(self) -> None:
+        self.__vlayout = QVBoxLayout()
+        self.setLayout(self.__vlayout)
+
+        self.__status_banner = QLabel()
+        self.__status_banner.setObjectName("status_banner")
+        self.__status_banner.setWordWrap(True)
+        self.__vlayout.addWidget(self.__status_banner)
+
+        self.__tab_widget = QTabWidget()
+        self.__tab_widget.setTabPosition(QTabWidget.TabPosition.West)
+        self.__tab_widget.tabBar().setExpanding(True)
+        self.__tab_widget.setObjectName("icon_bar")
+        self.__tab_widget.tabBar().setObjectName("icon_bar")
+        self.__tab_widget.tabBar().setIconSize(
             QSize(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
         )
+        self.__vlayout.addWidget(self.__tab_widget, stretch=1)
 
-    @override
     def clear(self) -> None:
         """
         Resets the FOMOD editor widget.
         """
 
-        super().clear()
+        self.__tab_widget.clear()
+        self.__status_banner.clear()
+        self.__status_banner.hide()
 
         self.__current_fomod = None
         self.__info_editor_tab = None
@@ -107,6 +127,14 @@ class FomodEditorWidget(QTabWidget):
 
         self.changed.emit(self.__current_fomod, False)
 
+    @staticmethod
+    def __get_tab_icon(icon: QIcon) -> QPixmap:
+        return icon.pixmap(
+            FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE
+        ).transformed(
+            QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+        )
+
     def __init_info_editor_tab(self) -> None:
         if self.__current_fomod is None:
             raise ValueError("No FOMOD is set")
@@ -118,16 +146,14 @@ class FomodEditorWidget(QTabWidget):
             lambda: self.changed.emit(self.__current_fomod, True)
         )
 
-        i: int = self.addTab(
+        i: int = self.__tab_widget.addTab(
             self.__info_editor_tab,
-            get_icon_for_palette("quick_reference", self.palette())
-            .pixmap(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
-            .transformed(
-                QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+            FomodEditorWidget.__get_tab_icon(
+                get_icon_for_palette("quick_reference", self.palette())
             ),
             "",
         )
-        self.setTabToolTip(i, self.tr("Info"))
+        self.__tab_widget.setTabToolTip(i, self.tr("Info"))
 
     def __init_dependency_editor_tab(self) -> None:
         if self.__current_fomod is None:
@@ -142,16 +168,14 @@ class FomodEditorWidget(QTabWidget):
             lambda: self.changed.emit(self.__current_fomod, True)
         )
 
-        i: int = self.addTab(
+        i: int = self.__tab_widget.addTab(
             self.__dependency_editor_tab,
-            qta.icon("fa6s.list-check", color=self.palette().text().color())
-            .pixmap(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
-            .transformed(
-                QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+            FomodEditorWidget.__get_tab_icon(
+                qta.icon("fa6s.list-check", color=self.palette().text().color())
             ),
             "",
         )
-        self.setTabToolTip(i, self.tr("Module Dependencies"))
+        self.__tab_widget.setTabToolTip(i, self.tr("Module Dependencies"))
 
     def __init_required_files_editor_tab(self) -> None:
         if self.__current_fomod is None:
@@ -165,16 +189,14 @@ class FomodEditorWidget(QTabWidget):
             lambda: self.changed.emit(self.__current_fomod, True)
         )
 
-        i: int = self.addTab(
+        i: int = self.__tab_widget.addTab(
             self.__required_files_editor_tab,
-            qta.icon("mdi6.file-check", color=self.palette().text().color())
-            .pixmap(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
-            .transformed(
-                QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+            FomodEditorWidget.__get_tab_icon(
+                qta.icon("mdi6.file-check", color=self.palette().text().color())
             ),
             "",
         )
-        self.setTabToolTip(i, self.tr("Required files to install"))
+        self.__tab_widget.setTabToolTip(i, self.tr("Required files to install"))
 
     def __init_steps_editor_tab(self) -> None:
         if self.__current_fomod is None:
@@ -189,16 +211,16 @@ class FomodEditorWidget(QTabWidget):
             lambda: self.changed.emit(self.__current_fomod, True)
         )
 
-        i: int = self.addTab(
+        i: int = self.__tab_widget.addTab(
             self.__steps_editor_tab,
-            qta.icon("mdi6.book-open-page-variant", color=self.palette().text().color())
-            .pixmap(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
-            .transformed(
-                QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+            FomodEditorWidget.__get_tab_icon(
+                qta.icon(
+                    "mdi6.book-open-page-variant", color=self.palette().text().color()
+                )
             ),
             "",
         )
-        self.setTabToolTip(i, self.tr("Installation steps (pages)"))
+        self.__tab_widget.setTabToolTip(i, self.tr("Installation steps (pages)"))
 
     def __init_conditional_files_editor_tab(self) -> None:
         if self.__current_fomod is None:
@@ -213,16 +235,24 @@ class FomodEditorWidget(QTabWidget):
             lambda: self.changed.emit(self.__current_fomod, True)
         )
 
-        i: int = self.addTab(
+        i: int = self.__tab_widget.addTab(
             self.__conditional_files_editor_tab,
-            qta.icon("fa6s.file-circle-question", color=self.palette().text().color())
-            .pixmap(FomodEditorWidget.TAB_ICON_SIZE, FomodEditorWidget.TAB_ICON_SIZE)
-            .transformed(
-                QTransform().rotate(90), Qt.TransformationMode.SmoothTransformation
+            FomodEditorWidget.__get_tab_icon(
+                qta.icon(
+                    "fa6s.file-circle-question", color=self.palette().text().color()
+                )
             ),
             "",
         )
-        self.setTabToolTip(i, self.tr("Conditional files to install"))
+        self.__tab_widget.setTabToolTip(i, self.tr("Conditional files to install"))
+
+    def __update_status_banner(self) -> None:
+        try:
+            self.validate()
+            self.__status_banner.setHidden(True)
+        except ValidationError as ex:
+            self.__status_banner.setText(str(ex))
+            self.__status_banner.setVisible(True)
 
     def save(
         self,

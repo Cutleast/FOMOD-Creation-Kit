@@ -24,6 +24,11 @@
 {
     font-style: bold;
 }
+#status_banner
+{
+    padding: 7px;
+    border-radius: 5px;
+}
 
 /* Headings */
 #h1, #h2, #h3, #title
