@@ -5,11 +5,12 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QLabel, QLineEdit
+from PySide6.QtWidgets import QApplication, QLineEdit
 
 from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
 from core.fomod_editor.exceptions import NameIsMissingError, ValueIsMissingError
-from ui.fomod_editor.base_editor_widget import BaseEditorWidget
+
+from ..base_editor_widget import BaseEditorWidget
 
 
 class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
@@ -29,11 +30,23 @@ class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
         self.resize(800, 250)
 
     @override
+    @classmethod
+    def get_display_name(cls) -> str:
+        return QApplication.translate(
+            "SetConditionFlagEditorWidget", "Edit set condition flag..."
+        )
+
+    @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "SetConditionFlagEditorWidget",
+            "A flag to be set to a specific value when the plugin is selected.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
-
-        help_label = QLabel(self.tr("A flag to be set when the plugin is selected."))
-        self._vlayout.addWidget(help_label)
 
         self.__name_entry = QLineEdit()
         self.__name_entry.setPlaceholderText(self.tr('Name of the flag, eg. "test"'))
@@ -46,13 +59,6 @@ class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
         )
         self.__value_entry.setText(self._item.value)
         self._vlayout.addWidget(self.__value_entry)
-
-    @override
-    @classmethod
-    def get_display_name(cls) -> str:
-        return QApplication.translate(
-            "SetConditionFlagEditorWidget", "Edit set condition flag..."
-        )
 
     @override
     def validate(self) -> None:

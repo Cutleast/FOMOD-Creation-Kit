@@ -7,7 +7,7 @@ from typing import Optional, override
 
 import qtawesome as qta
 from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QApplication, QFormLayout, QLabel, QLineEdit, QTabWidget
+from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QTabWidget
 
 from core.fomod.module_config.condition.condition_flag_list import ConditionFlagList
 from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
@@ -79,6 +79,15 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         return QApplication.translate("PluginEditorWidget", "Edit plugin...")
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "PluginEditorWidget",
+            "A plugin represents a selectable element within a FOMOD installer that "
+            "can either set a condition flag or install files/folders when selected.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
@@ -92,15 +101,6 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self.setBaseSize(1000, 800)
 
     def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr(
-                "A plugin represents a selectable element within a FOMOD installer that "
-                "can either set a condition flag or install files/folders when selected."
-            )
-        )
-        help_label.setWordWrap(True)
-        self._vlayout.addWidget(help_label)
-
         self.__image_label = ImageLabel(
             qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
                 PluginEditorWidget.IMAGE_HEIGHT, PluginEditorWidget.IMAGE_HEIGHT

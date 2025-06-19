@@ -135,10 +135,19 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         return QApplication.translate("InstallStepEditorWidget", "Edit install step...")
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "InstallStepEditorWidget",
+            "An installation step of a FOMOD installer is a single page consisting "
+            "of groups of files that can be set to be visible when certain "
+            "conditions are met.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_name_field()
         self.__init_vertical_splitter()
         self.__init_visibility_editor()
@@ -152,12 +161,6 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             [100, self.__vertical_splitter.height() - 100]
         )
         self.__vertical_splitter.setHandleWidth(0)
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr("An installation step (or page) of a FOMOD installer.")
-        )
-        self._vlayout.addWidget(help_label)
 
     def __init_name_field(self) -> None:
         hlayout = QHBoxLayout()

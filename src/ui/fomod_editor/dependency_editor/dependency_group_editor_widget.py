@@ -71,6 +71,13 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         self.__dependencies_tree_widget_editor.onEdit.connect(self.__edit_dependency)
 
     @override
+    @classmethod
+    def get_display_name(cls) -> str:
+        return QApplication.translate(
+            "DependencyGroupEditorWidget", "Edit dependency group..."
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
@@ -189,13 +196,6 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
             self.__dependencies_tree_widget_editor.updateItem(item)
-
-    @override
-    @classmethod
-    def get_display_name(cls) -> str:
-        return QApplication.translate(
-            "DependencyGroupEditorWidget", "Edit dependency group..."
-        )
 
     @override
     def validate(self) -> None:

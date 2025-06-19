@@ -43,10 +43,17 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
         )
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "CompositeDependencyEditorWidget",
+            "Composite dependencies are used to group multiple dependencies together.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_operator_selector()
         self.__init_dependency_group_editor_widget()
 
@@ -55,14 +62,6 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
         )
 
         self.setBaseSize(700, 400)
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr(
-                "Composite dependencies are used to group multiple dependencies together."
-            )
-        )
-        self._vlayout.addWidget(help_label)
 
     def __init_operator_selector(self) -> None:
         hlayout = QHBoxLayout()

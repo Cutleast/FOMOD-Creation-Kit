@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import override
 
-from PySide6.QtWidgets import QApplication, QLabel
+from PySide6.QtWidgets import QApplication
 
 from core.fomod.module_config.dependency.dependency_pattern import DependencyPattern
 from core.fomod.module_config.plugin.plugin_type import PluginType
@@ -40,10 +40,18 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
         )
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "DependencyPatternEditorWidget",
+            "The plugin has the type specified below when the composite dependency at "
+            "the bottom is fulfilled before all other patterns.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_type_dropdown()
         self.__init_composite_dependency_editor()
 
@@ -51,16 +59,6 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
             self.__composite_dependency_editor.baseSize().width(),
             self.__composite_dependency_editor.baseSize().height() + 125,
         )
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr(
-                "The plugin has the type specified below when the composite dependency "
-                "at the bottom is fulfilled before all other patterns."
-            )
-        )
-        help_label.setWordWrap(True)
-        self._vlayout.addWidget(help_label)
 
     def __init_type_dropdown(self) -> None:
         self.__type_dropdown = EnumDropdown(

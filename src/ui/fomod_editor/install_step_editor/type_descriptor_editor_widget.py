@@ -88,10 +88,17 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
         )
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "TypeDescriptorEditorWidget",
+            "The type of a plugin determines its pre-selection state.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_descriptor_type_selector()
         self.__init_stack_widget()
         self.__init_static_type_selector()
@@ -104,12 +111,6 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
             self.__stack_widget.setCurrentIndex(0)
         else:
             self.__stack_widget.setCurrentIndex(1)
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr("The type of a plugin determines its pre-selection state.")
-        )
-        self._vlayout.addWidget(help_label)
 
     def __init_descriptor_type_selector(self) -> None:
         self.__descriptor_type_selector = EnumRadiobuttonsWidget(

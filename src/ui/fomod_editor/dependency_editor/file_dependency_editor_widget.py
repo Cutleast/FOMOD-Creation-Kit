@@ -32,13 +32,24 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
         self.setBaseSize(500, 200)
 
     @override
+    @classmethod
+    def get_display_name(cls) -> str:
+        return QApplication.translate(
+            "FileDependencyEditorWidget", "Edit file dependency..."
+        )
+
+    @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "FileDependencyEditorWidget",
+            "A file dependency is the combination of a file name and a state that have "
+            "to match for this dependency to be fulfilled.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
-
-        help_label = QLabel(
-            self.tr("A file the dependency depends on to be fulfilled.")
-        )
-        self._vlayout.addWidget(help_label)
 
         self.__file_name_entry = QLineEdit()
         self.__file_name_entry.setPlaceholderText(
@@ -70,13 +81,6 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
 
         state_help_label = QLabel(FileDependency.State.get_localized_summary())
         vlayout.addWidget(state_help_label)
-
-    @override
-    @classmethod
-    def get_display_name(cls) -> str:
-        return QApplication.translate(
-            "FileDependencyEditorWidget", "Edit file dependency..."
-        )
 
     @override
     def validate(self) -> None:

@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, Sequence, override
 
-from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
+from PySide6.QtWidgets import QApplication, QTreeWidgetItem
 
 from core.fomod.module_config.condition.conditional_install_pattern import (
     ConditionalInstallPattern,
@@ -95,22 +95,18 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
         )
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "InstallPatternListEditorWidget",
+            "This list defines patterns of mod files and conditional flags that "
+            "determine whether to install specific files.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
-        self.__init_tree_widget()
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr(
-                "This list defines patterns of mod files and conditional flags that "
-                "determine whether to install specific files."
-            )
-        )
-        self._vlayout.addWidget(help_label)
-
-    def __init_tree_widget(self) -> None:
         self.__tree_widget = InstallPatternListEditorWidget.InstallPatternTreeWidget(
             self._item.patterns
         )

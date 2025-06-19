@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QLabel, QLineEdit
+from PySide6.QtWidgets import QApplication, QLineEdit
 
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod_editor.exceptions import NameIsMissingError, ValueIsMissingError
@@ -29,13 +29,24 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
         self.resize(800, 250)
 
     @override
+    @classmethod
+    def get_display_name(cls) -> str:
+        return QApplication.translate(
+            "FlagDependencyEditorWidget", "Edit flag dependency..."
+        )
+
+    @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "FlagDependencyEditorWidget",
+            "A flag that has to have a specific value for this dependency to be "
+            "fulfilled.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
-
-        help_label = QLabel(
-            self.tr("A flag the dependency depends on to be fulfilled.")
-        )
-        self._vlayout.addWidget(help_label)
 
         self.__name_entry = QLineEdit()
         self.__name_entry.setPlaceholderText(self.tr('Name of the flag, eg. "test"'))
@@ -48,13 +59,6 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
         )
         self.__value_entry.setText(self._item.value)
         self._vlayout.addWidget(self.__value_entry)
-
-    @override
-    @classmethod
-    def get_display_name(cls) -> str:
-        return QApplication.translate(
-            "FlagDependencyEditorWidget", "Edit flag dependency..."
-        )
 
     @override
     def validate(self) -> None:

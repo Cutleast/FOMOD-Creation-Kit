@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QLabel
+from PySide6.QtWidgets import QApplication
 
 from core.fomod.module_config.module_config import ConditionalFileInstallList
 from core.fomod_editor.exceptions import EmptyError
@@ -26,7 +26,7 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
     def __init__(
         self, item: ConditionalFileInstallList, fomod_path: Optional[Path]
     ) -> None:
-        super().__init__(item, fomod_path)
+        super().__init__(item, fomod_path, show_title=True)
 
         self.__editor_widget.changed.connect(self.changed.emit)
 
@@ -38,16 +38,17 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
         )
 
     @override
+    @classmethod
+    def get_title(cls) -> str:
+        return QApplication.translate(
+            "ConditionalFilesEditorWidget", "Conditional files to install"
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_editor_widget()
-
-    def __init_header(self) -> None:
-        title_label = QLabel(self.tr("Conditional files to install"))
-        title_label.setObjectName("h2")
-        self._vlayout.addWidget(title_label)
 
     def __init_editor_widget(self) -> None:
         self.__editor_widget = InstallPatternListEditorWidget(
