@@ -69,13 +69,13 @@ class ErrorDialog(QDialog):
 
         text_label = QLabel(self.__text)
         text_label.setWordWrap(True)
-        hlayout.addWidget(text_label)
+        hlayout.addWidget(text_label, stretch=1)
 
         self.__details_box = QPlainTextEdit(self.__details)
         self.__details_box.setObjectName("protocol")
         self.__details_box.setMinimumHeight(50)
         self.__details_box.setReadOnly(True)
-        self.__vlayout.addWidget(self.__details_box)
+        self.__vlayout.addWidget(self.__details_box, stretch=1)
         self.__details_box.hide()
 
         hlayout = QHBoxLayout()
@@ -85,7 +85,6 @@ class ErrorDialog(QDialog):
 
         if self.__yesno:
             yes_button = QPushButton(self.tr("Continue"))
-            yes_button.setObjectName("accent_button")
             yes_button.setDefault(True)
             yes_button.clicked.connect(self.reject)
             hlayout.addWidget(yes_button)
@@ -95,7 +94,6 @@ class ErrorDialog(QDialog):
             hlayout.addWidget(no_button)
         else:
             ok_button = QPushButton(self.tr("Ok"))
-            ok_button.setObjectName("accent_button")
             ok_button.setDefault(True)
             ok_button.clicked.connect(self.reject)
             hlayout.addWidget(ok_button)
