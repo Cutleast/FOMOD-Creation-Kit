@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QLabel
+from PySide6.QtWidgets import QApplication
 
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod_editor.exceptions import EmptyError
@@ -24,7 +24,7 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
     __editor_widget: CompositeDependencyEditorWidget
 
     def __init__(self, item: CompositeDependency, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
+        super().__init__(item, fomod_path, show_title=True)
 
         self.__editor_widget.changed.connect(self.changed.emit)
 
@@ -32,25 +32,27 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "DependencyEditorWidget", "Edit module dependencies..."
+            "DependencyEditorTab", "Edit module dependencies..."
+        )
+
+    @override
+    @classmethod
+    def get_title(cls) -> str:
+        return QApplication.translate("DependencyEditorTab", "Module Dependencies")
+
+    @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "DependencyEditorTab",
+            "These are the dependencies the mod depends on. It is up to the mod manager "
+            "whether this is considered or not.",
         )
 
     @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
-        self.__init_editor_widget()
-
-    def __init_header(self) -> None:
-        title_label = QLabel(self.tr("Module Dependencies"))
-        title_label.setObjectName("h2")
-        self._vlayout.addWidget(title_label)
-
-        help_label = QLabel(self.tr("These are the dependencies the mod depends on."))
-        self._vlayout.addWidget(help_label)
-
-    def __init_editor_widget(self) -> None:
         self.__editor_widget = CompositeDependencyEditorWidget(self._item)
         self._vlayout.addWidget(self.__editor_widget)
 

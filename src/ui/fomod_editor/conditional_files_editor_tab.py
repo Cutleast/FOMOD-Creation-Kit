@@ -34,23 +34,20 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "ConditionalFilesEditorWidget", "Edit conditional files..."
+            "ConditionalFilesEditorTab", "Edit conditional files..."
         )
 
     @override
     @classmethod
     def get_title(cls) -> str:
         return QApplication.translate(
-            "ConditionalFilesEditorWidget", "Conditional files to install"
+            "ConditionalFilesEditorTab", "Conditional files to install"
         )
 
     @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_editor_widget()
-
-    def __init_editor_widget(self) -> None:
         self.__editor_widget = InstallPatternListEditorWidget(
             self._item.patterns, self._fomod_path
         )

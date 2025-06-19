@@ -68,7 +68,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
     @override
     @classmethod
     def get_display_name(cls) -> str:
-        return QApplication.translate("InfoEditorWidget", "Edit FOMOD info...")
+        return QApplication.translate("InfoEditorTab", "Edit FOMOD info...")
 
     @override
     def _init_ui(self) -> None:

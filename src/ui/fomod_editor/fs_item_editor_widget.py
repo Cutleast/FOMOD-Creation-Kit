@@ -12,7 +12,6 @@ from PySide6.QtWidgets import (
     QFileDialog,
     QFormLayout,
     QHBoxLayout,
-    QLabel,
     QLineEdit,
     QSpinBox,
 )
@@ -97,19 +96,20 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         return QApplication.translate("FsItemEditorWidget", "Edit file system item...")
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "FsItemEditorWidget",
+            "A file or folder to be copied to a destination folder.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
         self.__init_form()
 
         self.setBaseSize(700, 280)
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr("A file or folder to be copied to a destination folder.")
-        )
-        self._vlayout.addWidget(help_label)
 
     def __init_form(self) -> None:
         flayout = QFormLayout()

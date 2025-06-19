@@ -6,18 +6,18 @@ from collections.abc import Sequence
 from pathlib import Path
 from typing import Optional, override
 
-from PySide6.QtWidgets import QApplication, QLabel, QTreeWidgetItem
+from PySide6.QtWidgets import QApplication, QTreeWidgetItem
 
 from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_list import FileList
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import EmptyError
-from ui.fomod_editor.editor_dialog import EditorDialog
-from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from .base_editor_widget import BaseEditorWidget
+from .editor_dialog import EditorDialog
+from .fs_item_editor_widget import FsItemEditorWidget
 
 
 class FileListEditorWidget(BaseEditorWidget[FileList]):
@@ -86,21 +86,17 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         return QApplication.translate("FileListEditorWidget", "Edit file list...")
 
     @override
+    @classmethod
+    def get_description(cls) -> str:
+        return QApplication.translate(
+            "FileListEditorWidget",
+            "The file list defines how files are copied to the destination folder.",
+        )
+
+    @override
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__init_header()
-        self.__init_tree_widget()
-
-    def __init_header(self) -> None:
-        help_label = QLabel(
-            self.tr(
-                "The file list defines how files are copied to the destination folder."
-            )
-        )
-        self._vlayout.addWidget(help_label)
-
-    def __init_tree_widget(self) -> None:
         self.__tree_widget = FileListEditorWidget.FileListTreeWidget(
             self._item.files + self._item.folders
         )
@@ -124,7 +120,6 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            # self.__tree_widget.updateItem(item)
             self.__tree_widget.removeItem(item)
             self.__tree_widget.addItem(editor.get_item())
 
