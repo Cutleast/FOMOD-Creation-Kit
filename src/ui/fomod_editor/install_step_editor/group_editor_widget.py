@@ -10,6 +10,7 @@ from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit
 from core.fomod.module_config.install_step.group import Group
 from core.fomod_editor.exceptions import NameIsMissingError
 from ui.widgets.enum_dropdown import EnumDropdown
+from ui.widgets.help_label import HelpLabel
 
 from ..base_editor_widget import BaseEditorWidget
 
@@ -53,7 +54,18 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
         self.__type_dropdown = EnumDropdown(
             enum_type=Group.Type, initial_value=self._item.type
         )
-        hlayout.addWidget(self.__type_dropdown)
+        hlayout.addWidget(self.__type_dropdown, stretch=1)
+
+        hlayout.addWidget(
+            HelpLabel(
+                self.tr(
+                    "The type of a group specifies if and how many plugins in the group "
+                    "must be selected by the user to be able to continue."
+                )
+                + "\n\n"
+                + Group.Type.get_localized_summary()
+            )
+        )
 
     @override
     def validate(self) -> None:

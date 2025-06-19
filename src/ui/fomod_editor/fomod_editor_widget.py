@@ -68,6 +68,7 @@ class FomodEditorWidget(QWidget):
 
     def __init_ui(self) -> None:
         self.__vlayout = QVBoxLayout()
+        self.__vlayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self.__vlayout)
 
         self.__status_banner = QLabel()

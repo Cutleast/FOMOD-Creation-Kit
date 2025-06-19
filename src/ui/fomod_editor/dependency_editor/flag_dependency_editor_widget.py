@@ -26,7 +26,7 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__value_entry.textChanged.connect(lambda _: self.changed.emit())
 
-        self.resize(800, 250)
+        self.setBaseSize(500, 120)
 
     @override
     @classmethod

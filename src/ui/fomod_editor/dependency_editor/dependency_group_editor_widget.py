@@ -10,6 +10,7 @@ from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
     QGridLayout,
+    QLabel,
     QLineEdit,
     QTabWidget,
     QWidget,
@@ -154,19 +155,43 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         self.__game_version_entry = QLineEdit()
         self.__game_version_entry.setEnabled(self._item.game_dependency is not None)
+        self.__game_version_entry.setPlaceholderText(
+            self.tr('eg. "1.6.1170.0" or "1.5.97"')
+        )
         if self._item.game_dependency is not None:
             self.__game_version_entry.setText(self._item.game_dependency.version)
         glayout.addWidget(self.__game_version_entry, 0, 1)
 
+        game_version_help_label = QLabel(
+            self.tr(
+                "When specified, the game must have the version above for this "
+                "dependency to be fulfilled."
+            )
+        )
+        game_version_help_label.setWordWrap(True)
+        glayout.addWidget(game_version_help_label, 1, 1)
+
+        glayout.addWidget(QLabel(), 2, 0)
+
         self.__fomm_version_checkbox = QCheckBox(self.tr("FOMM Version"))
         self.__fomm_version_checkbox.setChecked(self._item.fomm_dependency is not None)
-        glayout.addWidget(self.__fomm_version_checkbox, 1, 0)
+        glayout.addWidget(self.__fomm_version_checkbox, 3, 0)
 
         self.__fomm_version_entry = QLineEdit()
         self.__fomm_version_entry.setEnabled(self._item.fomm_dependency is not None)
         if self._item.fomm_dependency is not None:
             self.__fomm_version_entry.setText(self._item.fomm_dependency.version)
-        glayout.addWidget(self.__fomm_version_entry, 1, 1)
+        glayout.addWidget(self.__fomm_version_entry, 3, 1)
+
+        fomm_version_help_label = QLabel(
+            self.tr(
+                "This seems to be an outdated parameter specifying the minimum "
+                "required version of the Fallout Mod Manager. It is unsure whether this "
+                "affects anything or is considered by the installing mod manager."
+            )
+        )
+        fomm_version_help_label.setWordWrap(True)
+        glayout.addWidget(fomm_version_help_label, 4, 1)
 
     def __init_dependencies_tab(self) -> None:
         self.__dependencies_tree_widget_editor = TreeWidgetEditor(

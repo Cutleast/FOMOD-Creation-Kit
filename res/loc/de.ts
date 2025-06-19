@@ -64,23 +64,28 @@
 <context>
     <name>CompositeDependencyEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="50"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="51"/>
         <source>Edit composite dependency...</source>
         <translation>Zusammengesetzte Abhängigkeit bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="58"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="59"/>
         <source>Composite dependencies are used to group multiple dependencies together.</source>
         <translation>Zusammengesetzte Abhängigkeiten werden zum Gruppieren von mehreren Abhängigkeiten verwendet.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="71"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="72"/>
         <source>Operator:</source>
         <translation>Operator:</translation>
     </message>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor/composite_dependency_editor_widget.py" line="87"/>
+        <source>The operator determines whether all or any of the dependencies must be met.</source>
+        <translation>Der Operator bestimmt, ob alle oder nur beliebige Abhängigkeiten erfüllt sein müssen.</translation>
+    </message>
 </context>
 <context>
-    <name>ConditionalFilesEditorWidget</name>
+    <name>ConditionalFilesEditorTab</name>
     <message>
         <location filename="src/ui/fomod_editor/conditional_files_editor_tab.py" line="40"/>
         <source>Edit conditional files...</source>
@@ -95,68 +100,80 @@
 <context>
     <name>DependencyEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="46"/>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="38"/>
+        <source>Edit module dependencies...</source>
+        <translation>Modulabhängigkeiten bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="43"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="50"/>
-        <source>These are the dependencies the mod depends on.</source>
-        <translation>Dies sind die Abhängigkeiten, von denen die Mod abhängt.</translation>
-    </message>
-</context>
-<context>
-    <name>DependencyEditorWidget</name>
-    <message>
-        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="38"/>
-        <source>Edit module dependencies...</source>
-        <translation>Modulabhängigkeiten bearbeiten...</translation>
+        <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="52"/>
+        <source>These are the dependencies the mod depends on. It is up to the mod manager whether this is considered or not.</source>
+        <translation>Dies sind die Abhängigkeiten der Mod. Es ist dem Mod Manager überlassen, ob diese berücksichtigt werden oder nicht.</translation>
     </message>
 </context>
 <context>
     <name>DependencyGroupEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="99"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="100"/>
         <source>Files</source>
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="123"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="124"/>
         <source>Flags</source>
         <translation>Bedingungen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="145"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="146"/>
         <source>Versions</source>
         <translation>Versionen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="177"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="160"/>
+        <source>eg. &quot;1.6.1170.0&quot; or &quot;1.5.97&quot;</source>
+        <translation>z.B. &quot;1.6.1170.0&quot; oder &quot;1.5.97&quot;</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="202"/>
         <source>Dependencies</source>
         <translation>Abhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="80"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="81"/>
         <source>Edit dependency group...</source>
         <translation>Abhängigkeitengruppe bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="151"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="152"/>
         <source>Game Version</source>
         <translation>Spielversion</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="161"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="170"/>
+        <source>When specified, the game must have the version above for this dependency to be fulfilled.</source>
+        <translation>Wenn angegeben, muss das Spiel die oben genannte Version haben, damit diese Abhängigkeit erfüllt wird.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="176"/>
         <source>FOMM Version</source>
         <translation>FOMM-Version</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="208"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="192"/>
+        <source>This seems to be an outdated parameter specifying the minimum required version of the Fallout Mod Manager. It is unsure whether this affects anything or is considered by the installing mod manager.</source>
+        <translation>Das ist ein veralteter Wert, der angibt, welche Version des Fallout Mod Managers nötig ist. Es ist unklar, ob das irgendetwas beeinflusst oder vom installierenden Mod Manager berücksichtigt wird.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="233"/>
         <source>Game version is checked but missing!</source>
         <translation>Spielversion ist angehakt, fehlt aber!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="216"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="241"/>
         <source>FOMM version is checked but missing!</source>
         <translation>FOMM-Version ist angehakt, fehlt haber!</translation>
     </message>
@@ -341,7 +358,7 @@
         <translation>Dateiliste bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="100"/>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="96"/>
         <source>The file list defines how files are copied to the destination folder.</source>
         <translation>Diese Liste definiert, wie Dateien in den Zielordner kopiert werden.</translation>
     </message>
@@ -404,27 +421,27 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="156"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="157"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="178"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="179"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="199"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="200"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="223"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="224"/>
         <source>Installation steps (pages)</source>
         <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="247"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="248"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
     </message>
@@ -432,12 +449,12 @@
 <context>
     <name>FsItemEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="99"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="98"/>
         <source>Edit file system item...</source>
         <translation>Datei- oder Ordnerelement bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="111"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="106"/>
         <source>A file or folder to be copied to a destination folder.</source>
         <translation>Eine Datei oder ein Ordner, welche in einen Zielordner kopiert werden.</translation>
     </message>
@@ -457,12 +474,12 @@
         <translation>z.B. &quot;..\core\test.esp&quot;</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="53"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="52"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="56"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="55"/>
         <source>Folder</source>
         <translation>Ordner</translation>
     </message>
@@ -602,6 +619,11 @@
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
+    <message>
+        <location filename="src/ui/fomod_editor/install_step_editor/group_editor_widget.py" line="65"/>
+        <source>The type of a group specifies if and how many plugins in the group must be selected by the user to be able to continue.</source>
+        <translation>Der Typ einer Gruppe gibt an, ob und wie viele Plugins vom Nutzer ausgewählt werden müssen, damit dieser fortfahren kann.</translation>
+    </message>
 </context>
 <context>
     <name>GroupWidget</name>
@@ -613,6 +635,11 @@
 </context>
 <context>
     <name>InfoEditorTab</name>
+    <message>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="73"/>
+        <source>Edit FOMOD info...</source>
+        <translation>FOMOD-Info bearbeiten...</translation>
+    </message>
     <message>
         <location filename="src/ui/fomod_editor/info_editor_tab.py" line="101"/>
         <source>Name:</source>
@@ -647,14 +674,6 @@
         <location filename="src/ui/fomod_editor/info_editor_tab.py" line="127"/>
         <source>Image:</source>
         <translation>Bild:</translation>
-    </message>
-</context>
-<context>
-    <name>InfoEditorWidget</name>
-    <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="73"/>
-        <source>Edit FOMOD info...</source>
-        <translation>FOMOD-Info bearbeiten...</translation>
     </message>
 </context>
 <context>
@@ -1102,22 +1121,19 @@
 <context>
     <name>RequiredFilesEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="44"/>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="36"/>
+        <source>Edit required file installs...</source>
+        <translation>Erforderliche zu installierende Dateien bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="43"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="53"/>
+        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="52"/>
         <source>This list defines which files and folders must be installed by the installer.</source>
         <translation>Diese Liste definiert, welche Dateien und Ordner vom Installer installiert werden müssen.</translation>
-    </message>
-</context>
-<context>
-    <name>RequiredFilesEditorWidget</name>
-    <message>
-        <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="36"/>
-        <source>Edit required file installs...</source>
-        <translation>Erforderliche zu installierende Dateien bearbeiten...</translation>
     </message>
 </context>
 <context>
@@ -1285,22 +1301,19 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>StepsEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="41"/>
+        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="33"/>
+        <source>Edit installation steps...</source>
+        <translation>Installationsschritte bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="38"/>
         <source>Installation steps</source>
         <translation>Installationsschritte</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="47"/>
+        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="46"/>
         <source>These are the installation steps (or pages) of a FOMOD installer.</source>
-        <translation>Dies sind die Installationsschritte (oder Seite) eines FOMOD-Installers.</translation>
-    </message>
-</context>
-<context>
-    <name>StepsEditorWidget</name>
-    <message>
-        <location filename="src/ui/fomod_editor/steps_editor_tab.py" line="33"/>
-        <source>Edit installation steps...</source>
-        <translation>Installationsschritte bearbeiten...</translation>
+        <translation>Dies sind die Installationsschritte (oder Seiten) eines FOMOD-Installers.</translation>
     </message>
 </context>
 <context>

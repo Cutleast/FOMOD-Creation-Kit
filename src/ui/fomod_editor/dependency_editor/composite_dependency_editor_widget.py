@@ -12,6 +12,7 @@ from core.fomod.module_config.dependency.composite_dependency import (
     CompositeDependency,
 )
 from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
+from ui.widgets.help_label import HelpLabel
 
 from ..base_editor_widget import BaseEditorWidget
 from .dependency_group_editor_widget import DependencyGroupEditorWidget
@@ -76,6 +77,17 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
             orientation=Qt.Orientation.Horizontal,
         )
         hlayout.addWidget(self.__operator_selector)
+
+        hlayout.addWidget(
+            HelpLabel(
+                self.tr(
+                    "The operator determines whether all or any of the dependencies "
+                    "must be met."
+                )
+                + "\n\n"
+                + CompositeDependency.Operator.get_localized_summary()
+            )
+        )
 
         hlayout.addStretch()
 
