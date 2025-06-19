@@ -99,10 +99,17 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     __plugins_tree_widget: PluginsTreeWidget
 
-    def __init__(self, item: InstallStep, fomod_path: Path | None = None) -> None:
+    def __init__(
+        self,
+        item: InstallStep,
+        fomod_path: Optional[Path],
+        show_title: bool = False,
+        show_description: bool = True,
+        scrollable: bool = True,
+    ) -> None:
         self.__groups = deepcopy(item.optional_file_groups.groups)
 
-        super().__init__(item, fomod_path)
+        super().__init__(item, fomod_path, show_title, show_description, scrollable)
 
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__visibility_editor_widget.changed.connect(self.changed.emit)
@@ -275,7 +282,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     def __add_plugin(self) -> None:
         plugin = Plugin.create()
         dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(plugin, self._fomod_path), validate_on_init=True
+            PluginEditorWidget(plugin, self._fomod_path, scrollable=False),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -283,7 +291,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __edit_plugin(self, plugin: Plugin) -> None:
         dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(plugin, self._fomod_path)
+            PluginEditorWidget(plugin, self._fomod_path, scrollable=False)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

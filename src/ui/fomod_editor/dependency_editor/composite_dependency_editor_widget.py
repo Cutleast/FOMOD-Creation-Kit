@@ -26,9 +26,14 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
     __operator_selector: EnumRadiobuttonsWidget[CompositeDependency.Operator]
 
     def __init__(
-        self, item: CompositeDependency, fomod_path: Optional[Path] = None
+        self,
+        item: CompositeDependency,
+        fomod_path: Optional[Path] = None,
+        show_title: bool = False,
+        show_description: bool = True,
+        scrollable: bool = True,
     ) -> None:
-        super().__init__(item, fomod_path)
+        super().__init__(item, fomod_path, show_title, show_description, scrollable)
 
         self.__operator_selector.currentValueChanged.connect(
             lambda value: self.changed.emit()

@@ -37,6 +37,7 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
 
     __show_title: bool
     __show_description: bool
+    __scrollable: bool
 
     _vlayout: QVBoxLayout
 
@@ -46,6 +47,7 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         fomod_path: Optional[Path],
         show_title: bool = False,
         show_description: bool = True,
+        scrollable: bool = True,
     ) -> None:
         """
         Args:
@@ -57,6 +59,8 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
                 Whether to show the title at the top. Defaults to False.
             show_description (bool, optional):
                 Whether to show the description at the top, if any. Defaults to True.
+            scrollable (bool, optional):
+                Whether to make the widget scrollable. Defaults to True.
         """
 
         super().__init__()
@@ -66,19 +70,24 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
 
         self.__show_title = show_title
         self.__show_description = show_description
+        self.__scrollable = scrollable
 
         self._init_ui()
 
     def _init_ui(self) -> None:
-        scroll_widget = QWidget()
-        scroll_widget.setObjectName("transparent")
-        scroll_widget.setContentsMargins(0, 0, 0, 0)
-        self.setWidget(scroll_widget)
-
         self._vlayout = QVBoxLayout()
         self._vlayout.setContentsMargins(0, 0, 0, 0)
         self._vlayout.setAlignment(Qt.AlignmentFlag.AlignTop)
-        scroll_widget.setLayout(self._vlayout)
+
+        if self.__scrollable:
+            scroll_widget = QWidget()
+            scroll_widget.setObjectName("transparent")
+            scroll_widget.setContentsMargins(0, 0, 0, 0)
+            scroll_widget.setLayout(self._vlayout)
+            self.setWidget(scroll_widget)
+            self.setWidgetResizable(True)
+        else:
+            self.setLayout(self._vlayout)
 
         if self.__show_title:
             title_label = QLabel(self.get_title().strip() or self.get_display_name())

@@ -55,8 +55,15 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
     __condition_flags_tree_widget: TreeWidgetEditor[SetConditionFlag]
     __type_descriptor_editor_widget: TypeDescriptorEditorWidget
 
-    def __init__(self, item: Plugin, fomod_path: Path | None = None) -> None:
-        super().__init__(item, fomod_path)
+    def __init__(
+        self,
+        item: Plugin,
+        fomod_path: Optional[Path],
+        show_title: bool = False,
+        show_description: bool = True,
+        scrollable: bool = True,
+    ) -> None:
+        super().__init__(item, fomod_path, show_title, show_description, scrollable)
 
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__description_entry.textChanged.connect(self.changed.emit)
@@ -98,7 +105,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
 
         self.__init_tab_widget()
 
-        self.setBaseSize(1000, 800)
+        self.setBaseSize(1000, 850)
 
     def __init_header(self) -> None:
         self.__image_label = ImageLabel(
