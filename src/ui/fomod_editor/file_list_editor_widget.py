@@ -35,7 +35,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
             for item in initial_items:
                 tree_widget_item = QTreeWidgetItem(
-                    [str(item.source), str(item.destination)]
+                    [str(item.source), str(item.destination or "")]
                 )
                 self._tree_widget.addTopLevelItem(tree_widget_item)
                 self._items[item] = tree_widget_item
@@ -55,7 +55,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         def addItem(self, item: FileSystemItem) -> None:
             if item not in self._items:
                 tree_widget_item = QTreeWidgetItem(
-                    [str(item.source), str(item.destination)]
+                    [str(item.source), str(item.destination or "")]
                 )
                 self._tree_widget.addTopLevelItem(tree_widget_item)
                 self._items[item] = tree_widget_item
@@ -67,7 +67,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
             if item in self._items:
                 tree_widget_item: QTreeWidgetItem = self._items[item]
                 tree_widget_item.setText(0, str(item.source))
-                tree_widget_item.setText(1, str(item.destination))
+                tree_widget_item.setText(1, str(item.destination or ""))
 
                 self.changed.emit()
 
