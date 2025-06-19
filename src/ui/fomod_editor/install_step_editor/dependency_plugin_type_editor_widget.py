@@ -14,14 +14,12 @@ from core.fomod.module_config.dependency.dependency_plugin_type import (
     DependencyPluginType,
 )
 from core.fomod_editor.exceptions import SpecificEmptyError
-from ui.fomod_editor.editor_dialog import EditorDialog
-from ui.fomod_editor.install_step_editor.dependency_pattern_editor_widget import (
-    DependencyPatternEditorWidget,
-)
 from ui.widgets.enum_dropdown import EnumDropdown
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
+from ..editor_dialog import EditorDialog
+from .dependency_pattern_editor_widget import DependencyPatternEditorWidget
 
 
 class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
