@@ -57,10 +57,6 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
         self.__init_operator_selector()
         self.__init_dependency_group_editor_widget()
 
-        self.__operator_selector.currentValueChanged.connect(
-            lambda value: self.changed.emit()
-        )
-
         self.setBaseSize(700, 400)
 
     def __init_operator_selector(self) -> None:
