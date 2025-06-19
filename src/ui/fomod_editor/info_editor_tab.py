@@ -113,6 +113,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
         self.__description_entry = CollapsibleTextEdit()
         self.__description_entry.setPlainText(self._item.info.description)
+        self.__description_entry.setExpanded(False)
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
         self.__image_path_entry = BrowseLineEdit()
