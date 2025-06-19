@@ -304,7 +304,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         if not self.__groups_tree_widget.getItems():
             raise SpecificEmptyError(self.tr("At least one group must be added!"))
 
-        if not all(group.plugins.plugins for group in self.__groups):
+        if not all(
+            group.plugins.plugins for group in self.__groups_tree_widget.getItems()
+        ):
             raise SpecificValidationError(
                 self.tr("Every group must have at least one plugin!")
             )
