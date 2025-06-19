@@ -25,6 +25,7 @@ from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
     EmptyError,
     NameIsMissingError,
+    SpecificEmptyError,
     SpecificValidationError,
 )
 from ui.widgets.section_area_widget import SectionAreaWidget
@@ -301,7 +302,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             pass
 
         if not self.__groups_tree_widget.getItems():
-            raise EmptyError
+            raise SpecificEmptyError(self.tr("At least one group must be added!"))
 
         if not all(group.plugins.plugins for group in self.__groups):
             raise SpecificValidationError(

@@ -13,7 +13,7 @@ from core.fomod.module_config.dependency.dependency_pattern import DependencyPat
 from core.fomod.module_config.dependency.dependency_plugin_type import (
     DependencyPluginType,
 )
-from core.fomod_editor.exceptions import EmptyError
+from core.fomod_editor.exceptions import SpecificEmptyError
 from ui.fomod_editor.editor_dialog import EditorDialog
 from ui.fomod_editor.install_step_editor.dependency_pattern_editor_widget import (
     DependencyPatternEditorWidget,
@@ -144,7 +144,9 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
     @override
     def validate(self) -> None:
         if not self.__pattern_tree_widget.getItems():
-            raise EmptyError
+            raise SpecificEmptyError(
+                self.tr("At least one pattern has to be specified!")
+            )
 
     @override
     def save(self) -> DependencyPluginType:

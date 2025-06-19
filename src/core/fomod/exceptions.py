@@ -19,7 +19,7 @@ class NotAFomodError(ExceptionBase):
         super().__init__(path)
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "exceptions", "The path ('{0}') does not point to a FOMOD installer!"
         )
@@ -34,7 +34,7 @@ class XmlValidationError(ExceptionBase):
         super().__init__(file_name)
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "exceptions",
             "Failed to save the FOMOD installer! Could not validate '{0}'.",

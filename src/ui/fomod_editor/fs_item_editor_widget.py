@@ -20,7 +20,7 @@ from PySide6.QtWidgets import (
 from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
-from core.fomod_editor.exceptions import SpecificValidationError
+from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
 from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.enum_dropdown import LocalizedEnum
@@ -188,7 +188,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
     @override
     def validate(self) -> None:
         if not self.__source_entry.text().strip():
-            raise SpecificValidationError(self.tr("The source path must not be empty!"))
+            raise SpecificEmptyError(self.tr("The source path must not be empty!"))
 
         source_path: Path = get_joined_path_if_relative(
             Path(self.__source_entry.text().strip()), base_path=self._fomod_path

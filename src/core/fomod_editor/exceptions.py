@@ -26,7 +26,7 @@ class SpecificValidationError(ValidationError):
         super().__init__(message)
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return "{0}"
 
 
@@ -36,10 +36,23 @@ class EmptyError(ValidationError):
     """
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "fomod_editor", "At least one item or field has to be specified!"
         )
+
+
+class SpecificEmptyError(EmptyError):
+    """
+    EmptyError with a custom message.
+    """
+
+    def __init__(self, message: str) -> None:
+        super().__init__(message)
+
+    @override
+    def _get_localized_message(self) -> str:
+        return "{0}"
 
 
 class PathNotInFomodError(ValidationError):
@@ -51,7 +64,7 @@ class PathNotInFomodError(ValidationError):
         super().__init__(str(invalid_path), str(fomod_path))
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "fomod_editor", "The path\n'{0}'\nis outside the FOMOD folder\n'{1}'!"
         )
@@ -66,7 +79,7 @@ class ImageTypeNotSupportedError(ValidationError):
         super().__init__(image_type)
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "fomod_editor",
             "The image type '{0}' is not supported by FOMOD installers!",
@@ -82,7 +95,7 @@ class FileDoesNotExistError(ValidationError):
         super().__init__(str(file_path))
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate(
             "fomod_editor", "The file\n'{0}'\ndoes not exist!"
         )
@@ -94,7 +107,7 @@ class FileNameIsMissingError(ValidationError):
     """
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate("fomod_editor", "The file name is missing!")
 
 
@@ -104,7 +117,7 @@ class NameIsMissingError(ValidationError):
     """
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate("fomod_editor", "The name is missing!")
 
 
@@ -114,5 +127,5 @@ class ValueIsMissingError(ValidationError):
     """
 
     @override
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         return QApplication.translate("fomod_editor", "The value is missing!")

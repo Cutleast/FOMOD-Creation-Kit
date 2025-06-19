@@ -17,7 +17,7 @@ from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
     EmptyError,
     NameIsMissingError,
-    SpecificValidationError,
+    SpecificEmptyError,
 )
 from core.utilities.exception_handler import ExceptionHandler
 from ui.widgets.browse_edit import BrowseLineEdit
@@ -211,7 +211,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
                 len(self.__condition_flags_tree_widget.getItems()) == 0,
             ]
         ):
-            raise SpecificValidationError(
+            raise SpecificEmptyError(
                 self.tr(
                     "At least one file, folder or condition flag must be specified!"
                 )

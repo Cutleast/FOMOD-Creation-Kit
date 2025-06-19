@@ -23,7 +23,7 @@ def format_exception(
     """
 
     if isinstance(exception, ExceptionBase) and only_message_when_localized:
-        return exception.getLocalizedMessage()
+        return str(exception)
 
     return "".join(traceback.format_exception(exception))
 
@@ -34,13 +34,14 @@ class ExceptionBase(Exception):
     """
 
     def __init__(self, *values: Any) -> None:
-        super().__init__(self.getLocalizedMessage().format(*values))
+        super().__init__(self._get_localized_message().format(*values))
 
     @abstractmethod
-    def getLocalizedMessage(self) -> str:
+    def _get_localized_message(self) -> str:
         """
-        Returns localized message
+        Returns raw localized message with placeholders. Use `__str__()` to get the full
+        message.
 
         Returns:
-            str: Localized message
+            str: Localized message with placeholders
         """

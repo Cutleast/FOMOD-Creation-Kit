@@ -11,7 +11,7 @@ from PySide6.QtWidgets import QApplication, QSplitter
 from core.fomod.module_config.install_step.install_step import InstallStep
 from core.fomod.module_config.install_step.order import Order
 from core.fomod.module_config.install_step.step_list import StepList
-from core.fomod_editor.exceptions import EmptyError
+from core.fomod_editor.exceptions import SpecificEmptyError
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
@@ -117,7 +117,9 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
     @override
     def validate(self) -> None:
         if not self.__steps_tree_widget.getItems():
-            raise EmptyError
+            raise SpecificEmptyError(
+                self.tr("At least one install step must be added!")
+            )
 
     @override
     def save(self) -> StepList:
