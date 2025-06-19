@@ -318,7 +318,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     def save(self) -> InstallStep:
         self._item.name = self.__name_entry.text().strip()
 
-        if (visibility := self.__visibility_editor_widget.save()).is_empty():
+        if not (visibility := self.__visibility_editor_widget.save()).is_empty():
             self._item.visible = Visible(dependencies=visibility)
         else:
             self._item.visible = None

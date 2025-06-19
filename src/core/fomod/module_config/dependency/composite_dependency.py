@@ -123,10 +123,10 @@ class CompositeDependency(BaseXmlModel, search_mode="unordered"):
     def is_empty(self) -> bool:
         """
         Returns:
-            bool: Whether this dependency is empty.
+            bool: `True` if this dependency is empty, `False` otherwise.
         """
 
-        return any(
+        return not any(
             [
                 self.file_dependencies,
                 self.flag_dependencies,
