@@ -24,7 +24,6 @@ from core.utilities.logger import Logger
 from core.utilities.updater import Updater
 from ui.main_window import MainWindow
 from ui.utilities.stylesheet_processor import StylesheetProcessor
-from ui.utilities.ui_mode import UIMode
 
 
 class App(QApplication):
@@ -79,8 +78,7 @@ class App(QApplication):
         self.setWindowIcon(QIcon(":/icons/icon.svg"))
         self.load_translation()
 
-        ui_mode: UIMode = UIMode.get(self.app_config.ui_mode, UIMode.System)
-        self.stylesheet_processor = StylesheetProcessor(self, ui_mode)
+        self.stylesheet_processor = StylesheetProcessor(self, self.app_config.ui_mode)
         self.exception_handler = ExceptionHandler(self)
         self.main_window = MainWindow(
             self.app_config, self.behavior_config, self.logger
