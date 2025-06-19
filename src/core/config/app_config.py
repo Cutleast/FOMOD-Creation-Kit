@@ -18,7 +18,7 @@ class AppConfig(BaseConfig):
     Class for managing application settings.
     """
 
-    log_level: Annotated[Logger.Level, Field(alias="log.level")] = Logger.Level.DEBUG
+    log_level: Annotated[Logger.Level, Field(alias="log.level")] = Logger.Level.Debug
     """Log level"""
 
     log_num_of_files: Annotated[int, Field(alias="log.num_of_files", ge=-1)] = 5

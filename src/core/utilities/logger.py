@@ -38,19 +38,19 @@ class Logger(logging.Logger):
     class Level(BaseEnum):
         """Enum for logging levels."""
 
-        DEBUG = "DEBUG"
+        Debug = "DEBUG"
         """Debugging log level"""
 
-        INFO = "INFO"
+        Info = "INFO"
         """Information log level"""
 
-        WARNING = "WARNING"
+        Warning = "WARNING"
         """Warning log level"""
 
-        ERROR = "ERROR"
+        Error = "ERROR"
         """Error log level"""
 
-        CRITICAL = "CRITICAL"
+        Critical = "CRITICAL"
         """Critical log level"""
 
     def __init__(

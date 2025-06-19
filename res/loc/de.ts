@@ -1209,44 +1209,44 @@
         <translation>Protokoll-Level:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="106"/>
+        <location filename="src/ui/settings/settings_widget.py" line="99"/>
         <source>Number of newest log files to keep:</source>
         <translation>Anzahl der neuesten zu behaltenden Protokolldateien:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="119"/>
+        <location filename="src/ui/settings/settings_widget.py" line="112"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="133"/>
+        <location filename="src/ui/settings/settings_widget.py" line="123"/>
         <source>UI mode:</source>
         <translation>UI Modus:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="148"/>
+        <location filename="src/ui/settings/settings_widget.py" line="135"/>
         <source>Behavior settings</source>
         <translation>Verhaltenseinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="155"/>
+        <location filename="src/ui/settings/settings_widget.py" line="142"/>
         <source>Finalize on save (recommended)</source>
         <translation>Beim Speichern finalisieren (empfohlen)</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="163"/>
+        <location filename="src/ui/settings/settings_widget.py" line="150"/>
         <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
 This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
         <translation>Finalisieren bedeutet, dass alle Dateien von außerhalb des FOMODs in das Verzeichnis des FOMODs kopiert werden und dessen Pfade relativ gemacht werden.
 Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="168"/>
+        <location filename="src/ui/settings/settings_widget.py" line="155"/>
         <source>Validate XML files on save</source>
         <translation>XML-Dateien beim Speichern validieren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="184"/>
+        <location filename="src/ui/settings/settings_widget.py" line="171"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Für ModuleConfig.xml verwendeter Zeichensatz:</translation>
     </message>
@@ -1347,6 +1347,24 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
         <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="90"/>
         <source>Edit plugin type descriptor...</source>
         <translation>Plugin-Typdefinition bearbeiten...</translation>
+    </message>
+</context>
+<context>
+    <name>UIMode</name>
+    <message>
+        <location filename="src/ui/utilities/ui_mode.py" line="24"/>
+        <source>Dark</source>
+        <translation>Dunkel</translation>
+    </message>
+    <message>
+        <location filename="src/ui/utilities/ui_mode.py" line="25"/>
+        <source>Light</source>
+        <translation>Hell</translation>
+    </message>
+    <message>
+        <location filename="src/ui/utilities/ui_mode.py" line="26"/>
+        <source>System</source>
+        <translation>System</translation>
     </message>
 </context>
 <context>

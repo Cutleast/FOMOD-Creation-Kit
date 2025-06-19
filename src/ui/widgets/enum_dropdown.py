@@ -41,10 +41,6 @@ class EnumDropdown[E: Enum](QComboBox):
         else:
             for e in enum_type:
                 self.addItem(e.name)
-                if e.__doc__ is not None:
-                    self.setItemData(
-                        self.count() - 1, e.__doc__, role=Qt.ItemDataRole.ToolTipRole
-                    )
 
         if initial_value is not None:
             if isinstance(initial_value, LocalizedEnum):

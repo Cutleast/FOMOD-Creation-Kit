@@ -33,7 +33,7 @@ class TestAppConfig(BaseTest):
         app_config: AppConfig = AppConfig.load(user_config_path)
 
         # then
-        assert app_config.log_level == Logger.Level.DEBUG
+        assert app_config.log_level == Logger.Level.Debug
         assert app_config.log_num_of_files == 5
 
     def test_load_user_config(self, test_fs: FakeFilesystem) -> None:
@@ -56,7 +56,7 @@ class TestAppConfig(BaseTest):
         app_config: AppConfig = AppConfig.load(user_config_path)
 
         # then
-        assert app_config.log_level == Logger.Level.CRITICAL
+        assert app_config.log_level == Logger.Level.Critical
         assert app_config.language == Language.German
         assert app_config.log_num_of_files == 10
 
@@ -79,13 +79,13 @@ class TestAppConfig(BaseTest):
         app_config: AppConfig = AppConfig.load(user_config_path)
 
         # when
-        app_config.log_level = Logger.Level.CRITICAL
+        app_config.log_level = Logger.Level.Critical
         app_config.language = Language.German
         app_config.save()
 
         # then
         app_config: AppConfig = AppConfig.load(user_config_path)
-        assert app_config.log_level == Logger.Level.CRITICAL
+        assert app_config.log_level == Logger.Level.Critical
         assert app_config.language == Language.German
 
         # when

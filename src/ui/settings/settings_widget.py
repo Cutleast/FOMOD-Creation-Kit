@@ -47,10 +47,10 @@ class SettingsWidget(SmoothScrollArea):
 
     __vlayout: QVBoxLayout
 
-    __log_level_box: QComboBox
+    __log_level_box: EnumDropdown[Logger.Level]
     __log_num_of_files_box: QSpinBox
-    __language_box: QComboBox
-    __ui_mode_box: QComboBox
+    __language_box: EnumDropdown[Language]
+    __ui_mode_box: EnumDropdown[UIMode]
 
     __finalize_checkbox: QCheckBox
     __validate_xml_checkbox: QCheckBox
@@ -88,17 +88,10 @@ class SettingsWidget(SmoothScrollArea):
         log_level_label = QLabel(self.tr("Log level:"))
         app_settings_glayout.addWidget(log_level_label, 0, 0)
 
-        self.__log_level_box = QComboBox()
-        self.__log_level_box.setEditable(False)
-        self.__log_level_box.addItems(
-            [level.name.capitalize() for level in Logger.Level]
-        )
-        self.__log_level_box.setCurrentText(
-            self.__app_config.log_level.name.capitalize()
-        )
+        self.__log_level_box = EnumDropdown(Logger.Level, self.__app_config.log_level)
         self.__log_level_box.installEventFilter(self)
-        self.__log_level_box.currentTextChanged.connect(lambda _: self.changed.emit())
-        self.__log_level_box.currentTextChanged.connect(
+        self.__log_level_box.currentValueChanged.connect(lambda _: self.changed.emit())
+        self.__log_level_box.currentValueChanged.connect(
             lambda _: self.restart_required.emit()
         )
         app_settings_glayout.addWidget(self.__log_level_box, 0, 1)
@@ -119,13 +112,10 @@ class SettingsWidget(SmoothScrollArea):
         language_label = QLabel(self.tr("Language:"))
         app_settings_glayout.addWidget(language_label, 2, 0)
 
-        self.__language_box = QComboBox()
-        self.__language_box.setEditable(False)
-        self.__language_box.addItems([lang.name for lang in Language])
-        self.__language_box.setCurrentText(self.__app_config.language.name)
+        self.__language_box = EnumDropdown(Language, self.__app_config.language)
         self.__language_box.installEventFilter(self)
-        self.__language_box.currentTextChanged.connect(lambda _: self.changed.emit())
-        self.__language_box.currentTextChanged.connect(
+        self.__language_box.currentValueChanged.connect(lambda _: self.changed.emit())
+        self.__language_box.currentValueChanged.connect(
             lambda _: self.restart_required.emit()
         )
         app_settings_glayout.addWidget(self.__language_box, 2, 1)
@@ -133,13 +123,10 @@ class SettingsWidget(SmoothScrollArea):
         ui_mode_label = QLabel(self.tr("UI mode:"))
         app_settings_glayout.addWidget(ui_mode_label, 3, 0)
 
-        self.__ui_mode_box = QComboBox()
-        self.__ui_mode_box.setEditable(False)
-        self.__ui_mode_box.addItems([m.name for m in UIMode])
-        self.__ui_mode_box.setCurrentText(self.__app_config.ui_mode.capitalize())
+        self.__ui_mode_box = EnumDropdown(UIMode, self.__app_config.ui_mode)
         self.__ui_mode_box.installEventFilter(self)
-        self.__ui_mode_box.currentTextChanged.connect(lambda _: self.changed.emit())
-        self.__ui_mode_box.currentTextChanged.connect(
+        self.__ui_mode_box.currentValueChanged.connect(lambda _: self.changed.emit())
+        self.__ui_mode_box.currentValueChanged.connect(
             lambda _: self.restart_required.emit()
         )
         app_settings_glayout.addWidget(self.__ui_mode_box, 3, 1)
@@ -202,12 +189,10 @@ class SettingsWidget(SmoothScrollArea):
         Applies the current settings to the AppConfig.
         """
 
-        self.__app_config.log_level = Logger.Level[
-            self.__log_level_box.currentText().upper()
-        ]
+        self.__app_config.log_level = self.__log_level_box.getCurrentValue()
         self.__app_config.log_num_of_files = self.__log_num_of_files_box.value()
-        self.__app_config.language = Language[self.__language_box.currentText()]
-        self.__app_config.ui_mode = UIMode[self.__ui_mode_box.currentText()]
+        self.__app_config.language = self.__language_box.getCurrentValue()
+        self.__app_config.ui_mode = self.__ui_mode_box.getCurrentValue()
 
         self.__behavior_config.validate_xml_on_save = (
             self.__validate_xml_checkbox.isChecked()
