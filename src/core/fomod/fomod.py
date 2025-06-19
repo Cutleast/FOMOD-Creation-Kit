@@ -185,6 +185,6 @@ class Fomod:
 
         return Fomod(
             path=None,
-            info=FomodInfo(name="default"),
-            module_config=ModuleConfig(module_name=ModuleTitle(title="default")),
+            info=FomodInfo(name=""),
+            module_config=ModuleConfig(module_name=ModuleTitle(title="")),
         )
