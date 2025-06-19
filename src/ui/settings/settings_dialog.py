@@ -43,8 +43,8 @@ class SettingsDialog(QDialog):
 
         self.__init_ui()
         self.setWindowTitle(self.tr("Settings"))
-        self.setMinimumSize(600, 535)
-        self.resize(600, 535)
+        self.setMinimumSize(600, 580)
+        self.resize(600, 580)
 
     def __init_ui(self) -> None:
         self.__vlayout = QVBoxLayout()
