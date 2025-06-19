@@ -80,9 +80,7 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
         self.__init_steps_tree_widget()
         self.__init_install_step_preview_widget()
 
-        # self.__splitter.setStretchFactor(0, 1)
         self.__splitter.setStretchFactor(1, 1)
-        # self.__splitter.setSizes([300, self.__splitter.width() - 300])
 
     def __init_steps_tree_widget(self) -> None:
         self.__steps_tree_widget = StepListEditorWidget.StepsTreeWidget(
