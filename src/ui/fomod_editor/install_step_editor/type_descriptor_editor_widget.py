@@ -147,6 +147,10 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
         )
         vlayout.addWidget(self.__static_type_selector)
 
+        help_label = QLabel(PluginType.Type.get_localized_summary())
+        help_label.setWordWrap(True)
+        vlayout.addWidget(help_label)
+
     def __init_dynamic_type_editor(self) -> None:
         self.__dynamic_type_editor = DependencyPluginTypeEditorWidget(
             self._item.dependency_type or DependencyPluginType.create(),
