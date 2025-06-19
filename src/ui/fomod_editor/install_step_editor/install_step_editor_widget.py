@@ -45,6 +45,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     Widget for editing a single install step.
     """
 
+    MIN_VISIBILITY_EDITOR_HEIGHT: int = 420
+    """The minimum height of the expanded visibility editor."""
+
     __groups: list[Group]
 
     __name_entry: QLineEdit
@@ -162,11 +165,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self.__init_groups_tree_widget()
         self.__init_plugins_tree_widget()
 
-        self.setBaseSize(1000, 800)
+        self.setBaseSize(1200, 850)
 
-        self.__vertical_splitter.setSizes(
-            [100, self.__vertical_splitter.height() - 100]
-        )
+        self.__vertical_splitter.setStretchFactor(1, 1)
         self.__vertical_splitter.setHandleWidth(0)
 
     def __init_name_field(self) -> None:
@@ -203,18 +204,21 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self.__visibility_editor_widget = CompositeDependencyEditorWidget(
             deepcopy(self._item.visible.dependencies)
             if self._item.visible is not None
-            else CompositeDependency()
+            else CompositeDependency(),
+            scrollable=False,
         )
 
         section_area_widget = SectionAreaWidget(
-            header=self.__visibility_label,
-            content=self.__visibility_editor_widget,
-            # toggle_position=SectionAreaWidget.TogglePosition.Right,
+            header=self.__visibility_label, content=self.__visibility_editor_widget
         )
         section_area_widget.setContentsMargins(0, 0, 0, 0)
         section_area_widget.toggled.connect(
             lambda expanded: (
-                visibility_group_box.setMinimumHeight(400 if expanded else 100),
+                visibility_group_box.setMinimumHeight(
+                    InstallStepEditorWidget.MIN_VISIBILITY_EDITOR_HEIGHT
+                    if expanded
+                    else 100
+                ),
                 self.__vertical_splitter.setSizes(
                     [
                         visibility_group_box.minimumHeight(),
@@ -233,11 +237,17 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self.__vertical_splitter.addWidget(self.__horizontal_splitter)
 
     def __init_groups_tree_widget(self) -> None:
-        group_box = QGroupBox(self.tr("Optional file groups:"))
+        group_box = QGroupBox(self.tr("File groups"))
         self.__horizontal_splitter.addWidget(group_box)
 
         group_vlayout = QVBoxLayout()
         group_box.setLayout(group_vlayout)
+
+        help_label = QLabel(
+            self.tr("A group is used to combine multiple related plugins together.")
+        )
+        help_label.setWordWrap(True)
+        group_vlayout.addWidget(help_label)
 
         self.__groups_tree_widget = InstallStepEditorWidget.GroupsTreeWidget(
             self.__groups
@@ -245,11 +255,20 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         group_vlayout.addWidget(self.__groups_tree_widget, stretch=1)
 
     def __init_plugins_tree_widget(self) -> None:
-        plugin_box = QGroupBox(self.tr("Plugins:"))
+        plugin_box = QGroupBox(self.tr("Plugins"))
         self.__horizontal_splitter.addWidget(plugin_box)
 
         plugin_vlayout = QVBoxLayout()
         plugin_box.setLayout(plugin_vlayout)
+
+        help_label = QLabel(
+            self.tr(
+                "A plugin is a single selection option that can install files or set "
+                "some flags when selected."
+            )
+        )
+        help_label.setWordWrap(True)
+        plugin_vlayout.addWidget(help_label)
 
         self.__plugins_tree_widget = InstallStepEditorWidget.PluginsTreeWidget()
         plugin_vlayout.addWidget(self.__plugins_tree_widget, stretch=1)
