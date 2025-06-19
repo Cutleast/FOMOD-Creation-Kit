@@ -29,7 +29,7 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
         self.__file_name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__state_dropdown.currentValueChanged.connect(lambda _: self.changed.emit())
 
-        self.setBaseSize(500, 200)
+        self.setBaseSize(500, 210)
 
     @override
     @classmethod
