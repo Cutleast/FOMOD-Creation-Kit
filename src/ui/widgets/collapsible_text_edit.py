@@ -2,18 +2,12 @@
 Copyright (c) Cutleast
 """
 
-from typing import Optional
+from typing import Optional, override
 
 import qtawesome as qta
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import (
-    QHBoxLayout,
-    QPlainTextEdit,
-    QPushButton,
-    QSizePolicy,
-    QWidget,
-)
+from PySide6.QtGui import QIcon, QResizeEvent
+from PySide6.QtWidgets import QPlainTextEdit, QPushButton, QSizePolicy, QWidget
 
 
 class CollapsibleTextEdit(QPlainTextEdit):
@@ -50,25 +44,31 @@ class CollapsibleTextEdit(QPlainTextEdit):
 
         self.__toggle_button.toggled.connect(self.__toggle)
 
+        self.adjustSize()
+
     def __init_ui(self) -> None:
-        self.setContentsMargins(-5, -5, -5, -5)
-        hlayout = QHBoxLayout()
-        hlayout.setContentsMargins(0, 0, 0, 0)
-        self.setLayout(hlayout)
-
-        hlayout.addStretch()
-
-        self.__toggle_button = QPushButton()
+        self.__toggle_button = QPushButton(self)
         self.__toggle_button.setObjectName("toggle_button")
         self.__toggle_button.setIcon(self.__collapse_icon)
         self.__toggle_button.setCheckable(True)
         self.__toggle_button.setChecked(True)
-        hlayout.addWidget(self.__toggle_button, alignment=Qt.AlignmentFlag.AlignTop)
+        self.__toggle_button.setFixedSize(39, 36)
+        self.__toggle_button.show()
+
+    @override
+    def resizeEvent(self, e: QResizeEvent) -> None:
+        super().resizeEvent(e)
+
+        self.__update_button_position()
+
+    def __update_button_position(self) -> None:
+        self.__toggle_button.move(self.width() - self.__toggle_button.width(), 0)
 
     def __toggle(self, expanded: bool) -> None:
         if expanded:
             self.__toggle_button.setIcon(self.__collapse_icon)
-            self.setMinimumHeight(40)
+            self.__toggle_button.setToolTip(self.tr("Reduce"))
+            self.setMinimumHeight(70)
             self.setMaximumHeight(CollapsibleTextEdit.MAX_HEIGHT)
             self.setSizePolicy(
                 self.sizePolicy().horizontalPolicy(), QSizePolicy.Policy.Expanding
@@ -76,8 +76,10 @@ class CollapsibleTextEdit(QPlainTextEdit):
             self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
         else:
             self.__toggle_button.setIcon(self.__expand_icon)
-            self.setFixedHeight(40)
+            self.__toggle_button.setToolTip(self.tr("Expand"))
+            self.setFixedHeight(36)
             self.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+            self.verticalScrollBar().setValue(0)
 
         self.setProperty("expanded", expanded)
         self.style().unpolish(self)
@@ -108,3 +110,20 @@ class CollapsibleTextEdit(QPlainTextEdit):
         """
 
         self.__toggle_button.toggle()
+
+
+if __name__ == "__main__":
+    from PySide6.QtWidgets import QApplication, QVBoxLayout
+
+    app = QApplication()
+
+    window = QWidget()
+    layout = QVBoxLayout()
+    window.setLayout(layout)
+
+    layout.addWidget(CollapsibleTextEdit())
+
+    layout.addStretch()
+
+    window.show()
+    app.exec()

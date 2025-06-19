@@ -26,6 +26,19 @@
     </message>
 </context>
 <context>
+    <name>CollapsibleTextEdit</name>
+    <message>
+        <location filename="src/ui/widgets/collapsible_text_edit.py" line="70"/>
+        <source>Reduce</source>
+        <translation>Reduzieren</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/collapsible_text_edit.py" line="79"/>
+        <source>Expand</source>
+        <translation>Erweitern</translation>
+    </message>
+</context>
+<context>
     <name>CompositeDependency</name>
     <message>
         <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="71"/>

@@ -125,10 +125,17 @@ CollapsibleTextEdit[expanded=false]:focus
 BrowseLineEdit,
 CopyLineEdit,
 PasteLineEdit,
-SearchBar
-/* CollapsibleTextEdit */
+CollapsibleTextEdit
 {
     padding-right: 40px;
+}
+SearchBar
+{
+    padding-right: 80px;
+}
+CollapsibleTextEdit
+{
+    padding-top: 3px;
 }
 QLineEdit QPushButton,
 QTextEdit QPushButton,
@@ -142,16 +149,10 @@ QPlainTextEdit#protocol
 {
     font-size: 10pt;
 }
-CollapsibleTextEdit /*[expanded=false]*/
-{
-    /* padding: 5px; */
-    spacing: -50px;
-}
 CollapsibleTextEdit QPushButton#toggle_button
 {
     border: 0px solid;
-    width: 16px;
-    height: 16px;
+    border-color: transparent;
     margin-right: 0px;
     margin-top: 0px;
 }
