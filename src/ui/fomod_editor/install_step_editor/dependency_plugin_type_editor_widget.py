@@ -52,6 +52,7 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
             self._tree_widget.setHeaderLabels(
                 [self.tr("Dependencies"), self.tr("Type")]
             )
+            self._tree_widget.header().resizeSection(0, 400)
 
         @override
         def addItem(self, item: DependencyPattern) -> None:
