@@ -134,9 +134,7 @@ class TestFomod(BaseTest):
 
         assert fomod.info.name == ""
         assert fomod.info.author == ""
-        assert fomod.info.version is not None
-        assert fomod.info.version.version == ""
-        assert fomod.info.version.machine_version is None
+        assert fomod.info.version is None
         assert fomod.info.description == ""
         assert fomod.info.website == ""
 
