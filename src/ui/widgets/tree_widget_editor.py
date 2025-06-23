@@ -76,6 +76,7 @@ class TreeWidgetEditor[T: object](QWidget):
 
     _vlayout: QVBoxLayout
     _remove_action: QAction
+    _edit_action: QAction
     __search_bar: SearchBar
     _tree_widget: TreeWidget
 
@@ -132,11 +133,22 @@ class TreeWidgetEditor[T: object](QWidget):
                 color=self.palette().text().color(),
                 color_disabled="#666666",
             ),
-            self.tr("Remove selected item(s)..."),
+            self.tr("Remove selected item(s)...") + " (" + self.tr("Del") + ")",
         )
         self._remove_action.setDisabled(True)
         self._remove_action.setShortcut("Delete")
         self._remove_action.triggered.connect(self.__remove_selected_items)
+
+        self._edit_action = tool_bar.addAction(
+            qta.icon(
+                "mdi6.pencil",
+                color=self.palette().text().color(),
+                color_disabled="#666666",
+            ),
+            self.tr("Edit selected item...") + " (" + self.tr("Double click") + ")",
+        )
+        self._edit_action.setDisabled(True)
+        self._edit_action.triggered.connect(self.__edit_selected_item)
 
         self.__search_bar = SearchBar()
         hlayout.addWidget(self.__search_bar)
@@ -160,6 +172,7 @@ class TreeWidgetEditor[T: object](QWidget):
 
     def _on_selection_change(self) -> None:
         self._remove_action.setDisabled(len(self._tree_widget.selectedItems()) == 0)
+        self._edit_action.setDisabled(len(self._tree_widget.selectedItems()) == 0)
 
         items: dict[QTreeWidgetItem, T] = {
             item: edited_item for edited_item, item in self._items.items()
@@ -183,6 +196,9 @@ class TreeWidgetEditor[T: object](QWidget):
 
         if items:
             self.changed.emit()
+
+    def __edit_selected_item(self) -> None:
+        self.__item_double_clicked(self._tree_widget.currentItem(), 0)
 
     def _filter(self, text: str, case_sensitive: bool) -> None:
         for item in iter_toplevel_items(self._tree_widget):
