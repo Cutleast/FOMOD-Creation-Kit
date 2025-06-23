@@ -53,7 +53,9 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__file_list_editor_widget = FileListEditorWidget(self._item)
+        self.__file_list_editor_widget = FileListEditorWidget(
+            self._item, self._fomod_path
+        )
         self._vlayout.addWidget(self.__file_list_editor_widget)
 
     @override

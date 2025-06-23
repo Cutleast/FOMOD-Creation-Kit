@@ -125,7 +125,8 @@ class TestFsItemEditorWidget(UiTest):
 
         # then
         with pytest.raises(
-            SpecificValidationError, match="The source path must be an existing file!"
+            SpecificValidationError,
+            match=r'The source path \("Test Folder"\) must be an existing file!',
         ):
             widget.validate()
 
@@ -135,7 +136,7 @@ class TestFsItemEditorWidget(UiTest):
         # then
         with pytest.raises(
             SpecificValidationError,
-            match="The source path must be an existing file!",
+            match=r'The source path \("Test Folder"\) must be an existing file!',
         ):
             widget.validate()
 
@@ -150,7 +151,8 @@ class TestFsItemEditorWidget(UiTest):
 
         # then
         with pytest.raises(
-            SpecificValidationError, match="The source path must be an existing folder!"
+            SpecificValidationError,
+            match=r'The source path \("Test File"\) must be an existing folder!',
         ):
             widget.validate()
 
@@ -159,7 +161,8 @@ class TestFsItemEditorWidget(UiTest):
 
         # then
         with pytest.raises(
-            SpecificValidationError, match="The source path must be an existing folder!"
+            SpecificValidationError,
+            match=r'The source path \("Test File"\) must be an existing folder!',
         ):
             widget.validate()
 

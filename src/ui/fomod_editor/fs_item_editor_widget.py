@@ -191,17 +191,22 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             raise SpecificEmptyError(self.tr("The source path must not be empty!"))
 
         source_path: Path = get_joined_path_if_relative(
-            Path(self.__source_entry.text().strip()), base_path=self._fomod_path
+            Path(self.__source_entry.text().strip()),
+            base_path=self._fomod_path.parent if self._fomod_path is not None else None,
         )
         if self.__type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File:
             if not source_path.is_file():
                 raise SpecificValidationError(
-                    self.tr("The source path must be an existing file!")
+                    self.tr('The source path ("{0}") must be an existing file!').format(
+                        source_path
+                    )
                 )
         else:
             if not source_path.is_dir():
                 raise SpecificValidationError(
-                    self.tr("The source path must be an existing folder!")
+                    self.tr(
+                        'The source path ("{0}") must be an existing folder!'
+                    ).format(source_path)
                 )
 
     @override
