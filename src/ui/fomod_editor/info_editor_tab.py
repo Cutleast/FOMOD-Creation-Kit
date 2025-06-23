@@ -11,6 +11,7 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QFormLayout, QLabel, QLineEdit
 
 from core.fomod.fomod import Fomod
+from core.fomod.fomod_version import FomodVersion
 from core.fomod.module_config import SUPPORTED_IMAGE_TYPES
 from core.fomod.module_config.header_image import HeaderImage
 from core.fomod_editor.exceptions import (
@@ -107,7 +108,11 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self.__flayout.addRow(self.tr("Author:"), self.__author_entry)
 
         self.__version_entry = QLineEdit()
-        self.__version_entry.setText(self._item.info.version.version)
+        self.__version_entry.setText(
+            self._item.info.version.version
+            if self._item.info.version is not None
+            else ""
+        )
         self.__flayout.addRow(self.tr("Version:"), self.__version_entry)
 
         self.__website_entry = UrlEdit()
@@ -155,7 +160,10 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
     def save(self) -> Fomod:
         self._item.name = self.__name_entry.text()
         self._item.info.author = self.__author_entry.text()
-        self._item.info.version.version = self.__version_entry.text()
+        if self.__version_entry.text().strip():
+            self._item.info.version = FomodVersion(version=self.__version_entry.text())
+        else:
+            self._item.info.version = None
         self._item.info.website = self.__website_entry.text()
         self._item.info.description = self.__description_entry.toPlainText()
 

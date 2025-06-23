@@ -134,6 +134,7 @@ class TestFomod(BaseTest):
 
         assert fomod.info.name == ""
         assert fomod.info.author == ""
+        assert fomod.info.version is not None
         assert fomod.info.version.version == ""
         assert fomod.info.version.machine_version is None
         assert fomod.info.description == ""
@@ -149,8 +150,7 @@ class TestFomod(BaseTest):
 
         # given
         fomod: Fomod = Fomod.create()
-        fomod.info.name = "Test FOMOD"
-        fomod.module_config.module_name.title = "Test FOMOD"
+        fomod.name = "Test FOMOD"
         fomod_path = Path("test_output") / "fomod"
         image_path: Path = (
             data_folder.absolute()

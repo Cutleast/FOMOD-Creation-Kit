@@ -31,6 +31,7 @@ class TestFomodInfo(BaseTest):
         # then
         assert fomod_info.name == "Dynamic Interface Patcher - DIP"
         assert fomod_info.author == "Cutleast"
+        assert fomod_info.version is not None
         assert fomod_info.version.version == "2.1.5"
         assert fomod_info.version.machine_version is None
         assert (

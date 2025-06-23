@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from __future__ import annotations
 
-from typing import override
+from typing import Optional, override
 
 from pydantic_xml import element
 
@@ -23,7 +23,7 @@ class FomodInfo(FomodModel, tag="fomod", search_mode="unordered"):
     author: str = element(tag="Author", default="")
     """The author of the mod."""
 
-    version: FomodVersion = element(tag="Version", default_factory=FomodVersion)
+    version: Optional[FomodVersion] = element(tag="Version", default=None)
     """The version of the mod."""
 
     website: str = element(tag="Website", default="")
