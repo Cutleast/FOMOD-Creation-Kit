@@ -11,12 +11,14 @@ from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QFormLayout, QLabel, QLineEdit
 
 from core.fomod.fomod import Fomod
-from core.fomod.module_config.header_image import SUPPORTED_TYPES, HeaderImage
+from core.fomod.module_config import SUPPORTED_IMAGE_TYPES
+from core.fomod.module_config.header_image import HeaderImage
 from core.fomod_editor.exceptions import (
     FileDoesNotExistError,
     ImageTypeNotSupportedError,
     NameIsMissingError,
 )
+from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
@@ -122,7 +124,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self.__image_path_entry = BrowseLineEdit()
         self.__image_path_entry.setFileMode(QFileDialog.FileMode.ExistingFile)
         self.__image_path_entry.setNameFilters(
-            [self.tr("Image Files") + f" (*{' *'.join(SUPPORTED_TYPES)})"]
+            [self.tr("Image Files") + f" (*{' *'.join(SUPPORTED_IMAGE_TYPES)})"]
         )
         self.__flayout.addRow(self.tr("Image:"), self.__image_path_entry)
 
@@ -185,12 +187,14 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             else None
         )
 
-        if image_path is not None and self._item.path is not None:
-            if not image_path.is_absolute():
-                image_path = self._item.path.parent / image_path
+        if image_path is not None:
+            image_path = get_joined_path_if_relative(
+                image_path,
+                self._item.path.parent if self._item.path is not None else None,
+            )
 
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
 
-            if image_path.suffix.lower() not in SUPPORTED_TYPES:
+            if image_path.suffix.lower() not in SUPPORTED_IMAGE_TYPES:
                 raise ImageTypeNotSupportedError(image_path.suffix)

@@ -9,6 +9,7 @@ import qtawesome as qta
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QTabWidget
 
+from core.fomod.module_config import SUPPORTED_IMAGE_TYPES
 from core.fomod.module_config.condition.condition_flag_list import ConditionFlagList
 from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
 from core.fomod.module_config.file_list import FileList
@@ -16,10 +17,13 @@ from core.fomod.module_config.image import Image
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
     EmptyError,
+    FileDoesNotExistError,
+    ImageTypeNotSupportedError,
     NameIsMissingError,
     SpecificEmptyError,
 )
 from core.utilities.exception_handler import ExceptionHandler
+from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
@@ -135,6 +139,9 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
         self.__image_path_entry = BrowseLineEdit()
+        self.__image_path_entry.setNameFilters(
+            [self.tr("Image Files") + f" (*{' *'.join(SUPPORTED_IMAGE_TYPES)})"]
+        )
         self.__flayout.addRow(self.tr("Image:"), self.__image_path_entry)
 
     def __init_tab_widget(self) -> None:
@@ -145,7 +152,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self._vlayout.addWidget(tab_widget, stretch=1)
 
         self.__file_list_editor_widget = FileListEditorWidget(
-            self._item.files or FileList()
+            self._item.files or FileList(), self._fomod_path
         )
         tab_widget.addTab(self.__file_list_editor_widget, self.tr("Files"))
 
@@ -209,6 +216,23 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
     def validate(self) -> None:
         if not self.__name_entry.text().strip():
             raise NameIsMissingError
+
+        image_path: Optional[Path] = (
+            Path(self.__image_path_entry.text().strip())
+            if self.__image_path_entry.text().strip()
+            else None
+        )
+
+        if image_path is not None:
+            image_path = get_joined_path_if_relative(
+                image_path,
+                self._fomod_path.parent if self._fomod_path is not None else None,
+            )
+            if not image_path.is_file():
+                raise FileDoesNotExistError(image_path)
+
+            if image_path.suffix.lower() not in SUPPORTED_IMAGE_TYPES:
+                raise ImageTypeNotSupportedError(image_path.suffix)
 
         if all(
             [
