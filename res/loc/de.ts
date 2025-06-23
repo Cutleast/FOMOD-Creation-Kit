@@ -194,17 +194,17 @@
 <context>
     <name>DependencyPluginTypeEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="98"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="99"/>
         <source>Edit dependency plugin type...</source>
         <translation>Abhängigkeit des Plugintyps bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="111"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="112"/>
         <source>Default type (if no pattern below matches):</source>
         <translation>Standardtyp (wenn kein unten angegebenes Muster erfüllt ist):</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="147"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/dependency_plugin_type_editor_widget.py" line="148"/>
         <source>At least one pattern has to be specified!</source>
         <translation>Mindestens ein Abhängigkeitsmuster muss vorhanden sein!</translation>
     </message>
@@ -535,13 +535,13 @@
     </message>
     <message>
         <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="200"/>
-        <source>The source path must be an existing file!</source>
-        <translation>Der Quellpfad muss auf eine existierende Datei verweisen!</translation>
+        <source>The source path (&quot;{0}&quot;) must be an existing file!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="205"/>
-        <source>The source path must be an existing folder!</source>
-        <translation>Der Quellpfad muss auf einen existierenden Ordner verweisen!</translation>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="209"/>
+        <source>The source path (&quot;{0}&quot;) must be an existing folder!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -636,42 +636,42 @@
 <context>
     <name>InfoEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="73"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="76"/>
         <source>Edit FOMOD info...</source>
         <translation>FOMOD-Info bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="101"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="104"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="105"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="108"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="109"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="116"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="113"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="120"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="120"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="127"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="125"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="132"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="127"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="134"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
@@ -1015,52 +1015,57 @@
 <context>
     <name>PluginEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="88"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="92"/>
         <source>Edit plugin...</source>
         <translation>Plugin bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="97"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="101"/>
         <source>A plugin represents a selectable element within a FOMOD installer that can either set a condition flag or install files/folders when selected.</source>
         <translation>Ein Plugin repräsentiert ein auswählbares Element innerhalb eines FOMOD-Installers, das entweder einen Bedingungsflag setzen oder Dateien/Ordner installieren kann, wenn ausgewählt.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="125"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="129"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="133"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="137"/>
         <source>Defaults to the name above.</source>
         <translation>Standardmäßig der oben angegebene Name.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="135"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="139"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="138"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="143"/>
+        <source>Image Files</source>
+        <translation type="unfinished">Bilddateien</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="145"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="150"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="157"/>
         <source>Files</source>
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="159"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="166"/>
         <source>Condition Flags</source>
         <translation>Bedingungen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="166"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="173"/>
         <source>Type Descriptor</source>
         <translation>Typbeschreibung</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="225"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="249"/>
         <source>At least one file, folder or condition flag must be specified!</source>
         <translation>Mindestens eine Datei, Ordner oder gesetzte Bedingung muss vorhanden sein!</translation>
     </message>
