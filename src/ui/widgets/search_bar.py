@@ -75,6 +75,8 @@ class SearchBar(QLineEdit):
         self.textChanged.connect(self.__on_text_change)
         self.returnPressed.connect(lambda: self.__on_search_change(True))
 
+        self.setMinimumWidth(180)
+
     def __on_text_change(self, text: str) -> None:
         self.__clear_button.setVisible(bool(text.strip()))
         self.__cs_toggle.setVisible(bool(text.strip()))
