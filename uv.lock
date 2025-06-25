@@ -455,33 +455,33 @@ wheels = [
 
 [[package]]
 name = "pydantic-xml"
-version = "2.17.1"
+version = "2.17.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
     { name = "pydantic-core" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/65/8f/577cf8f8898ce3d8bd9c82a7ac61427416c6daeed62e06d15e53d0313c33/pydantic_xml-2.17.1.tar.gz", hash = "sha256:7ee476ee6ea86055b89a29c1d7dc7ba3763c842f4eff473f31b8b65a86f65f8d", size = 25967, upload-time = "2025-06-13T11:52:59.819Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d8/7a/1a801e578ee6c9e7707de9eef0b7b232381a77e00ecdc5dfa3ccb2565721/pydantic_xml-2.17.2.tar.gz", hash = "sha256:0e0f2ae84518198373b593eca58bba12b08c1a7ace368dd4ed12b60babc8182d", size = 25871, upload-time = "2025-06-21T15:16:04.595Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/03/f81fff6f1ee4ec4e4b578c7898f704720c2e249162efb6902fdb455d264b/pydantic_xml-2.17.1-py3-none-any.whl", hash = "sha256:27e8762e8b3b85f649b69db7b95f838416db21a7d3fcdce4f5ca6f2bee1397b6", size = 42137, upload-time = "2025-06-13T11:52:58.556Z" },
+    { url = "https://files.pythonhosted.org/packages/66/00/0492d88608d5cdf53f9883fe3274874f4ee8d6f5003ef059cd55c12fe82c/pydantic_xml-2.17.2-py3-none-any.whl", hash = "sha256:3990908939ecc18f304045f3ee544bbdb68e253248fde20dc1af6829e80c03f5", size = 42113, upload-time = "2025-06-21T15:16:03.241Z" },
 ]
 
 [[package]]
 name = "pyfakefs"
-version = "5.8.0"
+version = "5.9.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/a8/50/a839c8812899e8955223d95b27767480856f9723b3230ddee0472cf1dbe2/pyfakefs-5.8.0.tar.gz", hash = "sha256:7e5457ee3cc67069d3cef6e278227ecfc80bfb61e925bc0a4d3b0af32d1c99ce", size = 215072, upload-time = "2025-03-11T19:29:20.274Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/73/89/cb396a7aef5c76013cb44efd778ba3d89953b1d64304bf2d684a1d4ae06a/pyfakefs-5.9.1.tar.gz", hash = "sha256:ca02a1441dc77d7512bebfe4224b32f2127e83c45672f5fe2c02c33d4284bc70", size = 230395, upload-time = "2025-06-23T19:54:59.85Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/14/ac/ae2cf01b18b7ac04d22e5faf7d5eafcc000269c4f4a9036e40da6c37aed9/pyfakefs-5.8.0-py3-none-any.whl", hash = "sha256:4bd0fc8def7d0582139922447758632ff34a327b460a7e83feb6edbd841061dd", size = 230606, upload-time = "2025-03-11T19:29:18.341Z" },
+    { url = "https://files.pythonhosted.org/packages/4c/64/353b1a119c688d06a0be07312a3bb17154b63f95ebf8f2da625be765bb20/pyfakefs-5.9.1-py3-none-any.whl", hash = "sha256:b3c1f391f1990112ff6b0642182e75f07a6d7fcd81cf1357277680bf6c9b8a84", size = 244717, upload-time = "2025-06-23T19:54:57.66Z" },
 ]
 
 [[package]]
 name = "pygments"
-version = "2.19.1"
+version = "2.19.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/7c/2d/c3338d48ea6cc0feb8446d8e6937e1408088a72a39937982cc6111d17f84/pygments-2.19.1.tar.gz", hash = "sha256:61c16d2a8576dc0649d9f39e089b5f02bcd27fba10d8fb4dcc28173f7a45151f", size = 4968581, upload-time = "2025-01-06T17:26:30.443Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887", size = 4968631, upload-time = "2025-06-21T13:39:12.283Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8a/0b/9fcc47d19c48b59121088dd6da2488a49d5f72dacf8262e2790a1d2c7d15/pygments-2.19.1-py3-none-any.whl", hash = "sha256:9ea1544ad55cecf4b8242fab6dd35a93bbce657034b0611ee383099054ab6d8c", size = 1225293, upload-time = "2025-01-06T17:26:25.553Z" },
+    { url = "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b", size = 1225217, upload-time = "2025-06-21T13:39:07.939Z" },
 ]
 
 [[package]]
