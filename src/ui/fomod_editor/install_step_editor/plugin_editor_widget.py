@@ -152,7 +152,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self._vlayout.addWidget(tab_widget, stretch=1)
 
         self.__file_list_editor_widget = FileListEditorWidget(
-            self._item.files or FileList(), self._fomod_path
+            self._item.files or FileList(), self._fomod_path, scrollable=False
         )
         tab_widget.addTab(self.__file_list_editor_widget, self.tr("Files"))
 
@@ -166,7 +166,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         )
 
         self.__type_descriptor_editor_widget = TypeDescriptorEditorWidget(
-            self._item.type_descriptor, self._fomod_path
+            self._item.type_descriptor, self._fomod_path, scrollable=False
         )
         tab_widget.addTab(
             self.__type_descriptor_editor_widget, self.tr("Type Descriptor")

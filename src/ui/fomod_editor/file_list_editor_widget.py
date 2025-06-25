@@ -73,8 +73,15 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
     __tree_widget: FileListTreeWidget
 
-    def __init__(self, item: FileList, fomod_path: Optional[Path] = None) -> None:
-        super().__init__(item, fomod_path)
+    def __init__(
+        self,
+        item: FileList,
+        fomod_path: Optional[Path],
+        show_title: bool = False,
+        show_description: bool = True,
+        scrollable: bool = True,
+    ) -> None:
+        super().__init__(item, fomod_path, show_title, show_description, scrollable)
 
         self.__tree_widget.changed.connect(self.changed.emit)
         self.__tree_widget.onAdd.connect(self.__add_filesystem_item)

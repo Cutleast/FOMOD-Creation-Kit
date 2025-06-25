@@ -68,9 +68,14 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
     __dynamic_type_editor: DependencyPluginTypeEditorWidget
 
     def __init__(
-        self, item: PluginTypeDescriptor, fomod_path: Path | None = None
+        self,
+        item: PluginTypeDescriptor,
+        fomod_path: Path | None = None,
+        show_title: bool = False,
+        show_description: bool = True,
+        scrollable: bool = True,
     ) -> None:
-        super().__init__(item, fomod_path)
+        super().__init__(item, fomod_path, show_title, show_description, scrollable)
 
         self.__descriptor_type_selector.currentValueChanged.connect(
             self.__on_type_changed
