@@ -353,12 +353,12 @@
 <context>
     <name>FileListEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="88"/>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="95"/>
         <source>Edit file list...</source>
         <translation>Dateiliste bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="96"/>
+        <location filename="src/ui/fomod_editor/file_list_editor_widget.py" line="103"/>
         <source>The file list defines how files are copied to the destination folder.</source>
         <translation>Diese Liste definiert, wie Dateien in den Zielordner kopiert werden.</translation>
     </message>
@@ -536,12 +536,12 @@
     <message>
         <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="200"/>
         <source>The source path (&quot;{0}&quot;) must be an existing file!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Quellpfad (&quot;{0}&quot;) muss auf eine existierende Datei verweisen!</translation>
     </message>
     <message>
         <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="209"/>
         <source>The source path (&quot;{0}&quot;) must be an existing folder!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Quellpfad (&quot;{0}&quot;) muss auf einen existierenden Ordner verweisen!</translation>
     </message>
 </context>
 <context>
@@ -900,93 +900,98 @@
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="58"/>
+        <location filename="src/ui/menubar.py" line="62"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="61"/>
+        <location filename="src/ui/menubar.py" line="65"/>
         <source>Create new FOMOD installer...</source>
         <translation>Neuen FOMOD-Installer erstellen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="72"/>
+        <location filename="src/ui/menubar.py" line="76"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="83"/>
+        <location filename="src/ui/menubar.py" line="87"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="92"/>
+        <location filename="src/ui/menubar.py" line="96"/>
         <source>Save FOMOD installer</source>
         <translation>FOMOD-Installer speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="101"/>
+        <location filename="src/ui/menubar.py" line="105"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="110"/>
+        <location filename="src/ui/menubar.py" line="114"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="118"/>
+        <location filename="src/ui/menubar.py" line="122"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="125"/>
+        <location filename="src/ui/menubar.py" line="129"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="128"/>
+        <location filename="src/ui/menubar.py" line="132"/>
         <source>Validate XML file...</source>
         <translation>XML-Datei validieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="135"/>
+        <location filename="src/ui/menubar.py" line="139"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="138"/>
+        <location filename="src/ui/menubar.py" line="142"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="148"/>
+        <location filename="src/ui/menubar.py" line="152"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="153"/>
+        <location filename="src/ui/menubar.py" line="157"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="160"/>
+        <location filename="src/ui/menubar.py" line="162"/>
+        <source>View source code on GitHub...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="171"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="166"/>
-        <location filename="src/ui/menubar.py" line="193"/>
+        <location filename="src/ui/menubar.py" line="177"/>
+        <location filename="src/ui/menubar.py" line="204"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="183"/>
+        <location filename="src/ui/menubar.py" line="194"/>
         <source>No Updates Available</source>
         <translation>Keine Updates verfügbar</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="184"/>
+        <location filename="src/ui/menubar.py" line="195"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
     </message>
@@ -1042,7 +1047,7 @@
     <message>
         <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="143"/>
         <source>Image Files</source>
-        <translation type="unfinished">Bilddateien</translation>
+        <translation>Bilddateien</translation>
     </message>
     <message>
         <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="145"/>
@@ -1324,14 +1329,29 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>TreeWidgetEditor</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="125"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="126"/>
         <source>Add new item...</source>
         <translation>Neues Element hinzufügen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="136"/>
         <source>Remove selected item(s)...</source>
         <translation>Ausgewählte Element(e) entfernen...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="136"/>
+        <source>Del</source>
+        <translation>Entf</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="148"/>
+        <source>Edit selected item...</source>
+        <translation>Ausgewähltes Element bearbeiten...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="148"/>
+        <source>Double click</source>
+        <translation>Doppelklick</translation>
     </message>
 </context>
 <context>
@@ -1357,12 +1377,12 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
         <translation>Der Typ des Plugins hängt von Abhängigkeitsmustern ab.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="98"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="103"/>
         <source>The type of a plugin determines its pre-selection state.</source>
         <translation>Der Typ des Plugins bestimmt dessen Vorauswahl.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="90"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="95"/>
         <source>Edit plugin type descriptor...</source>
         <translation>Plugin-Typdefinition bearbeiten...</translation>
     </message>
