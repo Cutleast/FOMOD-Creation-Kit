@@ -52,12 +52,14 @@ class InstallPatternEditorWidget(BaseEditorWidget[ConditionalInstallPattern]):
 
     def __init_dependency_editor_widget(self) -> None:
         self.__dependency_editor_widget = CompositeDependencyEditorWidget(
-            self._item.dependencies
+            self._item.dependencies, self._fomod_path
         )
         self._vlayout.addWidget(self.__dependency_editor_widget)
 
     def __init_file_list_editor_widget(self) -> None:
-        self.__file_list_editor_widget = FileListEditorWidget(self._item.files)
+        self.__file_list_editor_widget = FileListEditorWidget(
+            self._item.files, self._fomod_path
+        )
         self._vlayout.addWidget(self.__file_list_editor_widget)
 
     @override
