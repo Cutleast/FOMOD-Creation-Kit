@@ -11,11 +11,12 @@ from PySide6.QtWidgets import QMenuBar, QMessageBox
 
 from app_context import AppContext
 from core.utilities.updater import Updater
-from ui.settings.settings_dialog import SettingsDialog
-from ui.utilities.icon_provider import get_icon_name_for_palette
 from ui.widgets.about_dialog import AboutDialog
 from ui.widgets.menu import Menu
 from ui.widgets.xml_validator_dialog import XmlValidatorDialog
+
+from .settings.settings_dialog import SettingsDialog
+from .utilities.icon_provider import get_icon_name_for_palette
 
 
 class MenuBar(QMenuBar):
@@ -46,6 +47,9 @@ class MenuBar(QMenuBar):
 
     NEXUSMODS_URL: str = "https://www.nexusmods.com/site"  # TODO: Add full mod page url
     """URL to FCK's Nexus Mods page."""
+
+    GITHUB_URL: str = "https://github.com/Cutleast/FOMOD-Creation-Kit"
+    """URL to the GitHub repository."""
 
     def __init__(self) -> None:
         super().__init__()
@@ -154,6 +158,13 @@ class MenuBar(QMenuBar):
         nm_action.setIcon(QIcon(":/icons/nexus_mods.png"))
         nm_action.setToolTip(MenuBar.NEXUSMODS_URL)
         nm_action.triggered.connect(lambda: webbrowser.open(MenuBar.NEXUSMODS_URL))
+
+        github_action = help_menu.addAction(self.tr("View source code on GitHub..."))
+        github_action.setIcon(
+            qta.icon("mdi6.github", color=self.palette().text().color())
+        )
+        github_action.setToolTip(MenuBar.GITHUB_URL)
+        github_action.triggered.connect(lambda: webbrowser.open(MenuBar.GITHUB_URL))
 
         help_menu.addSeparator()
 
