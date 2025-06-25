@@ -103,18 +103,18 @@ class TreeWidgetEditor[T: object](QWidget):
 
     def _init_ui(self) -> None:
         self._vlayout = QVBoxLayout()
+        self._vlayout.setContentsMargins(0, 0, 0, 0)
         self.setLayout(self._vlayout)
 
         self.__init_header()
         self.__init_tree_widget()
-
-        self.setMinimumSize(310, 200)
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
         self._vlayout.addLayout(hlayout)
 
         tool_bar = QToolBar()
+        tool_bar.setFixedWidth(140)
         hlayout.addWidget(tool_bar)
 
         add_action: QAction = tool_bar.addAction(
