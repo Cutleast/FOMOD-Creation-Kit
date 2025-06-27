@@ -6,11 +6,11 @@
 
 #status_label
 {
-    color: #ff6262;
+    color: #fa5050;
 }
 #status_banner
 {
-    background: #ff6262;
+    background: #fa5050;
 }
 
 /* Windows, Messageboxes and Dialogs */
