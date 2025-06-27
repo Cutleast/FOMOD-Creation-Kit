@@ -132,10 +132,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self.__plugins_tree_widget.onAdd.connect(self.__add_plugin)
         self.__plugins_tree_widget.onEdit.connect(self.__edit_plugin)
 
-        if item.optional_file_groups.groups:
-            self.__groups_tree_widget.setCurrentItem(
-                item.optional_file_groups.groups[0]
-            )
+        if self.__groups:
+            self.__groups_tree_widget.setCurrentItem(self.__groups[0])
         else:
             self.__plugins_tree_widget.setDisabled(True)
 
