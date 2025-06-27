@@ -19,6 +19,7 @@ from PySide6.QtWidgets import QApplication
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.utilities.exception_handler import ExceptionHandler
+from core.utilities.exe_info import get_current_path
 from core.utilities.localisation import Language, detect_system_locale
 from core.utilities.logger import Logger
 from core.utilities.updater import Updater
@@ -38,7 +39,7 @@ class App(QApplication):
     app_config: AppConfig
     behavior_config: BehaviorConfig
 
-    cur_path: Path = Path.cwd()
+    cur_path: Path = get_current_path()
     data_path: Path = cur_path / "data"
     res_path: Path = cur_path / "res"
     config_path: Path = data_path / "config"
