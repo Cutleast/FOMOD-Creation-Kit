@@ -26,3 +26,11 @@ class FileList(BaseXmlModel, search_mode="unordered"):
     @override
     def __str__(self) -> str:
         return ", ".join([str(x) for x in self.files] + [str(x) for x in self.folders])
+
+    def is_empty(self) -> bool:
+        """
+        Returns:
+            bool: Whether the file list is empty.
+        """
+
+        return not any((self.files, self.folders))

@@ -303,14 +303,22 @@ class FomodEditorWidget(QWidget):
             self.__info_editor_tab.save()
 
         if self.__dependency_editor_tab is not None:
-            self.__current_fomod.module_config.module_dependencies = (
-                self.__dependency_editor_tab.save()
-            )
+            module_deps: CompositeDependency = self.__dependency_editor_tab.save()
+
+            if not module_deps.is_empty():
+                self.__current_fomod.module_config.module_dependencies = module_deps
+            else:
+                self.__current_fomod.module_config.module_dependencies = None
 
         if self.__required_files_editor_tab is not None:
-            self.__current_fomod.module_config.required_install_files = (
-                self.__required_files_editor_tab.save()
-            )
+            required_files: FileList = self.__required_files_editor_tab.save()
+
+            if not required_files.is_empty():
+                self.__current_fomod.module_config.required_install_files = (
+                    required_files
+                )
+            else:
+                self.__current_fomod.module_config.required_install_files = None
 
         if self.__steps_editor_tab is not None:
             self.__current_fomod.module_config.install_steps = (
@@ -318,9 +326,16 @@ class FomodEditorWidget(QWidget):
             )
 
         if self.__conditional_files_editor_tab is not None:
-            self.__current_fomod.module_config.conditional_file_installs = (
+            conditional_files: ConditionalFileInstallList = (
                 self.__conditional_files_editor_tab.save()
             )
+
+            if not conditional_files.is_empty():
+                self.__current_fomod.module_config.conditional_file_installs = (
+                    conditional_files
+                )
+            else:
+                self.__current_fomod.module_config.conditional_file_installs = None
 
         if finalize:
             fomod: Fomod = self.__current_fomod

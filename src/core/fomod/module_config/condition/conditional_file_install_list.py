@@ -18,3 +18,11 @@ class ConditionalFileInstallList(BaseXmlModel):
     The list of patterns against which to match the conditional flags and installed
     files. All matching patterns will have their files installed.
     """
+
+    def is_empty(self) -> bool:
+        """
+        Returns:
+            bool: Whether the conditional file install list is empty.
+        """
+
+        return not self.patterns.patterns
