@@ -105,11 +105,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__visibility_editor_widget.changed.connect(self.changed.emit)
-        self.__visibility_editor_widget.changed.connect(
-            lambda: self.__visibility_label.setText(
-                str(self.__visibility_editor_widget.save())
-            )
-        )
+        self.__visibility_editor_widget.changed.connect(self.__on_visibility_change)
 
         self.__groups_tree_widget.changed.connect(self.changed.emit)
         self.__groups_tree_widget.onAdd.connect(self.__add_group)
@@ -310,6 +306,14 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         current_group: Optional[Group] = self.__groups_tree_widget.getCurrentItem()
         if current_group is not None:
             current_group.plugins.plugins = self.__plugins_tree_widget.getItems()
+
+    def __on_visibility_change(self) -> None:
+        dep: CompositeDependency = self.__visibility_editor_widget.save()
+
+        if dep.is_empty():
+            self.__visibility_label.setText(self.tr("Always visible"))
+        else:
+            self.__visibility_label.setText(str(dep))
 
     @override
     def validate(self) -> None:
