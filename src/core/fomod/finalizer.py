@@ -9,15 +9,15 @@ from typing import Optional
 
 from PySide6.QtCore import QObject
 
-from core.fomod.module_config.file_item import FileItem
-from core.fomod.module_config.file_list import FileList
-from core.fomod.module_config.file_system.file_system_item import FileSystemItem
-from core.fomod.module_config.folder_item import FolderItem
-from core.fomod.module_config.image import Image
 from core.utilities.filesystem import clean_fs_string, create_folder_list
 from ui.widgets.loading_dialog import LoadingDialog
 
 from .fomod import Fomod
+from .module_config.file_item import FileItem
+from .module_config.file_list import FileList
+from .module_config.file_system.file_system_item import FileSystemItem
+from .module_config.folder_item import FolderItem
+from .module_config.image import Image
 
 
 class Finalizer(QObject):

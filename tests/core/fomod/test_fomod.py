@@ -302,3 +302,32 @@ class TestFomod(BaseTest):
             fomod.module_config.required_install_files.files[1].source
             == WindowsPath("fomod") / "files" / "Image.jpg"
         )
+
+    def test_finalize_with_new_path(
+        self, data_folder: Path, test_fs: FakeFilesystem, trashbin: list[Path]
+    ) -> None:
+        """
+        Tests that `Fomod.finalize()` works with a specified.
+        """
+
+        self.test_finalize(data_folder, test_fs)
+
+        # given
+        fomod_path = Path("test_output") / "fomod"
+        new_fomod_path = Path("new_test_output") / "fomod"
+        fomod: Fomod = Fomod.load(fomod_path)
+
+        # then
+        assert fomod.path is not None
+        assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "required_install_files" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "Image.jpg").is_file()
+
+        # when
+        fomod.finalize(new_fomod_path)
+
+        # then
+        assert fomod.path == new_fomod_path
+        assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "required_install_files" / "Image.jpg").is_file()
+        assert (fomod.path / "files" / "Image.jpg").is_file()

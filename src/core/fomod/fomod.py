@@ -5,6 +5,7 @@ Copyright (c) Cutleast
 from __future__ import annotations
 
 import logging
+import shutil
 from pathlib import Path
 from typing import Optional
 
@@ -86,6 +87,9 @@ class Fomod:
         """
 
         if path is not None:
+            if self.path is not None:
+                self.__create_copy(path)
+
             self.path = path
 
         if self.path is None:
@@ -97,6 +101,23 @@ class Fomod:
 
         self.save(validate_xml, encoding)
         self.log.info("FOMOD finalized.")
+
+    def __create_copy(self, new_path: Path) -> None:
+        """
+        Creates a copy of the FOMOD at the specified path.
+
+        Args:
+            new_path (Path): Path to copy the FOMOD to.
+
+        Raises:
+            ValueError: If the FOMOD path is not set.
+        """
+
+        if self.path is None:
+            raise ValueError("FOMOD path is not set.")
+
+        new_path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(self.path.parent, new_path.parent, dirs_exist_ok=True)
 
     def save(self, validate_xml: bool = True, encoding: str = "utf-8") -> None:
         """

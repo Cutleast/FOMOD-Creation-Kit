@@ -287,7 +287,8 @@ class FomodEditorWidget(QWidget):
         if self.__current_fomod.path is None and path is None:
             raise ValueError("No FOMOD path is set.")
 
-        if path is not None:
+        # only set path for validation if there is no old path
+        if self.__current_fomod.path is None and path is not None:
             self.__current_fomod.path = path
 
         self.validate()
@@ -319,12 +320,17 @@ class FomodEditorWidget(QWidget):
             fomod: Fomod = self.__current_fomod
             LoadingDialog.run_callable(
                 target=lambda ldialog: fomod.finalize(
-                    validate_xml=validate_xml, encoding=encoding, ldialog=ldialog
+                    path=path,
+                    validate_xml=validate_xml,
+                    encoding=encoding,
+                    ldialog=ldialog,
                 )
             )
 
             # Reload the FOMOD as the finalize step might have changed it
             self.set_fomod(self.__current_fomod)
+        elif path is not None:
+            self.__current_fomod.save_as(path, validate_xml, encoding)
         else:
             self.__current_fomod.save(validate_xml, encoding)
         self.changed.emit(self.__current_fomod, False)
