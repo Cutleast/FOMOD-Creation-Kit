@@ -19,7 +19,6 @@ from core.fomod_editor.exceptions import (
     ImageTypeNotSupportedError,
     NameIsMissingError,
 )
-from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
@@ -63,9 +62,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             and self._item.module_config.module_image.path is not None
             and self._item.path is not None
         ):
-            self.__image_path_entry.setText(
-                str(self._item.module_config.module_image.path)
-            )
+            self.__image_path_entry.setPath(self._item.module_config.module_image.path)
 
     @override
     @classmethod
@@ -125,7 +122,9 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self.__description_entry.setExpanded(True)
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
-        self.__image_path_entry = BrowseLineEdit()
+        self.__image_path_entry = BrowseLineEdit(
+            base_path=self._item.path.parent if self._item.path is not None else None
+        )
         self.__image_path_entry.setFileMode(QFileDialog.FileMode.ExistingFile)
         self.__image_path_entry.setNameFilters(
             [self.tr("Image Files") + f" (*{' *'.join(SUPPORTED_IMAGE_TYPES)})"]
@@ -134,17 +133,10 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
     def __on_image_path_change(self) -> None:
         image_path: Optional[Path] = (
-            Path(self.__image_path_entry.text().strip())
+            self.__image_path_entry.getPath(absolute=True)
             if self.__image_path_entry.text().strip()
             else None
         )
-
-        if (
-            image_path is not None
-            and not image_path.is_absolute()
-            and self._item.path is not None
-        ):
-            image_path = self._item.path.parent / image_path
 
         if image_path is not None and image_path.is_file():
             self.__image_label.setPixmap(QPixmap(str(image_path)))
@@ -167,7 +159,7 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
         self._item.info.description = self.__description_entry.toPlainText()
 
         image_path: Optional[Path] = (
-            Path(self.__image_path_entry.text().strip())
+            self.__image_path_entry.getPath()
             if self.__image_path_entry.text().strip()
             else None
         )
@@ -189,17 +181,12 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
             raise NameIsMissingError
 
         image_path: Optional[Path] = (
-            Path(self.__image_path_entry.text().strip())
+            self.__image_path_entry.getPath(absolute=True)
             if self.__image_path_entry.text().strip()
             else None
         )
 
         if image_path is not None:
-            image_path = get_joined_path_if_relative(
-                image_path,
-                self._item.path.parent if self._item.path is not None else None,
-            )
-
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
 

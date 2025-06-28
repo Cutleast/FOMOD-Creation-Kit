@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-import os
+from pathlib import Path
 from typing import Any, Optional, override
 
 import qtawesome as qta
@@ -13,10 +13,9 @@ from PySide6.QtWidgets import QFileDialog, QHBoxLayout, QLineEdit, QPushButton
 class BrowseLineEdit(QLineEdit):
     """
     Custom QLineEdit with a "Browse" button to open a QFileDialog.
-
-    TODO: Fix overlapping text with browse button if text is too long
     """
 
+    __base_path: Optional[Path]
     __browse_button: QPushButton
     __file_dialog: QFileDialog
 
@@ -30,9 +29,31 @@ class BrowseLineEdit(QLineEdit):
         str: New path
     """
 
-    def __init__(self, *args: Any, **kwargs: dict[str, Any]) -> None:
+    def __init__(
+        self,
+        initial_path: Optional[Path] = None,
+        base_path: Optional[Path] = None,
+        *args: Any,
+        **kwargs: dict[str, Any],
+    ) -> None:
+        """
+        Args:
+            initial_path (Optional[Path], optional):
+                Initial path to display. Defaults to None.
+            base_path (Optional[Path], optional):
+                Base path for relative paths. Defaults to None.
+        """
+
         super().__init__(*args, **kwargs)
 
+        self.__base_path = base_path
+
+        self.__init_ui()
+
+        if initial_path is not None:
+            self.setPath(initial_path)
+
+    def __init_ui(self) -> None:
         self.__file_dialog = QFileDialog()
 
         hlayout: QHBoxLayout = QHBoxLayout(self)
@@ -80,25 +101,55 @@ class BrowseLineEdit(QLineEdit):
         super().setText(text)
         self.pathChanged.emit(old_text, text or "")
 
+    def getPath(self, absolute: bool = False) -> Path:
+        """
+        Returns the current path.
+
+        Args:
+            absolute (bool, optional):
+                Whether to join the path with the base path, if any. Defaults to False.
+
+        Returns:
+            Path: Current path
+        """
+
+        if absolute and self.__base_path is not None:
+            return self.__base_path.joinpath(self.text())
+
+        return Path(self.text())
+
+    def setPath(self, path: Path) -> None:
+        """
+        Sets the current path.
+
+        Args:
+            path (Path): New path
+        """
+
+        current_text: str = self.text().strip()
+
+        if self.__base_path is not None and path.is_relative_to(self.__base_path):
+            self.setText(str(path.relative_to(self.__base_path)))
+        else:
+            self.setText(str(path))
+
+        self.pathChanged.emit(current_text, str(path))
+
     def __browse(self) -> None:
         current_text: str = self.text().strip()
 
         if current_text:
-            current_path: str = os.path.normpath(current_text)
-            if self.__file_dialog.fileMode() == QFileDialog.FileMode.Directory:
-                self.__file_dialog.setDirectory(current_path)
-            else:
-                self.__file_dialog.setDirectory(os.path.dirname(current_path))
-                self.__file_dialog.selectFile(os.path.basename(current_path))
+            current_path: Path = self.getPath(absolute=True)
+            self.__file_dialog.setDirectory(str(current_path.parent))
+            self.__file_dialog.selectFile(current_path.name)
 
         if self.__file_dialog.exec():
             selected_files: list[str] = self.__file_dialog.selectedFiles()
 
             if selected_files:
-                file: str = os.path.normpath(selected_files.pop())
-                self.setText(file)
+                file: Path = Path(selected_files.pop())
 
-                self.pathChanged.emit(current_text, file)
+                self.setPath(file)
 
 
 def test() -> None:

@@ -20,7 +20,6 @@ from core.fomod.module_config.file_item import FileItem
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
-from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.enum_dropdown import LocalizedEnum
 from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
@@ -118,13 +117,15 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
 
         hlayout = QHBoxLayout()
         hlayout.setContentsMargins(0, 0, 0, 0)
-        self.__source_entry = BrowseLineEdit()
+        self.__source_entry = BrowseLineEdit(
+            base_path=self._fomod_path.parent if self._fomod_path is not None else None
+        )
         self.__source_entry.setToolTip(
             self.tr("The path to the file or folder in the FOMOD folder.")
         )
-        self.__source_entry.setPlaceholderText(self.tr('eg. "..\\core\\test.esp"'))
+        self.__source_entry.setPlaceholderText(self.tr('eg. "core\\test.esp"'))
         if self._item.source != Path("__default__"):
-            self.__source_entry.setText(str(self._item.source))
+            self.__source_entry.setPath(self._item.source)
         hlayout.addWidget(self.__source_entry)
 
         self.__type_selector = EnumRadiobuttonsWidget(
@@ -189,10 +190,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         if not self.__source_entry.text().strip():
             raise SpecificEmptyError(self.tr("The source path must not be empty!"))
 
-        source_path: Path = get_joined_path_if_relative(
-            Path(self.__source_entry.text().strip()),
-            base_path=self._fomod_path.parent if self._fomod_path is not None else None,
-        )
+        source_path: Path = self.__source_entry.getPath(absolute=True)
         if self.__type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File:
             if not source_path.is_file():
                 raise SpecificValidationError(
@@ -210,7 +208,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
 
     @override
     def save(self) -> FileSystemItem:
-        source = Path(self.__source_entry.text().strip())
+        source = Path(self.__source_entry.getPath())
         destination: Optional[Path] = (
             Path(self.__destination_entry.text().strip())
             if self.__destination_entry.text().strip()

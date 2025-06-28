@@ -23,7 +23,6 @@ from core.fomod_editor.exceptions import (
     SpecificEmptyError,
 )
 from core.utilities.exception_handler import ExceptionHandler
-from core.utilities.path import get_joined_path_if_relative
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
@@ -130,7 +129,9 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self.__description_entry.setExpanded(False)
         self.__flayout.addRow(self.tr("Description:"), self.__description_entry)
 
-        self.__image_path_entry = BrowseLineEdit()
+        self.__image_path_entry = BrowseLineEdit(
+            base_path=self._fomod_path.parent if self._fomod_path is not None else None
+        )
         self.__image_path_entry.setNameFilters(
             [self.tr("Image Files") + f" (*{' *'.join(SUPPORTED_IMAGE_TYPES)})"]
         )
@@ -210,16 +211,12 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
             raise NameIsMissingError
 
         image_path: Optional[Path] = (
-            Path(self.__image_path_entry.text().strip())
+            self.__image_path_entry.getPath(absolute=True)
             if self.__image_path_entry.text().strip()
             else None
         )
 
         if image_path is not None:
-            image_path = get_joined_path_if_relative(
-                image_path,
-                self._fomod_path.parent if self._fomod_path is not None else None,
-            )
             if not image_path.is_file():
                 raise FileDoesNotExistError(image_path)
 
@@ -252,7 +249,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         if not self.__image_path_entry.text().strip():
             self._item.image = None
         else:
-            self._item.image = Image(path=Path(self.__image_path_entry.text().strip()))
+            self._item.image = Image(path=self.__image_path_entry.getPath())
 
         if (
             file_list := self.__file_list_editor_widget.save()

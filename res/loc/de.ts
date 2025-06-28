@@ -421,27 +421,27 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="157"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="158"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="180"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="181"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="202"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="203"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="227"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="228"/>
         <source>Installation steps (pages)</source>
         <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="252"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="253"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
     </message>
@@ -449,97 +449,97 @@
 <context>
     <name>FsItemEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="97"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="96"/>
         <source>Edit file system item...</source>
         <translation>Datei- oder Ordnerelement bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="105"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="104"/>
         <source>A file or folder to be copied to a destination folder.</source>
         <translation>Eine Datei oder ein Ordner, welche in einen Zielordner kopiert werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="138"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="139"/>
         <source>Source:</source>
         <translation>Quelle:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="124"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="125"/>
         <source>The path to the file or folder in the FOMOD folder.</source>
         <translation>Der Pfad zur Datei oder zum Ordner innerhalb des FOMOD-Ordners.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="125"/>
-        <source>eg. &quot;..\core\test.esp&quot;</source>
-        <translation>z.B. &quot;..\core\test.esp&quot;</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="52"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="51"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="55"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="54"/>
         <source>Folder</source>
         <translation>Ordner</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="146"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="126"/>
+        <source>eg. &quot;core\test.esp&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="147"/>
         <source>The path to which the file or folder should be installed. If omitted, the destination is the same as the source.</source>
         <translation>Der Pfad, zu dem die Datei oder der Ordner installiert werden sollen. Wenn leergelassen, ist der Zielpfad gleich mit dem Quellpfad.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="149"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="150"/>
         <source>eg. &quot;test.esp&quot; (leave empty to be the same as the source)</source>
         <translation>z.B. &quot;test.esp&quot; (leer lassen, um mit Quellpfad gleich zu sein)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="152"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="153"/>
         <source>Destination (optional):</source>
         <translation>Ziel (optional):</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="154"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="155"/>
         <source>Always install</source>
         <translation>Immer installieren</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="160"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="161"/>
         <source>Indicates that the file or folder should always be installed, regardless of whether or not the plugin has been selected.</source>
         <translation>Gibt an, dass die Datei oder der Ordner immer installiert werden soll, unabhängig davon, ob das Plugin ausgewählt wurde oder nicht.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="164"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="165"/>
         <source>Install if usable</source>
         <translation>Installieren, wenn verwendbar</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="171"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="172"/>
         <source>Indicates that the file or folder should always be installed if the plugin is not NotUsable, regardless of whether or not the plugin has been selected.</source>
         <translation>Gibt an, dass die Datei oder der Ordner immer installiert werden soll, wenn das Plugin nicht NotUsable ist, unabhängig davon, ob das Plugin ausgewählt wurde oder nicht.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="182"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="183"/>
         <source>A number describing the relative priority of the file or folder. A higher number indicates the file or folder should be installed after the items with lower numbers. This value does not have to be unique.</source>
         <translation>Eine Zahl, die die relative Priorität der Datei oder des Ordners angibt. Eine höhere Zahl bedeutet, dass die Datei oder der Ordner nach den Elementen mit niedrigeren Zahlen installiert werden sollte. Dieser Wert muss nicht eindeutig sein.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="185"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="186"/>
         <source>Priority:</source>
         <translation>Priorität:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="190"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="191"/>
         <source>The source path must not be empty!</source>
         <translation>Der Quellpfad darf nicht leer sein!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="199"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="197"/>
         <source>The source path (&quot;{0}&quot;) must be an existing file!</source>
         <translation>Der Quellpfad (&quot;{0}&quot;) muss auf eine existierende Datei verweisen!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="208"/>
+        <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="206"/>
         <source>The source path (&quot;{0}&quot;) must be an existing folder!</source>
         <translation>Der Quellpfad (&quot;{0}&quot;) muss auf einen existierenden Ordner verweisen!</translation>
     </message>
@@ -636,42 +636,42 @@
 <context>
     <name>InfoEditorTab</name>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="75"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="72"/>
         <source>Edit FOMOD info...</source>
         <translation>FOMOD-Info bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="103"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="100"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="107"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="104"/>
         <source>Author:</source>
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="115"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="112"/>
         <source>Version:</source>
         <translation>Version:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="119"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="116"/>
         <source>Website:</source>
         <translation>Webseite:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="126"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="123"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="131"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="130"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="133"/>
+        <location filename="src/ui/fomod_editor/info_editor_tab.py" line="132"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
@@ -1020,57 +1020,57 @@
 <context>
     <name>PluginEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="84"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="83"/>
         <source>Edit plugin...</source>
         <translation>Plugin bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="93"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="92"/>
         <source>A plugin represents a selectable element within a FOMOD installer that can either set a condition flag or install files/folders when selected.</source>
         <translation>Ein Plugin repräsentiert ein auswählbares Element innerhalb eines FOMOD-Installers, das entweder einen Bedingungsflag setzen oder Dateien/Ordner installieren kann, wenn ausgewählt.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="121"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="120"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="129"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="128"/>
         <source>Defaults to the name above.</source>
         <translation>Standardmäßig der oben angegebene Name.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="131"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="130"/>
         <source>Description:</source>
         <translation>Beschreibung:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="135"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="136"/>
         <source>Image Files</source>
         <translation>Bilddateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="137"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="138"/>
         <source>Image:</source>
         <translation>Bild:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="149"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="150"/>
         <source>Files</source>
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="158"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="159"/>
         <source>Condition Flags</source>
         <translation>Bedingungen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="165"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="166"/>
         <source>Type Descriptor</source>
         <translation>Typbeschreibung</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="241"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="238"/>
         <source>At least one file, folder or condition flag must be specified!</source>
         <translation>Mindestens eine Datei, Ordner oder gesetzte Bedingung muss vorhanden sein!</translation>
     </message>
