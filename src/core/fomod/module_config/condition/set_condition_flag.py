@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from typing import override
+
 from pydantic_xml import BaseXmlModel, attr
 
 
@@ -15,3 +17,7 @@ class SetConditionFlag(BaseXmlModel):
 
     name: str = attr(name="name")
     """The identifying name of the condition flag."""
+
+    @override
+    def __str__(self) -> str:
+        return f"{self.name}={self.value}"
