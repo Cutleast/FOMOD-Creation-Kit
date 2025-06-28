@@ -13,10 +13,10 @@ from core.utilities.filesystem import clean_fs_string, create_folder_list
 from ui.widgets.loading_dialog import LoadingDialog
 
 from .fomod import Fomod
-from .module_config.file_item import FileItem
-from .module_config.file_list import FileList
+from .module_config.file_system.file_item import FileItem
+from .module_config.file_system.file_list import FileList
 from .module_config.file_system.file_system_item import FileSystemItem
-from .module_config.folder_item import FolderItem
+from .module_config.file_system.folder_item import FolderItem
 from .module_config.image import Image
 
 

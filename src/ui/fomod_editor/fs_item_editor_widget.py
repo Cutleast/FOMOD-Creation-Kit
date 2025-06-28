@@ -16,9 +16,9 @@ from PySide6.QtWidgets import (
     QSpinBox,
 )
 
-from core.fomod.module_config.file_item import FileItem
+from core.fomod.module_config.file_system.file_item import FileItem
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
-from core.fomod.module_config.folder_item import FolderItem
+from core.fomod.module_config.file_system.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
 from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.enum_dropdown import LocalizedEnum

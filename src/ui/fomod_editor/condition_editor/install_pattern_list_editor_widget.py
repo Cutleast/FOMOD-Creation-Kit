@@ -13,7 +13,7 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
     ConditionalInstallPatternList,
 )
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod_editor.exceptions import EmptyError
 from ui.fomod_editor.editor_dialog import EditorDialog
 from ui.widgets.tree_widget_editor import TreeWidgetEditor

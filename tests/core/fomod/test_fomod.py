@@ -19,8 +19,8 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
 )
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
-from core.fomod.module_config.file_item import FileItem
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_item import FileItem
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod.module_config.header_image import HeaderImage
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep

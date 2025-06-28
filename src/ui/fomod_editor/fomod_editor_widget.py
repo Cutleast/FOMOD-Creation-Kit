@@ -18,7 +18,7 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
     ConditionalInstallPatternList,
 )
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod.module_config.install_step.step_list import StepList
 from core.fomod_editor.exceptions import ValidationError
 from ui.utilities.icon_provider import get_icon_for_palette

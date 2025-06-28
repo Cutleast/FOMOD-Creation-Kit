@@ -6,7 +6,7 @@ from typing import override
 
 from PySide6.QtWidgets import QApplication
 
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod_editor.exceptions import EmptyError
 
 from .base_editor_widget import BaseEditorWidget

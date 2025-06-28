@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 import pytest
 from pytestqt.qtbot import QtBot
 
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod_editor.exceptions import EmptyError
 from tests.utils import Utils
 from ui.fomod_editor.file_list_editor_widget import FileListEditorWidget

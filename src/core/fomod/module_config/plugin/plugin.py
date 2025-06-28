@@ -11,7 +11,7 @@ from pydantic_xml import BaseXmlModel, attr, element
 from PySide6.QtWidgets import QApplication
 
 from ..condition.condition_flag_list import ConditionFlagList
-from ..file_list import FileList
+from ..file_system.file_list import FileList
 from ..image import Image
 from .plugin_type import PluginType
 from .plugin_type_descriptor import PluginTypeDescriptor

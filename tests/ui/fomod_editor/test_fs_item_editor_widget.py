@@ -9,7 +9,7 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 from PySide6.QtWidgets import QCheckBox, QLineEdit, QSpinBox
 from pytestqt.qtbot import QtBot
 
-from core.fomod.module_config.file_item import FileItem
+from core.fomod.module_config.file_system.file_item import FileItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
 from tests.utils import Utils
 from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget

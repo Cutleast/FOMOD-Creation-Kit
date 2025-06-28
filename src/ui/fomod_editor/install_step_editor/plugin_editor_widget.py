@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QTabWidget
 from core.fomod.module_config import SUPPORTED_IMAGE_TYPES
 from core.fomod.module_config.condition.condition_flag_list import ConditionFlagList
 from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
-from core.fomod.module_config.file_list import FileList
+from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod.module_config.image import Image
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
