@@ -112,7 +112,6 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self.__groups_tree_widget.onEdit.connect(self.__edit_group)
         self.__groups_tree_widget.currentItemChanged.connect(self.__on_group_select)
 
-        self.__plugins_tree_widget.changed.connect(self.changed.emit)
         self.__plugins_tree_widget.changed.connect(self.__on_plugin_change)
         self.__plugins_tree_widget.onAdd.connect(self.__add_plugin)
         self.__plugins_tree_widget.onEdit.connect(self.__edit_plugin)
@@ -306,6 +305,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         current_group: Optional[Group] = self.__groups_tree_widget.getCurrentItem()
         if current_group is not None:
             current_group.plugins.plugins = self.__plugins_tree_widget.getItems()
+
+        self.changed.emit()
 
     def __on_visibility_change(self) -> None:
         dep: CompositeDependency = self.__visibility_editor_widget.save()

@@ -752,7 +752,7 @@
     </message>
     <message>
         <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="187"/>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="314"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="316"/>
         <source>Always visible</source>
         <translation>Immer sichtbar</translation>
     </message>
@@ -777,12 +777,12 @@
         <translation>Ein Plugin ist eine einzelne Auswahlmöglichkeit, die Dateien installieren oder Bedingungen setzen kann.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="329"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="331"/>
         <source>At least one group must be added!</source>
         <translation>Mindestens eine Gruppe muss hinzugefügt werden!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="336"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="338"/>
         <source>Every group must have at least one plugin!</source>
         <translation>Jede Gruppe muss mindestens ein Plugin haben!</translation>
     </message>

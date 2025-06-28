@@ -12,6 +12,11 @@ from pytestqt.qtbot import QtBot
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep
 from core.fomod.module_config.plugin.plugin import Plugin
+from core.fomod_editor.exceptions import (
+    NameIsMissingError,
+    SpecificEmptyError,
+    SpecificValidationError,
+)
 from tests.ui.ui_test import UiTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.composite_dependency_editor_widget import (
@@ -147,3 +152,69 @@ class TestInstallStepEditorWidget(UiTest):
         assert groups_tree_widget.getCurrentItem() is groups[0]
         assert plugins_tree_widget.isEnabled()
         assert plugins_tree_widget.getItems() == group.plugins.plugins
+
+    def test_group_validation(
+        self, widget: InstallStepEditorWidget, qtbot: QtBot
+    ) -> None:
+        """
+        Tests the validation of the install step's groups.
+        """
+
+        # given
+        name_entry: QLineEdit = Utils.get_private_field(
+            widget, *TestInstallStepEditorWidget.NAME_ENTRY
+        )
+        groups_tree_widget: InstallStepEditorWidget.GroupsTreeWidget = (
+            Utils.get_private_field(
+                widget, *TestInstallStepEditorWidget.GROUPS_TREE_WIDGET
+            )
+        )
+        plugins_tree_widget: InstallStepEditorWidget.PluginsTreeWidget = (
+            Utils.get_private_field(
+                widget, *TestInstallStepEditorWidget.PLUGINS_TREE_WIDGET
+            )
+        )
+
+        # when/then
+        with pytest.raises(NameIsMissingError):
+            widget.validate()
+
+        # when
+        with qtbot.waitSignal(widget.changed):
+            name_entry.setText("Test")
+
+        # when/then
+        with pytest.raises(
+            SpecificEmptyError, match="At least one group must be added!"
+        ):
+            widget.validate()
+
+        # when
+        group: Group = Group.create()
+
+        with qtbot.waitSignal(widget.changed):
+            groups_tree_widget.addItem(group)
+
+        # when/then
+        with pytest.raises(
+            SpecificValidationError, match="Every group must have at least one plugin!"
+        ):
+            widget.validate()
+
+        # when
+        groups_tree_widget.setCurrentItem(group)
+        plugin: Plugin = Plugin.create()
+
+        with qtbot.waitSignal(widget.changed):
+            plugins_tree_widget.addItem(plugin)
+
+        # then
+        widget.validate()
+
+        # when
+        install_step: InstallStep = widget.save()
+
+        # then
+        assert install_step.name == "Test"
+        assert install_step.optional_file_groups.groups == [group]
+        assert group.plugins.plugins == [plugin]
