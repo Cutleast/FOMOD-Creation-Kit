@@ -217,32 +217,32 @@
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="96"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="98"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="108"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="110"/>
         <source>Close unsaved item?</source>
         <translation>Ungespeichertes Element schließen?</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="114"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="116"/>
         <source>Are you sure you want to close the current item? There are unsaved changes that will be lost.</source>
         <translation>Bist du sicher, dass du das aktuelle Element schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="131"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="133"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="135"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="137"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="140"/>
+        <location filename="src/ui/fomod_editor/editor_dialog.py" line="142"/>
         <source>Save and close</source>
         <translation>Speichern und schließen</translation>
     </message>
@@ -421,27 +421,27 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="158"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="159"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="181"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="182"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="203"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="204"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="228"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="229"/>
         <source>Installation steps (pages)</source>
         <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="253"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="254"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
     </message>

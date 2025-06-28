@@ -74,6 +74,8 @@ class FomodEditorWidget(QWidget):
         self.__status_banner = QLabel()
         self.__status_banner.setObjectName("status_banner")
         self.__status_banner.setWordWrap(True)
+        # prevent banner from increasing the window's size
+        self.__status_banner.setMinimumWidth(100)
         self.__vlayout.addWidget(self.__status_banner)
 
         self.__tab_widget = QTabWidget()

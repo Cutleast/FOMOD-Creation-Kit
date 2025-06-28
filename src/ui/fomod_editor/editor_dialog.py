@@ -91,6 +91,8 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
             Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter
         )
         self.__validation_status_label.setWordWrap(True)
+        # prevent label from increasing the dialog's size
+        self.__validation_status_label.setMinimumWidth(50)
         hlayout.addWidget(self.__validation_status_label, stretch=1)
 
         self.__save_button = QPushButton(self.tr("Save"))
