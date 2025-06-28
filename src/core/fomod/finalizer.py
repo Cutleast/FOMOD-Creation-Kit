@@ -406,7 +406,7 @@ class Finalizer(QObject):
 
         new_folder_path: Path = fomod_path / name / source.name
         new_folder_path.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(source, new_folder_path)
+        shutil.copytree(source, new_folder_path, dirs_exist_ok=True)
         self.log.info(f"Copied '{source}' to '{new_folder_path}'.")
 
         return new_folder_path.relative_to(fomod_path.parent), create_folder_list(
