@@ -2,7 +2,6 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
 from typing import override
 
 from PySide6.QtWidgets import QApplication
@@ -26,9 +25,8 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
     __type_dropdown: EnumDropdown[PluginType.Type]
     __composite_dependency_editor: CompositeDependencyEditorWidget
 
-    def __init__(self, item: DependencyPattern, fomod_path: Path | None = None) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__type_dropdown.currentValueChanged.connect(lambda _: self.changed.emit())
         self.__composite_dependency_editor.changed.connect(self.changed.emit)
 

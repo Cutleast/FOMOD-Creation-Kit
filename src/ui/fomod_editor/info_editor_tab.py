@@ -46,9 +46,8 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
     __image_path_entry: BrowseLineEdit
     __image_label: ImageLabel
 
-    def __init__(self, item: Fomod, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda text: self.changed.emit())
         self.__author_entry.textChanged.connect(lambda text: self.changed.emit())
         self.__version_entry.textChanged.connect(lambda text: self.changed.emit())

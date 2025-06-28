@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication, QLineEdit
 
@@ -20,13 +19,10 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
     __name_entry: QLineEdit
     __value_entry: QLineEdit
 
-    def __init__(self, item: FlagDependency, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__value_entry.textChanged.connect(lambda _: self.changed.emit())
-
-        self.setBaseSize(500, 120)
 
     @override
     @classmethod
@@ -59,6 +55,8 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
         )
         self.__value_entry.setText(self._item.value)
         self._vlayout.addWidget(self.__value_entry)
+
+        self.setBaseSize(500, 120)
 
     @override
     def validate(self) -> None:

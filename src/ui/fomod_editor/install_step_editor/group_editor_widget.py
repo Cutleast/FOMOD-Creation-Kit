@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit
 
@@ -23,13 +22,10 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
     __name_entry: QLineEdit
     __type_dropdown: EnumDropdown[Group.Type]
 
-    def __init__(self, item: Group, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__type_dropdown.currentValueChanged.connect(lambda _: self.changed.emit())
-
-        self.setBaseSize(500, 100)
 
     @override
     @classmethod
@@ -66,6 +62,8 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
                 + Group.Type.get_localized_summary()
             )
         )
+
+        self.setBaseSize(500, 100)
 
     @override
     def validate(self) -> None:

@@ -3,7 +3,6 @@ Copyright (c) Cutleast
 """
 
 from copy import deepcopy
-from pathlib import Path
 from typing import Optional, Sequence, override
 
 from PySide6.QtCore import Qt
@@ -102,18 +101,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     __plugins_tree_widget: PluginsTreeWidget
 
-    def __init__(
-        self,
-        item: InstallStep,
-        fomod_path: Optional[Path],
-        show_title: bool = False,
-        show_description: bool = True,
-        scrollable: bool = True,
-    ) -> None:
-        self.__groups = deepcopy(item.optional_file_groups.groups)
-
-        super().__init__(item, fomod_path, show_title, show_description, scrollable)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__visibility_editor_widget.changed.connect(self.changed.emit)
         self.__visibility_editor_widget.changed.connect(
@@ -155,6 +144,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     @override
     def _init_ui(self) -> None:
         super()._init_ui()
+
+        self.__groups = deepcopy(self._item.optional_file_groups.groups)
 
         self.__init_name_field()
         self.__init_vertical_splitter()
@@ -203,6 +194,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             deepcopy(self._item.visible.dependencies)
             if self._item.visible is not None
             else CompositeDependency(),
+            self._fomod_path,
             scrollable=False,
         )
 

@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication
 
@@ -23,9 +22,8 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
 
     __editor_widget: CompositeDependencyEditorWidget
 
-    def __init__(self, item: CompositeDependency, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path, show_title=True)
-
+    @override
+    def _post_init(self) -> None:
         self.__editor_widget.changed.connect(self.changed.emit)
 
     @override
@@ -53,7 +51,9 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__editor_widget = CompositeDependencyEditorWidget(self._item)
+        self.__editor_widget = CompositeDependencyEditorWidget(
+            self._item, self._fomod_path
+        )
         self._vlayout.addWidget(self.__editor_widget)
 
     @override

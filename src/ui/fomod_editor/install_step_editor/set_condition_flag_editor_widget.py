@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication, QLineEdit
 
@@ -21,13 +20,10 @@ class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
     __name_entry: QLineEdit
     __value_entry: QLineEdit
 
-    def __init__(self, item: SetConditionFlag, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__value_entry.textChanged.connect(lambda _: self.changed.emit())
-
-        self.resize(800, 250)
 
     @override
     @classmethod
@@ -59,6 +55,8 @@ class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
         )
         self.__value_entry.setText(self._item.value)
         self._vlayout.addWidget(self.__value_entry)
+
+        self.resize(800, 250)
 
     @override
     def validate(self) -> None:

@@ -2,7 +2,6 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
 from typing import override
 
 from PySide6.QtGui import Qt
@@ -67,16 +66,8 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
     __static_type_selector: EnumDropdown[PluginType.Type]
     __dynamic_type_editor: DependencyPluginTypeEditorWidget
 
-    def __init__(
-        self,
-        item: PluginTypeDescriptor,
-        fomod_path: Path | None = None,
-        show_title: bool = False,
-        show_description: bool = True,
-        scrollable: bool = True,
-    ) -> None:
-        super().__init__(item, fomod_path, show_title, show_description, scrollable)
-
+    @override
+    def _post_init(self) -> None:
         self.__descriptor_type_selector.currentValueChanged.connect(
             self.__on_type_changed
         )

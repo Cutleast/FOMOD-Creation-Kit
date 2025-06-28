@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication
 
@@ -20,9 +19,8 @@ class StepsEditorTab(BaseEditorWidget[StepList]):
 
     __editor_widget: StepListEditorWidget
 
-    def __init__(self, item: StepList, fomod_path: Optional[Path] = None) -> None:
-        super().__init__(item, fomod_path, show_title=True)
-
+    @override
+    def _post_init(self) -> None:
         self.__editor_widget.changed.connect(self.changed.emit)
 
     @override

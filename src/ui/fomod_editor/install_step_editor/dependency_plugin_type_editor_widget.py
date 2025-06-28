@@ -3,7 +3,6 @@ Copyright (c) Cutleast
 """
 
 from collections.abc import Sequence
-from pathlib import Path
 from typing import override
 
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QTreeWidgetItem
@@ -76,11 +75,8 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
 
     __pattern_tree_widget: PatternTreeWidget
 
-    def __init__(
-        self, item: DependencyPluginType, fomod_path: Path | None = None
-    ) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__default_type_selector.currentValueChanged.connect(
             lambda _: self.changed.emit()
         )

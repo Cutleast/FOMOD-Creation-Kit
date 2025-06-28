@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel
@@ -26,16 +25,8 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
     __dependency_group_editor_widget: DependencyGroupEditorWidget
     __operator_selector: EnumRadiobuttonsWidget[CompositeDependency.Operator]
 
-    def __init__(
-        self,
-        item: CompositeDependency,
-        fomod_path: Optional[Path] = None,
-        show_title: bool = False,
-        show_description: bool = True,
-        scrollable: bool = True,
-    ) -> None:
-        super().__init__(item, fomod_path, show_title, show_description, scrollable)
-
+    @override
+    def _post_init(self) -> None:
         self.__operator_selector.currentValueChanged.connect(
             lambda value: self.changed.emit()
         )

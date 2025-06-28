@@ -50,6 +50,9 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         scrollable: bool = True,
     ) -> None:
         """
+        **Note: This constructor is not meant to be overriden by subclasses.**<br>
+        **For post-initialization tasks, override `_post_init()` instead.**
+
         Args:
             item (T): Edited item
             fomod_path (Optional[Path]):
@@ -73,8 +76,13 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         self.__scrollable = scrollable
 
         self._init_ui()
+        self._post_init()
 
     def _init_ui(self) -> None:
+        """
+        Initializes the UI of the widget.
+        """
+
         self._vlayout = QVBoxLayout()
         self._vlayout.setContentsMargins(0, 0, 0, 0)
         self._vlayout.setAlignment(Qt.AlignmentFlag.AlignTop)
@@ -98,6 +106,11 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
             help_label = QLabel(self.get_description())
             help_label.setWordWrap(True)
             self._vlayout.addWidget(help_label)
+
+    def _post_init(self) -> None:
+        """
+        This method is called from the constructer right afer `_init_ui()`.
+        """
 
     @classmethod
     @abstractmethod

@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -45,9 +44,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     __dependencies_tree_widget_editor: TreeWidgetEditor[CompositeDependency]
 
-    def __init__(self, item: CompositeDependency, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__files_tree_widget_editor.changed.connect(self.changed.emit)
         self.__files_tree_widget_editor.onAdd.connect(self.__add_file_dependency)
         self.__files_tree_widget_editor.onEdit.connect(self.__edit_file_dependency)
@@ -206,7 +204,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         dependency = CompositeDependency()
         dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(dependency), validate_on_init=True
+            CompositeDependencyEditorWidget(dependency, self._fomod_path),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -216,7 +215,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
         dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(item)
+            CompositeDependencyEditorWidget(item, self._fomod_path)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

@@ -164,6 +164,7 @@ class FomodEditorWidget(QWidget):
             self.__current_fomod.module_config.module_dependencies
             or CompositeDependency(),
             self.__current_fomod.path,
+            show_title=True,
         )
         self.__dependency_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -185,6 +186,7 @@ class FomodEditorWidget(QWidget):
         self.__required_files_editor_tab = RequiredFilesEditorTab(
             self.__current_fomod.module_config.required_install_files or FileList(),
             self.__current_fomod.path,
+            show_title=True,
         )
         self.__required_files_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -207,6 +209,7 @@ class FomodEditorWidget(QWidget):
             self.__current_fomod.module_config.install_steps
             or StepList(install_steps=[]),
             self.__current_fomod.path,
+            show_title=True,
         )
         self.__steps_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -231,6 +234,7 @@ class FomodEditorWidget(QWidget):
             self.__current_fomod.module_config.conditional_file_installs
             or ConditionalFileInstallList(patterns=ConditionalInstallPatternList()),
             self.__current_fomod.path,
+            show_title=True,
         )
         self.__conditional_files_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)

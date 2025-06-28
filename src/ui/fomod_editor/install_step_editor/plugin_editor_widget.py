@@ -59,16 +59,8 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
     __condition_flags_tree_widget: TreeWidgetEditor[SetConditionFlag]
     __type_descriptor_editor_widget: TypeDescriptorEditorWidget
 
-    def __init__(
-        self,
-        item: Plugin,
-        fomod_path: Optional[Path],
-        show_title: bool = False,
-        show_description: bool = True,
-        scrollable: bool = True,
-    ) -> None:
-        super().__init__(item, fomod_path, show_title, show_description, scrollable)
-
+    @override
+    def _post_init(self) -> None:
         self.__name_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__description_entry.textChanged.connect(self.changed.emit)
         self.__image_path_entry.textChanged.connect(lambda _: self.changed.emit())

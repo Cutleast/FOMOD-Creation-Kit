@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, Sequence, override
+from typing import Sequence, override
 
 from PySide6.QtWidgets import QApplication, QTreeWidgetItem
 
@@ -78,11 +77,8 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
 
     __tree_widget: InstallPatternTreeWidget
 
-    def __init__(
-        self, item: ConditionalInstallPatternList, fomod_path: Optional[Path]
-    ) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__tree_widget.changed.connect(self.changed.emit)
         self.__tree_widget.onAdd.connect(self.__add_install_pattern_item)
         self.__tree_widget.onEdit.connect(self.__edit_install_pattern_item)

@@ -68,9 +68,8 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
     __install_if_usable_checkbox: QCheckBox
     __priority_entry: QSpinBox
 
-    def __init__(self, item: FileSystemItem, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__source_entry.textChanged.connect(lambda _: self.changed.emit())
         self.__type_selector.currentValueChanged.connect(
             lambda item_type: self.__source_entry.setFileMode(

@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, override
+from typing import override
 
 from PySide6.QtWidgets import QApplication
 
@@ -21,9 +20,8 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
 
     __file_list_editor_widget: FileListEditorWidget
 
-    def __init__(self, item: FileList, fomod_path: Optional[Path]) -> None:
-        super().__init__(item, fomod_path, show_title=True)
-
+    @override
+    def _post_init(self) -> None:
         self.__file_list_editor_widget.changed.connect(self.changed.emit)
 
     @override
@@ -54,7 +52,7 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
         super()._init_ui()
 
         self.__file_list_editor_widget = FileListEditorWidget(
-            self._item, self._fomod_path
+            self._item, self._fomod_path, show_description=False
         )
         self._vlayout.addWidget(self.__file_list_editor_widget)
 

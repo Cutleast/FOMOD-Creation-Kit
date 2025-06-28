@@ -2,8 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from pathlib import Path
-from typing import Optional, Sequence, override
+from typing import Sequence, override
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QSplitter
@@ -27,8 +26,7 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
 
     class StepsTreeWidget(TreeWidgetEditor[InstallStep]):
         """
-        Adapted tree editor widget for install steps (has drag'n drop reordering and
-        single selection mode).
+        Adapted tree editor widget for install steps (doesn't allow deletion of last item).
         """
 
         def __init__(self, initial_items: Sequence[InstallStep] = []) -> None:
@@ -51,9 +49,8 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
     __steps_tree_widget: StepsTreeWidget
     __install_step_preview_widget: InstallStepPreviewWidget
 
-    def __init__(self, item: StepList, fomod_path: Optional[Path] = None) -> None:
-        super().__init__(item, fomod_path)
-
+    @override
+    def _post_init(self) -> None:
         self.__steps_tree_widget.changed.connect(self.changed.emit)
         self.__steps_tree_widget.currentItemChanged.connect(
             self.__install_step_preview_widget.set_item
@@ -62,8 +59,8 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
         self.__steps_tree_widget.onEdit.connect(self.__edit_install_step)
         self.__install_step_preview_widget.onEdit.connect(self.__edit_install_step)
 
-        if item.install_steps:
-            self.__steps_tree_widget.setCurrentItem(item.install_steps[0])
+        if self._item.install_steps:
+            self.__steps_tree_widget.setCurrentItem(self._item.install_steps[0])
 
     @override
     @classmethod
