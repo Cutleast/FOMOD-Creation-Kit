@@ -60,6 +60,16 @@
         <source>At least one listed dependency must be satisfied in order for this dependency to be satisfied.</source>
         <translation>Mindestens eine der gelisteten Abhängigkeiten muss erfüllt sein, damit diese Abhängigkeit als erfüllt gilt.</translation>
     </message>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="118"/>
+        <source>Game Version</source>
+        <translation>Spielversion</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="124"/>
+        <source>FOMM Version</source>
+        <translation>FOMM-Version</translation>
+    </message>
 </context>
 <context>
     <name>CompositeDependencyEditorWidget</name>
@@ -481,7 +491,7 @@
     <message>
         <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="126"/>
         <source>eg. &quot;core\test.esp&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>z.B. &quot;core\test.esp&quot;</translation>
     </message>
     <message>
         <location filename="src/ui/fomod_editor/fs_item_editor_widget.py" line="147"/>
@@ -972,7 +982,7 @@
     <message>
         <location filename="src/ui/menubar.py" line="162"/>
         <source>View source code on GitHub...</source>
-        <translation type="unfinished"></translation>
+        <translation>Quellcode auf GitHub ansehen...</translation>
     </message>
     <message>
         <location filename="src/ui/menubar.py" line="171"/>
