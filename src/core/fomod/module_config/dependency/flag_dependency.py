@@ -2,6 +2,8 @@
 Copyright (c) Cutleast
 """
 
+from typing import override
+
 from pydantic_xml import attr
 
 from .dependency import Dependency
@@ -17,3 +19,7 @@ class FlagDependency(Dependency):
 
     value: str = attr(name="value")
     """The value of the condition flag upon which a the plugin depends."""
+
+    @override
+    def __str__(self) -> str:
+        return f"{self.flag}={self.value}"

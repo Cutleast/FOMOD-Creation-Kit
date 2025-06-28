@@ -102,23 +102,61 @@ class CompositeDependency(BaseXmlModel, search_mode="unordered"):
             str: A display name generated from the dependencies.
         """
 
-        return ", ".join(
+        deps: list[str] = []
+
+        deps.extend(
             [
                 f"{dep.file} ({dep.state.get_localized_name()})"
                 for dep in self.file_dependencies
             ]
-            + [f"{dep.flag}={dep.value}" for dep in self.flag_dependencies]
-            + [
-                dep.version
-                for dep in [self.game_dependency, self.fomm_dependency]
-                if dep is not None
-            ]
-            + [dep.get_display_name() for dep in self.dependencies]
         )
+        deps.extend([dep.get_display_name() for dep in self.flag_dependencies])
+
+        if self.game_dependency is not None:
+            deps.append(
+                QApplication.translate("CompositeDependency", "Game Version")
+                + "="
+                + self.game_dependency.version
+            )
+        if self.fomm_dependency is not None:
+            deps.append(
+                QApplication.translate("CompositeDependency", "FOMM Version")
+                + "="
+                + self.fomm_dependency.version
+            )
+
+        for dep in self.dependencies:
+            if len(dep) > 1:
+                deps.append("(" + dep.get_display_name() + ")")
+            else:
+                deps.append(dep.get_display_name())
+
+        if len(deps) > 1:
+            text = (
+                ", ".join(deps[:-1])
+                + " "
+                + self.operator.get_localized_name().lower()
+                + " "
+                + deps[-1]
+            )
+        else:
+            text = deps[0]
+
+        return text
 
     @override
     def __str__(self) -> str:
         return self.get_display_name()
+
+    def __len__(self) -> int:
+        size: int = 0
+        size += len(self.file_dependencies)
+        size += len(self.flag_dependencies)
+        size += 1 if self.game_dependency is not None else 0
+        size += 1 if self.fomm_dependency is not None else 0
+        size += len(self.dependencies)
+
+        return size
 
     def is_empty(self) -> bool:
         """
