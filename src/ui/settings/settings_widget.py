@@ -194,6 +194,7 @@ class SettingsWidget(SmoothScrollArea):
         self.__app_config.language = self.__language_box.getCurrentValue()
         self.__app_config.ui_mode = self.__ui_mode_box.getCurrentValue()
 
+        self.__behavior_config.finalize_on_save = self.__finalize_checkbox.isChecked()
         self.__behavior_config.validate_xml_on_save = (
             self.__validate_xml_checkbox.isChecked()
         )
