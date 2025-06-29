@@ -102,6 +102,13 @@ class CompositeDependency(BaseXmlModel, search_mode="unordered"):
             str: A display name generated from the dependencies.
         """
 
+        if self.is_empty():
+            return (
+                "<"
+                + QApplication.translate("CompositeDependency", "empty dependency")
+                + ">"
+            )
+
         deps: list[str] = []
 
         deps.extend(

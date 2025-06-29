@@ -83,6 +83,7 @@ class TestCompositeDependency(BaseTest):
             ),
             "Game Version=1.0.0",
         ),
+        (CompositeDependency(), "<empty dependency>"),
     ]
 
     @pytest.mark.parametrize("dependency, expected_display_name", DISPLAY_NAME_DATA)
