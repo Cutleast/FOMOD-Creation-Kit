@@ -7,7 +7,6 @@ from typing import Optional
 
 import qtawesome as qta
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (
     QCheckBox,
     QFormLayout,
@@ -22,12 +21,10 @@ from PySide6.QtWidgets import (
 
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep
-from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod.module_config.plugin.plugin_type import PluginType
-from core.utilities.path import get_joined_path_if_relative
-from ui.utilities.rounded_pixmap import rounded_pixmap
-from ui.utilities.tool_tip import pixmap_to_html
 from ui.widgets.smooth_scroll_area import SmoothScrollArea
+
+from ..utils import Utils
 
 
 class InstallStepPreviewWidget(SmoothScrollArea):
@@ -75,44 +72,9 @@ class InstallStepPreviewWidget(SmoothScrollArea):
                     and plugin.type_descriptor.type.name == PluginType.Type.Required
                 )
                 plugin_button.setToolTip(
-                    self.__create_tooltip_text_for_plugin(plugin, fomod_path)
+                    Utils.create_tooltip_text_for_plugin(plugin, fomod_path)
                 )
                 flayout.addRow(plugin_button)
-
-        def __create_tooltip_text_for_plugin(
-            self, plugin: Plugin, fomod_path: Optional[Path] = None
-        ) -> str:
-            html_text: str = ""
-
-            pixmap: QPixmap
-            if (
-                plugin.image is not None
-                and (
-                    image_path := get_joined_path_if_relative(
-                        plugin.image.path,
-                        fomod_path.parent if fomod_path is not None else None,
-                    )
-                ).is_file()
-            ):
-                pixmap = rounded_pixmap(
-                    QPixmap(str(image_path)).scaledToHeight(
-                        InstallStepPreviewWidget.GroupWidget.IMAGE_HEIGHT,
-                        Qt.TransformationMode.SmoothTransformation,
-                    )
-                )
-            else:
-                pixmap = qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
-                    InstallStepPreviewWidget.GroupWidget.IMAGE_HEIGHT,
-                    InstallStepPreviewWidget.GroupWidget.IMAGE_HEIGHT,
-                )
-
-            html_text: str = f"""
-<center>{pixmap_to_html(pixmap)}</center>
-<br>
-{plugin.description}
-"""
-
-            return html_text
 
     onEdit = Signal(InstallStep)
     """

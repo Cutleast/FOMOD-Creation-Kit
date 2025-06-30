@@ -2,8 +2,15 @@
 Copyright (c) Cutleast
 """
 
+from pathlib import Path
+
+import pytest
+
 from core.fomod.module_config.condition.condition_flag_list import ConditionFlagList
+from core.fomod.module_config.condition.set_condition_flag import SetConditionFlag
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
+from core.fomod.module_config.dependency.default_plugin_type import DefaultPluginType
+from core.fomod.module_config.dependency.dependency_pattern import DependencyPattern
 from core.fomod.module_config.dependency.dependency_pattern_list import (
     DependencyPatternList,
 )
@@ -11,6 +18,9 @@ from core.fomod.module_config.dependency.dependency_plugin_type import (
     DependencyPluginType,
 )
 from core.fomod.module_config.dependency.file_dependency import FileDependency
+from core.fomod.module_config.file_system.file_item import FileItem
+from core.fomod.module_config.file_system.file_list import FileList
+from core.fomod.module_config.file_system.folder_item import FolderItem
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod.module_config.plugin.plugin_type import PluginType
 from core.fomod.module_config.plugin.plugin_type_descriptor import PluginTypeDescriptor
@@ -104,3 +114,106 @@ class TestPlugin(BaseTest):
         # then
         assert file_dependency.file == "JK's Angelines Aromatics.esp"
         assert file_dependency.state == FileDependency.State.Active
+
+    SUMMARY_DATA: list[tuple[Plugin, str]] = [
+        (
+            Plugin(
+                name="Test Plugin",
+                description="A description",
+                type_descriptor=PluginTypeDescriptor(
+                    type=PluginType(name=PluginType.Type.Recommended)
+                ),
+            ),
+            """
+A description
+
+Plugin type: Recommended (Static)
+""".strip(),
+        ),
+        (
+            Plugin(
+                name="Complex Test Plugin",
+                description="A complex description",
+                files=FileList(
+                    files=[
+                        FileItem(
+                            source=Path("source_file"), destination=Path("dest_file")
+                        )
+                    ],
+                    folders=[FolderItem(source=Path("source_folder"))],
+                ),
+                condition_flags=ConditionFlagList(
+                    flags=[
+                        SetConditionFlag(name="Flag 1", value="On"),
+                        SetConditionFlag(name="Flag 2", value="Off"),
+                    ]
+                ),
+                type_descriptor=PluginTypeDescriptor(
+                    dependency_type=DependencyPluginType(
+                        default_type=DefaultPluginType(name=PluginType.Type.Optional),
+                        patterns=DependencyPatternList(
+                            patterns=[
+                                DependencyPattern(
+                                    dependencies=CompositeDependency(
+                                        file_dependencies=[
+                                            FileDependency(
+                                                file="JK's Angelines Aromatics.esp",
+                                                state=FileDependency.State.Active,
+                                            )
+                                        ]
+                                    ),
+                                    type=PluginType(name=PluginType.Type.Recommended),
+                                )
+                            ]
+                        ),
+                    )
+                ),
+            ),
+            """
+A complex description
+
+Files installed by this plugins:
+- 'source_file' → 'dest_file'
+- 'source_folder'
+
+Flags set by this plugin:
+- Flag 1=On
+- Flag 2=Off
+
+Plugin type: Optional (Dynamic):
+- JK's Angelines Aromatics.esp (Active) → Recommended
+""".strip(),
+        ),
+        (
+            Plugin(
+                name="Plugin without description",
+                description="Plugin without description",
+                type_descriptor=PluginTypeDescriptor(
+                    type=PluginType(name=PluginType.Type.Required)
+                ),
+            ),
+            "Plugin type: Required (Static)",
+        ),
+        (
+            Plugin(
+                name="Another plugin without description",
+                description="",
+                type_descriptor=PluginTypeDescriptor(
+                    type=PluginType(name=PluginType.Type.NotUsable)
+                ),
+            ),
+            "Plugin type: Not usable (Static)",
+        ),
+    ]
+
+    @pytest.mark.parametrize("plugin, expected_summary", SUMMARY_DATA)
+    def test_get_summary(self, plugin: Plugin, expected_summary: str) -> None:
+        """
+        Tests the summary of a Plugin.
+        """
+
+        # when
+        summary: str = plugin.get_summary()
+
+        # then
+        assert summary == expected_summary

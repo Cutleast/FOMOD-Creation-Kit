@@ -4,6 +4,8 @@ Copyright (c) Cutleast
 
 from __future__ import annotations
 
+from typing import override
+
 from pydantic_xml import BaseXmlModel, element
 
 from ..plugin.plugin_type import PluginType
@@ -37,3 +39,7 @@ class DependencyPattern(BaseXmlModel, search_mode="unordered"):
             dependencies=CompositeDependency(),
             type=PluginType(name=PluginType.Type.Recommended),
         )
+
+    @override
+    def __str__(self) -> str:
+        return f"{self.dependencies.get_display_name()} → {self.type.name.get_localized_name()}"

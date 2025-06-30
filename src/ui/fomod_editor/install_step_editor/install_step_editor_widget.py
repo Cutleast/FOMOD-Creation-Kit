@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QLabel,
     QLineEdit,
     QSplitter,
+    QTreeWidgetItem,
     QVBoxLayout,
 )
 
@@ -35,6 +36,7 @@ from ..dependency_editor.composite_dependency_editor_widget import (
     CompositeDependencyEditorWidget,
 )
 from ..editor_dialog import EditorDialog
+from ..utils import Utils
 from .group_editor_widget import GroupEditorWidget
 from .plugin_editor_widget import PluginEditorWidget
 
@@ -98,6 +100,23 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             self._remove_action.setEnabled(
                 len(self._tree_widget.selectedItems()) > 0 and len(self.getItems()) > 1
             )
+
+        @override
+        def _add_item(self, item: Plugin) -> QTreeWidgetItem:
+            tree_widget_item: QTreeWidgetItem = super()._add_item(item)
+            tree_widget_item.setToolTip(0, Utils.create_tooltip_text_for_plugin(item))
+
+            return tree_widget_item
+
+        @override
+        def updateItem(self, item: Plugin) -> None:
+            super().updateItem(item)
+
+            if item in self._items:
+                tree_widget_item: QTreeWidgetItem = self._items[item]
+                tree_widget_item.setToolTip(
+                    0, Utils.create_tooltip_text_for_plugin(item)
+                )
 
     __plugins_tree_widget: PluginsTreeWidget
 

@@ -93,7 +93,7 @@ class TreeWidgetEditor[T: object](QWidget):
 
         self._items = ReferenceDict()
         for item in initial_items:
-            self.__add_item(item)
+            self._add_item(item)
 
         self.__search_bar.searchChanged.connect(self._filter)
         self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
@@ -206,7 +206,18 @@ class TreeWidgetEditor[T: object](QWidget):
                 not matches_filter(get_item_text(item), text, case_sensitive)
             )
 
-    def __add_item(self, item: T) -> None:
+    def _add_item(self, item: T) -> QTreeWidgetItem:
+        """
+        Creates a tree widget item for the given item and adds it to the tree widget.
+        Does nothing if the item is already in the tree widget.
+
+        Args:
+            item (T): Item to add
+
+        Returns:
+            QTreeWidgetItem: Tree widget item belonging to the given item
+        """
+
         if item not in self._items:
             tree_widget_item = QTreeWidgetItem([str(item)])
             tree_widget_item.setFlags(
@@ -214,6 +225,8 @@ class TreeWidgetEditor[T: object](QWidget):
             )
             self._tree_widget.addTopLevelItem(tree_widget_item)
             self._items[item] = tree_widget_item
+
+        return self._items[item]
 
     def setItems(self, items: Sequence[T]) -> None:
         """
@@ -228,7 +241,7 @@ class TreeWidgetEditor[T: object](QWidget):
         self._items.clear()
 
         for item in items:
-            self.__add_item(item)
+            self._add_item(item)
 
     def addItem(self, item: T) -> None:
         """
@@ -240,7 +253,7 @@ class TreeWidgetEditor[T: object](QWidget):
         """
 
         if item not in self._items:
-            self.__add_item(item)
+            self._add_item(item)
             self.changed.emit()
 
     def updateItem(self, item: T) -> None:

@@ -643,7 +643,7 @@
 <context>
     <name>GroupWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="57"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="54"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
@@ -736,58 +736,58 @@
 <context>
     <name>InstallStepEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="129"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="148"/>
         <source>Edit install step...</source>
         <translation>Installationsschritt bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="139"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="158"/>
         <source>An installation step of a FOMOD installer is a single page consisting of groups of files that can be set to be visible when certain conditions are met.</source>
         <translation>Ein Installationsschritt eines FOMOD-Installers ist eine einzelne Seite, die aus Gruppen von Dateien besteht und deren Sichtbarkeit von Bedingungen abhängig gemacht werden kann.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="161"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="180"/>
         <source>Name:</source>
         <translation>Name:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="173"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="192"/>
         <source>Visible when</source>
         <translation>Sichtbar wenn</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="186"/>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="321"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="205"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="340"/>
         <source>Always visible</source>
         <translation>Immer sichtbar</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="226"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="245"/>
         <source>File groups</source>
         <translation>Dateigruppen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="244"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="263"/>
         <source>Plugins</source>
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="234"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="253"/>
         <source>A group is used to combine multiple related plugins together.</source>
         <translation>Eine Gruppe wird verwendet, um mehrere verwandte Plugins zusammenzufassen.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="255"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="274"/>
         <source>A plugin is a single selection option that can install files or set some flags when selected.</source>
         <translation>Ein Plugin ist eine einzelne Auswahlmöglichkeit, die Dateien installieren oder Bedingungen setzen kann.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="336"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="355"/>
         <source>At least one group must be added!</source>
         <translation>Mindestens eine Gruppe muss hinzugefügt werden!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="343"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="362"/>
         <source>Every group must have at least one plugin!</source>
         <translation>Jede Gruppe muss mindestens ein Plugin haben!</translation>
     </message>
@@ -795,22 +795,22 @@
 <context>
     <name>InstallStepPreviewWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="188"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="150"/>
         <source>This is just a non-functional preview below. Edit the step by clicking on the edit button next to the title.</source>
         <translation>Das ist bloß eine nicht-funktionale Vorschau unten. Der Installationsschritt kann über die Bearbeiten-Schaltfläche neben der Überschrift bearbeitet werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="209"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="171"/>
         <source>Edit install step...</source>
         <translation>Installationsschritt bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="216"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="178"/>
         <source>Visible when:</source>
         <translation>Sichtbar wenn:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="236"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="198"/>
         <source>Always visible</source>
         <translation>Immer sichtbar</translation>
     </message>
@@ -1031,6 +1031,31 @@
         <location filename="src/core/fomod/module_config/plugin/plugin.py" line="61"/>
         <source>unnamed</source>
         <translation>unbenannt</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin/plugin.py" line="79"/>
+        <source>Files installed by this plugins</source>
+        <translation>Von diesem Plugin installierte Dateien</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin/plugin.py" line="86"/>
+        <source>Flags set by this plugin</source>
+        <translation>Von diesem Plugin gesetzte Bedingungsflags</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin/plugin.py" line="91"/>
+        <source>Plugin type</source>
+        <translation>Plugintyp</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin/plugin.py" line="95"/>
+        <source>Static</source>
+        <translation>Statisch</translation>
+    </message>
+    <message>
+        <location filename="src/core/fomod/module_config/plugin/plugin.py" line="99"/>
+        <source>Dynamic</source>
+        <translation>Dynamisch</translation>
     </message>
 </context>
 <context>
