@@ -17,9 +17,6 @@ class ImageViewer(QGraphicsView):
     MAX_SIZE: int = 1_000
     """Maximum preset size when opening the image."""
 
-    TITLEBAR_HEIGHT: int = 44
-    """The height of the Windows title bar in pixels."""
-
     __graphics_item: QGraphicsItem
 
     def __init__(
@@ -44,16 +41,13 @@ class ImageViewer(QGraphicsView):
         self.setScene(scene)
 
         width: int = min(ImageViewer.MAX_SIZE, image.width())
-        self.resize(
-            width, image.scaledToWidth(width).height() + ImageViewer.TITLEBAR_HEIGHT
-        )
+        self.resize(width, image.scaledToWidth(width).height())
 
-    # TODO: Auto resize image when the window is resized but this prevents zooming in
-    # @override
-    # def resizeEvent(self, event: QResizeEvent) -> None:
-    #     super().resizeEvent(event)
+    @override
+    def show(self) -> None:
+        super().show()
 
-    #     self.fitInView(self.__graphics_item, Qt.AspectRatioMode.KeepAspectRatio)
+        self.fitInView(self.__graphics_item, Qt.AspectRatioMode.KeepAspectRatio)
 
     @override
     def wheelEvent(self, event: QWheelEvent) -> None:
