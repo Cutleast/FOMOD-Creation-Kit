@@ -44,7 +44,7 @@ class TestCompositeDependencyEditorWidget(UiTest):
         tests.
         """
 
-        widget = CompositeDependencyEditorWidget(CompositeDependency(), None)
+        widget = CompositeDependencyEditorWidget(CompositeDependency(), None, list)
         qtbot.addWidget(widget)
         return widget
 

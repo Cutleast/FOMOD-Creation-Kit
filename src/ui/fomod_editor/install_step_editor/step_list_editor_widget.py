@@ -94,7 +94,9 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
     def __add_install_step(self) -> None:
         item = InstallStep.create()
         dialog: EditorDialog[InstallStepEditorWidget] = EditorDialog(
-            InstallStepEditorWidget(item, self._fomod_path, scrollable=False),
+            InstallStepEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier, scrollable=False
+            ),
             validate_on_init=True,
         )
 
@@ -103,7 +105,9 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
 
     def __edit_install_step(self, item: InstallStep) -> None:
         dialog: EditorDialog[InstallStepEditorWidget] = EditorDialog(
-            InstallStepEditorWidget(item, self._fomod_path, scrollable=False)
+            InstallStepEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier, scrollable=False
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

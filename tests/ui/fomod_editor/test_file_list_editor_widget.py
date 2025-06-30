@@ -30,7 +30,7 @@ class TestFileListEditorWidget(UiTest):
         Fixture that creates and provides a FileListEditorWidget instance for tests.
         """
 
-        widget = FileListEditorWidget(FileList(), None)
+        widget = FileListEditorWidget(FileList(), None, list)
         qtbot.addWidget(widget)
         return widget
 

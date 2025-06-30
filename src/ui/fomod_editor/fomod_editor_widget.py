@@ -21,6 +21,8 @@ from core.fomod.module_config.dependency.composite_dependency import CompositeDe
 from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod.module_config.install_step.step_list import StepList
 from core.fomod_editor.exceptions import ValidationError
+from core.fomod_editor.utils import Utils
+from ui.fomod_editor.base_editor_widget import FlagNamesSupplier
 from ui.utilities.icon_provider import get_icon_for_palette
 from ui.widgets.loading_dialog import LoadingDialog
 
@@ -49,6 +51,7 @@ class FomodEditorWidget(QWidget):
     """Size of the tab icons in pixels."""
 
     __current_fomod: Optional[Fomod] = None
+    __flag_names_supplier: Optional[FlagNamesSupplier] = None
 
     __vlayout: QVBoxLayout
     __status_banner: QLabel
@@ -98,6 +101,7 @@ class FomodEditorWidget(QWidget):
         self.__status_banner.hide()
 
         self.__current_fomod = None
+        self.__flag_names_supplier = None
         self.__info_editor_tab = None
         self.__dependency_editor_tab = None
         self.__steps_editor_tab = None
@@ -122,6 +126,7 @@ class FomodEditorWidget(QWidget):
         self.clear()
 
         self.__current_fomod = fomod
+        self.__flag_names_supplier = lambda: Utils.get_fomod_flag_names(fomod)
         self.__init_info_editor_tab()
         self.__init_dependency_editor_tab()
         self.__init_required_files_editor_tab()
@@ -139,11 +144,11 @@ class FomodEditorWidget(QWidget):
         )
 
     def __init_info_editor_tab(self) -> None:
-        if self.__current_fomod is None:
+        if self.__current_fomod is None or self.__flag_names_supplier is None:
             raise ValueError("No FOMOD is set")
 
         self.__info_editor_tab = InfoEditorTab(
-            self.__current_fomod, self.__current_fomod.path
+            self.__current_fomod, self.__current_fomod.path, self.__flag_names_supplier
         )
         self.__info_editor_tab.changed.connect(
             lambda: self.changed.emit(self.__current_fomod, True)
@@ -159,13 +164,14 @@ class FomodEditorWidget(QWidget):
         self.__tab_widget.setTabToolTip(i, self.tr("Info"))
 
     def __init_dependency_editor_tab(self) -> None:
-        if self.__current_fomod is None:
+        if self.__current_fomod is None or self.__flag_names_supplier is None:
             raise ValueError("No FOMOD is set")
 
         self.__dependency_editor_tab = DependencyEditorTab(
             self.__current_fomod.module_config.module_dependencies
             or CompositeDependency(),
             self.__current_fomod.path,
+            self.__flag_names_supplier,
             show_title=True,
         )
         self.__dependency_editor_tab.changed.connect(
@@ -182,12 +188,13 @@ class FomodEditorWidget(QWidget):
         self.__tab_widget.setTabToolTip(i, self.tr("Module Dependencies"))
 
     def __init_required_files_editor_tab(self) -> None:
-        if self.__current_fomod is None:
+        if self.__current_fomod is None or self.__flag_names_supplier is None:
             raise ValueError("No FOMOD is set")
 
         self.__required_files_editor_tab = RequiredFilesEditorTab(
             self.__current_fomod.module_config.required_install_files or FileList(),
             self.__current_fomod.path,
+            self.__flag_names_supplier,
             show_title=True,
         )
         self.__required_files_editor_tab.changed.connect(
@@ -204,13 +211,14 @@ class FomodEditorWidget(QWidget):
         self.__tab_widget.setTabToolTip(i, self.tr("Required files to install"))
 
     def __init_steps_editor_tab(self) -> None:
-        if self.__current_fomod is None:
+        if self.__current_fomod is None or self.__flag_names_supplier is None:
             raise ValueError("No FOMOD is set")
 
         self.__steps_editor_tab = StepsEditorTab(
             self.__current_fomod.module_config.install_steps
             or StepList(install_steps=[]),
             self.__current_fomod.path,
+            self.__flag_names_supplier,
             show_title=True,
         )
         self.__steps_editor_tab.changed.connect(
@@ -229,13 +237,14 @@ class FomodEditorWidget(QWidget):
         self.__tab_widget.setTabToolTip(i, self.tr("Installation steps (pages)"))
 
     def __init_conditional_files_editor_tab(self) -> None:
-        if self.__current_fomod is None:
+        if self.__current_fomod is None or self.__flag_names_supplier is None:
             raise ValueError("No FOMOD is set")
 
         self.__conditional_files_editor_tab = ConditionalFilesEditorTab(
             self.__current_fomod.module_config.conditional_file_installs
             or ConditionalFileInstallList(patterns=ConditionalInstallPatternList()),
             self.__current_fomod.path,
+            self.__flag_names_supplier,
             show_title=True,
         )
         self.__conditional_files_editor_tab.changed.connect(

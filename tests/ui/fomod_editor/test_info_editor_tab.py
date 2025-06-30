@@ -63,7 +63,7 @@ class TestInfoEditorTab(UiTest):
         Fixture that creates and provides an InfoEditorTab instance for tests.
         """
 
-        widget = InfoEditorTab(Fomod.create(), None)
+        widget = InfoEditorTab(Fomod.create(), None, list)
         qtbot.addWidget(widget)
         return widget
 

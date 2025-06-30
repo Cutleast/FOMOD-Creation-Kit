@@ -286,20 +286,23 @@ QComboBox::down-arrow
     width: 24px;
     height: 24px;
 }
-QComboBox QAbstractItemView
+QComboBox QAbstractItemView,
+QAbstractItemView#completer_popup
 {
     border: 1px solid;
     border-radius: 8px;
     padding: 4px;
 }
-QComboBox QAbstractItemView::item
+QComboBox QAbstractItemView::item,
+QAbstractItemView#completer_popup::item
 {
     background-color: transparent;
     border-radius: 4px;
     margin: 2px;
     padding: 4px;
 }
-QComboBox QAbstractItemView::item:selected
+QComboBox QAbstractItemView::item:selected,
+QAbstractItemView#completer_popup::item:selected
 {
     color: <accent_color>;
 }

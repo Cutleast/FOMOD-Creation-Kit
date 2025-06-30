@@ -13,6 +13,7 @@ from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.flag_dependency_editor_widget import (
     FlagDependencyEditorWidget,
 )
+from ui.widgets.auto_complete_combobox import AutoCompleteCombobox
 
 
 class TestFlagDependencyEditorWidget(UiTest):
@@ -20,7 +21,10 @@ class TestFlagDependencyEditorWidget(UiTest):
     Tests `ui.fomod_editor.dependency_editor.flag_dependency_editor_widget.FlagDependencyEditorWidget`.
     """
 
-    NAME_ENTRY: tuple[str, type[QLineEdit]] = "name_entry", QLineEdit
+    NAME_ENTRY: tuple[str, type[AutoCompleteCombobox]] = (
+        "name_entry",
+        AutoCompleteCombobox,
+    )
     """Identifier for accessing the private name_entry field."""
 
     VALUE_ENTRY: tuple[str, type[QLineEdit]] = "value_entry", QLineEdit
@@ -33,7 +37,7 @@ class TestFlagDependencyEditorWidget(UiTest):
         """
 
         flag_dependency_editor_widget = FlagDependencyEditorWidget(
-            FlagDependency(flag="", value=""), None
+            FlagDependency(flag="", value=""), None, lambda: ["test1", "test2"]
         )
         qtbot.addWidget(flag_dependency_editor_widget)
         return flag_dependency_editor_widget
@@ -44,7 +48,7 @@ class TestFlagDependencyEditorWidget(UiTest):
         """
 
         # given
-        name_entry: QLineEdit = Utils.get_private_field(
+        name_entry: AutoCompleteCombobox = Utils.get_private_field(
             widget, *TestFlagDependencyEditorWidget.NAME_ENTRY
         )
         value_entry: QLineEdit = Utils.get_private_field(
@@ -52,7 +56,10 @@ class TestFlagDependencyEditorWidget(UiTest):
         )
 
         # then
-        assert name_entry.text() == ""
+        assert name_entry.currentText() == ""
+        assert name_entry.count() == 2
+        assert name_entry.itemText(0) == "test1"
+        assert name_entry.itemText(1) == "test2"
         assert value_entry.text() == ""
 
         with pytest.raises(NameIsMissingError):
@@ -64,7 +71,7 @@ class TestFlagDependencyEditorWidget(UiTest):
         """
 
         # given
-        name_entry: QLineEdit = Utils.get_private_field(
+        name_entry: AutoCompleteCombobox = Utils.get_private_field(
             widget, *TestFlagDependencyEditorWidget.NAME_ENTRY
         )
         value_entry: QLineEdit = Utils.get_private_field(
@@ -73,7 +80,7 @@ class TestFlagDependencyEditorWidget(UiTest):
 
         # when
         with qtbot.waitSignal(widget.changed, timeout=1000):
-            name_entry.setText("test")
+            name_entry.setCurrentText("test")
 
         # then
         with pytest.raises(ValueIsMissingError):

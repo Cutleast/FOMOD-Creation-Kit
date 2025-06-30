@@ -45,7 +45,7 @@ class ConditionalFilesEditorTab(BaseEditorWidget[ConditionalFileInstallList]):
         super()._init_ui()
 
         self.__editor_widget = InstallPatternListEditorWidget(
-            self._item.patterns, self._fomod_path
+            self._item.patterns, self._fomod_path, self._flag_names_supplier
         )
         self._vlayout.addWidget(self.__editor_widget)
 

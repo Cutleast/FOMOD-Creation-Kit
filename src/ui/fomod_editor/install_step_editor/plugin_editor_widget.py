@@ -145,7 +145,10 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         self._vlayout.addWidget(tab_widget, stretch=1)
 
         self.__file_list_editor_widget = FileListEditorWidget(
-            self._item.files or FileList(), self._fomod_path, scrollable=False
+            self._item.files or FileList(),
+            self._fomod_path,
+            self._flag_names_supplier,
+            scrollable=False,
         )
         tab_widget.addTab(self.__file_list_editor_widget, self.tr("Files"))
 
@@ -159,7 +162,10 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         )
 
         self.__type_descriptor_editor_widget = TypeDescriptorEditorWidget(
-            self._item.type_descriptor, self._fomod_path, scrollable=False
+            self._item.type_descriptor,
+            self._fomod_path,
+            self._flag_names_supplier,
+            scrollable=False,
         )
         tab_widget.addTab(
             self.__type_descriptor_editor_widget, self.tr("Type Descriptor")
@@ -191,7 +197,10 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
     def __add_condition_flag(self) -> None:
         item = SetConditionFlag(value="", name="")
         dialog: EditorDialog[SetConditionFlagEditorWidget] = EditorDialog(
-            SetConditionFlagEditorWidget(item, self._fomod_path), validate_on_init=True
+            SetConditionFlagEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            ),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -199,7 +208,9 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
 
     def __edit_condition_flag(self, item: SetConditionFlag) -> None:
         dialog: EditorDialog[SetConditionFlagEditorWidget] = EditorDialog(
-            SetConditionFlagEditorWidget(item, self._fomod_path)
+            SetConditionFlagEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

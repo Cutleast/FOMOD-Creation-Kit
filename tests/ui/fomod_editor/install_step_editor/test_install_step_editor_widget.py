@@ -74,7 +74,7 @@ class TestInstallStepEditorWidget(UiTest):
         fomod_path: Optional[Path] = None,
     ) -> InstallStepEditorWidget:
         widget = InstallStepEditorWidget(
-            install_step or InstallStep.create(), fomod_path
+            install_step or InstallStep.create(), fomod_path, list
         )
         qtbot.addWidget(widget)
         widget.show()

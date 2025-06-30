@@ -147,12 +147,14 @@ QComboBox:hover:!disabled
 {
     background: #15000000;
 }
-QComboBox QAbstractItemView
+QComboBox QAbstractItemView,
+QAbstractItemView#completer_popup
 {
     background-color: #ffffff;
     border-color: #20000000;
 }
-QComboBox QAbstractItemView::item:selected
+QComboBox QAbstractItemView::item:selected,
+QAbstractItemView#completer_popup::item:selected
 {
     background: #15000000;
 }

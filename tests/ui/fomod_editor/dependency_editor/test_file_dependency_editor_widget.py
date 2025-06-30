@@ -38,7 +38,7 @@ class TestFileDependencyEditorWidget(UiTest):
         """
 
         file_dependency_editor_widget = FileDependencyEditorWidget(
-            FileDependency(file="", state=FileDependency.State.Active), None
+            FileDependency(file="", state=FileDependency.State.Active), None, list
         )
         qtbot.addWidget(file_dependency_editor_widget)
         return file_dependency_editor_widget

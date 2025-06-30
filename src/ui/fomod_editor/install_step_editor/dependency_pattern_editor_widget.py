@@ -66,7 +66,7 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
 
     def __init_composite_dependency_editor(self) -> None:
         self.__composite_dependency_editor = CompositeDependencyEditorWidget(
-            self._item.dependencies, self._fomod_path
+            self._item.dependencies, self._fomod_path, self._flag_names_supplier
         )
         self._vlayout.addWidget(self.__composite_dependency_editor)
 

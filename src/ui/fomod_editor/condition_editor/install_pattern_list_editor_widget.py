@@ -113,7 +113,10 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
             dependencies=CompositeDependency(), files=FileList()
         )
         dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(item, self._fomod_path), validate_on_init=True
+            InstallPatternEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            ),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -121,7 +124,9 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
 
     def __edit_install_pattern_item(self, item: ConditionalInstallPattern) -> None:
         dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(item, self._fomod_path)
+            InstallPatternEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

@@ -68,7 +68,7 @@ class TestDependencyGroupEditorWidget(UiTest):
         """
 
         dependency_group_editor_widget = DependencyGroupEditorWidget(
-            CompositeDependency(), None
+            CompositeDependency(), None, list
         )
         qtbot.addWidget(dependency_group_editor_widget)
         return dependency_group_editor_widget

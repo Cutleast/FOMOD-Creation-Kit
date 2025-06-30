@@ -122,7 +122,10 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
     def __add_pattern(self) -> None:
         item = DependencyPattern.create()
         dialog: EditorDialog[DependencyPatternEditorWidget] = EditorDialog(
-            DependencyPatternEditorWidget(item, self._fomod_path), validate_on_init=True
+            DependencyPatternEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            ),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -130,7 +133,9 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
 
     def __edit_pattern(self, item: DependencyPattern) -> None:
         dialog: EditorDialog[DependencyPatternEditorWidget] = EditorDialog(
-            DependencyPatternEditorWidget(item, self._fomod_path)
+            DependencyPatternEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

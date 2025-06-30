@@ -45,7 +45,9 @@ class StepsEditorTab(BaseEditorWidget[StepList]):
     def _init_ui(self) -> None:
         super()._init_ui()
 
-        self.__editor_widget = StepListEditorWidget(self._item, self._fomod_path)
+        self.__editor_widget = StepListEditorWidget(
+            self._item, self._fomod_path, self._flag_names_supplier
+        )
         self._vlayout.addWidget(self.__editor_widget)
 
     @override

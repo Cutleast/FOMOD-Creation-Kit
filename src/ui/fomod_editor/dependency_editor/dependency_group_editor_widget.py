@@ -100,7 +100,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __add_file_dependency(self) -> None:
         file_dependency = FileDependency(file="", state=FileDependency.State.Active)
         dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(file_dependency, self._fomod_path),
+            FileDependencyEditorWidget(
+                file_dependency, self._fomod_path, self._flag_names_supplier
+            ),
             validate_on_init=True,
         )
 
@@ -109,7 +111,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __edit_file_dependency(self, item: FileDependency) -> None:
         dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(item, self._fomod_path)
+            FileDependencyEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -124,7 +128,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __add_flag_dependency(self) -> None:
         flag_dependency = FlagDependency(flag="", value="")
         dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(flag_dependency, self._fomod_path),
+            FlagDependencyEditorWidget(
+                flag_dependency, self._fomod_path, self._flag_names_supplier
+            ),
             validate_on_init=True,
         )
 
@@ -133,7 +139,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __edit_flag_dependency(self, item: FlagDependency) -> None:
         dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(item, self._fomod_path)
+            FlagDependencyEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -204,7 +212,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         dependency = CompositeDependency()
         dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(dependency, self._fomod_path),
+            CompositeDependencyEditorWidget(
+                dependency, self._fomod_path, self._flag_names_supplier
+            ),
             validate_on_init=True,
         )
 
@@ -215,7 +225,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
         dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(item, self._fomod_path)
+            CompositeDependencyEditorWidget(
+                item, self._fomod_path, self._flag_names_supplier
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

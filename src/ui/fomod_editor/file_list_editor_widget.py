@@ -102,7 +102,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
     def __add_filesystem_item(self) -> None:
         editor: FsItemEditorWidget = FsItemEditorWidget(
-            FileItem.create(), self._fomod_path
+            FileItem.create(), self._fomod_path, self._flag_names_supplier
         )
         dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
             editor, validate_on_init=True
@@ -112,7 +112,9 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
             self.__tree_widget.addItem(editor.get_item())
 
     def __edit_filesystem_item(self, item: FileSystemItem) -> None:
-        editor: FsItemEditorWidget = FsItemEditorWidget(item, self._fomod_path)
+        editor: FsItemEditorWidget = FsItemEditorWidget(
+            item, self._fomod_path, self._flag_names_supplier
+        )
         dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
             editor, validate_on_init=True
         )

@@ -190,6 +190,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             if self._item.visible is not None
             else CompositeDependency(),
             self._fomod_path,
+            self._flag_names_supplier,
             scrollable=False,
         )
 
@@ -261,7 +262,8 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     def __add_group(self) -> None:
         group = Group.create()
         dialog: EditorDialog[GroupEditorWidget] = EditorDialog(
-            GroupEditorWidget(group, self._fomod_path), validate_on_init=True
+            GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier),
+            validate_on_init=True,
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -269,7 +271,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __edit_group(self, group: Group) -> None:
         dialog: EditorDialog[GroupEditorWidget] = EditorDialog(
-            GroupEditorWidget(group, self._fomod_path)
+            GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier)
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:
@@ -286,7 +288,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
     def __add_plugin(self) -> None:
         plugin = Plugin.create()
         dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(plugin, self._fomod_path, scrollable=False),
+            PluginEditorWidget(
+                plugin, self._fomod_path, self._flag_names_supplier, scrollable=False
+            ),
             validate_on_init=True,
         )
 
@@ -295,7 +299,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __edit_plugin(self, plugin: Plugin) -> None:
         dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(plugin, self._fomod_path, scrollable=False)
+            PluginEditorWidget(
+                plugin, self._fomod_path, self._flag_names_supplier, scrollable=False
+            )
         )
 
         if dialog.exec() == EditorDialog.DialogCode.Accepted:

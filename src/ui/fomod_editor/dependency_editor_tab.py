@@ -52,7 +52,7 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
         super()._init_ui()
 
         self.__editor_widget = CompositeDependencyEditorWidget(
-            self._item, self._fomod_path
+            self._item, self._fomod_path, self._flag_names_supplier
         )
         self._vlayout.addWidget(self.__editor_widget)
 

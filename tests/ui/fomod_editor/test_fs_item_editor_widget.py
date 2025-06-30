@@ -57,7 +57,7 @@ class TestFsItemEditorWidget(UiTest):
         file item for tests.
         """
 
-        fs_item_editor_widget = FsItemEditorWidget(FileItem.create(), None)
+        fs_item_editor_widget = FsItemEditorWidget(FileItem.create(), None, list)
         qtbot.addWidget(fs_item_editor_widget)
         return fs_item_editor_widget
 

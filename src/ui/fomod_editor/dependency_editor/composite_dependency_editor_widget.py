@@ -84,7 +84,7 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __init_dependency_group_editor_widget(self) -> None:
         self.__dependency_group_editor_widget = DependencyGroupEditorWidget(
-            self._item, self._fomod_path
+            self._item, self._fomod_path, self._flag_names_supplier
         )
         self._vlayout.addWidget(self.__dependency_group_editor_widget)
 

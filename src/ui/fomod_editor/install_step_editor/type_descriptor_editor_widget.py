@@ -151,6 +151,7 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
         self.__dynamic_type_editor = DependencyPluginTypeEditorWidget(
             self._item.dependency_type or DependencyPluginType.create(),
             self._fomod_path,
+            self._flag_names_supplier,
         )
         self.__stack_widget.addWidget(self.__dynamic_type_editor)
 

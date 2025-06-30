@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from abc import abstractmethod
 from pathlib import Path
-from typing import Optional, Sequence
+from typing import Callable, Optional, Sequence
 
 from pydantic_xml import BaseXmlModel
 from PySide6.QtCore import Qt, Signal
@@ -12,6 +12,11 @@ from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 from core.fomod.fomod import Fomod
 from ui.widgets.smooth_scroll_area import SmoothScrollArea
+
+type FlagNamesSupplier = Callable[[], list[str]]
+"""
+A function that returns an up-to-date list of all flag names from the current FOMOD.
+"""
 
 
 class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
@@ -34,6 +39,7 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
 
     _item: T
     _fomod_path: Optional[Path]
+    _flag_names_supplier: FlagNamesSupplier
 
     __show_title: bool
     __show_description: bool
@@ -45,6 +51,7 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
         self,
         item: T,
         fomod_path: Optional[Path],
+        flag_names_supplier: FlagNamesSupplier,
         show_title: bool = False,
         show_description: bool = True,
         scrollable: bool = True,
@@ -58,6 +65,9 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
             fomod_path (Optional[Path]):
                 Path to the FOMOD, if any. Used for validation and display of images.
                 Defaults to None.
+            flag_names_supplier (FlagNamesSupplier):
+                A function that returns an up-to-date list of all flag names from the
+                current FOMOD.
             show_title (bool, optional):
                 Whether to show the title at the top. Defaults to False.
             show_description (bool, optional):
@@ -70,6 +80,7 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
 
         self._item = item
         self._fomod_path = fomod_path
+        self._flag_names_supplier = flag_names_supplier
 
         self.__show_title = show_title
         self.__show_description = show_description
