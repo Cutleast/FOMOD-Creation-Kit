@@ -18,7 +18,7 @@ A tool for editing and creating FOMOD installers.
 
 # ❗Disclaimer
 
-This project has just started and is very early in development! Expect issues and not implemented features.
+This project is under active development! Expect issues and other weird behavior.
 Contributions are always welcome, see instructions below.
 
 # 🫶Contributing
