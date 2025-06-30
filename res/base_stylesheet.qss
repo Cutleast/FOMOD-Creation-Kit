@@ -33,7 +33,8 @@
 /* Headings */
 #h1, #h2, #h3, #title
 {
-    font-family: 'Orbitron';
+    font-family: 'Outfit';
+    font-weight: 300;
 }
 #h1
 {

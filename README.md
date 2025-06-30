@@ -3,7 +3,7 @@
     <img alt="" src="res/icons/icon.svg" width=256 height=256>
   </picture>
   <br>
-  <img src="https://i.imgur.com/NWZivzY.png" width="1000px" />
+  <img src="https://i.imgur.com/X2DgVAF.png" width="1000px" />
   <br>
   <br>
   <a href="https://discord.gg/pqEHdWDf8z"><img src="https://i.imgur.com/VMdA0q7.png" height="60px"/> </a>

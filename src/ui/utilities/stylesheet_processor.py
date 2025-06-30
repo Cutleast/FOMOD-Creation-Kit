@@ -39,7 +39,9 @@ class StylesheetProcessor:
         Loads font from resources and adds them to the QFontDatabase.
         """
 
-        font_id: int = QFontDatabase.addApplicationFont(":/fonts/Orbitron-Regular.ttf")
+        font_id: int = QFontDatabase.addApplicationFont(
+            ":/fonts/Outfit-VariableFont_wght.ttf"
+        )
 
         if font_id == -1:
             self.log.error("Failed to load font!")
