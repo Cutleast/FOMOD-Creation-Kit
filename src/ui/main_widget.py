@@ -89,7 +89,7 @@ class MainWidget(QWidget):
             path (Path): Path to a FOMOD installer.
         """
 
-        if not self.__changes_pending or self.__show_close_unsaved_messagebox():
+        if self.close():
             fomod: Fomod = Fomod.load(path)
             self.__fomod_editor_widget.set_fomod(fomod)
             self.history.add(path)
@@ -99,7 +99,7 @@ class MainWidget(QWidget):
         Creates a new FOMOD and opens it in the FOMOD editor widget.
         """
 
-        if not self.__changes_pending or self.__show_close_unsaved_messagebox():
+        if self.close():
             fomod: Fomod = Fomod.create()
             self.__fomod_editor_widget.set_fomod(fomod)
 
@@ -108,7 +108,7 @@ class MainWidget(QWidget):
         Opens a file dialog to load FOMOD from a file.
         """
 
-        if not self.__changes_pending or self.__show_close_unsaved_messagebox():
+        if self.close():
             file_dialog = QFileDialog(
                 caption=self.tr("Load FOMOD installer from file...")
             )
@@ -130,7 +130,7 @@ class MainWidget(QWidget):
         Opens a file dialog to load FOMOD from a folder.
         """
 
-        if not self.__changes_pending or self.__show_close_unsaved_messagebox():
+        if self.close():
             file_dialog = QFileDialog(
                 caption=self.tr("Load FOMOD installer from folder...")
             )
