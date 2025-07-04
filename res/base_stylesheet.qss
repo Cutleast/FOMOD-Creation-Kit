@@ -172,6 +172,16 @@ QDoubleSpinBox::up-button, QDoubleSpinBox::down-button
     height: 18px;
     width: 20px;
 }
+QSpinBox::up-button:disabled,
+QDoubleSpinBox::up-button:disabled
+{
+    image: url(:/icons/arrow_up_disabled.svg);
+}
+QSpinBox::down-button:disabled,
+QDoubleSpinBox::down-button:disabled
+{
+    image: url(:/icons/arrow_down_disabled.svg);
+}
 
 /* ScrollArea & ScrollBar */
 QScrollArea
@@ -286,6 +296,10 @@ QComboBox::down-arrow
 {
     width: 24px;
     height: 24px;
+}
+QComboBox::down-arrow:disabled
+{
+    image: url(:/icons/arrow_down_disabled.svg);
 }
 QComboBox QAbstractItemView,
 QAbstractItemView#completer_popup
@@ -409,6 +423,10 @@ QMenu::right-arrow
 {
     width: 24px;
     height: 24px;
+}
+QMenu::right-arrow:disabled
+{
+    image: url(:/icons/arrow_right_disabled.svg);
 }
 QMenuBar::item
 {

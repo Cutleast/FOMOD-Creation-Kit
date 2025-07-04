@@ -3,12 +3,16 @@
     <qresource>
         <!-- Icons -->
         <file>icons/arrow_down_dark.svg</file>
+        <file>icons/arrow_down_disabled.svg</file>
         <file>icons/arrow_down_light.svg</file>
         <file>icons/arrow_left_dark.svg</file>
+        <file>icons/arrow_left_disabled.svg</file>
         <file>icons/arrow_left_light.svg</file>
         <file>icons/arrow_right_dark.svg</file>
+        <file>icons/arrow_right_disabled.svg</file>
         <file>icons/arrow_right_light.svg</file>
         <file>icons/arrow_up_dark.svg</file>
+        <file>icons/arrow_up_disabled.svg</file>
         <file>icons/arrow_up_light.svg</file>
         <file>icons/checkmark_dark.svg</file>
         <file>icons/checkmark_light.svg</file>
