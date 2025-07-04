@@ -3,13 +3,15 @@ Copyright (c) Cutleast
 """
 
 import webbrowser
+from pathlib import Path
 
 import qtawesome as qta
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QMenuBar, QMessageBox
+from PySide6.QtGui import QAction, QIcon
+from PySide6.QtWidgets import QMenu, QMenuBar, QMessageBox
 
 from app_context import AppContext
+from core.fomod_editor.history import History
 from core.utilities.updater import Updater
 from ui.widgets.about_dialog import AboutDialog
 from ui.widgets.menu import Menu
@@ -33,6 +35,14 @@ class MenuBar(QMenuBar):
     open_fomod_from_folder_signal = Signal()
     """Signal emitted when the user clicks on the open from folder button."""
 
+    open_recent_fomod_signal = Signal(Path)
+    """
+    Signal emitted when the user clicks on a recent FOMOD.
+    
+    Args:
+        Path: Path to the FOMOD to open.
+    """
+
     save_fomod_signal = Signal()
     """Signal emitted when the user clicks on the save button."""
 
@@ -51,14 +61,14 @@ class MenuBar(QMenuBar):
     GITHUB_URL: str = "https://github.com/Cutleast/FOMOD-Creation-Kit"
     """URL to the GitHub repository."""
 
-    def __init__(self) -> None:
+    def __init__(self, history: History) -> None:
         super().__init__()
 
-        self.__init_file_menu()
+        self.__init_file_menu(history)
         self.__init_extras_menu()
         self.__init_help_menu()
 
-    def __init_file_menu(self) -> None:
+    def __init_file_menu(self, history: History) -> None:
         file_menu = Menu(title=self.tr("File"))
         self.addMenu(file_menu)
 
@@ -90,6 +100,21 @@ class MenuBar(QMenuBar):
         )
         open_fomod_file_action.setShortcut("Ctrl+Shift+O")
         open_fomod_file_action.triggered.connect(self.open_fomod_from_file_signal.emit)
+
+        recent_menu: QMenu = file_menu.addMenu(
+            self.tr("Open recent FOMOD installer...")
+        )
+        recent_menu.setIcon(
+            qta.icon(
+                "mdi6.history",
+                color=self.palette().text().color(),
+                color_disabled="#666666",
+            )
+        )
+        recent_menu.setEnabled(len(history.recent_fomods) > 0)
+
+        for path in history.recent_fomods[:10]:
+            self.__add_recent_subaction(recent_menu, path)
 
         file_menu.addSeparator()
 
@@ -124,6 +149,12 @@ class MenuBar(QMenuBar):
             QIcon(":/icons/" + get_icon_name_for_palette("exit", self.palette()))
         )
         exit_action.triggered.connect(self.exit_signal.emit)
+
+    def __add_recent_subaction(self, recent_menu: QMenu, path: Path) -> None:
+        recent_action: QAction = recent_menu.addAction(str(path))
+        recent_action.triggered.connect(
+            lambda: self.open_recent_fomod_signal.emit(path)
+        )
 
     def __init_extras_menu(self) -> None:
         extras_menu = Menu(title=self.tr("Extras"))
@@ -179,7 +210,9 @@ class MenuBar(QMenuBar):
 
     def __open_settings(self) -> None:
         SettingsDialog(
-            AppContext.get_app().app_config, AppContext.get_app().behavior_config
+            AppContext.get_app().app_config,
+            AppContext.get_app().behavior_config,
+            AppContext.get_app().history,
         ).exec()
 
     def __open_xml_validator(self) -> None:

@@ -11,6 +11,7 @@ from PySide6.QtWidgets import QMainWindow
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod.fomod import Fomod
+from core.fomod_editor.history import History
 from core.utilities.logger import Logger
 
 from .main_widget import MainWidget
@@ -28,13 +29,17 @@ class MainWindow(QMainWindow):
     __status_bar: StatusBar
 
     def __init__(
-        self, app_config: AppConfig, behavior_config: BehaviorConfig, logger: Logger
+        self,
+        app_config: AppConfig,
+        behavior_config: BehaviorConfig,
+        history: History,
+        logger: Logger,
     ) -> None:
         super().__init__()
 
         self.resize(1100, 800)
 
-        self.__init_ui(app_config, behavior_config, logger)
+        self.__init_ui(app_config, behavior_config, history, logger)
 
         self.__menu_bar.create_new_fomod_signal.connect(
             self.__main_widget.create_new_fomod
@@ -45,26 +50,31 @@ class MainWindow(QMainWindow):
         self.__menu_bar.open_fomod_from_folder_signal.connect(
             self.__main_widget.open_fomod_from_folder
         )
+        self.__menu_bar.open_recent_fomod_signal.connect(self.__main_widget.open_fomod)
         self.__menu_bar.save_fomod_signal.connect(self.__main_widget.save_fomod)
         self.__menu_bar.save_fomod_as_signal.connect(self.__main_widget.save_fomod_as)
         self.__menu_bar.exit_signal.connect(self.close)
         self.__main_widget.get_fomod_editor_widget().changed.connect(self.__on_change)
 
     def __init_ui(
-        self, app_config: AppConfig, behavior_config: BehaviorConfig, logger: Logger
+        self,
+        app_config: AppConfig,
+        behavior_config: BehaviorConfig,
+        history: History,
+        logger: Logger,
     ) -> None:
-        self.__init_menu_bar()
-        self.__init_main_widget(app_config, behavior_config)
+        self.__init_menu_bar(history)
+        self.__init_main_widget(app_config, behavior_config, history)
         self.__init_status_bar(logger)
 
-    def __init_menu_bar(self) -> None:
-        self.__menu_bar = MenuBar()
+    def __init_menu_bar(self, history: History) -> None:
+        self.__menu_bar = MenuBar(history)
         self.setMenuBar(self.__menu_bar)
 
     def __init_main_widget(
-        self, app_config: AppConfig, behavior_config: BehaviorConfig
+        self, app_config: AppConfig, behavior_config: BehaviorConfig, history: History
     ) -> None:
-        self.__main_widget = MainWidget(app_config, behavior_config)
+        self.__main_widget = MainWidget(app_config, behavior_config, history)
         self.setCentralWidget(self.__main_widget)
 
     def __init_status_bar(self, logger: Logger) -> None:

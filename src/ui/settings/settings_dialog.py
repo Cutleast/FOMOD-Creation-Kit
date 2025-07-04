@@ -16,6 +16,7 @@ from PySide6.QtWidgets import (
 from app_context import AppContext
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
+from core.fomod_editor.history import History
 
 from .settings_widget import SettingsWidget
 
@@ -27,6 +28,7 @@ class SettingsDialog(QDialog):
 
     __app_config: AppConfig
     __behavior_config: BehaviorConfig
+    __history: History
 
     __vlayout: QVBoxLayout
 
@@ -35,16 +37,19 @@ class SettingsDialog(QDialog):
 
     __restart_required: bool = False
 
-    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
+    def __init__(
+        self, app_config: AppConfig, behavior_config: BehaviorConfig, history: History
+    ) -> None:
         super().__init__()
 
         self.__app_config = app_config
         self.__behavior_config = behavior_config
+        self.__history = history
 
         self.__init_ui()
         self.setWindowTitle(self.tr("Settings"))
-        self.setMinimumSize(600, 580)
-        self.resize(600, 580)
+        self.setMinimumSize(600, 620)
+        self.resize(600, 620)
 
     def __init_ui(self) -> None:
         self.__vlayout = QVBoxLayout()
@@ -74,7 +79,7 @@ class SettingsDialog(QDialog):
 
     def __init_settings_widget(self) -> None:
         self.__settings_widget = SettingsWidget(
-            self.__app_config, self.__behavior_config
+            self.__app_config, self.__behavior_config, self.__history
         )
         self.__settings_widget.changed.connect(self.__on_change)
         self.__settings_widget.restart_required.connect(self.__on_restart_required)

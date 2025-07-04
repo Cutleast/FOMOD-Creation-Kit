@@ -8,6 +8,7 @@ from pytestqt.qtbot import QtBot
 
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
+from core.fomod_editor.history import History
 from core.utilities.logger import Logger
 from tests.utils import Utils
 from ui.main_widget import MainWidget
@@ -39,13 +40,14 @@ class TestMainWindow(UiTest):
         app_config: AppConfig,
         behavior_config: BehaviorConfig,
         logger: Logger,
+        history: History,
         qtbot: QtBot,
     ) -> MainWindow:
         """
         Fixture to create and provide a MainWindow instance for tests.
         """
 
-        main_window = MainWindow(app_config, behavior_config, logger)
+        main_window = MainWindow(app_config, behavior_config, history, logger)
         qtbot.addWidget(main_window)
         main_window.show()
         return main_window

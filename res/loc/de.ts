@@ -854,52 +854,52 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="src/ui/main_widget.py" line="108"/>
+        <location filename="src/ui/main_widget.py" line="114"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="112"/>
+        <location filename="src/ui/main_widget.py" line="118"/>
         <source>FOMOD metadata file</source>
         <translation>FOMOD Metadaten Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="113"/>
+        <location filename="src/ui/main_widget.py" line="119"/>
         <source>FOMOD module config file</source>
         <translation>FOMOD Modulkonfiguration Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="130"/>
+        <location filename="src/ui/main_widget.py" line="136"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="161"/>
+        <location filename="src/ui/main_widget.py" line="167"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="209"/>
+        <location filename="src/ui/main_widget.py" line="216"/>
         <source>Close unsaved FOMOD?</source>
         <translation>Ungespeichertes FOMOD schließen?</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="215"/>
+        <location filename="src/ui/main_widget.py" line="222"/>
         <source>Are you sure you want to close the current FOMOD? There are unsaved changes that will be lost.</source>
         <translation>Bist du sicher, dass du das aktuelle FOMOD schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="230"/>
+        <location filename="src/ui/main_widget.py" line="237"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="234"/>
+        <location filename="src/ui/main_widget.py" line="241"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="240"/>
+        <location filename="src/ui/main_widget.py" line="247"/>
         <source>Save and close</source>
         <translation>Speichern und schließen</translation>
     </message>
@@ -907,8 +907,8 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/ui/main_window.py" line="78"/>
-        <location filename="src/ui/main_window.py" line="82"/>
+        <location filename="src/ui/main_window.py" line="88"/>
+        <location filename="src/ui/main_window.py" line="92"/>
         <source>Unnamed</source>
         <translation>Unbenannt</translation>
     </message>
@@ -916,98 +916,103 @@
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="62"/>
+        <location filename="src/ui/menubar.py" line="72"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="65"/>
+        <location filename="src/ui/menubar.py" line="75"/>
         <source>Create new FOMOD installer...</source>
         <translation>Neuen FOMOD-Installer erstellen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="76"/>
+        <location filename="src/ui/menubar.py" line="86"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="87"/>
+        <location filename="src/ui/menubar.py" line="97"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="96"/>
+        <location filename="src/ui/menubar.py" line="106"/>
+        <source>Open recent FOMOD installer...</source>
+        <translation>Kürzlich geöffneten FOMOD-Installer öffnen...</translation>
+    </message>
+    <message>
+        <location filename="src/ui/menubar.py" line="121"/>
         <source>Save FOMOD installer</source>
         <translation>FOMOD-Installer speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="105"/>
+        <location filename="src/ui/menubar.py" line="130"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="114"/>
+        <location filename="src/ui/menubar.py" line="139"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="122"/>
+        <location filename="src/ui/menubar.py" line="147"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="129"/>
+        <location filename="src/ui/menubar.py" line="160"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="132"/>
+        <location filename="src/ui/menubar.py" line="163"/>
         <source>Validate XML file...</source>
         <translation>XML-Datei validieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="139"/>
+        <location filename="src/ui/menubar.py" line="170"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="142"/>
+        <location filename="src/ui/menubar.py" line="173"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="152"/>
+        <location filename="src/ui/menubar.py" line="183"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="157"/>
+        <location filename="src/ui/menubar.py" line="188"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="162"/>
+        <location filename="src/ui/menubar.py" line="193"/>
         <source>View source code on GitHub...</source>
         <translation>Quellcode auf GitHub ansehen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="171"/>
+        <location filename="src/ui/menubar.py" line="202"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="177"/>
-        <location filename="src/ui/menubar.py" line="204"/>
+        <location filename="src/ui/menubar.py" line="208"/>
+        <location filename="src/ui/menubar.py" line="237"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="194"/>
+        <location filename="src/ui/menubar.py" line="227"/>
         <source>No Updates Available</source>
         <translation>Keine Updates verfügbar</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="195"/>
+        <location filename="src/ui/menubar.py" line="228"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
     </message>
@@ -1226,39 +1231,39 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="45"/>
-        <location filename="src/ui/settings/settings_dialog.py" line="69"/>
-        <location filename="src/ui/settings/settings_dialog.py" line="102"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="50"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="74"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="107"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="89"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="94"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="95"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="100"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="117"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="122"/>
         <source>Restart required</source>
         <translation>Neustart erforderlich</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="122"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="127"/>
         <source>The app must be restarted for the changes to take effect! Restart now?</source>
         <translation>Die App muss neugestartet werden, damit die Änderungen wirksam werden! Jetzt neustarten?</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="126"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="131"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="127"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="132"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
@@ -1266,54 +1271,59 @@
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="80"/>
+        <location filename="src/ui/settings/settings_widget.py" line="87"/>
         <source>App settings</source>
         <translation>Appeinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="88"/>
+        <location filename="src/ui/settings/settings_widget.py" line="95"/>
         <source>Log level:</source>
         <translation>Protokoll-Level:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="99"/>
+        <location filename="src/ui/settings/settings_widget.py" line="106"/>
         <source>Number of newest log files to keep:</source>
         <translation>Anzahl der neuesten zu behaltenden Protokolldateien:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="112"/>
+        <location filename="src/ui/settings/settings_widget.py" line="119"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="123"/>
+        <location filename="src/ui/settings/settings_widget.py" line="130"/>
         <source>UI mode:</source>
         <translation>UI Modus:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="135"/>
+        <location filename="src/ui/settings/settings_widget.py" line="143"/>
+        <source>Clear history of recently opened FOMOD installers</source>
+        <translation>Verlauf der kürzlich geöffneten FOMOD-Installer leeren</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/settings_widget.py" line="149"/>
         <source>Behavior settings</source>
         <translation>Verhaltenseinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="142"/>
+        <location filename="src/ui/settings/settings_widget.py" line="156"/>
         <source>Finalize on save (recommended)</source>
         <translation>Beim Speichern finalisieren (empfohlen)</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="150"/>
+        <location filename="src/ui/settings/settings_widget.py" line="164"/>
         <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
 This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
         <translation>Finalisieren bedeutet, dass alle Dateien von außerhalb des FOMODs in das Verzeichnis des FOMODs kopiert werden und dessen Pfade relativ gemacht werden.
 Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="155"/>
+        <location filename="src/ui/settings/settings_widget.py" line="169"/>
         <source>Validate XML files on save</source>
         <translation>XML-Dateien beim Speichern validieren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="171"/>
+        <location filename="src/ui/settings/settings_widget.py" line="185"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Für ModuleConfig.xml verwendeter Zeichensatz:</translation>
     </message>

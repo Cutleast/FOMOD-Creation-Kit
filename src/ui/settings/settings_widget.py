@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (
     QGridLayout,
     QGroupBox,
     QLabel,
+    QPushButton,
     QSpinBox,
     QVBoxLayout,
     QWidget,
@@ -20,6 +21,7 @@ from PySide6.QtWidgets import (
 
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
+from core.fomod_editor.history import History
 from core.utilities.localisation import Language
 from core.utilities.logger import Logger
 from ui.utilities.ui_mode import UIMode
@@ -44,6 +46,7 @@ class SettingsWidget(SmoothScrollArea):
 
     __app_config: AppConfig
     __behavior_config: BehaviorConfig
+    __history: History
 
     __vlayout: QVBoxLayout
 
@@ -51,16 +54,20 @@ class SettingsWidget(SmoothScrollArea):
     __log_num_of_files_box: QSpinBox
     __language_box: EnumDropdown[Language]
     __ui_mode_box: EnumDropdown[UIMode]
+    __clear_history_button: QPushButton
 
     __finalize_checkbox: QCheckBox
     __validate_xml_checkbox: QCheckBox
     __module_config_encoding_dropdown: EnumDropdown[BehaviorConfig.ModuleConfigEncoding]
 
-    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
+    def __init__(
+        self, app_config: AppConfig, behavior_config: BehaviorConfig, history: History
+    ) -> None:
         super().__init__()
 
         self.__app_config = app_config
         self.__behavior_config = behavior_config
+        self.__history = history
 
         self.__init_ui()
 
@@ -131,6 +138,13 @@ class SettingsWidget(SmoothScrollArea):
         )
         app_settings_glayout.addWidget(self.__ui_mode_box, 3, 1)
 
+        self.__clear_history_button = QPushButton(
+            self.tr("Clear history of recently opened FOMOD installers")
+        )
+        self.__clear_history_button.clicked.connect(self.__clear_history)
+        self.__clear_history_button.setEnabled(len(self.__history.recent_fomods) > 0)
+        app_settings_glayout.addWidget(self.__clear_history_button, 4, 0, 1, 2)
+
     def __init_behavior_settings(self) -> None:
         behavior_settings_group = QGroupBox(self.tr("Behavior settings"))
         behavior_settings_group.setObjectName("title")
@@ -183,6 +197,10 @@ class SettingsWidget(SmoothScrollArea):
             return True
 
         return super().eventFilter(source, event)
+
+    def __clear_history(self) -> None:
+        self.__history.clear()
+        self.__clear_history_button.setDisabled(True)
 
     def apply_settings(self) -> None:
         """

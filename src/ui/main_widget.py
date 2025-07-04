@@ -19,6 +19,7 @@ from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod.fomod import Fomod
 from core.fomod_editor.exceptions import ValidationError
+from core.fomod_editor.history import History
 
 from .fomod_editor.fomod_editor_widget import FomodEditorWidget
 
@@ -41,15 +42,19 @@ class MainWidget(QWidget):
 
     app_config: AppConfig
     behavior_config: BehaviorConfig
+    history: History
 
     __vlayout: QVBoxLayout
     __fomod_editor_widget: FomodEditorWidget
 
-    def __init__(self, app_config: AppConfig, behavior_config: BehaviorConfig) -> None:
+    def __init__(
+        self, app_config: AppConfig, behavior_config: BehaviorConfig, history: History
+    ) -> None:
         super().__init__()
 
         self.app_config = app_config
         self.behavior_config = behavior_config
+        self.history = history
 
         self.__init_ui()
         self.__fomod_editor_widget.changed.connect(self.changed.emit)
@@ -87,6 +92,7 @@ class MainWidget(QWidget):
         if not self.__changes_pending or self.__show_close_unsaved_messagebox():
             fomod: Fomod = Fomod.load(path)
             self.__fomod_editor_widget.set_fomod(fomod)
+            self.history.add(path)
 
     def create_new_fomod(self) -> None:
         """
@@ -171,6 +177,7 @@ class MainWidget(QWidget):
                 validate_xml=self.behavior_config.validate_xml_on_save,
                 encoding=self.behavior_config.module_config_encoding.value,
             )
+            self.history.add(fomod_path)
 
     @override
     def close(self) -> bool:

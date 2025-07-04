@@ -11,6 +11,7 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 import resources_rc  # type: ignore # noqa: F401
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
+from core.fomod_editor.history import History
 from core.utilities.logger import Logger
 
 
@@ -108,3 +109,14 @@ class BaseTest:
         monkeypatch.setattr("send2trash.send2trash", trashbin.append)
 
         return trashbin
+
+    @pytest.fixture
+    def history(self, test_fs: FakeFilesystem) -> History:
+        """
+        Returns a history instance for tests.
+
+        Returns:
+            History: The history instance.
+        """
+
+        return History(Path("data"))
