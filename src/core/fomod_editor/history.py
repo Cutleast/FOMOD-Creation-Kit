@@ -62,7 +62,7 @@ class History(QObject):
         fomods.append(fomod_path)
 
         self.__save(fomods)
-        self.log.info(f"Added '{fomod_path}' to history.")
+        self.log.debug(f"Added '{fomod_path}' to history.")
 
     def __save(self, fomods: list[Path]) -> None:
         """
@@ -73,7 +73,7 @@ class History(QObject):
         """
 
         self.path.write_text("\n".join(str(f) for f in fomods), encoding="utf8")
-        self.log.info(f"Saved history with {len(fomods)} entries.")
+        self.log.debug(f"Saved history with {len(fomods)} entries.")
 
     def clear(self) -> None:
         """
@@ -81,4 +81,4 @@ class History(QObject):
         """
 
         self.path.unlink(missing_ok=True)
-        self.log.info("Cleared history.")
+        self.log.debug("Cleared history.")
