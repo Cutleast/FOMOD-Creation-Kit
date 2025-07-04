@@ -10,7 +10,7 @@ import sys
 import time
 from argparse import Namespace
 from pathlib import Path
-from typing import override
+from typing import Optional, override
 
 from PySide6.QtCore import QTranslator
 from PySide6.QtGui import QIcon
@@ -188,9 +188,19 @@ class App(QApplication):
 
     def restart_application(self) -> None:
         """
-        Restarts the application.
+        Restarts the application with the current open FOMOD, if any.
         """
 
         if self.exit():
-            self.log.info("Restarting application...")
-            os.startfile(subprocess.list2cmdline(sys.argv))
+            fomod_path: Optional[Path] = None
+            if (
+                fomod := self.main_window.get_fomod()
+            ) is not None and fomod.path is not None:
+                fomod_path = fomod.path
+
+            if fomod_path is not None:
+                self.log.info(f"Restarting application with FOMOD '{fomod_path}'...")
+                os.startfile(sys.argv[0], arguments=f'"{fomod_path}"')
+            else:
+                self.log.info("Restarting application...")
+                os.startfile(sys.argv[0])

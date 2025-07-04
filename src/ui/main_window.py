@@ -3,7 +3,7 @@ Copyright (c) Cutleast
 """
 
 from pathlib import Path
-from typing import override
+from typing import Optional, override
 
 from PySide6.QtGui import QCloseEvent
 from PySide6.QtWidgets import QMainWindow
@@ -90,6 +90,14 @@ class MainWindow(QMainWindow):
             self.setWindowTitle(str(fomod.path))
         else:
             self.setWindowTitle(self.tr("Unnamed"))
+
+    def get_fomod(self) -> Optional[Fomod]:
+        """
+        Returns:
+            Optional[Fomod]: The current FOMOD, or None if no FOMOD is open.
+        """
+
+        return self.__main_widget.get_fomod_editor_widget().get_fomod()
 
     def open_fomod(self, path: Path) -> None:
         """
