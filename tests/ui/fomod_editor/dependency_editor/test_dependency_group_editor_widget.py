@@ -3,12 +3,13 @@ Copyright (c) Cutleast
 """
 
 import pytest
-from PySide6.QtWidgets import QCheckBox, QLineEdit
+from PySide6.QtWidgets import QCheckBox, QLineEdit, QTabWidget
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.dependency.file_dependency import FileDependency
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
+from core.fomod.module_config.dependency.version_dependency import VersionDependency
 from core.fomod_editor.exceptions import EmptyError, SpecificValidationError
 from tests.ui.ui_test import UiTest
 from tests.utils import Utils
@@ -22,6 +23,9 @@ class TestDependencyGroupEditorWidget(UiTest):
     """
     Tests `ui.fomod_editor.dependency_editor.dependency_group_editor_widget.DependencyGroupEditorWidget`.
     """
+
+    TAB_WIDGET: tuple[str, type[QTabWidget]] = "tab_widget", QTabWidget
+    """Identifier for accessing the private tab_widget field."""
 
     FILES_TREE_WIDGET_EDITOR: tuple[str, type[TreeWidgetEditor[FileDependency]]] = (
         "files_tree_widget_editor",
@@ -251,3 +255,56 @@ class TestDependencyGroupEditorWidget(UiTest):
         # then
         with pytest.raises(EmptyError):
             widget.validate()
+
+    INITIAL_TAB_DATA: list[tuple[CompositeDependency, int]] = [
+        (CompositeDependency(), 0),
+        (
+            CompositeDependency(
+                file_dependencies=[
+                    FileDependency(file="test", state=FileDependency.State.Active)
+                ],
+                flag_dependencies=[FlagDependency(flag="test", value="test")],
+            ),
+            0,
+        ),
+        (
+            CompositeDependency(
+                flag_dependencies=[FlagDependency(flag="test", value="test")],
+                game_dependency=VersionDependency(version="1.0.0"),
+            ),
+            1,
+        ),
+        (
+            CompositeDependency(game_dependency=VersionDependency(version="1.0.0")),
+            2,
+        ),
+        (
+            CompositeDependency(
+                fomm_dependency=VersionDependency(version="1.0.0"),
+                dependencies=[CompositeDependency()],
+            ),
+            2,
+        ),
+        (
+            CompositeDependency(dependencies=[CompositeDependency()]),
+            3,
+        ),
+    ]
+
+    @pytest.mark.parametrize("dependency, expected_tab_index", INITIAL_TAB_DATA)
+    def test_initial_tab(
+        self, dependency: CompositeDependency, expected_tab_index: int, qtbot: QtBot
+    ) -> None:
+        """
+        Tests that the first non-empty tab is selected when the widget is created.
+        """
+
+        # when
+        widget = DependencyGroupEditorWidget(dependency, None, list)
+        qtbot.addWidget(widget)
+        tab_widget: QTabWidget = Utils.get_private_field(
+            widget, *TestDependencyGroupEditorWidget.TAB_WIDGET
+        )
+
+        # then
+        assert tab_widget.currentIndex() == expected_tab_index

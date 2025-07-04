@@ -91,6 +91,22 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         self.__init_versions_tab()
         self.__init_dependencies_tab()
 
+        self.__set_initial_tab()
+
+    def __set_initial_tab(self) -> None:
+        # select the first non-empty tab
+        if self._item.dependencies:
+            self.__tab_widget.setCurrentIndex(3)
+
+        if self._item.game_dependency or self._item.fomm_dependency:
+            self.__tab_widget.setCurrentIndex(2)
+
+        if self._item.flag_dependencies:
+            self.__tab_widget.setCurrentIndex(1)
+
+        if self._item.file_dependencies:
+            self.__tab_widget.setCurrentIndex(0)
+
     def __init_files_tab(self) -> None:
         self.__files_tree_widget_editor = TreeWidgetEditor(
             self._item.file_dependencies.copy()
