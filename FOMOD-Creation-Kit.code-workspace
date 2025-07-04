@@ -115,6 +115,9 @@
 	},
 	"settings": {
 		"editor.formatOnSave": true,
+		"[xml]": {
+			"editor.defaultFormatter": "redhat.vscode-xml"
+		},
 		"[qss]": {
 			"editor.defaultFormatter": "vscode.css-language-features"
 		},
