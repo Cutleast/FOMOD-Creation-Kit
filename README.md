@@ -45,6 +45,12 @@ Contributions are always welcome, see instructions below.
 1. Run `build.bat` from the root folder of this repo.
 2. The executable and all dependencies are built in the `dist/FCK`-Folder and get packed in a `dist/FOMOD Creation Kit v[version].zip`.
 
+### 4. Optional: Build Inno Setup installer
+
+1. Install [Inno Setup](https://jrsoftware.org/download.php/is.exe) and add its installation folder to PATH
+2. Run the `build_iss.bat` from the root folder of this repo.
+3. The installer executable gets outputted in `dist/FOMOD-Creation-Kit_v[version]_installer.exe`.
+
 ## Translations
 
 Make sure to follow the steps under [Code contributions](#code-contributions) above to install all requirements, including the Qt tools to translate this app.

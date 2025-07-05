@@ -86,14 +86,23 @@
 				"label": "deploy",
 				"type": "shell",
 				"command": "${workspaceFolder}/build.bat",
-				"dependsOn": [
-					"compile-qrc"
-				],
 				"group": {
 					"kind": "build",
 					"isDefault": true
 				},
-				"detail": "Deploys MMM with cx_freeze in ./dist"
+				"detail": "Deploys app with cx_freeze in ./dist"
+			},
+			{
+				"label": "build-iss",
+				"type": "shell",
+				"command": "${workspaceFolder}/build_iss.bat",
+				"dependsOn": [
+					"deploy"
+				],
+				"group": {
+					"kind": "build"
+				},
+				"detail": "Compiles Inno Setup installer in ./dist"
 			},
 			{
 				"label": "run-linguist",
