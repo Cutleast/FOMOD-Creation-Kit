@@ -90,9 +90,13 @@ class MainWidget(QWidget):
         """
 
         if self.close():
-            fomod: Fomod = Fomod.load(path)
-            self.__fomod_editor_widget.set_fomod(fomod)
-            self.history.add(path)
+            self.__open_fomod(path)
+
+    def __open_fomod(self, path: Path) -> None:
+        fomod: Fomod = Fomod.load(path)
+        self.__fomod_editor_widget.set_fomod(fomod)
+        if fomod.path is not None:
+            self.history.add(fomod.path)
 
     def create_new_fomod(self) -> None:
         """
@@ -122,8 +126,7 @@ class MainWidget(QWidget):
 
             if file_dialog.exec() == QFileDialog.DialogCode.Accepted:
                 fomod_path = Path(file_dialog.selectedFiles()[0])
-                fomod: Fomod = Fomod.load(fomod_path)
-                self.__fomod_editor_widget.set_fomod(fomod)
+                self.__open_fomod(fomod_path)
 
     def open_fomod_from_folder(self) -> None:
         """
@@ -138,8 +141,7 @@ class MainWidget(QWidget):
 
             if file_dialog.exec() == QFileDialog.DialogCode.Accepted:
                 fomod_path = Path(file_dialog.selectedFiles()[0])
-                fomod: Fomod = Fomod.load(fomod_path)
-                self.__fomod_editor_widget.set_fomod(fomod)
+                self.__open_fomod(fomod_path)
 
     def save_fomod(self) -> None:
         """

@@ -61,14 +61,19 @@ class MenuBar(QMenuBar):
     GITHUB_URL: str = "https://github.com/Cutleast/FOMOD-Creation-Kit"
     """URL to the GitHub repository."""
 
+    __recent_fomods_menu: QMenu
+
     def __init__(self, history: History) -> None:
         super().__init__()
 
-        self.__init_file_menu(history)
+        self.__init_file_menu()
         self.__init_extras_menu()
         self.__init_help_menu()
 
-    def __init_file_menu(self, history: History) -> None:
+        history.changed.connect(self.__update_recent_fomods_menu)
+        self.__update_recent_fomods_menu(history.recent_fomods)
+
+    def __init_file_menu(self) -> None:
         file_menu = Menu(title=self.tr("File"))
         self.addMenu(file_menu)
 
@@ -101,20 +106,16 @@ class MenuBar(QMenuBar):
         open_fomod_file_action.setShortcut("Ctrl+Shift+O")
         open_fomod_file_action.triggered.connect(self.open_fomod_from_file_signal.emit)
 
-        recent_menu: QMenu = file_menu.addMenu(
+        self.__recent_fomods_menu: QMenu = file_menu.addMenu(
             self.tr("Open recent FOMOD installer...")
         )
-        recent_menu.setIcon(
+        self.__recent_fomods_menu.setIcon(
             qta.icon(
                 "mdi6.history",
                 color=self.palette().text().color(),
                 color_disabled="#666666",
             )
         )
-        recent_menu.setEnabled(len(history.recent_fomods) > 0)
-
-        for path in history.recent_fomods[:10]:
-            self.__add_recent_subaction(recent_menu, path)
 
         file_menu.addSeparator()
 
@@ -149,6 +150,13 @@ class MenuBar(QMenuBar):
             QIcon(":/icons/" + get_icon_name_for_palette("exit", self.palette()))
         )
         exit_action.triggered.connect(self.exit_signal.emit)
+
+    def __update_recent_fomods_menu(self, recent_fomods: list[Path]) -> None:
+        self.__recent_fomods_menu.clear()
+        self.__recent_fomods_menu.setEnabled(len(recent_fomods) > 0)
+
+        for path in list(reversed(recent_fomods))[:10]:
+            self.__add_recent_subaction(self.__recent_fomods_menu, path)
 
     def __add_recent_subaction(self, recent_menu: QMenu, path: Path) -> None:
         recent_action: QAction = recent_menu.addAction(str(path))

@@ -854,52 +854,52 @@
 <context>
     <name>MainWidget</name>
     <message>
-        <location filename="src/ui/main_widget.py" line="114"/>
+        <location filename="src/ui/main_widget.py" line="118"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="118"/>
+        <location filename="src/ui/main_widget.py" line="122"/>
         <source>FOMOD metadata file</source>
         <translation>FOMOD Metadaten Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="119"/>
+        <location filename="src/ui/main_widget.py" line="123"/>
         <source>FOMOD module config file</source>
         <translation>FOMOD Modulkonfiguration Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="136"/>
+        <location filename="src/ui/main_widget.py" line="139"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="167"/>
+        <location filename="src/ui/main_widget.py" line="169"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="216"/>
+        <location filename="src/ui/main_widget.py" line="218"/>
         <source>Close unsaved FOMOD?</source>
         <translation>Ungespeichertes FOMOD schließen?</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="222"/>
+        <location filename="src/ui/main_widget.py" line="224"/>
         <source>Are you sure you want to close the current FOMOD? There are unsaved changes that will be lost.</source>
         <translation>Bist du sicher, dass du das aktuelle FOMOD schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="237"/>
+        <location filename="src/ui/main_widget.py" line="239"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="241"/>
+        <location filename="src/ui/main_widget.py" line="243"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="src/ui/main_widget.py" line="247"/>
+        <location filename="src/ui/main_widget.py" line="249"/>
         <source>Save and close</source>
         <translation>Speichern und schließen</translation>
     </message>
@@ -916,103 +916,103 @@
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="72"/>
+        <location filename="src/ui/menubar.py" line="77"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="75"/>
+        <location filename="src/ui/menubar.py" line="80"/>
         <source>Create new FOMOD installer...</source>
         <translation>Neuen FOMOD-Installer erstellen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="86"/>
+        <location filename="src/ui/menubar.py" line="91"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="97"/>
+        <location filename="src/ui/menubar.py" line="102"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="106"/>
+        <location filename="src/ui/menubar.py" line="111"/>
         <source>Open recent FOMOD installer...</source>
         <translation>Kürzlich geöffneten FOMOD-Installer öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="121"/>
+        <location filename="src/ui/menubar.py" line="122"/>
         <source>Save FOMOD installer</source>
         <translation>FOMOD-Installer speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="130"/>
+        <location filename="src/ui/menubar.py" line="131"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="139"/>
+        <location filename="src/ui/menubar.py" line="140"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="147"/>
+        <location filename="src/ui/menubar.py" line="148"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="160"/>
+        <location filename="src/ui/menubar.py" line="168"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="163"/>
+        <location filename="src/ui/menubar.py" line="171"/>
         <source>Validate XML file...</source>
         <translation>XML-Datei validieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="170"/>
+        <location filename="src/ui/menubar.py" line="178"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="173"/>
+        <location filename="src/ui/menubar.py" line="181"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="183"/>
+        <location filename="src/ui/menubar.py" line="191"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="188"/>
+        <location filename="src/ui/menubar.py" line="196"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="193"/>
+        <location filename="src/ui/menubar.py" line="201"/>
         <source>View source code on GitHub...</source>
         <translation>Quellcode auf GitHub ansehen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="202"/>
+        <location filename="src/ui/menubar.py" line="210"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="208"/>
-        <location filename="src/ui/menubar.py" line="237"/>
+        <location filename="src/ui/menubar.py" line="216"/>
+        <location filename="src/ui/menubar.py" line="245"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="227"/>
+        <location filename="src/ui/menubar.py" line="235"/>
         <source>No Updates Available</source>
         <translation>Keine Updates verfügbar</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="228"/>
+        <location filename="src/ui/menubar.py" line="236"/>
         <source>There are no updates available.</source>
         <translation>Es sind keine Updates verfügbar.</translation>
     </message>

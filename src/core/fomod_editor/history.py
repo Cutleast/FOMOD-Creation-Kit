@@ -13,8 +13,13 @@ class History(QObject):
     Class holding a history of the recent opened FOMOD installers and their paths.
     """
 
-    changed = Signal()
-    """Signal that gets emitted when the history changes or gets cleared."""
+    changed = Signal(list)
+    """
+    Signal that gets emitted when the history changes or gets cleared.
+    
+    Args:
+        list[Path]: New history content.
+    """
 
     path: Path
     """
@@ -29,13 +34,14 @@ class History(QObject):
             data_path (Path): Path to the app's data folder.
         """
 
+        super().__init__()
+
         self.path = data_path / "history.txt"
 
     @property
     def recent_fomods(self) -> list[Path]:
         """
-        A list of the recently opened FOMOD installers. List is ordered last before
-        first.
+        A list of the recently opened FOMOD installers. List is ordered old < new.
         """
 
         if not self.path.is_file():
@@ -62,6 +68,7 @@ class History(QObject):
         fomods.append(fomod_path)
 
         self.__save(fomods)
+        self.changed.emit(fomods)
         self.log.debug(f"Added '{fomod_path}' to history.")
 
     def __save(self, fomods: list[Path]) -> None:
@@ -81,4 +88,5 @@ class History(QObject):
         """
 
         self.path.unlink(missing_ok=True)
+        self.changed.emit([])
         self.log.debug("Cleared history.")
