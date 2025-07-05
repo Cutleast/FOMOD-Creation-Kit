@@ -60,7 +60,9 @@ QPlainTextEdit
 }
 QLineEdit:hover:!disabled:!focus,
 QSpinBox:hover:!disabled:!focus,
-QDoubleSpinBox:hover:!disabled:!focus
+QDoubleSpinBox:hover:!disabled:!focus,
+QTextEdit[readOnly=false]:hover:!disabled:!focus,
+QPlainTextEdit[readOnly=false]:hover:!disabled:!focus
 {
     background: #0c000000;
 }
