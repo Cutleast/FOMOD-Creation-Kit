@@ -28,7 +28,7 @@ class BehaviorConfig(BaseConfig):
         UTF16LE = "utf-16le"
         """Little-endian UTF-16 encoding."""
 
-    module_config_encoding: ModuleConfigEncoding = ModuleConfigEncoding.UTF8
+    module_config_encoding: ModuleConfigEncoding = ModuleConfigEncoding.UTF16LE
     """Encoding used when saving the ModuleConfig.xml file."""
 
     @override
