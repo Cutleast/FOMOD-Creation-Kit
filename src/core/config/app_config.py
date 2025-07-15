@@ -39,6 +39,12 @@ class AppConfig(BaseConfig):
     )
     """Log file name"""
 
+    log_visible: Annotated[bool, Field(alias="log.visible")] = False
+    """
+    Whether to display the last log message and the log buttons at the bottom of the
+    main window.
+    """
+
     language: Language = Language.System
     """App language"""
 

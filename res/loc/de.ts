@@ -1233,37 +1233,37 @@
     <message>
         <location filename="src/ui/settings/settings_dialog.py" line="50"/>
         <location filename="src/ui/settings/settings_dialog.py" line="74"/>
-        <location filename="src/ui/settings/settings_dialog.py" line="107"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="103"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="94"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="90"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="100"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="96"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="122"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="118"/>
         <source>Restart required</source>
         <translation>Neustart erforderlich</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="127"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="123"/>
         <source>The app must be restarted for the changes to take effect! Restart now?</source>
         <translation>Die App muss neugestartet werden, damit die Änderungen wirksam werden! Jetzt neustarten?</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="131"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="127"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="132"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="128"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
@@ -1271,59 +1271,64 @@
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="87"/>
+        <location filename="src/ui/settings/settings_widget.py" line="88"/>
         <source>App settings</source>
         <translation>Appeinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="95"/>
+        <location filename="src/ui/settings/settings_widget.py" line="96"/>
         <source>Log level:</source>
         <translation>Protokoll-Level:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="106"/>
+        <location filename="src/ui/settings/settings_widget.py" line="107"/>
         <source>Number of newest log files to keep:</source>
         <translation>Anzahl der neuesten zu behaltenden Protokolldateien:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="119"/>
+        <location filename="src/ui/settings/settings_widget.py" line="122"/>
+        <source>Display log at the bottom of the main window</source>
+        <translation>Protokoll im unteren Bereich des Hauptfensters anzeigen</translation>
+    </message>
+    <message>
+        <location filename="src/ui/settings/settings_widget.py" line="130"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="130"/>
+        <location filename="src/ui/settings/settings_widget.py" line="141"/>
         <source>UI mode:</source>
         <translation>UI Modus:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="143"/>
+        <location filename="src/ui/settings/settings_widget.py" line="154"/>
         <source>Clear history of recently opened FOMOD installers</source>
         <translation>Verlauf der kürzlich geöffneten FOMOD-Installer leeren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="149"/>
+        <location filename="src/ui/settings/settings_widget.py" line="160"/>
         <source>Behavior settings</source>
         <translation>Verhaltenseinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="156"/>
+        <location filename="src/ui/settings/settings_widget.py" line="167"/>
         <source>Finalize on save (recommended)</source>
         <translation>Beim Speichern finalisieren (empfohlen)</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="164"/>
+        <location filename="src/ui/settings/settings_widget.py" line="175"/>
         <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
 This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
         <translation>Finalisieren bedeutet, dass alle Dateien von außerhalb des FOMODs in das Verzeichnis des FOMODs kopiert werden und dessen Pfade relativ gemacht werden.
 Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="169"/>
+        <location filename="src/ui/settings/settings_widget.py" line="180"/>
         <source>Validate XML files on save</source>
         <translation>XML-Dateien beim Speichern validieren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="185"/>
+        <location filename="src/ui/settings/settings_widget.py" line="196"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Für ModuleConfig.xml verwendeter Zeichensatz:</translation>
     </message>
@@ -1331,17 +1336,17 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="src/ui/statusbar.py" line="51"/>
+        <location filename="src/ui/statusbar.py" line="52"/>
         <source>Support me on Ko-fi</source>
         <translation>Unterstütze mich auf Ko-Fi</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="66"/>
+        <location filename="src/ui/statusbar.py" line="67"/>
         <source>Copy log to clipboard</source>
         <translation>Protokoll in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="76"/>
+        <location filename="src/ui/statusbar.py" line="78"/>
         <source>View log</source>
         <translation>Protokoll anzeigen</translation>
     </message>

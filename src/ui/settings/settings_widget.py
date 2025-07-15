@@ -52,6 +52,7 @@ class SettingsWidget(SmoothScrollArea):
 
     __log_level_box: EnumDropdown[Logger.Level]
     __log_num_of_files_box: QSpinBox
+    __log_visible: QCheckBox
     __language_box: EnumDropdown[Language]
     __ui_mode_box: EnumDropdown[UIMode]
     __clear_history_button: QPushButton
@@ -116,8 +117,18 @@ class SettingsWidget(SmoothScrollArea):
         )
         app_settings_glayout.addWidget(self.__log_num_of_files_box, 1, 1)
 
+        self.__log_visible = QCheckBox(
+            self.tr("Display log at the bottom of the main window")
+        )
+        self.__log_visible.setChecked(self.__app_config.log_visible)
+        self.__log_visible.checkStateChanged.connect(lambda _: self.changed.emit())
+        self.__log_visible.checkStateChanged.connect(
+            lambda _: self.restart_required.emit()
+        )
+        app_settings_glayout.addWidget(self.__log_visible, 2, 0, 1, 2)
+
         language_label = QLabel(self.tr("Language:"))
-        app_settings_glayout.addWidget(language_label, 2, 0)
+        app_settings_glayout.addWidget(language_label, 3, 0)
 
         self.__language_box = EnumDropdown(Language, self.__app_config.language)
         self.__language_box.installEventFilter(self)
@@ -125,10 +136,10 @@ class SettingsWidget(SmoothScrollArea):
         self.__language_box.currentValueChanged.connect(
             lambda _: self.restart_required.emit()
         )
-        app_settings_glayout.addWidget(self.__language_box, 2, 1)
+        app_settings_glayout.addWidget(self.__language_box, 3, 1)
 
         ui_mode_label = QLabel(self.tr("UI mode:"))
-        app_settings_glayout.addWidget(ui_mode_label, 3, 0)
+        app_settings_glayout.addWidget(ui_mode_label, 4, 0)
 
         self.__ui_mode_box = EnumDropdown(UIMode, self.__app_config.ui_mode)
         self.__ui_mode_box.installEventFilter(self)
@@ -136,14 +147,14 @@ class SettingsWidget(SmoothScrollArea):
         self.__ui_mode_box.currentValueChanged.connect(
             lambda _: self.restart_required.emit()
         )
-        app_settings_glayout.addWidget(self.__ui_mode_box, 3, 1)
+        app_settings_glayout.addWidget(self.__ui_mode_box, 4, 1)
 
         self.__clear_history_button = QPushButton(
             self.tr("Clear history of recently opened FOMOD installers")
         )
         self.__clear_history_button.clicked.connect(self.__clear_history)
         self.__clear_history_button.setEnabled(len(self.__history.recent_fomods) > 0)
-        app_settings_glayout.addWidget(self.__clear_history_button, 4, 0, 1, 2)
+        app_settings_glayout.addWidget(self.__clear_history_button, 5, 0, 1, 2)
 
     def __init_behavior_settings(self) -> None:
         behavior_settings_group = QGroupBox(self.tr("Behavior settings"))
@@ -209,6 +220,7 @@ class SettingsWidget(SmoothScrollArea):
 
         self.__app_config.log_level = self.__log_level_box.getCurrentValue()
         self.__app_config.log_num_of_files = self.__log_num_of_files_box.value()
+        self.__app_config.log_visible = self.__log_visible.isChecked()
         self.__app_config.language = self.__language_box.getCurrentValue()
         self.__app_config.ui_mode = self.__ui_mode_box.getCurrentValue()
 

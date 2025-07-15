@@ -28,7 +28,7 @@ class StatusBar(QStatusBar):
 
     __log_window: Optional[LogWindow] = None
 
-    def __init__(self, logger: Logger) -> None:
+    def __init__(self, logger: Logger, log_visible: bool) -> None:
         super().__init__()
 
         self.logger = logger
@@ -44,6 +44,7 @@ class StatusBar(QStatusBar):
             Qt.ConnectionType.QueuedConnection,
         )
         self.status_label.setMinimumWidth(100)
+        self.status_label.setVisible(log_visible)
         self.insertPermanentWidget(0, self.status_label, stretch=1)
 
         kofi_button = LinkButton(
@@ -64,6 +65,7 @@ class StatusBar(QStatusBar):
             lambda: QApplication.clipboard().setText(self.logger.get_content())
         )
         copy_log_button.setToolTip(self.tr("Copy log to clipboard"))
+        copy_log_button.setVisible(log_visible)
         self.addPermanentWidget(copy_log_button)
 
         open_log_button = QPushButton()
@@ -74,6 +76,7 @@ class StatusBar(QStatusBar):
         open_log_button.setIconSize(QSize(16, 16))
         open_log_button.clicked.connect(self.__open_log_window)
         open_log_button.setToolTip(self.tr("View log"))
+        open_log_button.setVisible(log_visible)
         self.addPermanentWidget(open_log_button)
 
     def __open_log_window(self) -> None:

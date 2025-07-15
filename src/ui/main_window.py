@@ -65,7 +65,7 @@ class MainWindow(QMainWindow):
     ) -> None:
         self.__init_menu_bar(history)
         self.__init_main_widget(app_config, behavior_config, history)
-        self.__init_status_bar(logger)
+        self.__init_status_bar(logger, app_config)
 
     def __init_menu_bar(self, history: History) -> None:
         self.__menu_bar = MenuBar(history)
@@ -77,8 +77,8 @@ class MainWindow(QMainWindow):
         self.__main_widget = MainWidget(app_config, behavior_config, history)
         self.setCentralWidget(self.__main_widget)
 
-    def __init_status_bar(self, logger: Logger) -> None:
-        self.__status_bar = StatusBar(logger)
+    def __init_status_bar(self, logger: Logger, app_config: AppConfig) -> None:
+        self.__status_bar = StatusBar(logger, app_config.log_visible)
         self.setStatusBar(self.__status_bar)
 
     def __on_change(self, fomod: Fomod, unsaved: bool) -> None:
