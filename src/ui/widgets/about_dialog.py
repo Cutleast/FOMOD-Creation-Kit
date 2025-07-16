@@ -77,9 +77,7 @@ class AboutDialog(QDialog):
         text: str = self.tr(
             "Created by Cutleast (<a href='https://www.nexusmods.com/users/65733731'>"
             "NexusMods</a> | <a href='https://github.com/cutleast'>GitHub</a> "
-            "| <a href='https://ko-fi.com/cutleast'>Ko-Fi</a>)<br><br>Icon by "
-            "Wuerfelhusten (<a href='https://www.nexusmods.com/users/122160268'>"
-            "NexusMods</a>)<br><br>Licensed under "
+            "| <a href='https://ko-fi.com/cutleast'>Ko-Fi</a>)<br><br>Licensed under "
             "GNU General Public License v3.0"
         )
 

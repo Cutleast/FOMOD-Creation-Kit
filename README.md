@@ -72,7 +72,6 @@ If you encountered an issue/error or have a suggestion, open an issue with suffi
 # 🔗Credits
 
 - Code by Cutleast ([GitHub](https://github.com/Cutleast) | [NexusMods](https://next.nexusmods.com/profile/Cutleast))
-- Icon, modpage images and idea by Wuerfelhusten ([NexusMods](https://next.nexusmods.com/profile/Wuerfelhusten))
 - Qt by The [Qt Company Ltd](https://qt.io)
 - FontAwesome Icons by [FontAwesome](https://github.com/FortAwesome/Font-Awesome)
 - [fomod 5.x Documentation by Daniel Nunes and the fomod team](https://fomod-docs.readthedocs.io/en/latest/index.html)
