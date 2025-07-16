@@ -80,17 +80,17 @@ You can now create and edit FOMODs without burning your eyes ;)
 
 <p align="center">
   <picture>
-    <img alt="" src="res/images/README/UI_Light_Dark_1080p.png">
+    <a href="res/images/README/UI_Light_Dark_1080p.png"><img src="res/images/README/UI_Light_Dark_1080p.png"></a>
   </picture>
   <br>
   <br>
   <picture>
-    <img alt="" src="res/images/README/UI_StepListEditorTab_annotated_affinity.png">
+    <a href="res/images/README/UI_StepListEditorTab_annotated_affinity.png"><img src="res/images/README/UI_StepListEditorTab_annotated_affinity.png"></a>
   </picture>
   <br>
   <br>
   <picture>
-    <img alt="" src="res/images/README/UI_InstallStepEditorWidget_annotated.png">
+    <a href="res/images/README/UI_InstallStepEditorWidget_annotated.png"><img src="res/images/README/UI_InstallStepEditorWidget_annotated.png"></a>
   </picture>
 </p>
 
