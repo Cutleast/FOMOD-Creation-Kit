@@ -7,21 +7,100 @@
   <br>
   <br>
   <a href="https://discord.gg/pqEHdWDf8z"><img src="https://i.imgur.com/VMdA0q7.png" width="193px" height="60px"/> </a>
-  <!-- <a href="https://www.nexusmods.com/site/mods/545/"><img src="https://i.imgur.com/STsBXT6.png" height="60px"/> </a> -->
+  <a href="https://www.nexusmods.com/site/mods/1366"><img src="https://i.imgur.com/STsBXT6.png" height="60px"/> </a>
   <a href="https://ko-fi.com/cutleast"><img src="https://i.imgur.com/KcPrhK5.png" width="193px" height="60px"/> </a>
   <br>
 </p>
 
 # Description
 
-A tool for editing and creating FOMOD installers.
+An intuitive yet advanced tool for editing and creating FOMOD installers. The entire tool is designed to be self-explanatory with small info texts placed everywhere
+making the creation and editing of FOMOD installers accessible for beginners that are looking for a nice way to package their mods.
+Advanced users already familiar with the FOMOD specification will find that this tool supports every single feature the specification has to offer.
 
 # ❗Disclaimer
 
-This project is under active development! Expect issues and other weird behavior.
-Contributions are always welcome, see instructions below.
+This project is still under development! Despite being thoroughly tested both manually and automatically, there might still be some bugs and errors left.
+Please report any bugs or suggestions you encounter either in the "Issues" tab of this repository or on our [Discord server](https://discord.gg/pqEHdWDf8z).
+Contributions are always welcome, too, see instructions below.
+
+# Features
+
+### Automated file and folder management
+
+- Enables you to select files from all over your computer and add them to the FOMOD.
+- When the FOMOD is saved, all those files get automatically copied to the FOMOD's location and the paths are made relative so that the entire package is ready to be packed and distributed.
+- Manual file and folder management is still possible as this only affects files that are outside of the FOMOD's parent folder.
+- Enabled by default but can be disabled in *File* > *Settings* > *Finalize on save (recommended)*.
+
+<details>
+  <summary><b>A finalized FOMOD could look like this:</b></summary>
+
+```
+  fomod/
+  ├─ ModuleConfig.xml
+  ├─ info.xml
+  ├─ ModuleImage/
+  │  └─ example.png
+  ├─ images/
+  │  └─ Example Install Step/
+  │     └─ Example Group/
+  │        └─ Example Plugin/
+  │           └─ example.jpg
+  └─ files/
+      ├─ install_steps/
+      │  └─ Example Install Step/
+      │     └─ Example Group/
+      │        └─ Example Plugin/
+      │           └─ example.esl
+      ├─ required_install_files/
+      │   ├─ interface/
+      │   │  └─ translations/
+      │   │     └─ example_english.txt
+      │   └─ example.esp
+      ├─ conditional_install_files.0/
+      │   └─ example_patch.esp
+      └─ conditional_install_files.1/
+          └─ interface/
+              └─ translations/
+                  └─ example_german.txt
+```
+
+</details>
+
+### Optional automatic validation against the FOMOD XML schema
+
+- Disabled by default but can be enabled in *File* > *Settings* > *Validate XML files on save*.
+
+### Modern and native UI based on Qt 6
+
+You can now create and edit FOMODs without burning your eyes ;)
+
+#### Screenshots
+
+<p align="center">
+  <picture>
+    <img alt="" src="res/images/README/UI_Light_Dark_1080p.png">
+  </picture>
+  <br>
+  <br>
+  <picture>
+    <img alt="" src="res/images/README/UI_StepListEditorTab_annotated_affinity.png">
+  </picture>
+  <br>
+  <br>
+  <picture>
+    <img alt="" src="res/images/README/UI_InstallStepEditorWidget_annotated.png">
+  </picture>
+</p>
+
+**As always, feedback and suggestions for improving the UI or QoL are very appreciated!**
 
 # 🫶Contributing
+
+## Feedback (Suggestions/Issues)
+
+If you encountered an issue/error or have a suggestion, open an issue with sufficient information.
 
 ## Code contributions
 
@@ -65,10 +144,6 @@ For example, to generate a file for French, the new line would look like this: `
 6. Optional: Run `compile_qts.bat && uv run src\main.py` and change the language in *Settings* to your translation (and restart) to see your translation in action.
 7. Create a pull request from your changes and I will check over it and merge it if there are no issues with it.
 
-## Feedback (Suggestions/Issues)
-
-If you encountered an issue/error or have a suggestion, open an issue with sufficient information.
-
 # 🔗Credits
 
 - Code by Cutleast ([GitHub](https://github.com/Cutleast) | [NexusMods](https://next.nexusmods.com/profile/Cutleast))
@@ -77,4 +152,3 @@ If you encountered an issue/error or have a suggestion, open an issue with suffi
 - [fomod 5.x Documentation by Daniel Nunes and the fomod team](https://fomod-docs.readthedocs.io/en/latest/index.html)
 
 See [licenses.py](./src/core/utilities/licenses.py) for a full list of used libraries, dependencies and their respective licenses.
-
