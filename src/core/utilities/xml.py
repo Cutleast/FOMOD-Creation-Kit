@@ -3,6 +3,7 @@ Copyright (c) Cutleast
 """
 
 import logging
+from typing import Optional
 
 from lxml import etree
 
@@ -17,6 +18,7 @@ def validate_against_schema(schema_url: str, xml_text: bytes) -> None:
 
     Raises:
         DocumentInvalid: When the XML text is not valid against the schema.
+        ValueError: When the schema could not be fetched.
 
     Args:
         schema_url (str): URL to the XSD schema file.
@@ -24,7 +26,10 @@ def validate_against_schema(schema_url: str, xml_text: bytes) -> None:
     """
 
     log.info(f"Fetching schema from '{schema_url}'...")
-    schema_xml: bytes = get_raw_web_content(schema_url)
+    schema_xml: Optional[bytes] = get_raw_web_content(schema_url)
+
+    if schema_xml is None:
+        raise ValueError(f"Failed to fetch schema from '{schema_url}'!")
 
     log.info("Validating XML against schema...")
     schema = etree.XMLSchema(etree.fromstring(schema_xml))

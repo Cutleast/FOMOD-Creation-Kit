@@ -2,13 +2,18 @@
 Copyright (c) Cutleast
 """
 
-from requests import get
+import logging
+from typing import Optional
+
+from requests import Response, get
 
 from .cache import cache
 
+log: logging.Logger = logging.getLogger("WebUtils")
+
 
 @cache
-def get_raw_web_content(url: str) -> bytes:
+def get_raw_web_content(url: str) -> Optional[bytes]:
     """
     Fetches raw content from the given URL. The result is cached.
 
@@ -16,7 +21,12 @@ def get_raw_web_content(url: str) -> bytes:
         url (str): URL to fetch content from.
 
     Returns:
-        bytes: Raw content of the URL.
+        Optional[bytes]: Raw content of the URL or `None` if the request failed.
     """
 
-    return get(url).content
+    res: Response = get(url)
+
+    if res.status_code == 200:
+        return res.content
+
+    log.error(f"Failed to fetch content from '{url}'. Status Code: {res.status_code}")

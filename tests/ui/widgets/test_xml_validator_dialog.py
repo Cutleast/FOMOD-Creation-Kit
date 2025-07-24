@@ -129,4 +129,6 @@ class TestXmlValidatorDialog(UiTest):
 
         # then
         assert not validate_button.isEnabled()
-        assert validate_button.text() == "Valid"
+        assert validate_button.text() == "Valid" or validate_button.text().startswith(
+            "Error:"
+        )

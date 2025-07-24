@@ -55,4 +55,4 @@ class ModuleConfig(FomodModel, tag="config", search_mode="unordered"):
     @override
     @classmethod
     def get_schema_url(cls) -> str:
-        return "https://raw.githubusercontent.com/Cutleast/FOMOD-Creation-Kit/master/res/schemas/ModuleConfig.xsd"
+        return "https://raw.githubusercontent.com/Cutleast/FOMOD-Creation-Kit/master/res/schemas/ModConfig5.0.xsd"

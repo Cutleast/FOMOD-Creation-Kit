@@ -2,6 +2,7 @@
 Copyright (c) Cutleast
 """
 
+import re
 from pathlib import Path
 
 from pyfakefs.fake_filesystem import FakeFilesystem
@@ -24,6 +25,11 @@ class TestModuleConfig(BaseTest):
     """
     Tests `core.fomod.module_config.ModuleConfig`.
     """
+
+    VORTEX_REQUIRED_SCHEMA_PATTERN: re.Pattern[str] = re.compile(
+        r"[^\"]*((XmlScript)|(ModConfig))(.*?).xsd"
+    )
+    """Regex pattern that has to be matched by the schema URL to be suited for Vortex."""
 
     def test_load(self, data_folder: Path, test_fs: FakeFilesystem) -> None:
         """
@@ -144,3 +150,16 @@ class TestModuleConfig(BaseTest):
 
         # then
         assert reloaded_fomod.module_config.module_dependencies == dependency
+
+    def test_schema_url_is_suited_for_vortex(self) -> None:
+        """
+        Tests the schema URL is suited for Vortex as it is used for extracting the
+        schema's version.
+        """
+
+        assert (
+            TestModuleConfig.VORTEX_REQUIRED_SCHEMA_PATTERN.match(
+                ModuleConfig.get_schema_url()
+            )
+            is not None
+        )
