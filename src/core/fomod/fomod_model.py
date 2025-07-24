@@ -87,5 +87,9 @@ class FomodModel(BaseXmlModel):
             except etree.DocumentInvalid as ex:
                 log.debug("XML text:\n" + xml_text.decode(encoding))
                 raise ex
+            except Exception as ex:
+                log.warning(
+                    f"An error occured during XML validation: {ex}", exc_info=ex
+                )
 
         return xml_text

@@ -88,6 +88,8 @@ class XmlValidatorDialog(QDialog):
             validate_against_schema(xsd_url, xml_text)
         except etree.DocumentInvalid as ex:
             self.__validate_button.setText(self.tr("Invalid: ") + str(ex))
+        except Exception as ex:
+            self.__validate_button.setText(self.tr("Error: ") + str(ex))
         else:
             self.__validate_button.setText(self.tr("Valid"))
 
