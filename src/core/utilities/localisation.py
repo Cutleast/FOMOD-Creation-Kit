@@ -21,7 +21,7 @@ class Language(BaseEnum):
     System = "System"
     German = "de_DE"
     English = "en_US"
-
+    Portuguese = "pt_BR"
 
 def detect_system_locale() -> Optional[str]:
     """
