@@ -140,9 +140,10 @@ For example, to generate a file for French, the new line would look like this: `
 2. Run `update_lupdate_file.bat && update_qts.bat` to generate the translation file for your language.
 3. Open the translation file in Qt Linguist with `uv run pyside6-linguist res/loc/<language>.ts`, eg. `uv run pyside6-linguist res/loc/fr.ts`.
 4. Translate the app and save the file with Ctrl+S.
-5. For your language to show up in FCK's settings: add a line, similar to the existing languages, under `class Language(BaseEnum):` in [localisation.py](./src/core/utilities/localisation.py). For example, for French: `French = "fr_FR"`.
-6. Optional: Run `compile_qts.bat && uv run src\main.py` and change the language in *Settings* to your translation (and restart) to see your translation in action.
-7. Create a pull request from your changes and I will check over it and merge it if there are no issues with it.
+5. For the compiled language file to be bundled with the app, you have to add the compiled file under `<!-- Localisation Files -->` in [resources.qrc](./res/resources.qrc). For example, for French: `<file>loc/fr.qm</file>`.
+6. For your language to show up in FCK's settings: add a line, similar to the existing languages, under `class Language(BaseEnum):` in [localisation.py](./src/core/utilities/localisation.py). For example, for French: `French = "fr_FR"`.
+7. Optional: Run `compile_qts.bat && uv run src\main.py` and change the language in *Settings* to your translation (and restart) to see your translation in action.
+8. Create a pull request from your changes and I will check over it and merge it if there are no issues with it.
 
 # 🔗Credits
 

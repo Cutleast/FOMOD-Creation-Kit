@@ -126,10 +126,14 @@ class App(QApplication):
             language = self.app_config.language.value
 
         if language != "en_US":
-            translator.load(f":/loc/{language}.qm")
-            self.installTranslator(translator)
-
-            self.log.info(f"Loaded localisation for {language}.")
+            res_file: str = f":/loc/{language}.qm"
+            if not translator.load(res_file):
+                self.log.error(
+                    f"Failed to load localisation for {language} from '{res_file}'."
+                )
+            else:
+                self.installTranslator(translator)
+                self.log.info(f"Loaded localisation for {language}.")
 
     @override
     def exec(self) -> int:  # type: ignore
