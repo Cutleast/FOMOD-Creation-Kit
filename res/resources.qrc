@@ -37,6 +37,7 @@
 
         <!-- Localisation Files -->
         <file>loc/de.qm</file>
+        <file>res/loc/pt_BR.qm</file>
 
         <!-- Stylesheets & Theme files -->
         <file>base_stylesheet.qss</file>
