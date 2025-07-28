@@ -7,11 +7,14 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
+import chardet
 from lxml import etree
 from pydantic_xml import BaseXmlModel
 
 from core.utilities.cache import cache
-from core.utilities.xml import validate_against_schema
+from core.utilities.xml import XML_DECLARATION_PATTERN, validate_against_schema
+
+INFO_COMMENT: str = "<!-- Created with FOMOD Creation Kit by Cutleast: https://www.nexusmods.com/site/mods/1366 -->\n"
 
 
 class FomodModel(BaseXmlModel):
@@ -27,18 +30,32 @@ class FomodModel(BaseXmlModel):
         """
 
     @classmethod
-    def load[T: FomodModel](cls: type[T], xml_text: bytes) -> T:
+    def load[T: FomodModel](
+        cls: type[T], xml_text: bytes, encoding: Optional[str] = None
+    ) -> T:
         """
         Loads this model from the given XML text.
 
         Args:
             xml_text (bytes): XML text to load from.
+            encoding (Optional[str], optional):
+                The encoding to use for decoding the XML text (is overwritten by an XML
+                declaration if present). Defaults to None (auto-detect).
 
         Returns:
             T: Deserialized model
         """
 
-        return cls.from_xml(xml_text)
+        if encoding is None:
+            encoding = chardet.detect(xml_text)["encoding"]
+
+        raw_xml: str | bytes
+        if encoding is None or XML_DECLARATION_PATTERN.match(xml_text) is not None:
+            raw_xml = xml_text
+        else:
+            raw_xml = xml_text.decode(encoding)
+
+        return cls.from_xml(raw_xml)
 
     @classmethod
     @cache
@@ -77,13 +94,13 @@ class FomodModel(BaseXmlModel):
             root.set("{%s}noNamespaceSchemaLocation" % xsi, schema_url)
 
         etree.indent(root, space="\t")
-        xml_text = etree.tostring(
-            root, pretty_print=True, encoding=encoding, standalone=True
+        xml_text = INFO_COMMENT.encode(encoding) + etree.tostring(
+            root, pretty_print=True, encoding=encoding, xml_declaration=False
         )
 
         if schema_url is not None and validate:
             try:
-                validate_against_schema(schema_url, xml_text)
+                validate_against_schema(schema_url, xml_text.decode(encoding))
             except etree.DocumentInvalid as ex:
                 log.debug("XML text:\n" + xml_text.decode(encoding))
                 raise ex

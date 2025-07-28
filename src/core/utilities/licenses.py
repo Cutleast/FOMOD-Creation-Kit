@@ -3,6 +3,7 @@ Copyright (c) Cutleast
 """
 
 LICENSES: dict[str, str] = {
+    "chardet": "https://github.com/chardet/chardet/blob/main/LICENSE",
     "comtypes": "https://github.com/enthought/comtypes/blob/main/LICENSE.txt",
     "cx_freeze": "https://github.com/marcelotduarte/cx_Freeze/blob/main/LICENSE.md",
     "darkdetect": "https://github.com/albertosottile/darkdetect/blob/master/LICENSE",

@@ -331,3 +331,22 @@ class TestFomod(BaseTest):
         assert (fomod.path / "ModuleImage" / "Image.jpg").is_file()
         assert (fomod.path / "files" / "required_install_files" / "Image.jpg").is_file()
         assert (fomod.path / "files" / "Image.jpg").is_file()
+
+    def test_reload(
+        self, data_folder: Path, test_fs: FakeFilesystem, trashbin: list[Path]
+    ) -> None:
+        """
+        Tests that a FOMOD can be saved and reloaded with both encodings.
+        """
+
+        # given
+        self.test_finalize(data_folder, test_fs)
+        fomod_path = Path("test_output") / "fomod"
+
+        # when
+        fomod = Fomod.load(fomod_path)
+        fomod.finalize(encoding="utf-16le")
+        reloaded_fomod = Fomod.load(fomod_path)
+
+        # then
+        assert fomod == reloaded_fomod
