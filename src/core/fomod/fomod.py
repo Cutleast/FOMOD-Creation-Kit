@@ -7,7 +7,7 @@ from __future__ import annotations
 import logging
 import shutil
 from pathlib import Path
-from typing import Optional
+from typing import Optional, override
 
 from lxml import etree
 
@@ -142,7 +142,7 @@ class Fomod:
         self.log.info(f"Saving info.xml to '{info_path}'...")
 
         try:
-            info_path.write_bytes(self.info.dump())
+            info_path.write_bytes(self.info.dump(validate_xml))
         except etree.DocumentInvalid as ex:
             raise XmlValidationError(info_path.name) from ex
 
@@ -229,3 +229,10 @@ class Fomod:
             info=FomodInfo(name=""),
             module_config=ModuleConfig(module_name=ModuleTitle(title="")),
         )
+
+    @override
+    def __eq__(self, value: object) -> bool:
+        if not isinstance(value, Fomod):
+            return False
+
+        return self.info == value.info and self.module_config == value.module_config

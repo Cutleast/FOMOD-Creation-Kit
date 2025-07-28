@@ -55,7 +55,7 @@ class MenuBar(QMenuBar):
     DISCORD_URL: str = "https://discord.gg/pqEHdWDf8z"
     """URL to our Discord server."""
 
-    NEXUSMODS_URL: str = "https://www.nexusmods.com/site"  # TODO: Add full mod page url
+    NEXUSMODS_URL: str = "https://www.nexusmods.com/site/mods/1366"
     """URL to FCK's Nexus Mods page."""
 
     GITHUB_URL: str = "https://github.com/Cutleast/FOMOD-Creation-Kit"

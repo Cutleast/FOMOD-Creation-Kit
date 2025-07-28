@@ -3,6 +3,7 @@ Copyright (c) Cutleast
 """
 
 import logging
+import re
 from typing import Optional
 
 from lxml import etree
@@ -12,7 +13,10 @@ from .web_utils import get_raw_web_content
 log: logging.Logger = logging.getLogger("Utilities.XML")
 
 
-def validate_against_schema(schema_url: str, xml_text: bytes) -> None:
+XML_DECLARATION_PATTERN: re.Pattern[bytes] = re.compile(rb"^<\?xml.*\?>")
+
+
+def validate_against_schema(schema_url: str, xml_text: bytes | str) -> None:
     """
     Validates the given XML text against the schema at the specified URL.
 
@@ -22,7 +26,7 @@ def validate_against_schema(schema_url: str, xml_text: bytes) -> None:
 
     Args:
         schema_url (str): URL to the XSD schema file.
-        xml_text (bytes): XML text to validate.
+        xml_text (bytes | str): XML text to validate.
     """
 
     log.info(f"Fetching schema from '{schema_url}'...")
