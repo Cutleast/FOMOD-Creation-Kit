@@ -1537,6 +1537,11 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
     </message>
     <message>
         <location filename="src/ui/widgets/xml_validator_dialog.py" line="92"/>
+        <source>Error: </source>
+        <translation>Fehler: </translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/xml_validator_dialog.py" line="94"/>
         <source>Valid</source>
         <translation>Gültig</translation>
     </message>
