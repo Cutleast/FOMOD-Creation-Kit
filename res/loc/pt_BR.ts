@@ -736,58 +736,58 @@
 <context>
     <name>InstallStepEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="152"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="148"/>
         <source>Edit install step...</source>
         <translation>Editar etapa de instalação...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="162"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="158"/>
         <source>An installation step of a FOMOD installer is a single page consisting of groups of files that can be set to be visible when certain conditions are met.</source>
         <translation>Uma etapa de instalação de um instalador FOMOD é uma página única composta por grupos de arquivos que podem ser exibidos quando certas condições são atendidas.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="184"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="180"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="196"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="192"/>
         <source>Visible when</source>
         <translation>Visível quando</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="209"/>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="344"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="205"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="340"/>
         <source>Always visible</source>
         <translation>Sempre visível</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="249"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="245"/>
         <source>File groups</source>
         <translation>Arquivo dos grupos</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="257"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="253"/>
         <source>A group is used to combine multiple related plugins together.</source>
         <translation>Um grupo é usado para combinar vários plugins relacionados.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="267"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="263"/>
         <source>Plugins</source>
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="278"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="274"/>
         <source>A plugin is a single selection option that can install files or set some flags when selected.</source>
         <translation>Um plugin é uma opção única de seleção que pode instalar arquivos ou definir flags quando selecionado.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="359"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="355"/>
         <source>At least one group must be added!</source>
         <translation>Pelo menos um grupo deve ser adicionado!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="366"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="362"/>
         <source>Every group must have at least one plugin!</source>
         <translation>Cada grupo deve conter ao menos um plugin!</translation>
     </message>
@@ -1385,27 +1385,27 @@ Isso deixa o mod praticamente pronto para ser compactado em um arquivo zip e dis
 <context>
     <name>TreeWidgetEditor</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="126"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="125"/>
         <source>Add new item...</source>
         <translation>Adicionar novo item...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="136"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
         <source>Remove selected item(s)...</source>
         <translation>Remover item(s) selecionado(s)...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="136"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
         <source>Del</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="148"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
         <source>Edit selected item...</source>
         <translation>Editar item(s) selecionado...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="148"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
         <source>Double click</source>
         <translation>Clique duplo</translation>
     </message>
