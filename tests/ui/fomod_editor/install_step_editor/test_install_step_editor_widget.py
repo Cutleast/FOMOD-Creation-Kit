@@ -218,3 +218,31 @@ class TestInstallStepEditorWidget(UiTest):
         assert install_step.name == "Test"
         assert install_step.optional_file_groups.groups == [group]
         assert group.plugins.plugins == [plugin]
+
+    def test_change_group_doesnt_emit_changed_signal(
+        self, widget: InstallStepEditorWidget, qtbot: QtBot
+    ) -> None:
+        """
+        Tests that changing the selected group doesn't emit the changed signal.
+        """
+
+        # given
+        groups_tree_widget: InstallStepEditorWidget.GroupsTreeWidget = (
+            Utils.get_private_field(
+                widget, *TestInstallStepEditorWidget.GROUPS_TREE_WIDGET
+            )
+        )
+        group1 = Group.create()
+        group1.plugins.plugins = [Plugin.create(), Plugin.create()]
+        group2 = Group.create()
+        group2.plugins.plugins = [Plugin.create(), Plugin.create()]
+        groups_tree_widget.setItems([group1, group2])
+        changed_calls: list[int] = []
+        widget.changed.connect(lambda: changed_calls.append(1))
+
+        # when
+        groups_tree_widget.setCurrentItem(groups_tree_widget.getItems()[0])
+        groups_tree_widget.setCurrentItem(groups_tree_widget.getItems()[1])
+
+        # then
+        assert changed_calls == []
