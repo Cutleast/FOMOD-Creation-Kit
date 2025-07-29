@@ -98,7 +98,6 @@ class TreeWidgetEditor[T: object](QWidget):
         self.__search_bar.searchChanged.connect(self._filter)
         self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
         self._tree_widget.itemSelectionChanged.connect(self._on_selection_change)
-        self._tree_widget.itemChanged.connect(lambda item, col: self.changed.emit())
         self._tree_widget.itemMoved.connect(self.changed.emit)
 
     def _init_ui(self) -> None:
