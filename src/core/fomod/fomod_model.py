@@ -15,6 +15,7 @@ from core.utilities.cache import cache
 from core.utilities.xml import XML_DECLARATION_PATTERN, validate_against_schema
 
 INFO_COMMENT: str = "<!-- Created with FOMOD Creation Kit by Cutleast: https://www.nexusmods.com/site/mods/1366 -->\n"
+UTF_16_LE_BOM: bytes = b"\xff\xfe"
 
 
 class FomodModel(BaseXmlModel):
@@ -48,6 +49,8 @@ class FomodModel(BaseXmlModel):
 
         if encoding is None:
             encoding = chardet.detect(xml_text)["encoding"]
+
+        xml_text = xml_text.removeprefix(UTF_16_LE_BOM)  # Strip BOM
 
         raw_xml: str | bytes
         if encoding is None or XML_DECLARATION_PATTERN.match(xml_text) is not None:
@@ -108,5 +111,9 @@ class FomodModel(BaseXmlModel):
                 log.warning(
                     f"An error occured during XML validation: {ex}", exc_info=ex
                 )
+
+        # Add BOM
+        if encoding == "utf-16le":
+            xml_text = UTF_16_LE_BOM + xml_text
 
         return xml_text
