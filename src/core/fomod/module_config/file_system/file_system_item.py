@@ -7,6 +7,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Optional, override
 
+from pydantic import field_serializer
 from pydantic_xml import BaseXmlModel, attr
 
 
@@ -62,3 +63,10 @@ class FileSystemItem(BaseXmlModel, search_mode="unordered"):
         """
 
         return cls(source=Path("__default__"))
+
+    @field_serializer("source", "destination")
+    def serialize_path(self, path: Optional[Path]) -> Optional[Path | str]:
+        if path == Path():
+            return ""
+
+        return path
