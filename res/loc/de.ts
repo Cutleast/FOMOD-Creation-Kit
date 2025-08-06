@@ -113,6 +113,14 @@
     </message>
 </context>
 <context>
+    <name>ContextMenu</name>
+    <message>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="72"/>
+        <source>Duplicate item</source>
+        <translation>Element duplizieren</translation>
+    </message>
+</context>
+<context>
     <name>DependencyEditorTab</name>
     <message>
         <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="36"/>
@@ -1385,27 +1393,27 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>TreeWidgetEditor</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="125"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="164"/>
         <source>Add new item...</source>
         <translation>Neues Element hinzufügen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Remove selected item(s)...</source>
         <translation>Ausgewählte Element(e) entfernen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Del</source>
         <translation>Entf</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
         <source>Edit selected item...</source>
         <translation>Ausgewähltes Element bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
         <source>Double click</source>
         <translation>Doppelklick</translation>
     </message>
