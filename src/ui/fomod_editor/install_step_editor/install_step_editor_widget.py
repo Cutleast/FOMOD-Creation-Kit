@@ -3,6 +3,7 @@ Copyright (c) Cutleast
 """
 
 from copy import deepcopy
+from pathlib import Path
 from typing import Optional, Sequence, override
 
 from PySide6.QtCore import Qt
@@ -85,8 +86,16 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         Adapted tree widget editor for plugins.
         """
 
-        def __init__(self, initial_items: Sequence[Plugin] = []) -> None:
+        __fomod_path: Optional[Path]
+
+        def __init__(
+            self,
+            initial_items: Sequence[Plugin] = [],
+            fomod_path: Optional[Path] = None,
+        ) -> None:
             super().__init__(initial_items)
+
+            self.__fomod_path = fomod_path
 
             self.changed.connect(
                 lambda: self._remove_action.setEnabled(len(self.getItems()) > 1)
@@ -104,7 +113,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         @override
         def _add_item(self, item: Plugin) -> QTreeWidgetItem:
             tree_widget_item: QTreeWidgetItem = super()._add_item(item)
-            tree_widget_item.setToolTip(0, Utils.create_tooltip_text_for_plugin(item))
+            tree_widget_item.setToolTip(
+                0, Utils.create_tooltip_text_for_plugin(item, self.__fomod_path)
+            )
 
             return tree_widget_item
 
@@ -115,7 +126,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             if item in self._items:
                 tree_widget_item: QTreeWidgetItem = self._items[item]
                 tree_widget_item.setToolTip(
-                    0, Utils.create_tooltip_text_for_plugin(item)
+                    0, Utils.create_tooltip_text_for_plugin(item, self.__fomod_path)
                 )
 
     __plugins_tree_widget: PluginsTreeWidget
@@ -275,7 +286,9 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         help_label.setWordWrap(True)
         plugin_vlayout.addWidget(help_label)
 
-        self.__plugins_tree_widget = InstallStepEditorWidget.PluginsTreeWidget()
+        self.__plugins_tree_widget = InstallStepEditorWidget.PluginsTreeWidget(
+            fomod_path=self._fomod_path
+        )
         plugin_vlayout.addWidget(self.__plugins_tree_widget, stretch=1)
 
     def __add_group(self) -> None:

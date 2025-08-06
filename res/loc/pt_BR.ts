@@ -744,58 +744,58 @@
 <context>
     <name>InstallStepEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="148"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="159"/>
         <source>Edit install step...</source>
         <translation>Editar etapa de instalação...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="158"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="169"/>
         <source>An installation step of a FOMOD installer is a single page consisting of groups of files that can be set to be visible when certain conditions are met.</source>
         <translation>Uma etapa de instalação de um instalador FOMOD é uma página única composta por grupos de arquivos que podem ser exibidos quando certas condições são atendidas.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="180"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="191"/>
         <source>Name:</source>
         <translation>Nome:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="192"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="203"/>
         <source>Visible when</source>
         <translation>Visível quando</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="205"/>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="340"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="216"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="353"/>
         <source>Always visible</source>
         <translation>Sempre visível</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="245"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="256"/>
         <source>File groups</source>
         <translation>Arquivo dos grupos</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="253"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="264"/>
         <source>A group is used to combine multiple related plugins together.</source>
         <translation>Um grupo é usado para combinar vários plugins relacionados.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="263"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="274"/>
         <source>Plugins</source>
         <translation>Plugins</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="274"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="285"/>
         <source>A plugin is a single selection option that can install files or set some flags when selected.</source>
         <translation>Um plugin é uma opção única de seleção que pode instalar arquivos ou definir flags quando selecionado.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="355"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="368"/>
         <source>At least one group must be added!</source>
         <translation>Pelo menos um grupo deve ser adicionado!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="362"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_editor_widget.py" line="375"/>
         <source>Every group must have at least one plugin!</source>
         <translation>Cada grupo deve conter ao menos um plugin!</translation>
     </message>
