@@ -3,13 +3,15 @@ Copyright (c) Cutleast
 """
 
 from collections.abc import Sequence
+from copy import deepcopy
 from typing import Optional, override
 
 import qtawesome as qta
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtGui import QAction, QDropEvent
+from PySide6.QtGui import QAction, QCursor, QDropEvent, QShortcut
 from PySide6.QtWidgets import (
     QHBoxLayout,
+    QMenu,
     QToolBar,
     QTreeWidget,
     QTreeWidgetItem,
@@ -48,6 +50,34 @@ class TreeWidgetEditor[T: object](QWidget):
             super().dropEvent(event)
             self.itemMoved.emit()
 
+    class ContextMenu(QMenu):
+        """
+        Context menu for the tree widget.
+        """
+
+        duplicateRequested = Signal()
+        """
+        This signal gets emitted when the user presses the Ctrl+D shortcut or clicks on
+        the duplicate action.
+        """
+
+        def __init__(self, parent: Optional[QWidget] = None) -> None:
+            super().__init__(parent)
+
+            self.__init_ui()
+
+        def __init_ui(self) -> None:
+            duplicate_action: QAction = self.addAction(
+                qta.icon("fa6s.clone", color=self.palette().text().color()),
+                self.tr("Duplicate item"),
+            )
+            duplicate_action.setShortcut("Ctrl+D")
+            duplicate_action.triggered.connect(self.duplicateRequested.emit)
+
+        def open(self, cur_item: Optional[T]) -> None:
+            if cur_item is not None:
+                self.exec(QCursor.pos())
+
     changed = Signal()
     """
     This signal gets emitted when the user adds or removes items from the tree widget.
@@ -79,6 +109,8 @@ class TreeWidgetEditor[T: object](QWidget):
     _edit_action: QAction
     __search_bar: SearchBar
     _tree_widget: TreeWidget
+    _context_menu: ContextMenu
+    __duplicate_shortcut: QShortcut
 
     def __init__(self, initial_items: Sequence[T] = []) -> None:
         """
@@ -99,6 +131,11 @@ class TreeWidgetEditor[T: object](QWidget):
         self._tree_widget.itemDoubleClicked.connect(self.__item_double_clicked)
         self._tree_widget.itemSelectionChanged.connect(self._on_selection_change)
         self._tree_widget.itemMoved.connect(self.changed.emit)
+        self._tree_widget.customContextMenuRequested.connect(
+            lambda: self._context_menu.open(self.getCurrentItem())
+        )
+        self._context_menu.duplicateRequested.connect(self.__duplicate_cur_item)
+        self.__duplicate_shortcut.activated.connect(self.__duplicate_cur_item)
 
     def _init_ui(self) -> None:
         self._vlayout = QVBoxLayout()
@@ -107,6 +144,8 @@ class TreeWidgetEditor[T: object](QWidget):
 
         self.__init_header()
         self.__init_tree_widget()
+        self.__init_context_menu()
+        self.__init_duplicate_shortcut()
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
@@ -159,6 +198,13 @@ class TreeWidgetEditor[T: object](QWidget):
         self._tree_widget.setSelectionMode(QTreeWidget.SelectionMode.ExtendedSelection)
         self._tree_widget.setDragDropMode(QTreeWidget.DragDropMode.InternalMove)
         self._vlayout.addWidget(self._tree_widget)
+
+    def __init_context_menu(self) -> None:
+        self._context_menu = TreeWidgetEditor.ContextMenu(self)
+        self._tree_widget.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+
+    def __init_duplicate_shortcut(self) -> None:
+        self.__duplicate_shortcut = QShortcut("Ctrl+D", self)
 
     def __item_double_clicked(self, item: QTreeWidgetItem, column: int) -> None:
         items: dict[QTreeWidgetItem, T] = {
@@ -226,6 +272,32 @@ class TreeWidgetEditor[T: object](QWidget):
             self._items[item] = tree_widget_item
 
         return self._items[item]
+
+    def __duplicate_cur_item(self) -> None:
+        """
+        Duplicates the currently selected item, if any.
+        """
+
+        cur_item: Optional[T] = self.getCurrentItem()
+        if cur_item is not None:
+            self._duplicate_item(cur_item)
+
+    def _duplicate_item(self, item: T) -> QTreeWidgetItem:
+        """
+        Creates a duplicate of the specified item by adding a deep copy to the tree
+        widget.
+
+        Args:
+            item (T): Item to duplicate
+
+        Returns:
+            QTreeWidgetItem: Tree widget item belonging to the duplicated item
+        """
+
+        tree_widget_item: QTreeWidgetItem = self._add_item(deepcopy(item))
+        self.changed.emit()
+
+        return tree_widget_item
 
     def setItems(self, items: Sequence[T]) -> None:
         """

@@ -113,6 +113,14 @@
     </message>
 </context>
 <context>
+    <name>ContextMenu</name>
+    <message>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="72"/>
+        <source>Duplicate item</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DependencyEditorTab</name>
     <message>
         <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="36"/>
@@ -1385,27 +1393,27 @@ Isso deixa o mod praticamente pronto para ser compactado em um arquivo zip e dis
 <context>
     <name>TreeWidgetEditor</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="125"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="164"/>
         <source>Add new item...</source>
         <translation>Adicionar novo item...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Remove selected item(s)...</source>
         <translation>Remover item(s) selecionado(s)...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="135"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Del</source>
         <translation>Apagar</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
         <source>Edit selected item...</source>
         <translation>Editar item(s) selecionado...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="147"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
         <source>Double click</source>
         <translation>Clique duplo</translation>
     </message>
