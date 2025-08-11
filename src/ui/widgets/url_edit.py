@@ -33,7 +33,7 @@ class UrlEdit(QLineEdit):
                 "mdi6.open-in-new",
                 color=self.palette().text().color(),
                 color_disabled="#666666",
-                scale_factor=1.5,
+                scale_factor=1.3,
             )
         )
         self.__open_url_button.clicked.connect(self.__open_url)

@@ -67,7 +67,7 @@ class BrowseLineEdit(QLineEdit):
             qta.icon(
                 "fa5s.folder-open",
                 color=self.palette().text().color(),
-                scale_factor=1.5,
+                scale_factor=1.1,
             )
         )
         self.__browse_button.clicked.connect(self.__browse)
