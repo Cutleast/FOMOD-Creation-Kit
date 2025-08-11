@@ -222,7 +222,7 @@ wheels = [
 
 [[package]]
 name = "fomod-creation-kit"
-version = "1.0.0b2"
+version = "1.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "chardet" },
