@@ -53,7 +53,7 @@ class FomodModel(BaseXmlModel):
         xml_text = xml_text.removeprefix(UTF_16_LE_BOM)  # Strip BOM
 
         raw_xml: str | bytes
-        if encoding is None or XML_DECLARATION_PATTERN.match(xml_text) is not None:
+        if encoding is None or XML_DECLARATION_PATTERN.match(xml_text.decode(encoding)):
             raw_xml = xml_text
         else:
             raw_xml = xml_text.decode(encoding)
