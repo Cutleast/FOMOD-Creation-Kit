@@ -13,7 +13,7 @@ from .web_utils import get_raw_web_content
 log: logging.Logger = logging.getLogger("Utilities.XML")
 
 
-XML_DECLARATION_PATTERN: re.Pattern[bytes] = re.compile(rb"^<\?xml.*\?>")
+XML_DECLARATION_PATTERN: re.Pattern[str] = re.compile(r"^<\?xml.*\?>")
 
 
 def validate_against_schema(schema_url: str, xml_text: bytes | str) -> None:
