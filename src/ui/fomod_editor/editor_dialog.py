@@ -148,7 +148,7 @@ class EditorDialog[T: BaseEditorWidget](QDialog):
                 case QMessageBox.StandardButton.Discard:
                     super().reject()
                 case QMessageBox.StandardButton.Save:
-                    super().accept()
+                    self.accept()
 
         else:
             super().reject()
