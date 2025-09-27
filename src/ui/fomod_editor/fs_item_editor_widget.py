@@ -88,6 +88,12 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         )
         self.__priority_entry.valueChanged.connect(lambda _: self.changed.emit())
 
+        self.__type_selector.setCurrentValue(
+            FsItemEditorWidget.ItemType.File
+            if isinstance(self._item, FileItem)
+            else FsItemEditorWidget.ItemType.Folder
+        )
+
     @override
     @classmethod
     def get_display_name(cls) -> str:
@@ -129,11 +135,7 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         hlayout.addWidget(self.__source_entry)
 
         self.__type_selector = EnumRadiobuttonsWidget(
-            FsItemEditorWidget.ItemType,
-            FsItemEditorWidget.ItemType.File
-            if isinstance(self._item, FileItem)
-            else FsItemEditorWidget.ItemType.Folder,
-            orientation=Qt.Orientation.Horizontal,
+            FsItemEditorWidget.ItemType, orientation=Qt.Orientation.Horizontal
         )
         hlayout.addWidget(self.__type_selector)
         flayout.addRow(self.tr("Source:"), hlayout)
