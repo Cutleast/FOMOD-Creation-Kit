@@ -18,12 +18,6 @@ An intuitive yet advanced tool for editing and creating FOMOD installers. The en
 making the creation and editing of FOMOD installers accessible for beginners that are looking for a nice way to package their mods.
 Advanced users already familiar with the FOMOD specification will find that this tool supports every single feature the specification has to offer.
 
-# ❗Disclaimer
-
-This project is still under development! Despite being thoroughly tested both manually and automatically, there might still be some bugs and errors left.
-Please report any bugs or suggestions you encounter either in the "Issues" tab of this repository or on our [Discord server](https://discord.gg/pqEHdWDf8z).
-Contributions are always welcome, too, see instructions below.
-
 # Features
 
 ### Automated file and folder management
