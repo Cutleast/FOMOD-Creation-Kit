@@ -6,10 +6,11 @@ from pathlib import Path
 
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
-from PySide6.QtWidgets import QCheckBox, QLineEdit, QSpinBox
+from PySide6.QtWidgets import QCheckBox, QFileDialog, QLineEdit, QSpinBox
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.file_system.file_item import FileItem
+from core.fomod.module_config.file_system.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
 from tests.utils import Utils
 from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget
@@ -17,6 +18,7 @@ from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 
 from ..ui_test import UiTest
+from ..widgets.test_browse_edit import TestBrowseLineEdit
 
 
 class TestFsItemEditorWidget(UiTest):
@@ -171,3 +173,46 @@ class TestFsItemEditorWidget(UiTest):
 
         # then
         widget.validate()
+
+    def test_correct_initial_file_mode(self, qtbot: QtBot) -> None:
+        """
+        Tests that the widget initializes correctly in file mode.
+        """
+
+        # given
+        file_item: FileItem = FileItem.create()
+        widget = FsItemEditorWidget(file_item, None, list)
+        qtbot.addWidget(widget)
+
+        source_entry: BrowseLineEdit = Utils.get_private_field(
+            widget, *TestFsItemEditorWidget.SOURCE_ENTRY
+        )
+        source_file_dialog: QFileDialog = Utils.get_private_field(
+            source_entry, *TestBrowseLineEdit.FILE_DIALOG
+        )
+        type_selector: EnumRadiobuttonsWidget[FsItemEditorWidget.ItemType] = (
+            Utils.get_private_field(widget, *TestFsItemEditorWidget.TYPE_SELECTOR)
+        )
+
+        # then
+        assert source_file_dialog.fileMode() == QFileDialog.FileMode.ExistingFile
+        assert type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File
+
+        # when
+        folder_item: FolderItem = FolderItem.create()
+        widget = FsItemEditorWidget(folder_item, None, list)
+        qtbot.addWidget(widget)
+
+        source_entry = Utils.get_private_field(
+            widget, *TestFsItemEditorWidget.SOURCE_ENTRY
+        )
+        source_file_dialog = Utils.get_private_field(
+            source_entry, *TestBrowseLineEdit.FILE_DIALOG
+        )
+        type_selector = Utils.get_private_field(
+            widget, *TestFsItemEditorWidget.TYPE_SELECTOR
+        )
+
+        # then
+        assert source_file_dialog.fileMode() == QFileDialog.FileMode.Directory
+        assert type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.Folder
