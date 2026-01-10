@@ -13,7 +13,7 @@ class AutoCompleteCombobox(qtw.QComboBox):
     Preconfigured QComboBox that supports auto-completion from a given set of items.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.setEditable(True)
@@ -24,7 +24,7 @@ class AutoCompleteCombobox(qtw.QComboBox):
         super().addItems(texts)
 
         completer = qtw.QCompleter(texts)
-        completer.popup().setObjectName("completer_popup")
+        completer.popup().setObjectName("completer_popup")  # pyright: ignore[reportOptionalMemberAccess]
         completer.setCaseSensitivity(qtc.Qt.CaseSensitivity.CaseInsensitive)
         completer.setCompletionMode(qtw.QCompleter.CompletionMode.PopupCompletion)
         self.setCompleter(completer)
