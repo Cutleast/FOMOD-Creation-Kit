@@ -35,7 +35,7 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
         """
 
         def __init__(self, initial_items: Sequence[DependencyPattern] = []) -> None:
-            super().__init__()
+            super().__init__(DependencyPattern)
 
             for item in initial_items:
                 tree_widget_item = QTreeWidgetItem(

@@ -2,6 +2,7 @@
 Copyright (c) Cutleast
 """
 
+import logging
 from collections.abc import Sequence
 from copy import deepcopy
 from typing import Optional, override
@@ -15,9 +16,11 @@ from cutleast_core_lib.ui.utilities.tree_widget import (
     iter_toplevel_items,
 )
 from cutleast_core_lib.ui.widgets.search_bar import SearchBar
+from pydantic import BaseModel
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QAction, QCursor, QDropEvent, QShortcut
 from PySide6.QtWidgets import (
+    QApplication,
     QHBoxLayout,
     QMenu,
     QToolBar,
@@ -28,14 +31,12 @@ from PySide6.QtWidgets import (
 )
 
 
-class TreeWidgetEditor[T: object](QWidget):
+class TreeWidgetEditor[T: BaseModel](QWidget):
     """
     Tree widget with built-in buttons for adding and removing items and a search bar.
-
-    This is only suitable for mutable objects. Immutable objects like strings are not
-    supported by the used `ReferenceDict` and therefore lose the mapping to their
-    item within the tree widget when altered outside of this widget.
     """
+
+    log: logging.Logger = logging.getLogger("TreeWidgetEditor")
 
     class TreeWidget(QTreeWidget):
         """
@@ -62,22 +63,79 @@ class TreeWidgetEditor[T: object](QWidget):
         the duplicate action.
         """
 
-        def __init__(self, parent: Optional[QWidget] = None) -> None:
+        cutRequested = Signal()
+        """
+        This signal gets emitted when the user presses the Ctrl+X shortcut or clicks on
+        the cut action.
+        """
+
+        copyRequested = Signal()
+        """
+        This signal gets emitted when the user presses the Ctrl+C shortcut or clicks on
+        the copy action.
+        """
+
+        pasteRequested = Signal()
+        """
+        This signal gets emitted when the user presses the Ctrl+V shortcut or clicks on
+        the paste action.
+        """
+
+        __model_cls: type[T]
+
+        __duplicate_action: QAction
+        __copy_action: QAction
+        __paste_action: QAction
+
+        def __init__(
+            self, model_cls: type[T], parent: Optional[QWidget] = None
+        ) -> None:
             super().__init__(parent)
+
+            self.__model_cls = model_cls
 
             self.__init_ui()
 
         def __init_ui(self) -> None:
-            duplicate_action: QAction = self.addAction(
-                IconProvider.get_qta_icon("fa6s.clone"),
-                self.tr("Duplicate item"),
+            self.__duplicate_action = self.addAction(
+                IconProvider.get_qta_icon("fa6s.clone"), self.tr("Duplicate item")
             )
-            duplicate_action.setShortcut("Ctrl+D")
-            duplicate_action.triggered.connect(self.duplicateRequested.emit)
+            self.__duplicate_action.setShortcut("Ctrl+D")
+            self.__duplicate_action.triggered.connect(self.duplicateRequested.emit)
+
+            self.addSeparator()
+
+            self.__cut_action = self.addAction(
+                IconProvider.get_qta_icon("mdi6.content-cut"), self.tr("Cut item")
+            )
+            self.__cut_action.setShortcut("Ctrl+X")
+            self.__cut_action.triggered.connect(self.cutRequested.emit)
+
+            self.__copy_action = self.addAction(
+                IconProvider.get_qta_icon("mdi6.content-copy"), self.tr("Copy item")
+            )
+            self.__copy_action.setShortcut("Ctrl+C")
+            self.__copy_action.triggered.connect(self.copyRequested.emit)
+
+            self.__paste_action = self.addAction(
+                IconProvider.get_qta_icon("mdi6.content-paste"), self.tr("Paste item")
+            )
+            self.__paste_action.setShortcut("Ctrl+V")
+            self.__paste_action.triggered.connect(self.pasteRequested.emit)
 
         def open(self, cur_item: Optional[T]) -> None:
-            if cur_item is not None:
-                self.exec(QCursor.pos())
+            self.__duplicate_action.setVisible(cur_item is not None)
+            self.__cut_action.setVisible(cur_item is not None)
+            self.__copy_action.setVisible(cur_item is not None)
+
+            # show paste action only if clipboard contains valid data
+            try:
+                self.__model_cls.model_validate_json(QApplication.clipboard().text())
+                self.__paste_action.setVisible(True)
+            except Exception:
+                self.__paste_action.setVisible(False)
+
+            self.exec(QCursor.pos())
 
     changed = Signal()
     """
@@ -103,6 +161,7 @@ class TreeWidgetEditor[T: object](QWidget):
         Optional[T]: The new selected item or None if no item is selected
     """
 
+    _model_cls: type[T]
     _items: ReferenceDict[T, QTreeWidgetItem]
 
     _vlayout: QVBoxLayout
@@ -112,15 +171,21 @@ class TreeWidgetEditor[T: object](QWidget):
     _tree_widget: TreeWidget
     _context_menu: ContextMenu
     __duplicate_shortcut: QShortcut
+    __cut_shortcut: QShortcut
+    __copy_shortcut: QShortcut
+    __paste_shortcut: QShortcut
 
-    def __init__(self, initial_items: Sequence[T] = []) -> None:
+    def __init__(self, model_cls: type[T], initial_items: Sequence[T] = []) -> None:
         """
         Args:
+            model_cls (type[T]): Class of the items to add to the tree widget.
             initial_items (Sequence[T], optional):
                 Initial list of items to add to the tree widget. Defaults to [].
         """
 
         super().__init__()
+
+        self._model_cls = model_cls
 
         self._init_ui()
 
@@ -137,6 +202,12 @@ class TreeWidgetEditor[T: object](QWidget):
         )
         self._context_menu.duplicateRequested.connect(self.__duplicate_cur_item)
         self.__duplicate_shortcut.activated.connect(self.__duplicate_cur_item)
+        self._context_menu.cutRequested.connect(self.__cut_cur_item)
+        self.__cut_shortcut.activated.connect(self.__cut_cur_item)
+        self._context_menu.copyRequested.connect(self.__copy_cur_item)
+        self.__copy_shortcut.activated.connect(self.__copy_cur_item)
+        self._context_menu.pasteRequested.connect(self.__paste_item)
+        self.__paste_shortcut.activated.connect(self.__paste_item)
 
     def _init_ui(self) -> None:
         self._vlayout = QVBoxLayout()
@@ -146,7 +217,7 @@ class TreeWidgetEditor[T: object](QWidget):
         self.__init_header()
         self.__init_tree_widget()
         self.__init_context_menu()
-        self.__init_duplicate_shortcut()
+        self.__init_shortcuts()
 
     def __init_header(self) -> None:
         hlayout = QHBoxLayout()
@@ -189,11 +260,22 @@ class TreeWidgetEditor[T: object](QWidget):
         self._vlayout.addWidget(self._tree_widget)
 
     def __init_context_menu(self) -> None:
-        self._context_menu = TreeWidgetEditor.ContextMenu(self)
+        self._context_menu = TreeWidgetEditor.ContextMenu(self._model_cls, self)
         self._tree_widget.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
 
-    def __init_duplicate_shortcut(self) -> None:
-        self.__duplicate_shortcut = QShortcut("Ctrl+D", self)
+    def __init_shortcuts(self) -> None:
+        self.__duplicate_shortcut = QShortcut(
+            "Ctrl+D", self, context=Qt.ShortcutContext.WidgetWithChildrenShortcut
+        )
+        self.__cut_shortcut = QShortcut(
+            "Ctrl+X", self, context=Qt.ShortcutContext.WidgetWithChildrenShortcut
+        )
+        self.__copy_shortcut = QShortcut(
+            "Ctrl+C", self, context=Qt.ShortcutContext.WidgetWithChildrenShortcut
+        )
+        self.__paste_shortcut = QShortcut(
+            "Ctrl+V", self, context=Qt.ShortcutContext.WidgetWithChildrenShortcut
+        )
 
     def __item_double_clicked(self, item: QTreeWidgetItem, column: int) -> None:
         items: dict[QTreeWidgetItem, T] = {
@@ -287,6 +369,41 @@ class TreeWidgetEditor[T: object](QWidget):
         self.changed.emit()
 
         return tree_widget_item
+
+    def __cut_cur_item(self) -> None:
+        """
+        Serializes the current item to a JSON string and copies it to the clipboard.
+        The item is then removed from the list.
+        """
+
+        cur_item: Optional[T] = self.getCurrentItem()
+        if cur_item is not None:
+            json_string: str = cur_item.model_dump_json(exclude_defaults=True)
+            QApplication.clipboard().setText(json_string)
+            self.removeItem(cur_item)
+
+    def __copy_cur_item(self) -> None:
+        """
+        Serializes the current item to a JSON string and copies it to the clipboard.
+        """
+
+        cur_item: Optional[T] = self.getCurrentItem()
+        if cur_item is not None:
+            json_string: str = cur_item.model_dump_json(exclude_defaults=True)
+            QApplication.clipboard().setText(json_string)
+
+    def __paste_item(self) -> None:
+        """
+        Attempts to deserialize an item from the clipboard and add it to the list.
+        """
+
+        try:
+            item: T = self._model_cls.model_validate_json(
+                QApplication.clipboard().text()
+            )
+            self.addItem(item)
+        except Exception as ex:
+            self.log.debug(f"Failed to paste item: {ex}", exc_info=ex)
 
     def setItems(self, items: Sequence[T]) -> None:
         """

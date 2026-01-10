@@ -66,7 +66,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         """
 
         def __init__(self, initial_items: Sequence[Group] = []) -> None:
-            super().__init__(initial_items)
+            super().__init__(Group, initial_items)
 
             self.changed.connect(
                 lambda: self._remove_action.setEnabled(len(self.getItems()) > 1)
@@ -95,7 +95,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             initial_items: Sequence[Plugin] = [],
             fomod_path: Optional[Path] = None,
         ) -> None:
-            super().__init__(initial_items)
+            super().__init__(Plugin, initial_items)
 
             self.__fomod_path = fomod_path
 

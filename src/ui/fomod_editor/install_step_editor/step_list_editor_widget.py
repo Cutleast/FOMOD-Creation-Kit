@@ -31,7 +31,7 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
         """
 
         def __init__(self, initial_items: Sequence[InstallStep] = []) -> None:
-            super().__init__(initial_items)
+            super().__init__(InstallStep, initial_items)
 
             self.changed.connect(
                 lambda: self._remove_action.setEnabled(len(self.getItems()) > 1)

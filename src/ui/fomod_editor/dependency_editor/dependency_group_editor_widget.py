@@ -110,7 +110,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __init_files_tab(self) -> None:
         self.__files_tree_widget_editor = TreeWidgetEditor(
-            self._item.file_dependencies.copy()
+            FileDependency, self._item.file_dependencies.copy()
         )
         self.__tab_widget.addTab(self.__files_tree_widget_editor, self.tr("Files"))
 
@@ -142,7 +142,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __init_flags_tab(self) -> None:
         self.__flags_tree_widget_editor = TreeWidgetEditor(
-            self._item.flag_dependencies.copy()
+            FlagDependency, self._item.flag_dependencies.copy()
         )
         self.__tab_widget.addTab(self.__flags_tree_widget_editor, self.tr("Flags"))
 
@@ -226,7 +226,7 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __init_dependencies_tab(self) -> None:
         self.__dependencies_tree_widget_editor = TreeWidgetEditor(
-            self._item.dependencies.copy()
+            CompositeDependency, self._item.dependencies.copy()
         )
         self.__tab_widget.addTab(
             self.__dependencies_tree_widget_editor, self.tr("Dependencies")

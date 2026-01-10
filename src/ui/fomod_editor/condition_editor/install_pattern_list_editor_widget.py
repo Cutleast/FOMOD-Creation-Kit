@@ -36,7 +36,7 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
         def __init__(
             self, initial_items: Sequence[ConditionalInstallPattern] = []
         ) -> None:
-            super().__init__()
+            super().__init__(ConditionalInstallPattern)
 
             for item in initial_items:
                 tree_widget_item = QTreeWidgetItem(

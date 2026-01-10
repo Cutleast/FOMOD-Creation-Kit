@@ -31,7 +31,7 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         """
 
         def __init__(self, initial_items: Sequence[FileSystemItem] = []) -> None:
-            super().__init__()
+            super().__init__(FileSystemItem)
 
             for item in initial_items:
                 tree_widget_item = QTreeWidgetItem(
