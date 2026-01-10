@@ -158,14 +158,17 @@ class EditorWindow[T: BaseEditorWidget](QWidget):
             match message_box.exec():
                 case QMessageBox.StandardButton.Discard:
                     self.__editor_widget.discard()
+                    self.saved.disconnect()
                     return event.accept()
                 case QMessageBox.StandardButton.Save:
                     self.__save()
+                    self.saved.disconnect()
                     return event.accept()
 
             event.ignore()
 
         else:
+            self.saved.disconnect()
             event.accept()
 
     def __on_change(self) -> None:

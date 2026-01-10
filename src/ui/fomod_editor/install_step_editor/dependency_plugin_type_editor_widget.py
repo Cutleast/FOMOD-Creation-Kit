@@ -17,7 +17,8 @@ from ui.widgets.enum_dropdown import EnumDropdown
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
-from ..editor_dialog import EditorDialog
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from .dependency_pattern_editor_widget import DependencyPatternEditorWidget
 
 
@@ -121,25 +122,27 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
 
     def __add_pattern(self) -> None:
         item = DependencyPattern.create()
-        dialog: EditorDialog[DependencyPatternEditorWidget] = EditorDialog(
-            DependencyPatternEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[DependencyPatternEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                DependencyPatternEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__pattern_tree_widget.addItem(item)
+        window.saved.connect(lambda: self.__pattern_tree_widget.addItem(item))
+        window.show_and_activate()
 
     def __edit_pattern(self, item: DependencyPattern) -> None:
-        dialog: EditorDialog[DependencyPatternEditorWidget] = EditorDialog(
-            DependencyPatternEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[DependencyPatternEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                DependencyPatternEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__pattern_tree_widget.updateItem(item)
+        window.saved.connect(lambda: self.__pattern_tree_widget.updateItem(item))
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:

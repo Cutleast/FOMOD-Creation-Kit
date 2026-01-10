@@ -15,7 +15,8 @@ from core.fomod_editor.exceptions import EmptyError
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from .base_editor_widget import BaseEditorWidget
-from .editor_dialog import EditorDialog
+from .editor_window import EditorWindow
+from .editor_window_service import EditorWindowService
 from .fs_item_editor_widget import FsItemEditorWidget
 
 
@@ -104,24 +105,22 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
         editor: FsItemEditorWidget = FsItemEditorWidget(
             FileItem.create(), self._fomod_path, self._flag_names_supplier
         )
-        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
-            editor, validate_on_init=True
+        window: EditorWindow[FsItemEditorWidget] = (
+            EditorWindowService.provide_editor_window(editor, validate_on_init=True)[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.addItem(editor.get_item())
+        window.saved.connect(lambda: self.__tree_widget.addItem(editor.get_item()))
+        window.show_and_activate()
 
     def __edit_filesystem_item(self, item: FileSystemItem) -> None:
         editor: FsItemEditorWidget = FsItemEditorWidget(
             item, self._fomod_path, self._flag_names_supplier
         )
-        dialog: EditorDialog[FsItemEditorWidget] = EditorDialog(
-            editor, validate_on_init=True
+        window: EditorWindow[FsItemEditorWidget] = (
+            EditorWindowService.provide_editor_window(editor, validate_on_init=True)[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.removeItem(item)
-            self.__tree_widget.addItem(editor.get_item())
+        window.saved.connect(lambda: self.__tree_widget.removeItem(item))
+        window.saved.connect(lambda: self.__tree_widget.addItem(editor.get_item()))
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:

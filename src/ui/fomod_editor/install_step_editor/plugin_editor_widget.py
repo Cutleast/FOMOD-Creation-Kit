@@ -29,7 +29,8 @@ from ui.widgets.image_label import ImageLabel
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
-from ..editor_dialog import EditorDialog
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from ..file_list_editor_widget import FileListEditorWidget
 from ..install_step_editor.set_condition_flag_editor_widget import (
     SetConditionFlagEditorWidget,
@@ -196,25 +197,29 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
 
     def __add_condition_flag(self) -> None:
         item = SetConditionFlag(value="", name="")
-        dialog: EditorDialog[SetConditionFlagEditorWidget] = EditorDialog(
-            SetConditionFlagEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[SetConditionFlagEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                SetConditionFlagEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__condition_flags_tree_widget.addItem(item)
+        window.saved.connect(lambda: self.__condition_flags_tree_widget.addItem(item))
+        window.show_and_activate()
 
     def __edit_condition_flag(self, item: SetConditionFlag) -> None:
-        dialog: EditorDialog[SetConditionFlagEditorWidget] = EditorDialog(
-            SetConditionFlagEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[SetConditionFlagEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                SetConditionFlagEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                ),
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__condition_flags_tree_widget.updateItem(item)
+        window.saved.connect(
+            lambda: self.__condition_flags_tree_widget.updateItem(item)
+        )
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:

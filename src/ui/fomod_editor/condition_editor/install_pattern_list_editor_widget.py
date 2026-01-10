@@ -15,10 +15,11 @@ from core.fomod.module_config.condition.conditional_install_pattern_list import 
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod_editor.exceptions import EmptyError
-from ui.fomod_editor.editor_dialog import EditorDialog
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from .install_pattern_editor_widget import InstallPatternEditorWidget
 
 
@@ -112,25 +113,27 @@ class InstallPatternListEditorWidget(BaseEditorWidget[ConditionalInstallPatternL
         item: ConditionalInstallPattern = ConditionalInstallPattern(
             dependencies=CompositeDependency(), files=FileList()
         )
-        dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[InstallPatternEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                InstallPatternEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.addItem(item)
+        window.saved.connect(lambda: self.__tree_widget.addItem(item))
+        window.show_and_activate()
 
     def __edit_install_pattern_item(self, item: ConditionalInstallPattern) -> None:
-        dialog: EditorDialog[InstallPatternEditorWidget] = EditorDialog(
-            InstallPatternEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[InstallPatternEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                InstallPatternEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__tree_widget.updateItem(item)
+        window.saved.connect(lambda: self.__tree_widget.updateItem(item))
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:

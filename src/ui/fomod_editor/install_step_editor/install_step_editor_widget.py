@@ -36,7 +36,8 @@ from ..base_editor_widget import BaseEditorWidget
 from ..dependency_editor.composite_dependency_editor_widget import (
     CompositeDependencyEditorWidget,
 )
-from ..editor_dialog import EditorDialog
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from ..utils import Utils
 from .group_editor_widget import GroupEditorWidget
 from .plugin_editor_widget import PluginEditorWidget
@@ -293,21 +294,23 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __add_group(self) -> None:
         group = Group.create()
-        dialog: EditorDialog[GroupEditorWidget] = EditorDialog(
-            GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier),
-            validate_on_init=True,
+        window: EditorWindow[GroupEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__groups_tree_widget.addItem(group)
+        window.saved.connect(lambda: self.__groups_tree_widget.addItem(group))
+        window.show_and_activate()
 
     def __edit_group(self, group: Group) -> None:
-        dialog: EditorDialog[GroupEditorWidget] = EditorDialog(
-            GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier)
+        window: EditorWindow[GroupEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                GroupEditorWidget(group, self._fomod_path, self._flag_names_supplier),
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__groups_tree_widget.updateItem(group)
+        window.saved.connect(lambda: self.__groups_tree_widget.updateItem(group))
+        window.show_and_activate()
 
     def __on_group_select(self, group: Optional[Group]) -> None:
         if group is not None:
@@ -319,25 +322,33 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __add_plugin(self) -> None:
         plugin = Plugin.create()
-        dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(
-                plugin, self._fomod_path, self._flag_names_supplier, scrollable=False
-            ),
-            validate_on_init=True,
+        window: EditorWindow[PluginEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                PluginEditorWidget(
+                    item=plugin,
+                    fomod_path=self._fomod_path,
+                    flag_names_supplier=self._flag_names_supplier,
+                    scrollable=False,
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__plugins_tree_widget.addItem(plugin)
+        window.saved.connect(lambda: self.__plugins_tree_widget.addItem(plugin))
+        window.show_and_activate()
 
     def __edit_plugin(self, plugin: Plugin) -> None:
-        dialog: EditorDialog[PluginEditorWidget] = EditorDialog(
-            PluginEditorWidget(
-                plugin, self._fomod_path, self._flag_names_supplier, scrollable=False
-            )
+        window: EditorWindow[PluginEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                PluginEditorWidget(
+                    item=plugin,
+                    fomod_path=self._fomod_path,
+                    flag_names_supplier=self._flag_names_supplier,
+                    scrollable=False,
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__plugins_tree_widget.updateItem(plugin)
+        window.saved.connect(lambda: self.__plugins_tree_widget.updateItem(plugin))
+        window.show_and_activate()
 
     def __on_plugin_change(self) -> None:
         current_group: Optional[Group] = self.__groups_tree_widget.getCurrentItem()
