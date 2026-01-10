@@ -271,6 +271,44 @@
     </message>
 </context>
 <context>
+    <name>EditorWindow</name>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="91"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="105"/>
+        <source>Save</source>
+        <translation type="unfinished">Salvar</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="121"/>
+        <source>Close unsaved item?</source>
+        <translation type="unfinished">Fechar sem salvar?</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="127"/>
+        <source>Are you sure you want to close the current item? There are unsaved changes that will be lost.</source>
+        <translation type="unfinished">Você tem certeza de que deseja fechar o item atual? Existem alterações não salvas que serão perdidas.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="144"/>
+        <source>No</source>
+        <translation type="unfinished">Não</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="148"/>
+        <source>Yes</source>
+        <translation type="unfinished">Sim</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="153"/>
+        <source>Save and close</source>
+        <translation type="unfinished">Salvar e fechar</translation>
+    </message>
+</context>
+<context>
     <name>ErrorDialog</name>
     <message>
         <location filename="src/ui/widgets/error_dialog.py" line="87"/>

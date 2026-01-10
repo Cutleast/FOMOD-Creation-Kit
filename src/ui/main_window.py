@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional, override
 
 from PySide6.QtGui import QCloseEvent
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow
 
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
@@ -118,9 +118,7 @@ class MainWindow(QMainWindow):
 
     @override
     def closeEvent(self, event: QCloseEvent) -> None:
-        if self.__main_widget.close():
-            self.__status_bar.close_log_window()
+        event.ignore()
 
-            return super().closeEvent(event)
-        else:
-            event.ignore()
+        if self.__main_widget.close():
+            QApplication.quit()

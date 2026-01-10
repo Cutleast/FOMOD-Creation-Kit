@@ -271,6 +271,44 @@
     </message>
 </context>
 <context>
+    <name>EditorWindow</name>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="91"/>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="105"/>
+        <source>Save</source>
+        <translation>Speichern</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="121"/>
+        <source>Close unsaved item?</source>
+        <translation>Ungespeichertes Element schließen?</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="127"/>
+        <source>Are you sure you want to close the current item? There are unsaved changes that will be lost.</source>
+        <translation>Bist du sicher, dass du das aktuelle Element schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="144"/>
+        <source>No</source>
+        <translation>Nein</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="148"/>
+        <source>Yes</source>
+        <translation>Ja</translation>
+    </message>
+    <message>
+        <location filename="src/ui/fomod_editor/editor_window.py" line="153"/>
+        <source>Save and close</source>
+        <translation>Speichern und schließen</translation>
+    </message>
+</context>
+<context>
     <name>ErrorDialog</name>
     <message>
         <location filename="src/ui/widgets/error_dialog.py" line="87"/>
