@@ -5,6 +5,8 @@ Copyright (c) Cutleast
 from pathlib import Path
 
 import pytest
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
+from cutleast_core_lib.ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 from pyfakefs.fake_filesystem import FakeFilesystem
 from PySide6.QtWidgets import QCheckBox, QFileDialog, QLineEdit, QSpinBox
 from pytestqt.qtbot import QtBot
@@ -12,16 +14,12 @@ from pytestqt.qtbot import QtBot
 from core.fomod.module_config.file_system.file_item import FileItem
 from core.fomod.module_config.file_system.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.fs_item_editor_widget import FsItemEditorWidget
-from ui.widgets.browse_edit import BrowseLineEdit
-from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
-
-from ..ui_test import UiTest
-from ..widgets.test_browse_edit import TestBrowseLineEdit
 
 
-class TestFsItemEditorWidget(UiTest):
+class TestFsItemEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.fs_item_editor_widget.FsItemEditorWidget`.
     """
@@ -51,6 +49,12 @@ class TestFsItemEditorWidget(UiTest):
 
     PRIORITY_ENTRY: tuple[str, type[QSpinBox]] = "priority_entry", QSpinBox
     """Identifier for accessing the private priority_entry field."""
+
+    BROWSE_EDIT_FILE_MODE: tuple[str, type[QFileDialog.FileMode]] = (
+        "file_mode",
+        QFileDialog.FileMode,
+    )
+    """Identifier for accessing the private file_mode field of a BrowseLineEdit."""
 
     @pytest.fixture
     def widget(self, qtbot: QtBot) -> FsItemEditorWidget:
@@ -187,15 +191,15 @@ class TestFsItemEditorWidget(UiTest):
         source_entry: BrowseLineEdit = Utils.get_private_field(
             widget, *TestFsItemEditorWidget.SOURCE_ENTRY
         )
-        source_file_dialog: QFileDialog = Utils.get_private_field(
-            source_entry, *TestBrowseLineEdit.FILE_DIALOG
+        source_file_mode: QFileDialog.FileMode = Utils.get_private_field(
+            source_entry, *TestFsItemEditorWidget.BROWSE_EDIT_FILE_MODE
         )
         type_selector: EnumRadiobuttonsWidget[FsItemEditorWidget.ItemType] = (
             Utils.get_private_field(widget, *TestFsItemEditorWidget.TYPE_SELECTOR)
         )
 
         # then
-        assert source_file_dialog.fileMode() == QFileDialog.FileMode.ExistingFile
+        assert source_file_mode == QFileDialog.FileMode.ExistingFile
         assert type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.File
 
         # when
@@ -206,13 +210,13 @@ class TestFsItemEditorWidget(UiTest):
         source_entry = Utils.get_private_field(
             widget, *TestFsItemEditorWidget.SOURCE_ENTRY
         )
-        source_file_dialog = Utils.get_private_field(
-            source_entry, *TestBrowseLineEdit.FILE_DIALOG
+        source_file_mode = Utils.get_private_field(
+            source_entry, *TestFsItemEditorWidget.BROWSE_EDIT_FILE_MODE
         )
         type_selector = Utils.get_private_field(
             widget, *TestFsItemEditorWidget.TYPE_SELECTOR
         )
 
         # then
-        assert source_file_dialog.fileMode() == QFileDialog.FileMode.Directory
+        assert source_file_mode == QFileDialog.FileMode.Directory
         assert type_selector.getCurrentValue() == FsItemEditorWidget.ItemType.Folder

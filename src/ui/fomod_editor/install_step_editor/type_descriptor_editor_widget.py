@@ -4,6 +4,9 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.core.utilities.localized_enum import LocalizedEnum
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
+from cutleast_core_lib.ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QApplication, QLabel, QStackedWidget, QVBoxLayout, QWidget
 
@@ -12,9 +15,6 @@ from core.fomod.module_config.plugin.plugin_type_descriptor import (
     DependencyPluginType,
     PluginTypeDescriptor,
 )
-from core.utilities.localized_enum import LocalizedEnum
-from ui.widgets.enum_dropdown import EnumDropdown
-from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 
 from ..base_editor_widget import BaseEditorWidget
 from .dependency_plugin_type_editor_widget import DependencyPluginTypeEditorWidget

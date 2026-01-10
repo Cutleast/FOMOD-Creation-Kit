@@ -2,56 +2,42 @@
 Copyright (c) Cutleast
 """
 
-from typing import Annotated, override
-
-from pydantic import Field
-
-from core.utilities.localisation import Language
-from core.utilities.logger import Logger
-from ui.utilities.ui_mode import UIMode
-
-from .base_config import BaseConfig
+from cutleast_core_lib.core.config.app_config import AppConfig as BaseAppConfig
+from cutleast_core_lib.core.utilities.base_enum import BaseEnum
+from cutleast_core_lib.core.utilities.dynamic_default_model import default_factory
 
 
-class AppConfig(BaseConfig):
+class AppConfig(BaseAppConfig):
     """
     Class for managing application settings.
     """
 
-    log_level: Annotated[Logger.Level, Field(alias="log.level")] = Logger.Level.Debug
-    """Log level"""
+    class AppLanguage(BaseEnum):
+        """Enum for the languages supported by the app."""
 
-    log_num_of_files: Annotated[int, Field(alias="log.num_of_files", ge=-1)] = 5
-    """Number of newest log files to keep"""
+        System = "System"
+        German = "de_DE"
+        English = "en_US"
+        Portuguese = "pt_BR"
 
-    log_format: Annotated[str, Field(alias="log.format")] = (
-        "[%(asctime)s.%(msecs)03d][%(levelname)s][%(name)s.%(funcName)s]: %(message)s"
-    )
-    """Log format"""
+    language: AppLanguage = AppLanguage.System
 
-    log_date_format: Annotated[str, Field(alias="log.date_format")] = (
-        "%d.%m.%Y %H:%M:%S"
-    )
-    """Log date format"""
+    @default_factory("log_visible")
+    @classmethod
+    def get_default_log_visible(cls) -> bool:
+        """
+        Returns:
+            str: Default value for log_visible.
+        """
 
-    log_file_name: Annotated[str, Field(alias="log.file_name")] = (
-        "%d-%m-%Y-%H-%M-%S.log"
-    )
-    """Log file name"""
+        return False  # hide log by default
 
-    log_visible: Annotated[bool, Field(alias="log.visible")] = False
-    """
-    Whether to display the last log message and the log buttons at the bottom of the
-    main window.
-    """
+    @default_factory("accent_color")
+    @classmethod
+    def get_default_accent_color(cls) -> str:
+        """
+        Returns:
+            str: Default accent color.
+        """
 
-    language: Language = Language.System
-    """App language"""
-
-    ui_mode: Annotated[UIMode, Field(alias="ui.mode")] = UIMode.System
-    """UI mode"""
-
-    @override
-    @staticmethod
-    def get_config_name() -> str:
-        return "app.json"
+        return "#ff5b51"

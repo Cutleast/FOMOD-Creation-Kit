@@ -7,10 +7,10 @@ import shutil
 from pathlib import Path
 from typing import Optional
 
+from cutleast_core_lib.core.filesystem.scanner import DirectoryScanner
+from cutleast_core_lib.core.filesystem.utils import clean_fs_name
+from cutleast_core_lib.ui.widgets.loading_dialog import LoadingDialog
 from PySide6.QtCore import QObject
-
-from core.utilities.filesystem import clean_fs_string, create_folder_list
-from ui.widgets.loading_dialog import LoadingDialog
 
 from .fomod import Fomod
 from .module_config.file_system.file_item import FileItem
@@ -150,8 +150,8 @@ class Finalizer(QObject):
         if fomod.module_config.install_steps is not None:
             plugin_images: list[tuple[str, Image]] = [
                 (
-                    f"/{clean_fs_string(install_step.name)}/{clean_fs_string(group.name)}"
-                    f"/{clean_fs_string(plugin.name)}",
+                    f"/{clean_fs_name(install_step.name)}/{clean_fs_name(group.name)}"
+                    f"/{clean_fs_name(plugin.name)}",
                     plugin.image,
                 )
                 for install_step in fomod.module_config.install_steps.install_steps
@@ -245,8 +245,8 @@ class Finalizer(QObject):
         if fomod.module_config.install_steps is not None:
             plugin_files: list[tuple[str, FileList]] = [
                 (
-                    f"/{clean_fs_string(install_step.name)}/{clean_fs_string(group.name)}"
-                    f"/{clean_fs_string(plugin.name)}",
+                    f"/{clean_fs_name(install_step.name)}/{clean_fs_name(group.name)}"
+                    f"/{clean_fs_name(plugin.name)}",
                     plugin.files,
                 )
                 for install_step in fomod.module_config.install_steps.install_steps
@@ -402,16 +402,16 @@ class Finalizer(QObject):
                 source.relative_to(fomod_path.parent)
                 if source.is_relative_to(fomod_path)
                 else source
-            ), create_folder_list(source)
+            ), [f.path for f in DirectoryScanner.scan_folder(source)]
 
         new_folder_path: Path = fomod_path / name / source.name
         new_folder_path.mkdir(parents=True, exist_ok=True)
         shutil.copytree(source, new_folder_path, dirs_exist_ok=True)
         self.log.info(f"Copied '{source}' to '{new_folder_path}'.")
 
-        return new_folder_path.relative_to(fomod_path.parent), create_folder_list(
-            new_folder_path
-        )
+        return new_folder_path.relative_to(fomod_path.parent), [
+            f.path for f in DirectoryScanner.scan_folder(new_folder_path)
+        ]
 
     @staticmethod
     def is_path_outside_of_fomod(path: Path, fomod_path: Path) -> bool:

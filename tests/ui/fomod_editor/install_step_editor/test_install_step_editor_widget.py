@@ -17,7 +17,7 @@ from core.fomod_editor.exceptions import (
     SpecificEmptyError,
     SpecificValidationError,
 )
-from tests.ui.ui_test import UiTest
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.composite_dependency_editor_widget import (
     CompositeDependencyEditorWidget,
@@ -27,7 +27,7 @@ from ui.fomod_editor.install_step_editor.install_step_editor_widget import (
 )
 
 
-class TestInstallStepEditorWidget(UiTest):
+class TestInstallStepEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.install_step_editor.install_step_editor_widget.InstallStepEditorWidget`.
     """

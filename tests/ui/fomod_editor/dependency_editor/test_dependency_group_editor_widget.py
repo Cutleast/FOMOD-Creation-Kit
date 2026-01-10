@@ -11,7 +11,7 @@ from core.fomod.module_config.dependency.file_dependency import FileDependency
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod.module_config.dependency.version_dependency import VersionDependency
 from core.fomod_editor.exceptions import EmptyError, SpecificValidationError
-from tests.ui.ui_test import UiTest
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.dependency_group_editor_widget import (
     DependencyGroupEditorWidget,
@@ -19,7 +19,7 @@ from ui.fomod_editor.dependency_editor.dependency_group_editor_widget import (
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 
-class TestDependencyGroupEditorWidget(UiTest):
+class TestDependencyGroupEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.dependency_editor.dependency_group_editor_widget.DependencyGroupEditorWidget`.
     """

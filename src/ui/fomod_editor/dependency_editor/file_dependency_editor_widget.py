@@ -4,12 +4,12 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit, QVBoxLayout
 
 from core.fomod.module_config.dependency.file_dependency import FileDependency
 from core.fomod_editor.exceptions import FileNameIsMissingError
-from ui.widgets.enum_dropdown import EnumDropdown
 
 from ..base_editor_widget import BaseEditorWidget
 

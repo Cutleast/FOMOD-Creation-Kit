@@ -5,12 +5,11 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import override
 
+from cutleast_core_lib.core.utilities.exceptions import LocalizedException
 from PySide6.QtWidgets import QApplication
 
-from core.utilities.exceptions import ExceptionBase
 
-
-class NotAFomodError(ExceptionBase):
+class NotAFomodError(LocalizedException):
     """
     Exception when a specified path does not point to a FOMOD installer.
     """
@@ -19,13 +18,13 @@ class NotAFomodError(ExceptionBase):
         super().__init__(path)
 
     @override
-    def _get_localized_message(self) -> str:
+    def getLocalizedMessage(self) -> str:
         return QApplication.translate(
             "exceptions", "The path ('{0}') does not point to a FOMOD installer!"
         )
 
 
-class XmlValidationError(ExceptionBase):
+class XmlValidationError(LocalizedException):
     """
     Exception when the FOMOD could not be saved due to XML validation errors.
     """
@@ -34,7 +33,7 @@ class XmlValidationError(ExceptionBase):
         super().__init__(file_name)
 
     @override
-    def _get_localized_message(self) -> str:
+    def getLocalizedMessage(self) -> str:
         return QApplication.translate(
             "exceptions",
             "Failed to save the FOMOD installer! Could not validate '{0}'.",

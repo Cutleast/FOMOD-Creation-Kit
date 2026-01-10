@@ -4,15 +4,14 @@ Copyright (c) Cutleast
 
 from typing import Optional
 
-import qtawesome as qta
+from cutleast_core_lib.core.utilities.logger import Logger
+from cutleast_core_lib.core.utilities.truncate import raw_string
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.widgets.copy_button import CopyButton
+from cutleast_core_lib.ui.widgets.link_button import LinkButton
+from cutleast_core_lib.ui.widgets.log_window import LogWindow
 from PySide6.QtCore import QSize, Qt, Signal
-from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QLabel, QPushButton, QStatusBar
-
-from core.utilities.logger import Logger
-from core.utilities.trim import trim_string
-from ui.widgets.link_button import LinkButton
-from ui.widgets.log_window import LogWindow
 
 
 class StatusBar(QStatusBar):
@@ -35,11 +34,11 @@ class StatusBar(QStatusBar):
         self.logger.set_callback(self.log_signal.emit)
 
         self.status_label = QLabel()
-        self.status_label.setObjectName("protocol")
+        self.status_label.setObjectName("monospace")
         self.status_label.setTextFormat(Qt.TextFormat.PlainText)
         self.log_signal.connect(
             lambda text: self.status_label.setText(
-                trim_string(text.removesuffix("\n"), max_length=200)
+                raw_string(text.removesuffix("\n"), max_length=200)
             ),
             Qt.ConnectionType.QueuedConnection,
         )
@@ -48,18 +47,15 @@ class StatusBar(QStatusBar):
         self.insertPermanentWidget(0, self.status_label, stretch=1)
 
         kofi_button = LinkButton(
-            StatusBar.KOFI_URL,
-            self.tr("Support me on Ko-fi"),
-            QIcon(":/icons/ko-fi.png"),
+            url=StatusBar.KOFI_URL,
+            display_text=self.tr("Support me on Ko-fi"),
+            icon=IconProvider.get_icon("ko-fi"),
         )
         # kofi_button.setFixedHeight(20)
         self.addPermanentWidget(kofi_button)
 
-        copy_log_button = QPushButton()
+        copy_log_button = CopyButton()
         copy_log_button.setFixedSize(20, 20)
-        copy_log_button.setIcon(
-            qta.icon("mdi6.content-copy", color=self.palette().text().color())
-        )
         copy_log_button.setIconSize(QSize(16, 16))
         copy_log_button.clicked.connect(
             lambda: QApplication.clipboard().setText(self.logger.get_content())
@@ -70,9 +66,7 @@ class StatusBar(QStatusBar):
 
         open_log_button = QPushButton()
         open_log_button.setFixedSize(20, 20)
-        open_log_button.setIcon(
-            qta.icon("fa5s.external-link-alt", color=self.palette().text().color())
-        )
+        open_log_button.setIcon(IconProvider.get_qta_icon("fa5s.external-link-alt"))
         open_log_button.setIconSize(QSize(16, 16))
         open_log_button.clicked.connect(self.__open_log_window)
         open_log_button.setToolTip(self.tr("View log"))

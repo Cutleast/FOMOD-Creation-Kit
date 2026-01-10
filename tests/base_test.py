@@ -6,39 +6,20 @@ import time
 from pathlib import Path
 
 import pytest
+from cutleast_core_lib.core.utilities.logger import Logger
+from cutleast_core_lib.test.base_test import BaseTest as CoreBaseTest
 from pyfakefs.fake_filesystem import FakeFilesystem
 
-import resources_rc  # type: ignore # noqa: F401
+import resources_rc as resources_rc
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod_editor.history import History
-from core.utilities.logger import Logger
 
 
-class BaseTest:
+class BaseTest(CoreBaseTest):
     """
     Base class for all tests.
     """
-
-    @pytest.fixture
-    def data_folder(self) -> Path:
-        """
-        Returns the path to the test data folder.
-
-        Returns:
-            Path: The path to the test data folder.
-        """
-
-        return Path("tests").absolute() / "data"
-
-    @pytest.fixture
-    def real_cwd(self) -> Path:
-        """
-        Returns:
-            Path: The real current working directory (outside of the fake filesystem).
-        """
-
-        return Path.cwd()
 
     @pytest.fixture
     def app_config(self, data_folder: Path) -> AppConfig:
@@ -61,26 +42,6 @@ class BaseTest:
         """
 
         return BehaviorConfig.load(data_folder / "config")
-
-    @pytest.fixture
-    def test_fs(
-        self, real_cwd: Path, data_folder: Path, fs: FakeFilesystem
-    ) -> FakeFilesystem:
-        """
-        Creates a fake filesystem for testing.
-
-        Returns:
-            FakeFilesystem: The fake filesystem.
-        """
-
-        fs.add_real_directory(data_folder)
-
-        # Add qtawesome fonts
-        fs.add_real_directory(
-            real_cwd / ".venv" / "lib" / "site-packages" / "qtawesome" / "fonts"
-        )
-
-        return fs
 
     @pytest.fixture
     def logger(self, test_fs: FakeFilesystem, app_config: AppConfig) -> Logger:

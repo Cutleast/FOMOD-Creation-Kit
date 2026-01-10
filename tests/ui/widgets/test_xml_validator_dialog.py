@@ -5,18 +5,17 @@ Copyright (c) Cutleast
 from pathlib import Path
 
 import pytest
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
 from PySide6.QtWidgets import QLineEdit, QPushButton
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.module_config import ModuleConfig
+from tests.base_test import BaseTest
 from tests.utils import Utils
-from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.xml_validator_dialog import XmlValidatorDialog
 
-from ..ui_test import UiTest
 
-
-class TestXmlValidatorDialog(UiTest):
+class TestXmlValidatorDialog(BaseTest):
     """
     Tests `ui.widgets.xml_validator_dialog.XmlValidatorDialog`.
     """

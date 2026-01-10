@@ -14,7 +14,6 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from app_context import AppContext
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod.fomod import Fomod
@@ -22,6 +21,7 @@ from core.fomod_editor.exceptions import ValidationError
 from core.fomod_editor.history import History
 
 from .fomod_editor.fomod_editor_widget import FomodEditorWidget
+from .utilities.theme_manager import ThemeManager
 
 
 class MainWidget(QWidget):
@@ -249,6 +249,6 @@ class MainWidget(QWidget):
             save_button.setText(self.tr("Save and close"))
 
         # Reapply stylesheet as setObjectName() doesn't update the style by itself
-        message_box.setStyleSheet(AppContext.get_app().styleSheet())
+        message_box.setStyleSheet(ThemeManager.get_stylesheet() or "")
 
         return QMessageBox.StandardButton(message_box.exec())

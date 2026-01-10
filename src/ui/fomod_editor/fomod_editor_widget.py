@@ -5,10 +5,11 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional
 
-import qtawesome as qta
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.widgets.loading_dialog import LoadingDialog
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtGui import QIcon, QPixmap, QTransform
-from PySide6.QtWidgets import QLabel, QTabWidget, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QApplication, QLabel, QTabWidget, QVBoxLayout, QWidget
 
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.condition.conditional_file_install_list import (
@@ -23,8 +24,6 @@ from core.fomod.module_config.install_step.step_list import StepList
 from core.fomod_editor.exceptions import ValidationError
 from core.fomod_editor.utils import Utils
 from ui.fomod_editor.base_editor_widget import FlagNamesSupplier
-from ui.utilities.icon_provider import get_icon_for_palette
-from ui.widgets.loading_dialog import LoadingDialog
 
 from .conditional_files_editor_tab import ConditionalFilesEditorTab
 from .dependency_editor_tab import DependencyEditorTab
@@ -156,9 +155,7 @@ class FomodEditorWidget(QWidget):
 
         i: int = self.__tab_widget.addTab(
             self.__info_editor_tab,
-            FomodEditorWidget.__get_tab_icon(
-                get_icon_for_palette("quick_reference", self.palette())
-            ),
+            FomodEditorWidget.__get_tab_icon(IconProvider.get_icon("quick_reference")),
             "",
         )
         self.__tab_widget.setTabToolTip(i, self.tr("Info"))
@@ -181,7 +178,7 @@ class FomodEditorWidget(QWidget):
         i: int = self.__tab_widget.addTab(
             self.__dependency_editor_tab,
             FomodEditorWidget.__get_tab_icon(
-                qta.icon("fa6s.list-check", color=self.palette().text().color())
+                IconProvider.get_qta_icon("fa6s.list-check")
             ),
             "",
         )
@@ -204,7 +201,7 @@ class FomodEditorWidget(QWidget):
         i: int = self.__tab_widget.addTab(
             self.__required_files_editor_tab,
             FomodEditorWidget.__get_tab_icon(
-                qta.icon("mdi6.file-check", color=self.palette().text().color())
+                IconProvider.get_qta_icon("mdi6.file-check")
             ),
             "",
         )
@@ -228,9 +225,7 @@ class FomodEditorWidget(QWidget):
         i: int = self.__tab_widget.addTab(
             self.__steps_editor_tab,
             FomodEditorWidget.__get_tab_icon(
-                qta.icon(
-                    "mdi6.book-open-page-variant", color=self.palette().text().color()
-                )
+                IconProvider.get_qta_icon("mdi6.book-open-page-variant")
             ),
             "",
         )
@@ -254,9 +249,7 @@ class FomodEditorWidget(QWidget):
         i: int = self.__tab_widget.addTab(
             self.__conditional_files_editor_tab,
             FomodEditorWidget.__get_tab_icon(
-                qta.icon(
-                    "fa6s.file-circle-question", color=self.palette().text().color()
-                )
+                IconProvider.get_qta_icon("fa6s.file-circle-question")
             ),
             "",
         )
@@ -349,12 +342,13 @@ class FomodEditorWidget(QWidget):
         if finalize:
             fomod: Fomod = self.__current_fomod
             LoadingDialog.run_callable(
+                parent=QApplication.activeWindow(),
                 target=lambda ldialog: fomod.finalize(
                     path=path,
                     validate_xml=validate_xml,
                     encoding=encoding,
                     ldialog=ldialog,
-                )
+                ),
             )
 
             # Reload the FOMOD as the finalize step might have changed it

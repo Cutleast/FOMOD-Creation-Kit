@@ -5,13 +5,13 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional
 
-import qtawesome as qta
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.utilities.rounded_pixmap import rounded_pixmap
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.utilities.path import get_joined_path_if_relative
-from ui.utilities.rounded_pixmap import rounded_pixmap
 from ui.utilities.tool_tip import pixmap_to_html
 
 
@@ -54,9 +54,9 @@ class Utils:
                 )
             )
         else:
-            pixmap = qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
-                image_size, image_size
-            )
+            pixmap = IconProvider.get_qta_icon(
+                "mdi6.image-off-outline", color="#666666"
+            ).pixmap(image_size, image_size)
 
         html_text: str = f"""
 <center>{pixmap_to_html(pixmap)}</center>

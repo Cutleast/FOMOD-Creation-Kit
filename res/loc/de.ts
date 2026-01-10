@@ -2,38 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="de_DE" sourcelanguage="en_US">
 <context>
-    <name>AboutDialog</name>
-    <message>
-        <location filename="src/ui/widgets/about_dialog.py" line="38"/>
-        <location filename="src/ui/widgets/about_dialog.py" line="51"/>
-        <source>About</source>
-        <translation>Über</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/about_dialog.py" line="85"/>
-        <source>Created by Cutleast (&lt;a href=&apos;https://www.nexusmods.com/users/65733731&apos;&gt;NexusMods&lt;/a&gt; | &lt;a href=&apos;https://github.com/cutleast&apos;&gt;GitHub&lt;/a&gt; | &lt;a href=&apos;https://ko-fi.com/cutleast&apos;&gt;Ko-Fi&lt;/a&gt;)&lt;br&gt;&lt;br&gt;Licensed under GNU General Public License v3.0</source>
-        <translation>Erstellt von Cutleast (&lt;a href=&apos;https://www.nexusmods.com/users/65733731&apos;&gt;NexusMods&lt;/a&gt; | &lt;a href=&apos;https://github.com/cutleast&apos;&gt;GitHub&lt;/a&gt; | &lt;a href=&apos;https://ko-fi.com/cutleast&apos;&gt;Ko-Fi&lt;/a&gt;)&lt;br&gt;&lt;br&gt;Lizensiert unter GNU General Public License v3.0</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/about_dialog.py" line="86"/>
-        <source>&lt;&lt;Put your translator information here.&gt;&gt;</source>
-        <translation>&lt;&lt;Put your translator information here.&gt;&gt;</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/about_dialog.py" line="97"/>
-        <source>Used Software</source>
-        <translation>Verwendete Software</translation>
-    </message>
-</context>
-<context>
     <name>CollapsibleTextEdit</name>
     <message>
-        <location filename="src/ui/widgets/collapsible_text_edit.py" line="70"/>
+        <location filename="src/ui/widgets/collapsible_text_edit.py" line="66"/>
         <source>Reduce</source>
         <translation>Reduzieren</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/collapsible_text_edit.py" line="79"/>
+        <location filename="src/ui/widgets/collapsible_text_edit.py" line="75"/>
         <source>Expand</source>
         <translation>Erweitern</translation>
     </message>
@@ -41,37 +17,37 @@
 <context>
     <name>CompositeDependency</name>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="71"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="70"/>
         <source>And</source>
         <translation>Und</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="74"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="73"/>
         <source>Or</source>
         <translation>Oder</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="86"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="85"/>
         <source>All contained dependencies must be satisfied in order for this dependency to be satisfied.</source>
         <translation>Alle enthaltenen Abhängigkeiten müssen erfüllt sein, damit diese Abhängigkeit als erfüllt gilt.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="91"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="90"/>
         <source>At least one listed dependency must be satisfied in order for this dependency to be satisfied.</source>
         <translation>Mindestens eine der gelisteten Abhängigkeiten muss erfüllt sein, damit diese Abhängigkeit als erfüllt gilt.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="109"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="108"/>
         <source>empty dependency</source>
         <translation>leere Abhängigkeit</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="125"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="124"/>
         <source>Game Version</source>
         <translation>Spielversion</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="131"/>
+        <location filename="src/core/fomod/module_config/dependency/composite_dependency.py" line="130"/>
         <source>FOMM Version</source>
         <translation>FOMM-Version</translation>
     </message>
@@ -115,7 +91,7 @@
 <context>
     <name>ContextMenu</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="72"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="73"/>
         <source>Duplicate item</source>
         <translation>Element duplizieren</translation>
     </message>
@@ -233,44 +209,6 @@
     </message>
 </context>
 <context>
-    <name>EditorDialog</name>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="84"/>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="98"/>
-        <source>Save</source>
-        <translation>Speichern</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="110"/>
-        <source>Close unsaved item?</source>
-        <translation>Ungespeichertes Element schließen?</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="116"/>
-        <source>Are you sure you want to close the current item? There are unsaved changes that will be lost.</source>
-        <translation>Bist du sicher, dass du das aktuelle Element schließen möchtest? Es sind ungespeicherte Änderungen vorhanden, die dabei verloren gehen.</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="133"/>
-        <source>No</source>
-        <translation>Nein</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="137"/>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-    <message>
-        <location filename="src/ui/fomod_editor/editor_dialog.py" line="142"/>
-        <source>Save and close</source>
-        <translation>Speichern und schließen</translation>
-    </message>
-</context>
-<context>
     <name>EditorWindow</name>
     <message>
         <location filename="src/ui/fomod_editor/editor_window.py" line="91"/>
@@ -309,81 +247,34 @@
     </message>
 </context>
 <context>
-    <name>ErrorDialog</name>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="87"/>
-        <source>Continue</source>
-        <translation>Fortfahren</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="92"/>
-        <source>Exit</source>
-        <translation>Beenden</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="96"/>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="102"/>
-        <source>Copy error details...</source>
-        <translation>Fehlerdetails kopieren...</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="113"/>
-        <location filename="src/ui/widgets/error_dialog.py" line="132"/>
-        <source>Show details...</source>
-        <translation>Details anzeigen...</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/error_dialog.py" line="126"/>
-        <source>Hide details...</source>
-        <translation>Details verstecken...</translation>
-    </message>
-</context>
-<context>
-    <name>ExceptionHandler</name>
-    <message>
-        <location filename="src/core/utilities/exception_handler.py" line="79"/>
-        <source>An unexpected error occured: </source>
-        <translation>Ein unerwarteter Fehler ist aufgetreten: </translation>
-    </message>
-    <message>
-        <location filename="src/core/utilities/exception_handler.py" line="84"/>
-        <source>Error</source>
-        <translation>Fehler</translation>
-    </message>
-</context>
-<context>
     <name>FileDependency</name>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="44"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="43"/>
         <source>Missing</source>
         <translation>Fehlend</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="47"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="46"/>
         <source>Inactive</source>
         <translation>Inaktiv</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="50"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="49"/>
         <source>Active</source>
         <translation>Aktiv</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="60"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="59"/>
         <source>The mod file is not installed.</source>
         <translation>Die Moddatei ist nicht installiert.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="63"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="62"/>
         <source>The mod file is installed, but is not active.</source>
         <translation>Die Moddatei ist installiert, aber nicht aktiviert.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="66"/>
+        <location filename="src/core/fomod/module_config/dependency/file_dependency.py" line="65"/>
         <source>The mod file is installed and active.</source>
         <translation>Die Moddatei ist installiert und aktiviert.</translation>
     </message>
@@ -482,27 +373,27 @@
 <context>
     <name>FomodEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="164"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="161"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="188"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="185"/>
         <source>Module Dependencies</source>
         <translation>Modulabhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="211"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="208"/>
         <source>Required files to install</source>
         <translation>Erforderliche zu installierende Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="237"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="232"/>
         <source>Installation steps (pages)</source>
         <translation>Installationsschritte (Seiten)</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="263"/>
+        <location filename="src/ui/fomod_editor/fomod_editor_widget.py" line="256"/>
         <source>Conditional files to install</source>
         <translation>Bedingte zu installierende Dateien</translation>
     </message>
@@ -608,57 +499,57 @@
 <context>
     <name>Group</name>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="53"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="52"/>
         <source>Select at least one</source>
         <translation>Mindestens ein Element auswählen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="56"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="55"/>
         <source>Select at most one</source>
         <translation>Maximal ein Element auswählen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="59"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="58"/>
         <source>Select exactly one</source>
         <translation>Exakt ein Element auswählen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="60"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="59"/>
         <source>Select all</source>
         <translation>Alle auswählen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="61"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="60"/>
         <source>Select any</source>
         <translation>Beliebige auswählen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="72"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="71"/>
         <source>At least one plugin in the group must be selected.</source>
         <translation>Mindestens ein Plugin in der Gruppe muss ausgewählt werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="76"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="75"/>
         <source>At most one plugin in the group must be selected.</source>
         <translation>Maximal ein Plugin in der Gruppe muss ausgewählt werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="80"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="79"/>
         <source>Exactly one plugin in the group must be selected.</source>
         <translation>Exakt ein Plugin muss ausgewählt werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="84"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="83"/>
         <source>All plugins in the group must be selected.</source>
         <translation>Alle Plugins in der Gruppe müssen ausgewählt werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="88"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="87"/>
         <source>Any number of plugins in the group may be selected.</source>
         <translation>Eine beliebige Anzahl Plugins in der Gruppe darf ausgewählt werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/install_step/group.py" line="98"/>
+        <location filename="src/core/fomod/module_config/install_step/group.py" line="97"/>
         <source>unnamed</source>
         <translation>unbenannt</translation>
     </message>
@@ -846,55 +737,19 @@
         <translation>Das ist bloß eine nicht-funktionale Vorschau unten. Der Installationsschritt kann über die Bearbeiten-Schaltfläche neben der Überschrift bearbeitet werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="171"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="164"/>
         <source>Edit install step...</source>
         <translation>Installationsschritt bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="178"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="171"/>
         <source>Visible when:</source>
         <translation>Sichtbar wenn:</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="198"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/install_step_preview_widget.py" line="191"/>
         <source>Always visible</source>
         <translation>Immer sichtbar</translation>
-    </message>
-</context>
-<context>
-    <name>LoadingDialog</name>
-    <message>
-        <location filename="src/ui/widgets/loading_dialog.py" line="285"/>
-        <source>Elapsed time:</source>
-        <translation>Vergangene Zeit:</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/loading_dialog.py" line="373"/>
-        <source>Cancel?</source>
-        <translation>Abbrechen?</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/loading_dialog.py" line="379"/>
-        <source>Are you sure you want to cancel? This may have unwanted consequences, depending on the current running process!</source>
-        <translation>Bist du sicher, dass du abbrechen möchtest? Abhängig vom derzeit laufenden Prozess kann dies unbeabsichtigte Folgen haben!</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/loading_dialog.py" line="384"/>
-        <source>No</source>
-        <translation>Nein</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/loading_dialog.py" line="385"/>
-        <source>Yes</source>
-        <translation>Ja</translation>
-    </message>
-</context>
-<context>
-    <name>LogWindow</name>
-    <message>
-        <location filename="src/ui/widgets/log_window.py" line="18"/>
-        <source>Log</source>
-        <translation>Protokoll</translation>
     </message>
 </context>
 <context>
@@ -953,114 +808,118 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="src/ui/main_window.py" line="88"/>
-        <location filename="src/ui/main_window.py" line="92"/>
+        <location filename="src/ui/main_window.py" line="106"/>
+        <location filename="src/ui/main_window.py" line="110"/>
         <source>Unnamed</source>
         <translation>Unbenannt</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_window.py" line="156"/>
+        <source>No Updates Available</source>
+        <translation>Keine Updates verfügbar</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_window.py" line="157"/>
+        <source>There are no updates available.</source>
+        <translation>Es sind keine Updates verfügbar.</translation>
+    </message>
+    <message>
+        <location filename="src/ui/main_window.py" line="175"/>
+        <source>About Qt</source>
+        <translation>Über Qt</translation>
     </message>
 </context>
 <context>
     <name>MenuBar</name>
     <message>
-        <location filename="src/ui/menubar.py" line="77"/>
+        <location filename="src/ui/menubar.py" line="85"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="80"/>
+        <location filename="src/ui/menubar.py" line="88"/>
         <source>Create new FOMOD installer...</source>
         <translation>Neuen FOMOD-Installer erstellen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="91"/>
+        <location filename="src/ui/menubar.py" line="97"/>
         <source>Load FOMOD installer from folder...</source>
         <translation>FOMOD-Installer aus Ordner laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="102"/>
+        <location filename="src/ui/menubar.py" line="106"/>
         <source>Load FOMOD installer from file...</source>
         <translation>FOMOD-Installer aus Datei laden...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="111"/>
+        <location filename="src/ui/menubar.py" line="113"/>
         <source>Open recent FOMOD installer...</source>
         <translation>Kürzlich geöffneten FOMOD-Installer öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="122"/>
+        <location filename="src/ui/menubar.py" line="118"/>
         <source>Save FOMOD installer</source>
         <translation>FOMOD-Installer speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="131"/>
+        <location filename="src/ui/menubar.py" line="125"/>
         <source>Save FOMOD installer as...</source>
         <translation>FOMOD-Installer speichern unter...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="140"/>
+        <location filename="src/ui/menubar.py" line="132"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="148"/>
+        <location filename="src/ui/menubar.py" line="138"/>
         <source>Exit</source>
         <translation>Beenden</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="168"/>
+        <location filename="src/ui/menubar.py" line="156"/>
         <source>Extras</source>
         <translation>Extras</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="171"/>
+        <location filename="src/ui/menubar.py" line="159"/>
         <source>Validate XML file...</source>
         <translation>XML-Datei validieren...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="178"/>
+        <location filename="src/ui/menubar.py" line="164"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="181"/>
+        <location filename="src/ui/menubar.py" line="167"/>
         <source>Check for updates...</source>
         <translation>Nach Updates suchen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="191"/>
+        <location filename="src/ui/menubar.py" line="175"/>
         <source>Get support on our Discord server...</source>
         <translation>Erhalte Unterstützung auf unserem Discord Server...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="196"/>
+        <location filename="src/ui/menubar.py" line="180"/>
         <source>Open mod page on Nexus Mods...</source>
         <translation>Modseite bei Nexus Mods öffnen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="201"/>
+        <location filename="src/ui/menubar.py" line="185"/>
         <source>View source code on GitHub...</source>
         <translation>Quellcode auf GitHub ansehen...</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="210"/>
+        <location filename="src/ui/menubar.py" line="192"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="src/ui/menubar.py" line="216"/>
-        <location filename="src/ui/menubar.py" line="245"/>
+        <location filename="src/ui/menubar.py" line="196"/>
         <source>About Qt</source>
         <translation>Über Qt</translation>
-    </message>
-    <message>
-        <location filename="src/ui/menubar.py" line="235"/>
-        <source>No Updates Available</source>
-        <translation>Keine Updates verfügbar</translation>
-    </message>
-    <message>
-        <location filename="src/ui/menubar.py" line="236"/>
-        <source>There are no updates available.</source>
-        <translation>Es sind keine Updates verfügbar.</translation>
     </message>
 </context>
 <context>
@@ -1162,7 +1021,7 @@
         <translation>Typbeschreibung</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="254"/>
+        <location filename="src/ui/fomod_editor/install_step_editor/plugin_editor_widget.py" line="256"/>
         <source>At least one file, folder or condition flag must be specified!</source>
         <translation>Mindestens eine Datei, Ordner oder gesetzte Bedingung muss vorhanden sein!</translation>
     </message>
@@ -1170,52 +1029,52 @@
 <context>
     <name>PluginType</name>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="50"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="49"/>
         <source>Required</source>
         <translation>Erforderlich</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="53"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="52"/>
         <source>Optional</source>
         <translation>Optional</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="56"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="55"/>
         <source>Recommended</source>
         <translation>Empfohlen</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="59"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="58"/>
         <source>Not usable</source>
         <translation>Nicht verwendbar</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="62"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="61"/>
         <source>Could be usable</source>
         <translation>Könnte verwendbar sein</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="72"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="71"/>
         <source>The plugin must be installed.</source>
         <translation>Das Plugin muss installiert werden.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="75"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="74"/>
         <source>The plugin is optional.</source>
         <translation>Das Plugin ist optional.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="78"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="77"/>
         <source>The plugin is recommended for stability.</source>
         <translation>Das Plugin wird zugunsten von Stabilität empfohlen.</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="83"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="82"/>
         <source>Using the plugin could result in instability (i.e., a prerequisite plugin is missing).</source>
         <translation>Das Plugin könnte zu Instabilität führen (d.h. eine Pluginabhängigkeit fehlt).</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="89"/>
+        <location filename="src/core/fomod/module_config/plugin/plugin_type.py" line="88"/>
         <source>Using the plugin could result in instability if loaded with the currently active plugins (i.e., a prerequisite plugin is missing), but that the prerequisite plugin is installed, just not activated.</source>
         <translation>Das Plugin könnte mit den derzeit aktiven Plugins zu Instabilität führen (d.h. eine Pluginabhängigkeit fehlt), aber die Abhängigkeit ist installiert und deaktiviert.</translation>
     </message>
@@ -1236,19 +1095,6 @@
         <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="50"/>
         <source>This list defines which files and folders must be installed by the installer.</source>
         <translation>Diese Liste definiert, welche Dateien und Ordner vom Installer installiert werden müssen.</translation>
-    </message>
-</context>
-<context>
-    <name>SearchBar</name>
-    <message>
-        <location filename="src/ui/widgets/search_bar.py" line="40"/>
-        <source>Search...</source>
-        <translation>Suchen...</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/search_bar.py" line="60"/>
-        <source>Toggle case sensitivity</source>
-        <translation>Groß-/Kleinschreibung beachten</translation>
     </message>
 </context>
 <context>
@@ -1277,39 +1123,39 @@
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="50"/>
-        <location filename="src/ui/settings/settings_dialog.py" line="74"/>
-        <location filename="src/ui/settings/settings_dialog.py" line="103"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="49"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="71"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="100"/>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="90"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="87"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="96"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="93"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="118"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="115"/>
         <source>Restart required</source>
         <translation>Neustart erforderlich</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="123"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="120"/>
         <source>The app must be restarted for the changes to take effect! Restart now?</source>
         <translation>Die App muss neugestartet werden, damit die Änderungen wirksam werden! Jetzt neustarten?</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="127"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="124"/>
         <source>No</source>
         <translation>Nein</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_dialog.py" line="128"/>
+        <location filename="src/ui/settings/settings_dialog.py" line="125"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
@@ -1317,64 +1163,64 @@
 <context>
     <name>SettingsWidget</name>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="88"/>
+        <location filename="src/ui/settings/settings_widget.py" line="87"/>
         <source>App settings</source>
         <translation>Appeinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="96"/>
+        <location filename="src/ui/settings/settings_widget.py" line="95"/>
         <source>Log level:</source>
         <translation>Protokoll-Level:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="107"/>
+        <location filename="src/ui/settings/settings_widget.py" line="106"/>
         <source>Number of newest log files to keep:</source>
         <translation>Anzahl der neuesten zu behaltenden Protokolldateien:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="122"/>
+        <location filename="src/ui/settings/settings_widget.py" line="121"/>
         <source>Display log at the bottom of the main window</source>
         <translation>Protokoll im unteren Bereich des Hauptfensters anzeigen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="130"/>
+        <location filename="src/ui/settings/settings_widget.py" line="129"/>
         <source>Language:</source>
         <translation>Sprache:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="141"/>
+        <location filename="src/ui/settings/settings_widget.py" line="142"/>
         <source>UI mode:</source>
         <translation>UI Modus:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="154"/>
+        <location filename="src/ui/settings/settings_widget.py" line="155"/>
         <source>Clear history of recently opened FOMOD installers</source>
         <translation>Verlauf der kürzlich geöffneten FOMOD-Installer leeren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="160"/>
+        <location filename="src/ui/settings/settings_widget.py" line="161"/>
         <source>Behavior settings</source>
         <translation>Verhaltenseinstellungen</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="167"/>
+        <location filename="src/ui/settings/settings_widget.py" line="168"/>
         <source>Finalize on save (recommended)</source>
         <translation>Beim Speichern finalisieren (empfohlen)</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="175"/>
+        <location filename="src/ui/settings/settings_widget.py" line="176"/>
         <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
 This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
         <translation>Finalisieren bedeutet, dass alle Dateien von außerhalb des FOMODs in das Verzeichnis des FOMODs kopiert werden und dessen Pfade relativ gemacht werden.
 Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="180"/>
+        <location filename="src/ui/settings/settings_widget.py" line="181"/>
         <source>Validate XML files on save</source>
         <translation>XML-Dateien beim Speichern validieren</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="196"/>
+        <location filename="src/ui/settings/settings_widget.py" line="197"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Für ModuleConfig.xml verwendeter Zeichensatz:</translation>
     </message>
@@ -1382,17 +1228,17 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>StatusBar</name>
     <message>
-        <location filename="src/ui/statusbar.py" line="52"/>
+        <location filename="src/ui/statusbar.py" line="51"/>
         <source>Support me on Ko-fi</source>
         <translation>Unterstütze mich auf Ko-Fi</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="67"/>
+        <location filename="src/ui/statusbar.py" line="63"/>
         <source>Copy log to clipboard</source>
         <translation>Protokoll in Zwischenablage kopieren</translation>
     </message>
     <message>
-        <location filename="src/ui/statusbar.py" line="78"/>
+        <location filename="src/ui/statusbar.py" line="72"/>
         <source>View log</source>
         <translation>Protokoll anzeigen</translation>
     </message>
@@ -1431,27 +1277,27 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>TreeWidgetEditor</name>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="164"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="161"/>
         <source>Add new item...</source>
         <translation>Neues Element hinzufügen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="166"/>
         <source>Remove selected item(s)...</source>
         <translation>Ausgewählte Element(e) entfernen...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="166"/>
         <source>Del</source>
         <translation>Entf</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Edit selected item...</source>
         <translation>Ausgewähltes Element bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/tree_widget_editor.py" line="186"/>
+        <location filename="src/ui/widgets/tree_widget_editor.py" line="174"/>
         <source>Double click</source>
         <translation>Doppelklick</translation>
     </message>
@@ -1487,57 +1333,6 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
         <location filename="src/ui/fomod_editor/install_step_editor/type_descriptor_editor_widget.py" line="86"/>
         <source>Edit plugin type descriptor...</source>
         <translation>Plugin-Typdefinition bearbeiten...</translation>
-    </message>
-</context>
-<context>
-    <name>UIMode</name>
-    <message>
-        <location filename="src/ui/utilities/ui_mode.py" line="24"/>
-        <source>Dark</source>
-        <translation>Dunkel</translation>
-    </message>
-    <message>
-        <location filename="src/ui/utilities/ui_mode.py" line="25"/>
-        <source>Light</source>
-        <translation>Hell</translation>
-    </message>
-    <message>
-        <location filename="src/ui/utilities/ui_mode.py" line="26"/>
-        <source>System</source>
-        <translation>System</translation>
-    </message>
-</context>
-<context>
-    <name>UpdaterDialog</name>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="37"/>
-        <source>An Update is available to download!</source>
-        <translation>Ein Update ist verfügbar!</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="43"/>
-        <source>Installed version</source>
-        <translation>Installierte Version</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="46"/>
-        <source>Latest version</source>
-        <translation>Aktuelle Version</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="57"/>
-        <source>What&apos;s new?</source>
-        <translation>Was ist neu?</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="70"/>
-        <source>Ignore Update</source>
-        <translation>Update ignorieren</translation>
-    </message>
-    <message>
-        <location filename="src/ui/widgets/updater_dialog.py" line="78"/>
-        <source>Download Update</source>
-        <translation>Update herunterladen</translation>
     </message>
 </context>
 <context>
@@ -1595,12 +1390,12 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>exceptions</name>
     <message>
-        <location filename="src/core/fomod/exceptions.py" line="28"/>
+        <location filename="src/core/fomod/exceptions.py" line="27"/>
         <source>The path (&apos;{0}&apos;) does not point to a FOMOD installer!</source>
         <translation>Der Pfad (&apos;{0}&apos;) zeigt nicht auf einen FOMOD-Installer!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod/exceptions.py" line="42"/>
+        <location filename="src/core/fomod/exceptions.py" line="41"/>
         <source>Failed to save the FOMOD installer! Could not validate &apos;{0}&apos;.</source>
         <translation>Speichern des FOMOD-Installers fehlgeschlagen! Konnte &apos;{0}&apos; nicht validieren.</translation>
     </message>
@@ -1608,12 +1403,12 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
 <context>
     <name>fomod_editor</name>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="45"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="44"/>
         <source>At least one item or field has to be specified!</source>
         <translation>Mindestens ein Element oder Feld muss vorhanden/ausgefüllt sein!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="73"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="72"/>
         <source>The path
 &apos;{0}&apos;
 is outside the FOMOD folder
@@ -1624,12 +1419,12 @@ liegt außerhalb des FOMOD Ordners
 &apos;{1}&apos;!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="89"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="88"/>
         <source>The image type &apos;{0}&apos; is not supported by FOMOD installers!</source>
         <translation>Der Bildtyp &apos;{0}&apos; wird nicht vom FOMOD Installer unterstützt!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="104"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="103"/>
         <source>The file
 &apos;{0}&apos;
 does not exist!</source>
@@ -1638,17 +1433,17 @@ does not exist!</source>
 existiert nicht!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="114"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="113"/>
         <source>The file name is missing!</source>
         <translation>Der Dateiname fehlt!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="124"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="123"/>
         <source>The name is missing!</source>
         <translation>Der Name fehlt!</translation>
     </message>
     <message>
-        <location filename="src/core/fomod_editor/exceptions.py" line="132"/>
+        <location filename="src/core/fomod_editor/exceptions.py" line="131"/>
         <source>The value is missing!</source>
         <translation>Der Wert fehlt!</translation>
     </message>

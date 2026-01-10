@@ -7,13 +7,12 @@ from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod_editor.exceptions import EmptyError
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.file_list_editor_widget import FileListEditorWidget
 
-from ..ui_test import UiTest
 
-
-class TestFileListEditorWidget(UiTest):
+class TestFileListEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.file_list_editor_widget.FileListEditorWidget`.
     """

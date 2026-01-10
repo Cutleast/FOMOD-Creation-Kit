@@ -6,10 +6,9 @@ from __future__ import annotations
 
 from typing import Optional, override
 
+from cutleast_core_lib.core.utilities.localized_enum import LocalizedEnum
 from pydantic_xml import BaseXmlModel, attr, element
 from PySide6.QtWidgets import QApplication
-
-from core.utilities.localized_enum import LocalizedEnum
 
 from .file_dependency import FileDependency
 from .flag_dependency import FlagDependency

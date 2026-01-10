@@ -5,6 +5,9 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
+from cutleast_core_lib.core.utilities.localized_enum import LocalizedEnum
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
+from cutleast_core_lib.ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
@@ -20,9 +23,6 @@ from core.fomod.module_config.file_system.file_item import FileItem
 from core.fomod.module_config.file_system.file_system_item import FileSystemItem
 from core.fomod.module_config.file_system.folder_item import FolderItem
 from core.fomod_editor.exceptions import SpecificEmptyError, SpecificValidationError
-from ui.widgets.browse_edit import BrowseLineEdit
-from ui.widgets.enum_dropdown import LocalizedEnum
-from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 
 from .base_editor_widget import BaseEditorWidget
 
@@ -92,6 +92,14 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             FsItemEditorWidget.ItemType.File
             if isinstance(self._item, FileItem)
             else FsItemEditorWidget.ItemType.Folder
+        )
+        self.__source_entry.setFileMode(
+            QFileDialog.FileMode.ExistingFile
+            if (
+                self.__type_selector.getCurrentValue()
+                == FsItemEditorWidget.ItemType.File
+            )
+            else QFileDialog.FileMode.Directory
         )
 
     @override

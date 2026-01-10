@@ -2,10 +2,11 @@
 Copyright (c) Cutleast
 """
 
+from cutleast_core_lib.core.utilities.unique import unique
+
 from core.fomod.fomod import Fomod
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.plugin.plugin import Plugin
-from core.utilities.unique import unique
 
 
 class Utils:

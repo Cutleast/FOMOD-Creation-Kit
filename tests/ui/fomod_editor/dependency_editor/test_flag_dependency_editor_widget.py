@@ -8,7 +8,7 @@ from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod_editor.exceptions import NameIsMissingError, ValueIsMissingError
-from tests.ui.ui_test import UiTest
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.flag_dependency_editor_widget import (
     FlagDependencyEditorWidget,
@@ -16,7 +16,7 @@ from ui.fomod_editor.dependency_editor.flag_dependency_editor_widget import (
 from ui.widgets.auto_complete_combobox import AutoCompleteCombobox
 
 
-class TestFlagDependencyEditorWidget(UiTest):
+class TestFlagDependencyEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.dependency_editor.flag_dependency_editor_widget.FlagDependencyEditorWidget`.
     """

@@ -5,6 +5,7 @@ Copyright (c) Cutleast
 from collections.abc import Sequence
 from typing import override
 
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QTreeWidgetItem
 
 from core.fomod.module_config.dependency.default_plugin_type import DefaultPluginType
@@ -13,7 +14,6 @@ from core.fomod.module_config.dependency.dependency_plugin_type import (
     DependencyPluginType,
 )
 from core.fomod_editor.exceptions import SpecificEmptyError
-from ui.widgets.enum_dropdown import EnumDropdown
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget

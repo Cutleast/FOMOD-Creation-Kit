@@ -3,11 +3,12 @@ Copyright (c) Cutleast
 """
 
 import pytest
+from cutleast_core_lib.ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod_editor.exceptions import EmptyError
-from tests.ui.ui_test import UiTest
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.composite_dependency_editor_widget import (
     CompositeDependencyEditorWidget,
@@ -15,10 +16,9 @@ from ui.fomod_editor.dependency_editor.composite_dependency_editor_widget import
 from ui.fomod_editor.dependency_editor.dependency_group_editor_widget import (
     DependencyGroupEditorWidget,
 )
-from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
 
 
-class TestCompositeDependencyEditorWidget(UiTest):
+class TestCompositeDependencyEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.dependency_editor.composite_dependency_editor_widget.CompositeDependencyEditorWidget`.
     """

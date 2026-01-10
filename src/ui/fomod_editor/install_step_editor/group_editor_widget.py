@@ -4,12 +4,12 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
+from cutleast_core_lib.ui.widgets.help_label import HelpLabel
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel, QLineEdit
 
 from core.fomod.module_config.install_step.group import Group
 from core.fomod_editor.exceptions import NameIsMissingError
-from ui.widgets.enum_dropdown import EnumDropdown
-from ui.widgets.help_label import HelpLabel
 
 from ..base_editor_widget import BaseEditorWidget
 
