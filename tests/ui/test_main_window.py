@@ -3,23 +3,22 @@ Copyright (c) Cutleast
 """
 
 import pytest
+from cutleast_core_lib.core.utilities.logger import Logger
 from pyfakefs.fake_filesystem import FakeFilesystem
 from pytestqt.qtbot import QtBot
 
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod_editor.history import History
-from core.utilities.logger import Logger
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.main_widget import MainWidget
 from ui.main_window import MainWindow
 from ui.menubar import MenuBar
 from ui.statusbar import StatusBar
 
-from .ui_test import UiTest
 
-
-class TestMainWindow(UiTest):
+class TestMainWindow(BaseTest):
     """
     Tests `ui.main_window.MainWindow`.
     """

@@ -3,18 +3,17 @@ Copyright (c) Cutleast
 """
 
 import pytest
+from cutleast_core_lib.core.utilities.reference_dict import ReferenceDict
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QTreeWidgetItem
 from pytestqt.qtbot import QtBot
 
-from core.utilities.reference_dict import ReferenceDict
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
-from ..ui_test import UiTest
 
-
-class TestTreeWidgetEditor(UiTest):
+class TestTreeWidgetEditor(BaseTest):
     """
     Tests `ui.widgets.tree_widget_editor.TreeWidgetEditor`.
     """

@@ -4,10 +4,9 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.core.utilities.localized_enum import LocalizedEnum
 from pydantic_xml import attr
 from PySide6.QtWidgets import QApplication
-
-from core.utilities.localized_enum import LocalizedEnum
 
 from .dependency import Dependency
 

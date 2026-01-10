@@ -5,7 +5,8 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional
 
-import qtawesome as qta
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.widgets.smooth_scroll_area import SmoothScrollArea
 from PySide6.QtCore import QSize, Qt, Signal
 from PySide6.QtWidgets import (
     QCheckBox,
@@ -22,7 +23,6 @@ from PySide6.QtWidgets import (
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep
 from core.fomod.module_config.plugin.plugin_type import PluginType
-from ui.widgets.smooth_scroll_area import SmoothScrollArea
 
 from ..utils import Utils
 
@@ -159,14 +159,7 @@ class InstallStepPreviewWidget(SmoothScrollArea):
         self.__title_label.setWordWrap(True)
         hlayout.addWidget(self.__title_label, stretch=1)
 
-        self.__edit_button = QPushButton(
-            qta.icon(
-                "mdi6.pencil",
-                color=self.palette().text().color(),
-                color_disabled="#666666",
-            ),
-            "",
-        )
+        self.__edit_button = QPushButton(IconProvider.get_qta_icon("mdi6.pencil"), "")
         self.__edit_button.setIconSize(QSize(32, 32))
         self.__edit_button.setToolTip(self.tr("Edit install step..."))
         hlayout.addWidget(self.__edit_button)

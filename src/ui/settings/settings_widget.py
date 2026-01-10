@@ -4,6 +4,10 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.core.utilities.logger import Logger
+from cutleast_core_lib.ui.utilities.ui_mode import UIMode
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
+from cutleast_core_lib.ui.widgets.smooth_scroll_area import SmoothScrollArea
 from PySide6.QtCore import QEvent, QObject, Qt, Signal
 from PySide6.QtGui import QWheelEvent
 from PySide6.QtWidgets import (
@@ -22,11 +26,6 @@ from PySide6.QtWidgets import (
 from core.config.app_config import AppConfig
 from core.config.behavior_config import BehaviorConfig
 from core.fomod_editor.history import History
-from core.utilities.localisation import Language
-from core.utilities.logger import Logger
-from ui.utilities.ui_mode import UIMode
-from ui.widgets.enum_dropdown import EnumDropdown
-from ui.widgets.smooth_scroll_area import SmoothScrollArea
 
 
 class SettingsWidget(SmoothScrollArea):
@@ -53,7 +52,7 @@ class SettingsWidget(SmoothScrollArea):
     __log_level_box: EnumDropdown[Logger.Level]
     __log_num_of_files_box: QSpinBox
     __log_visible: QCheckBox
-    __language_box: EnumDropdown[Language]
+    __language_box: EnumDropdown[AppConfig.AppLanguage]
     __ui_mode_box: EnumDropdown[UIMode]
     __clear_history_button: QPushButton
 
@@ -130,7 +129,9 @@ class SettingsWidget(SmoothScrollArea):
         language_label = QLabel(self.tr("Language:"))
         app_settings_glayout.addWidget(language_label, 3, 0)
 
-        self.__language_box = EnumDropdown(Language, self.__app_config.language)
+        self.__language_box = EnumDropdown(
+            AppConfig.AppLanguage, self.__app_config.language
+        )
         self.__language_box.installEventFilter(self)
         self.__language_box.currentValueChanged.connect(lambda _: self.changed.emit())
         self.__language_box.currentValueChanged.connect(

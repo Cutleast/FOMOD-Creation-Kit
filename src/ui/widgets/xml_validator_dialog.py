@@ -5,6 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional
 
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
 from lxml import etree
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -18,7 +19,6 @@ from PySide6.QtWidgets import (
 )
 
 from core.utilities.xml import validate_against_schema
-from ui.widgets.browse_edit import BrowseLineEdit
 
 
 class XmlValidatorDialog(QDialog):

@@ -4,13 +4,12 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.ui.utilities.rounded_pixmap import rounded_pixmap
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QImage, QMouseEvent, QPixmap, QResizeEvent
 from PySide6.QtWidgets import QLabel
 
 from ui.widgets.image_viewer import ImageViewer
-
-from ..utilities.rounded_pixmap import rounded_pixmap
 
 
 class ImageLabel(QLabel):

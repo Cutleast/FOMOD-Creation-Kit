@@ -6,12 +6,12 @@ from abc import abstractmethod
 from pathlib import Path
 from typing import Callable, Optional, Sequence
 
+from cutleast_core_lib.ui.widgets.smooth_scroll_area import SmoothScrollArea
 from pydantic_xml import BaseXmlModel
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 from core.fomod.fomod import Fomod
-from ui.widgets.smooth_scroll_area import SmoothScrollArea
 
 type FlagNamesSupplier = Callable[[], list[str]]
 """

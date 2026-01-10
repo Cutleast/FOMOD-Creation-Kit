@@ -6,6 +6,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Optional, Sequence, override
 
+from cutleast_core_lib.ui.widgets.section_area_widget import SectionAreaWidget
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
     QApplication,
@@ -29,7 +30,6 @@ from core.fomod_editor.exceptions import (
     SpecificEmptyError,
     SpecificValidationError,
 )
-from ui.widgets.section_area_widget import SectionAreaWidget
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget

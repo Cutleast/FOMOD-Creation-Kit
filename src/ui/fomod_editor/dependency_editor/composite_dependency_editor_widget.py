@@ -4,14 +4,14 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
+from cutleast_core_lib.ui.widgets.help_label import HelpLabel
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QHBoxLayout, QLabel
 
 from core.fomod.module_config.dependency.composite_dependency import (
     CompositeDependency,
 )
-from ui.widgets.enum_radiobutton_widget import EnumRadiobuttonsWidget
-from ui.widgets.help_label import HelpLabel
 
 from ..base_editor_widget import BaseEditorWidget
 from .dependency_group_editor_widget import DependencyGroupEditorWidget

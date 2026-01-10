@@ -6,7 +6,15 @@ from collections.abc import Sequence
 from copy import deepcopy
 from typing import Optional, override
 
-import qtawesome as qta
+from cutleast_core_lib.core.utilities.filter import matches_filter
+from cutleast_core_lib.core.utilities.reference_dict import ReferenceDict
+from cutleast_core_lib.core.utilities.reverse_dict import reverse_dict
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.utilities.tree_widget import (
+    get_item_text,
+    iter_toplevel_items,
+)
+from cutleast_core_lib.ui.widgets.search_bar import SearchBar
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QAction, QCursor, QDropEvent, QShortcut
 from PySide6.QtWidgets import (
@@ -18,13 +26,6 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
-
-from core.utilities.filter import matches_filter
-from core.utilities.reference_dict import ReferenceDict
-from core.utilities.reverse_dict import reverse_dict
-from ui.utilities.tree_widget import get_item_text, iter_toplevel_items
-
-from .search_bar import SearchBar
 
 
 class TreeWidgetEditor[T: object](QWidget):
@@ -68,7 +69,7 @@ class TreeWidgetEditor[T: object](QWidget):
 
         def __init_ui(self) -> None:
             duplicate_action: QAction = self.addAction(
-                qta.icon("fa6s.clone", color=self.palette().text().color()),
+                IconProvider.get_qta_icon("fa6s.clone"),
                 self.tr("Duplicate item"),
             )
             duplicate_action.setShortcut("Ctrl+D")
@@ -152,25 +153,16 @@ class TreeWidgetEditor[T: object](QWidget):
         self._vlayout.addLayout(hlayout)
 
         tool_bar = QToolBar()
-        tool_bar.setFixedWidth(140)
+        tool_bar.setFixedWidth(132)
         hlayout.addWidget(tool_bar)
 
         add_action: QAction = tool_bar.addAction(
-            qta.icon(
-                "mdi6.plus",
-                color=self.palette().text().color(),
-                color_disabled="#666666",
-            ),
-            self.tr("Add new item..."),
+            IconProvider.get_qta_icon("mdi6.plus"), self.tr("Add new item...")
         )
         add_action.triggered.connect(self.onAdd.emit)
 
         self._remove_action = tool_bar.addAction(
-            qta.icon(
-                "mdi6.minus",
-                color=self.palette().text().color(),
-                color_disabled="#666666",
-            ),
+            IconProvider.get_qta_icon("mdi6.minus"),
             self.tr("Remove selected item(s)...") + " (" + self.tr("Del") + ")",
         )
         self._remove_action.setDisabled(True)
@@ -178,11 +170,7 @@ class TreeWidgetEditor[T: object](QWidget):
         self._remove_action.triggered.connect(self.__remove_selected_items)
 
         self._edit_action = tool_bar.addAction(
-            qta.icon(
-                "mdi6.pencil",
-                color=self.palette().text().color(),
-                color_disabled="#666666",
-            ),
+            IconProvider.get_qta_icon("mdi6.pencil"),
             self.tr("Edit selected item...") + " (" + self.tr("Double click") + ")",
         )
         self._edit_action.setDisabled(True)

@@ -5,7 +5,9 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional, override
 
-import qtawesome as qta
+from cutleast_core_lib.core.utilities.exception_handler import ExceptionHandler
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QApplication, QFormLayout, QLineEdit, QTabWidget
 
@@ -22,8 +24,6 @@ from core.fomod_editor.exceptions import (
     NameIsMissingError,
     SpecificEmptyError,
 )
-from core.utilities.exception_handler import ExceptionHandler
-from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
@@ -105,7 +105,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
 
     def __init_header(self) -> None:
         self.__image_label = ImageLabel(
-            qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
+            IconProvider.get_qta_icon("mdi6.image-off-outline", color="#666666").pixmap(
                 PluginEditorWidget.IMAGE_HEIGHT, PluginEditorWidget.IMAGE_HEIGHT
             ),
             round_pixmap=True,
@@ -190,7 +190,9 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
             self.__image_label.setPixmap(QPixmap(str(image_path)))
         else:
             self.__image_label.setPixmap(
-                qta.icon("mdi6.image-off-outline", color="#666666").pixmap(
+                IconProvider.get_qta_icon(
+                    "mdi6.image-off-outline", color="#666666"
+                ).pixmap(
                     PluginEditorWidget.IMAGE_HEIGHT, PluginEditorWidget.IMAGE_HEIGHT
                 )
             )

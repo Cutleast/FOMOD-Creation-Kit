@@ -8,17 +8,9 @@ authors = [{ name = "Cutleast", email = "cutleast@gmail.com" }]
 license = { file = "LICENSE" }
 dependencies = [
     "chardet",
-    "comtypes",
-    "darkdetect",
-    "jstyleson",
+    "cutleast-core-lib",
     "lxml",
-    "pydantic",
     "pydantic-xml",
-    "pyside6",
-    "pywin32",
-    "qtawesome",
-    "requests",
-    "semantic-version",
     "send2trash",
 ]
 
@@ -33,6 +25,14 @@ dev = [
     "ruff",
     "types-lxml",
 ]
+
+[tool.uv.workspace]
+members = [
+    "core-lib",
+]
+
+[tool.uv.sources]
+cutleast-core-lib = { workspace = true, editable = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

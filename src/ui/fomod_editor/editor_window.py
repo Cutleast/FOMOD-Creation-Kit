@@ -16,8 +16,8 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from app_context import AppContext
 from core.fomod_editor.exceptions import ValidationError
+from ui.utilities.theme_manager import ThemeManager
 
 from .base_editor_widget import BaseEditorWidget
 
@@ -153,7 +153,7 @@ class EditorWindow[T: BaseEditorWidget](QWidget):
                 save_button.setText(self.tr("Save and close"))
 
             # Reapply stylesheet as setObjectName() doesn't update the style by itself
-            message_box.setStyleSheet(AppContext.get_app().styleSheet())
+            message_box.setStyleSheet(ThemeManager.get_stylesheet() or "")
 
             match message_box.exec():
                 case QMessageBox.StandardButton.Discard:

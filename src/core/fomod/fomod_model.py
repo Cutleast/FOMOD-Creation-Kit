@@ -11,7 +11,6 @@ import chardet
 from lxml import etree
 from pydantic_xml import BaseXmlModel
 
-from core.utilities.cache import cache
 from core.utilities.xml import XML_DECLARATION_PATTERN, validate_against_schema
 
 INFO_COMMENT: str = "<!-- Created with FOMOD Creation Kit by Cutleast: https://www.nexusmods.com/site/mods/1366 -->\n"
@@ -61,7 +60,6 @@ class FomodModel(BaseXmlModel):
         return cls.from_xml(raw_xml)
 
     @classmethod
-    @cache
     def __get_logger(cls) -> logging.Logger:
         return logging.getLogger(cls.__name__)
 

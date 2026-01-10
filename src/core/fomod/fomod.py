@@ -9,9 +9,8 @@ import shutil
 from pathlib import Path
 from typing import Optional, override
 
+from cutleast_core_lib.ui.widgets.loading_dialog import LoadingDialog
 from lxml import etree
-
-from ui.widgets.loading_dialog import LoadingDialog
 
 from .exceptions import NotAFomodError, XmlValidationError
 from .fomod_info import FomodInfo

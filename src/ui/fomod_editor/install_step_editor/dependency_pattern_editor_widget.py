@@ -4,11 +4,11 @@ Copyright (c) Cutleast
 
 from typing import override
 
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
 from PySide6.QtWidgets import QApplication
 
 from core.fomod.module_config.dependency.dependency_pattern import DependencyPattern
 from core.fomod.module_config.plugin.plugin_type import PluginType
-from ui.widgets.enum_dropdown import EnumDropdown
 
 from ..base_editor_widget import BaseEditorWidget
 from ..dependency_editor.composite_dependency_editor_widget import (

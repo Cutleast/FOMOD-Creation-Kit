@@ -2,7 +2,7 @@
 Copyright (c) Cutleast
 """
 
-from core.utilities.reference_dict import ReferenceDict
+from cutleast_core_lib.core.utilities.reference_dict import ReferenceDict
 
 from .base_editor_widget import BaseEditorWidget, FomodItem
 from .editor_window import EditorWindow

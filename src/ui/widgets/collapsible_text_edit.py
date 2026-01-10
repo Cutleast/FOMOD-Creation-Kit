@@ -4,7 +4,7 @@ Copyright (c) Cutleast
 
 from typing import Optional, override
 
-import qtawesome as qta
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QIcon, QResizeEvent
 from PySide6.QtWidgets import QPlainTextEdit, QPushButton, QSizePolicy, QWidget
@@ -33,12 +33,8 @@ class CollapsibleTextEdit(QPlainTextEdit):
     def __init__(self, parent: Optional[QWidget] = None) -> None:
         super().__init__(parent)
 
-        self.__expand_icon = qta.icon(
-            "mdi6.chevron-down", color=self.palette().text().color(), scale_factor=1.2
-        )
-        self.__collapse_icon = qta.icon(
-            "mdi6.chevron-up", color=self.palette().text().color(), scale_factor=1.2
-        )
+        self.__expand_icon = IconProvider.get_icon("arrow_down")
+        self.__collapse_icon = IconProvider.get_icon("arrow_up")
 
         self.__init_ui()
 

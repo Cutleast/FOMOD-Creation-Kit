@@ -5,7 +5,7 @@ Copyright (c) Cutleast
 import webbrowser
 from typing import Any, Optional
 
-import qtawesome as qta
+from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QHBoxLayout, QLineEdit, QPushButton
 
@@ -28,14 +28,7 @@ class UrlEdit(QLineEdit):
 
         self.__open_url_button = QPushButton()
         self.__open_url_button.setToolTip(self.tr("Open URL in default browser..."))
-        self.__open_url_button.setIcon(
-            qta.icon(
-                "mdi6.open-in-new",
-                color=self.palette().text().color(),
-                color_disabled="#666666",
-                scale_factor=1.3,
-            )
-        )
+        self.__open_url_button.setIcon(IconProvider.get_qta_icon("mdi6.open-in-new"))
         self.__open_url_button.clicked.connect(self.__open_url)
         self.__open_url_button.setCursor(Qt.CursorShape.ArrowCursor)
         self.__open_url_button.setEnabled(bool(self.text().strip()))

@@ -1,0 +1,79 @@
+/* Headings */
+#h1,
+#h2,
+#h3,
+#title {
+    font-family: 'Outfit';
+    font-weight: 300;
+}
+
+/* Validation status */
+#status_label {
+    color: #d44444;
+    font-style: bold;
+}
+#status_banner {
+    background-color: #d44444;
+    padding: 7px;
+    border-radius: 5px;
+}
+
+/* Toolbar */
+QToolBar {
+    padding: 0px;
+}
+QToolBar,
+QToolBar:disabled,
+QToolBar > QToolButton:disabled {
+    background-color: @primary_bg_color;
+}
+QToolBar > QToolButton {
+    margin: 2px;
+    border-radius: 8px;
+}
+QToolBar > QToolButton:disabled {
+    border-color: @primary_bg_color;
+}
+
+/* Main Statusbar */
+QStatusBar {
+    background-color: @primary_bg_color;
+    border: 0px;
+    border-radius: 0px;
+}
+
+QStatusBar QAbstractButton {
+    background-color: @primary_bg_color;
+}
+
+/* Collapsible text edit */
+CollapsibleTextEdit {
+    padding-right: 40px;
+    padding-top: 3px;
+}
+CollapsibleTextEdit[expanded=false]:focus {
+    border-bottom-color: @primary_accent_color;
+}
+CollapsibleTextEdit QPushButton#toggle_button {
+    border-color: transparent;
+}
+
+/* Auto complete combobox */
+QAbstractItemView#completer_popup {
+    background-color: @popup_bg_color;
+    color: @popup_fg_color;
+    border: 1px solid @highlighted_bg_color;
+    border-radius: 8px;
+    padding: 4px;
+}
+QAbstractItemView#completer_popup::item {
+    background-color: @popup_bg_color;
+    border-radius: 4px;
+    margin: 2px;
+    padding: 4px;
+}
+QAbstractItemView#completer_popup::item:selected,
+QAbstractItemView#completer_popup::item:hover {
+    background-color: @hover_bg_color;
+    color: @primary_fg_color;
+}

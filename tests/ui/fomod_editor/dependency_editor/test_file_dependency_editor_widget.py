@@ -3,20 +3,20 @@ Copyright (c) Cutleast
 """
 
 import pytest
+from cutleast_core_lib.ui.widgets.enum_dropdown import EnumDropdown
 from PySide6.QtWidgets import QLineEdit
 from pytestqt.qtbot import QtBot
 
 from core.fomod.module_config.dependency.file_dependency import FileDependency
 from core.fomod_editor.exceptions import FileNameIsMissingError
-from tests.ui.ui_test import UiTest
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.dependency_editor.file_dependency_editor_widget import (
     FileDependencyEditorWidget,
 )
-from ui.widgets.enum_dropdown import EnumDropdown
 
 
-class TestFileDependencyEditorWidget(UiTest):
+class TestFileDependencyEditorWidget(BaseTest):
     """
     Tests `ui.fomod_editor.dependency_editor.file_dependency_editor_widget.FileDependencyEditorWidget`.
     """

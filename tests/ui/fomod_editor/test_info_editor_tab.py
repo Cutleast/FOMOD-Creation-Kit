@@ -5,6 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 
 import pytest
+from cutleast_core_lib.ui.widgets.browse_edit import BrowseLineEdit
 from pyfakefs.fake_filesystem import FakeFilesystem
 from PySide6.QtWidgets import QLineEdit
 from pytestqt.qtbot import QtBot
@@ -15,17 +16,15 @@ from core.fomod_editor.exceptions import (
     ImageTypeNotSupportedError,
     NameIsMissingError,
 )
+from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.fomod_editor.info_editor_tab import InfoEditorTab
-from ui.widgets.browse_edit import BrowseLineEdit
 from ui.widgets.collapsible_text_edit import CollapsibleTextEdit
 from ui.widgets.image_label import ImageLabel
 from ui.widgets.url_edit import UrlEdit
 
-from ..ui_test import UiTest
 
-
-class TestInfoEditorTab(UiTest):
+class TestInfoEditorTab(BaseTest):
     """
     Tests `ui.fomod_editor.info_editor_tab.InfoEditorTab`.
     """
