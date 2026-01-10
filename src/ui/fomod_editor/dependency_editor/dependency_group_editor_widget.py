@@ -23,7 +23,8 @@ from core.fomod_editor.exceptions import EmptyError, SpecificValidationError
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
-from ..editor_dialog import EditorDialog
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from .file_dependency_editor_widget import FileDependencyEditorWidget
 from .flag_dependency_editor_widget import FlagDependencyEditorWidget
 
@@ -115,25 +116,29 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __add_file_dependency(self) -> None:
         file_dependency = FileDependency(file="", state=FileDependency.State.Active)
-        dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(
-                file_dependency, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[FileDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                FileDependencyEditorWidget(
+                    file_dependency, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__files_tree_widget_editor.addItem(file_dependency)
+        window.saved.connect(
+            lambda: self.__files_tree_widget_editor.addItem(file_dependency)
+        )
+        window.show_and_activate()
 
     def __edit_file_dependency(self, item: FileDependency) -> None:
-        dialog: EditorDialog[FileDependencyEditorWidget] = EditorDialog(
-            FileDependencyEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[FileDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                FileDependencyEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__files_tree_widget_editor.updateItem(item)
+        window.saved.connect(lambda: self.__files_tree_widget_editor.updateItem(item))
+        window.show_and_activate()
 
     def __init_flags_tab(self) -> None:
         self.__flags_tree_widget_editor = TreeWidgetEditor(
@@ -143,25 +148,29 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
     def __add_flag_dependency(self) -> None:
         flag_dependency = FlagDependency(flag="", value="")
-        dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(
-                flag_dependency, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[FlagDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                FlagDependencyEditorWidget(
+                    flag_dependency, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__flags_tree_widget_editor.addItem(flag_dependency)
+        window.saved.connect(
+            lambda: self.__flags_tree_widget_editor.addItem(flag_dependency)
+        )
+        window.show_and_activate()
 
     def __edit_flag_dependency(self, item: FlagDependency) -> None:
-        dialog: EditorDialog[FlagDependencyEditorWidget] = EditorDialog(
-            FlagDependencyEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[FlagDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                FlagDependencyEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__flags_tree_widget_editor.updateItem(item)
+        window.saved.connect(lambda: self.__flags_tree_widget_editor.updateItem(item))
+        window.show_and_activate()
 
     def __init_versions_tab(self) -> None:
         versions_tab_widget = QWidget()
@@ -227,27 +236,33 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
         dependency = CompositeDependency()
-        dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(
-                dependency, self._fomod_path, self._flag_names_supplier
-            ),
-            validate_on_init=True,
+        window: EditorWindow[CompositeDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                CompositeDependencyEditorWidget(
+                    dependency, self._fomod_path, self._flag_names_supplier
+                ),
+                validate_on_init=True,
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__dependencies_tree_widget_editor.addItem(dependency)
+        window.saved.connect(
+            lambda: self.__dependencies_tree_widget_editor.addItem(dependency)
+        )
+        window.show_and_activate()
 
     def __edit_dependency(self, item: CompositeDependency) -> None:
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
-        dialog: EditorDialog[CompositeDependencyEditorWidget] = EditorDialog(
-            CompositeDependencyEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier
-            )
+        window: EditorWindow[CompositeDependencyEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                CompositeDependencyEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier
+                )
+            )[0]
         )
-
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__dependencies_tree_widget_editor.updateItem(item)
+        window.saved.connect(
+            lambda: self.__dependencies_tree_widget_editor.updateItem(item)
+        )
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:
@@ -301,3 +316,26 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__files_tree_widget_editor.setItems(self._item.file_dependencies)
+        self.__flags_tree_widget_editor.setItems(self._item.flag_dependencies)
+
+        if self._item.game_dependency is not None:
+            self.__game_version_checkbox.setChecked(True)
+            self.__game_version_entry.setText(self._item.game_dependency.version)
+        else:
+            self.__game_version_checkbox.setChecked(False)
+            self.__game_version_entry.setText("")
+
+        if self._item.fomm_dependency is not None:
+            self.__fomm_version_checkbox.setChecked(True)
+            self.__fomm_version_entry.setText(self._item.fomm_dependency.version)
+        else:
+            self.__fomm_version_checkbox.setChecked(False)
+            self.__fomm_version_entry.setText("")
+
+        self.__dependencies_tree_widget_editor.setItems(self._item.dependencies)
+
+        self.discarded.emit()

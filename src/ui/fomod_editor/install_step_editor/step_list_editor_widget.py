@@ -14,7 +14,8 @@ from core.fomod_editor.exceptions import SpecificEmptyError
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
 
 from ..base_editor_widget import BaseEditorWidget
-from ..editor_dialog import EditorDialog
+from ..editor_window import EditorWindow
+from ..editor_window_service import EditorWindowService
 from .install_step_editor_widget import InstallStepEditorWidget
 from .install_step_preview_widget import InstallStepPreviewWidget
 
@@ -93,26 +94,30 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
 
     def __add_install_step(self) -> None:
         item = InstallStep.create()
-        dialog: EditorDialog[InstallStepEditorWidget] = EditorDialog(
-            InstallStepEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier, scrollable=False
-            ),
-            validate_on_init=True,
+        window: EditorWindow[InstallStepEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                InstallStepEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier, scrollable=False
+                ),
+                validate_on_init=True,
+            )[0]
         )
 
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__steps_tree_widget.addItem(item)
+        window.saved.connect(lambda: self.__steps_tree_widget.addItem(item))
+        window.show_and_activate()
 
     def __edit_install_step(self, item: InstallStep) -> None:
-        dialog: EditorDialog[InstallStepEditorWidget] = EditorDialog(
-            InstallStepEditorWidget(
-                item, self._fomod_path, self._flag_names_supplier, scrollable=False
-            )
+        window: EditorWindow[InstallStepEditorWidget] = (
+            EditorWindowService.provide_editor_window(
+                InstallStepEditorWidget(
+                    item, self._fomod_path, self._flag_names_supplier, scrollable=False
+                )
+            )[0]
         )
 
-        if dialog.exec() == EditorDialog.DialogCode.Accepted:
-            self.__steps_tree_widget.updateItem(item)
-            self.__install_step_preview_widget.set_item(item)
+        window.saved.connect(lambda: self.__steps_tree_widget.updateItem(item))
+        window.saved.connect(lambda: self.__install_step_preview_widget.set_item(item))
+        window.show_and_activate()
 
     @override
     def validate(self) -> None:
@@ -128,3 +133,8 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__steps_tree_widget.setItems(self._item.install_steps)
+        self.discarded.emit()

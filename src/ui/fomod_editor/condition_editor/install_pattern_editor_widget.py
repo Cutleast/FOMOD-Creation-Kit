@@ -70,3 +70,10 @@ class InstallPatternEditorWidget(BaseEditorWidget[ConditionalInstallPattern]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__dependency_editor_widget.discard()
+        self.__file_list_editor_widget.discard()
+
+        self.discarded.emit()

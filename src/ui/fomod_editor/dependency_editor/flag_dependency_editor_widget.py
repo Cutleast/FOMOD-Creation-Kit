@@ -75,3 +75,10 @@ class FlagDependencyEditorWidget(BaseEditorWidget[FlagDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setCurrentText(self._item.flag)
+        self.__value_entry.setText(self._item.value)
+
+        self.discarded.emit()

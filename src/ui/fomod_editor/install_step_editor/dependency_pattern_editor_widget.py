@@ -81,3 +81,10 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__type_dropdown.setCurrentValue(self._item.type.name)
+        self.__composite_dependency_editor.discard()
+
+        self.discarded.emit()

@@ -18,10 +18,11 @@ type FlagNamesSupplier = Callable[[], list[str]]
 A function that returns an up-to-date list of all flag names from the current FOMOD.
 """
 
+type FomodItem = Fomod | BaseXmlModel | Sequence[BaseXmlModel]
+"""Type alias for FOMOD items."""
 
-class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
-    SmoothScrollArea
-):
+
+class BaseEditorWidget[T: FomodItem](SmoothScrollArea):
     """
     Base class for all FOMOD editor widgets.
     """
@@ -36,6 +37,9 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
     Args:
         T: The saved item
     """
+
+    discarded = Signal()
+    """Signal emitted when the changes were discarded."""
 
     _item: T
     _fomod_path: Optional[Path]
@@ -165,6 +169,12 @@ class BaseEditorWidget[T: Fomod | BaseXmlModel | Sequence[BaseXmlModel]](
 
         Raises:
             ValidationError: If the item is invalid.
+        """
+
+    @abstractmethod
+    def discard(self) -> None:
+        """
+        Discards all changes to the current item and resets the editor.
         """
 
     def get_item(self) -> T:

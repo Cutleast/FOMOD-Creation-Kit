@@ -192,3 +192,26 @@ class InfoEditorTab(BaseEditorWidget[Fomod]):
 
             if image_path.suffix.lower() not in SUPPORTED_IMAGE_TYPES:
                 raise ImageTypeNotSupportedError(image_path.suffix)
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setText(self._item.name)
+        self.__author_entry.setText(self._item.info.author)
+        self.__version_entry.setText(
+            self._item.info.version.version
+            if self._item.info.version is not None
+            else ""
+        )
+        self.__website_entry.setText(self._item.info.website)
+        self.__description_entry.setPlainText(self._item.info.description)
+
+        if (
+            self._item.module_config.module_image is not None
+            and self._item.module_config.module_image.path is not None
+            and self._item.path is not None
+        ):
+            self.__image_path_entry.setPath(self._item.module_config.module_image.path)
+        else:
+            self.__image_path_entry.setText("")
+
+        self.discarded.emit()
