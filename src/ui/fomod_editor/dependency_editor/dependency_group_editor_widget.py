@@ -301,3 +301,26 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__files_tree_widget_editor.setItems(self._item.file_dependencies)
+        self.__flags_tree_widget_editor.setItems(self._item.flag_dependencies)
+
+        if self._item.game_dependency is not None:
+            self.__game_version_checkbox.setChecked(True)
+            self.__game_version_entry.setText(self._item.game_dependency.version)
+        else:
+            self.__game_version_checkbox.setChecked(False)
+            self.__game_version_entry.setText("")
+
+        if self._item.fomm_dependency is not None:
+            self.__fomm_version_checkbox.setChecked(True)
+            self.__fomm_version_entry.setText(self._item.fomm_dependency.version)
+        else:
+            self.__fomm_version_checkbox.setChecked(False)
+            self.__fomm_version_entry.setText("")
+
+        self.__dependencies_tree_widget_editor.setItems(self._item.dependencies)
+
+        self.discarded.emit()

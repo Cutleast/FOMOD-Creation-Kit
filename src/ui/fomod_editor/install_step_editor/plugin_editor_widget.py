@@ -278,3 +278,22 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setText(self._item.name)
+        self.__description_entry.setPlainText(self._item.description)
+
+        if self._item.image is not None:
+            self.__image_path_entry.setText(str(self._item.image.path))
+
+        self.__file_list_editor_widget.discard()
+
+        if self._item.condition_flags is not None:
+            self.__condition_flags_tree_widget.setItems(
+                self._item.condition_flags.flags
+            )
+
+        self.__type_descriptor_editor_widget.discard()
+
+        self.discarded.emit()

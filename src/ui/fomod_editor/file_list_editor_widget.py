@@ -141,3 +141,8 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__tree_widget.setItems(self._item.files + self._item.folders)
+        self.discarded.emit()

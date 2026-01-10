@@ -187,3 +187,18 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__static_type_selector.setCurrentIndex(0)
+        self.__dynamic_type_editor.discard()
+
+        if (
+            self.__descriptor_type_selector.getCurrentValue()
+            == TypeDescriptorEditorWidget.DescriptorType.Static
+        ):
+            self.__stack_widget.setCurrentIndex(0)
+        else:
+            self.__stack_widget.setCurrentIndex(1)
+
+        self.discarded.emit()

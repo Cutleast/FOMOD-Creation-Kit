@@ -75,3 +75,10 @@ class SetConditionFlagEditorWidget(BaseEditorWidget[SetConditionFlag]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setCurrentText(self._item.name)
+        self.__value_entry.setText(self._item.value)
+
+        self.discarded.emit()

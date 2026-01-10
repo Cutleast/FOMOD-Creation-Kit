@@ -387,3 +387,11 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setText(self._item.name)
+        self.__visibility_editor_widget.discard()
+        self.__groups_tree_widget.setItems(self._item.optional_file_groups.groups)
+
+        self.discarded.emit()

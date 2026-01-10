@@ -77,3 +77,10 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__name_entry.setText(self._item.name)
+        self.__type_dropdown.setCurrentValue(self._item.type)
+
+        self.discarded.emit()

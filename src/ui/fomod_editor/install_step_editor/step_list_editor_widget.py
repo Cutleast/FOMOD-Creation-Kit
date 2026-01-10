@@ -128,3 +128,8 @@ class StepListEditorWidget(BaseEditorWidget[StepList]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__steps_tree_widget.setItems(self._item.install_steps)
+        self.discarded.emit()

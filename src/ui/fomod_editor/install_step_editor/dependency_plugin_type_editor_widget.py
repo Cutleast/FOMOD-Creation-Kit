@@ -157,3 +157,10 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__default_type_selector.setCurrentValue(self._item.default_type.name)
+        self.__pattern_tree_widget.setItems(self._item.patterns.patterns)
+
+        self.discarded.emit()

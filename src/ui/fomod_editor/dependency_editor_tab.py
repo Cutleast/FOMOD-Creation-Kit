@@ -69,3 +69,8 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__editor_widget.discard()
+        self.discarded.emit()

@@ -100,3 +100,10 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__operator_selector.setCurrentValue(self._item.operator)
+        self.__dependency_group_editor_widget.discard()
+
+        self.discarded.emit()

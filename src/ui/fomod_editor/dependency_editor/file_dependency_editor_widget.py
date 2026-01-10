@@ -94,3 +94,10 @@ class FileDependencyEditorWidget(BaseEditorWidget[FileDependency]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__file_name_entry.setText(self._item.file)
+        self.__state_dropdown.setCurrentValue(self._item.state)
+
+        self.discarded.emit()

@@ -239,3 +239,27 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
 
         self.saved.emit(self._item)
         return self._item
+
+    @override
+    def discard(self) -> None:
+        self.__type_selector.setCurrentValue(
+            FsItemEditorWidget.ItemType.File
+            if isinstance(self._item, FileItem)
+            else FsItemEditorWidget.ItemType.Folder
+        )
+
+        if self._item.source != Path("__default__"):
+            self.__source_entry.setPath(self._item.source)
+        else:
+            self.__source_entry.setText("")
+
+        if self._item.destination is not None:
+            self.__destination_entry.setText(str(self._item.destination))
+        else:
+            self.__destination_entry.setText("")
+
+        self.__always_install_checkbox.setChecked(self._item.always_install)
+        self.__install_if_usable_checkbox.setChecked(self._item.install_if_usable)
+        self.__priority_entry.setValue(self._item.priority)
+
+        self.discarded.emit()
