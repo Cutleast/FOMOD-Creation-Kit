@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (
 from core.fomod.module_config.dependency.composite_dependency import CompositeDependency
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep
+from core.fomod.module_config.install_step.order import Order
 from core.fomod.module_config.install_step.visible import Visible
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
@@ -354,6 +355,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         current_group: Optional[Group] = self.__groups_tree_widget.getCurrentItem()
         if current_group is not None:
             current_group.plugins.plugins = self.__plugins_tree_widget.getItems()
+            current_group.plugins.order = Order.Explicit
 
         self.changed.emit()
 
@@ -395,6 +397,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
             self._item.visible = None
 
         self._item.optional_file_groups.groups = self.__groups_tree_widget.getItems()
+        self._item.optional_file_groups.order = Order.Explicit
 
         self.saved.emit(self._item)
         return self._item
