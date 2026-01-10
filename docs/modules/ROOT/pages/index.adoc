@@ -1,0 +1,80 @@
+= Introduction
+
+image::header_transparent.png[]
+
+[.text-center]
+image:get_it_on_nexus_mods.png[width=193,height=60,link=https://www.nexusmods.com/site/mods/1366]
+image:view_source_code_on_github.png[width=193,height=60,link=https://github.com/Cutleast/FOMOD-Creation-Kit]
+image:support_me_on_kofi.png[width=193,height=60,link=https://ko-fi.com/Cutleast]
+
+== Description
+
+An intuitive yet advanced tool for editing and creating FOMOD installers. The entire tool is designed to be self-explanatory with small info texts placed everywhere making the creation and editing of FOMOD installers accessible for beginners that are looking for a nice way to package their mods.
+Advanced users already familiar with the FOMOD specification will find that this tool supports every single feature the specification has to offer.
+
+== Features
+
+=== Automated file and folder management
+
+* Enables you to select files from all over your computer and add them to the FOMOD.
+* When the FOMOD is saved, all those files get automatically copied to the FOMOD's location and the paths are made relative so that the entire package is ready to be packed and distributed.
+* Manual file and folder management is still possible as this only affects files that are outside of the FOMOD's parent folder.
+* Enabled by default but can be disabled in _File_ > _Settings_ > _Finalize on save (recommended)_.
+
+.A finalized FOMOD could look like this:
+[%collapsible]
+====
+  fomod/
+  ├─ ModuleConfig.xml
+  ├─ info.xml
+  ├─ ModuleImage/
+  │  └─ example.png
+  ├─ images/
+  │  └─ Example Install Step/
+  │     └─ Example Group/
+  │        └─ Example Plugin/
+  │           └─ example.jpg
+  └─ files/
+      ├─ install_steps/
+      │  └─ Example Install Step/
+      │     └─ Example Group/
+      │        └─ Example Plugin/
+      │           └─ example.esl
+      ├─ required_install_files/
+      │   ├─ interface/
+      │   │  └─ translations/
+      │   │     └─ example_english.txt
+      │   └─ example.esp
+      ├─ conditional_install_files.0/
+      │   └─ example_patch.esp
+      └─ conditional_install_files.1/
+          └─ interface/
+              └─ translations/
+                  └─ example_german.txt
+====
+
+=== Optional automatic validation against the FOMOD XML schema
+
+* All FOMODs can be automatically validated against the FOMOD XML schema ensuring compatibility with all common mod managers.
+* Disabled by default but can be enabled in _File_ > _Settings_ > _Validate XML files on save_.
+
+=== Modern and native UI based on Qt 6
+
+You can now create and edit FOMODs without burning your eyes ;)
+
+==== Screenshots
+
+image::UI_Light_Dark_1080p.png[]
+
+image::UI_StepListEditorTab_annotated_affinity.png[]
+
+image::UI_InstallStepEditorWidget_annotated.png[]
+
+== About this documentation
+
+This documentation is meant to give you all information you need to efficiently create and edit FOMOD installers.
+
+* If you encountered an unfamiliar term in this documentation, read xref:glossary.adoc[].
+* If you have a question, read xref:faqs.adoc[].
+
+TIP: If you have further questions regarding the FOMOD Creation Kit or this documentation, please do not hesitate to ask them on the link:https://discord.gg/pqEHdWDf8z[Official Modding Forge Discord server].

@@ -1,0 +1,5 @@
+name: fck
+title: FOMOD Creation Kit
+version: ~
+nav:
+  - modules/ROOT/nav.adoc
