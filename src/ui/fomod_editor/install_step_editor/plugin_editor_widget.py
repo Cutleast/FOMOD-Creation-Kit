@@ -154,9 +154,12 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         tab_widget.addTab(self.__file_list_editor_widget, self.tr("Files"))
 
         self.__condition_flags_tree_widget = TreeWidgetEditor(
-            self._item.condition_flags.flags
-            if self._item.condition_flags is not None
-            else []
+            SetConditionFlag,
+            (
+                self._item.condition_flags.flags
+                if self._item.condition_flags is not None
+                else []
+            ),
         )
         tab_widget.addTab(
             self.__condition_flags_tree_widget, self.tr("Condition Flags")
