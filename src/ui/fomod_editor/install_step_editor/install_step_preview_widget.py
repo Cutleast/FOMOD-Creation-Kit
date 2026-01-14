@@ -185,8 +185,8 @@ class InstallStepPreviewWidget(SmoothScrollArea):
         self.__title_label.setText(item.name)
         self.__visible_when_label.setVisible(item.visible is not None)
         self.__visibility_label.setText(
-            str(item.visible.dependencies)
-            if item.visible is not None
+            str(item.visible)
+            if item.visible is not None and not item.visible.is_empty()
             else self.tr("Always visible")
         )
         self.__visibility_label.setVisible(item.visible is not None)

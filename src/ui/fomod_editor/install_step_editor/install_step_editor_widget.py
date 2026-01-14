@@ -23,7 +23,6 @@ from core.fomod.module_config.dependency.composite_dependency import CompositeDe
 from core.fomod.module_config.install_step.group import Group
 from core.fomod.module_config.install_step.install_step import InstallStep
 from core.fomod.module_config.install_step.order import Order
-from core.fomod.module_config.install_step.visible import Visible
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod_editor.exceptions import (
     EmptyError,
@@ -212,13 +211,13 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         visibility_group_box.setLayout(vlayout)
 
         self.__visibility_label = QLabel(
-            str(self._item.visible.dependencies)
-            if self._item.visible is not None
+            str(self._item.visible)
+            if self._item.visible is not None and not self._item.visible.is_empty()
             else self.tr("Always visible")
         )
 
         self.__visibility_editor_widget = CompositeDependencyEditorWidget(
-            deepcopy(self._item.visible.dependencies)
+            deepcopy(self._item.visible)
             if self._item.visible is not None
             else CompositeDependency(),
             self._fomod_path,
@@ -392,7 +391,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
         self._item.name = self.__name_entry.text().strip()
 
         if not (visibility := self.__visibility_editor_widget.save()).is_empty():
-            self._item.visible = Visible(dependencies=visibility)
+            self._item.visible = visibility
         else:
             self._item.visible = None
 
