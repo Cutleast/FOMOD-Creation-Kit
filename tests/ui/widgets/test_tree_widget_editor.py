@@ -2,19 +2,21 @@
 Copyright (c) Cutleast
 """
 
-from typing import Callable
+from typing import Callable, Generator
 
 import pytest
 from cutleast_core_lib.core.utilities.reference_dict import ReferenceDict
-from cutleast_core_lib.test.setup.clipboard_mock import ClipboardMock
 from pydantic import BaseModel
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QTreeWidgetItem
 from pytestqt.qtbot import QtBot
 
+from core.utilities.clipboard import Clipboard
 from tests.base_test import BaseTest
 from tests.utils import Utils
 from ui.widgets.tree_widget_editor import TreeWidgetEditor
+
+from .._setup.clipboard import ClipboardMock
 
 
 class TestTreeWidgetEditor(BaseTest):
@@ -54,6 +56,19 @@ class TestTreeWidgetEditor(BaseTest):
         )
         qtbot.addWidget(tree_widget_editor)
         return tree_widget_editor
+
+    @pytest.fixture
+    def clipboard(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> Generator[ClipboardMock, None, None]:
+        clipboard_mock = ClipboardMock()
+
+        monkeypatch.setattr(
+            "PySide6.QtWidgets.QApplication.clipboard",
+            lambda: clipboard_mock,
+        )
+
+        yield clipboard_mock
 
     def test_initial_state(self, widget: TreeWidgetEditor[SampleObject]) -> None:
         """
@@ -98,7 +113,7 @@ class TestTreeWidgetEditor(BaseTest):
         cut_method()
 
         # then
-        assert clipboard.paste() == '{"name":"item","value":"value"}'
+        assert Clipboard.paste(TestTreeWidgetEditor.SampleObject) == item
         assert widget.getItems() == []
 
     def test_copy_item(
@@ -122,7 +137,7 @@ class TestTreeWidgetEditor(BaseTest):
         copy_method()
 
         # then
-        assert clipboard.paste() == '{"name":"item","value":"value"}'
+        assert Clipboard.paste(TestTreeWidgetEditor.SampleObject) == item
 
     def test_paste_item(
         self, widget: TreeWidgetEditor[SampleObject], clipboard: ClipboardMock
@@ -132,22 +147,22 @@ class TestTreeWidgetEditor(BaseTest):
         """
 
         # given
-        json_data: str = '{"name":"item","value":"value"}'
+        item: TestTreeWidgetEditor.SampleObject = TestTreeWidgetEditor.SampleObject(
+            name="item", value="value"
+        )
         paste_method: Callable[[], None] = Utils.get_private_method(
             widget, "paste_item", lambda: None
         )
-        clipboard.copy(json_data)
+        Clipboard.copy(item)
 
         # when
         paste_method()
 
         # then
-        assert widget.getItems() == [
-            TestTreeWidgetEditor.SampleObject(name="item", value="value")
-        ]
+        assert widget.getItems() == [item]
 
         # given
-        clipboard.copy("")
+        clipboard.setText("")
 
         # when (test that it doesn't raise an error)
         paste_method()
