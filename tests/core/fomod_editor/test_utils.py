@@ -27,7 +27,6 @@ from core.fomod.module_config.dependency.flag_dependency import FlagDependency
 from core.fomod.module_config.file_system.file_list import FileList
 from core.fomod.module_config.install_step.install_step import InstallStep
 from core.fomod.module_config.install_step.step_list import StepList
-from core.fomod.module_config.install_step.visible import Visible
 from core.fomod.module_config.plugin.plugin import Plugin
 from core.fomod.module_config.plugin.plugin_type import PluginType
 from core.fomod.module_config.plugin.plugin_type_descriptor import PluginTypeDescriptor
@@ -63,13 +62,11 @@ class TestUtils(BaseTest):
             )
         )
         install_step: InstallStep = InstallStep.create()
-        install_step.visible = Visible(
-            dependencies=CompositeDependency(
-                flag_dependencies=[
-                    FlagDependency(flag="test2", value="true"),
-                    FlagDependency(flag="test3", value="true"),
-                ]
-            )
+        install_step.visible = CompositeDependency(
+            flag_dependencies=[
+                FlagDependency(flag="test2", value="true"),
+                FlagDependency(flag="test3", value="true"),
+            ]
         )
         fomod.module_config.install_steps = StepList(install_steps=[install_step])
 

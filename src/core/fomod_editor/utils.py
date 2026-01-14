@@ -33,7 +33,7 @@ class Utils:
                 if install_step.visible is not None:
                     flag_names.extend(
                         Utils.get_flag_names_from_composite_dependency(
-                            install_step.visible.dependencies
+                            install_step.visible
                         )
                     )
 

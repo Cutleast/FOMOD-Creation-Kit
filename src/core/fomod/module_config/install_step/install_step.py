@@ -9,8 +9,8 @@ from typing import Optional, override
 from pydantic_xml import BaseXmlModel, attr, element
 from PySide6.QtWidgets import QApplication
 
+from ..dependency.composite_dependency import CompositeDependency
 from .group_list import GroupList
-from .visible import Visible
 
 
 class InstallStep(BaseXmlModel, search_mode="unordered"):
@@ -23,7 +23,7 @@ class InstallStep(BaseXmlModel, search_mode="unordered"):
     name: str = attr(name="name")
     """The name of the install step."""
 
-    visible: Optional[Visible] = element(tag="visible", default=None)
+    visible: Optional[CompositeDependency] = element(tag="visible", default=None)
     """
     The pattern against which to match the conditional flags and installed files. If the 
     pattern is matched, then the install step will be visible.
