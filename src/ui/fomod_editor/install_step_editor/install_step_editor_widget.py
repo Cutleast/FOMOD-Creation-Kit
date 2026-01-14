@@ -202,7 +202,7 @@ class InstallStepEditorWidget(BaseEditorWidget[InstallStep]):
 
     def __init_visibility_editor(self) -> None:
         visibility_group_box = QGroupBox(self.tr("Visible when"))
-        visibility_group_box.setMinimumHeight(100)
+        visibility_group_box.setMinimumHeight(92)
         self.__vertical_splitter.addWidget(visibility_group_box)
         self.__vertical_splitter.setCollapsible(0, False)
 
