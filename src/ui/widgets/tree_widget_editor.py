@@ -20,7 +20,6 @@ from pydantic import BaseModel
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QAction, QCursor, QDropEvent, QShortcut
 from PySide6.QtWidgets import (
-    QApplication,
     QHBoxLayout,
     QMenu,
     QToolBar,
@@ -29,6 +28,8 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QWidget,
 )
+
+from core.utilities.clipboard import Clipboard
 
 
 class TreeWidgetEditor[T: BaseModel](QWidget):
@@ -129,11 +130,9 @@ class TreeWidgetEditor[T: BaseModel](QWidget):
             self.__copy_action.setVisible(cur_item is not None)
 
             # show paste action only if clipboard contains valid data
-            try:
-                self.__model_cls.model_validate_json(QApplication.clipboard().text())
-                self.__paste_action.setVisible(True)
-            except Exception:
-                self.__paste_action.setVisible(False)
+            self.__paste_action.setVisible(
+                Clipboard.contains_valid_obj(self.__model_cls)
+            )
 
             self.exec(QCursor.pos())
 
@@ -378,8 +377,7 @@ class TreeWidgetEditor[T: BaseModel](QWidget):
 
         cur_item: Optional[T] = self.getCurrentItem()
         if cur_item is not None:
-            json_string: str = cur_item.model_dump_json(exclude_defaults=True)
-            QApplication.clipboard().setText(json_string)
+            Clipboard.copy(cur_item)
             self.removeItem(cur_item)
 
     def __copy_cur_item(self) -> None:
@@ -389,8 +387,7 @@ class TreeWidgetEditor[T: BaseModel](QWidget):
 
         cur_item: Optional[T] = self.getCurrentItem()
         if cur_item is not None:
-            json_string: str = cur_item.model_dump_json(exclude_defaults=True)
-            QApplication.clipboard().setText(json_string)
+            Clipboard.copy(cur_item)
 
     def __paste_item(self) -> None:
         """
@@ -398,9 +395,7 @@ class TreeWidgetEditor[T: BaseModel](QWidget):
         """
 
         try:
-            item: T = self._model_cls.model_validate_json(
-                QApplication.clipboard().text()
-            )
+            item: T = Clipboard.paste(self._model_cls)
             self.addItem(item)
         except Exception as ex:
             self.log.debug(f"Failed to paste item: {ex}", exc_info=ex)
