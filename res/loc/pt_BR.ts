@@ -2,6 +2,74 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pt_BR" sourcelanguage="en_US">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="52"/>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="65"/>
+        <source>About</source>
+        <translation type="unfinished">Sobre</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="91"/>
+        <source>Created by Cutleast (&lt;a href=&apos;https://www.nexusmods.com/users/65733731&apos;&gt;NexusMods&lt;/a&gt; | &lt;a href=&apos;https://github.com/cutleast&apos;&gt;GitHub&lt;/a&gt; | &lt;a href=&apos;https://ko-fi.com/cutleast&apos;&gt;Ko-Fi&lt;/a&gt;)&lt;br&gt;&lt;br&gt;Licensed under </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="98"/>
+        <source>&lt;&lt;Put your translator information here.&gt;&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="110"/>
+        <source>Used Software</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AppSettings</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="97"/>
+        <source>Basic App Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="106"/>
+        <source>Number of newest log files to keep</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="112"/>
+        <source>Log Level</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="117"/>
+        <source>Display log at the bottom of the main window</source>
+        <translation type="unfinished">Exibir log na parte inferior da janela principal</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="126"/>
+        <source>Accent Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="130"/>
+        <source>UI Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="132"/>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="148"/>
+        <source>Clear Cache</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="157"/>
+        <source>Accent color must be a valid hexadecimal color code!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CollapsibleTextEdit</name>
     <message>
         <location filename="src/ui/widgets/collapsible_text_edit.py" line="66"/>
@@ -224,6 +292,14 @@
     </message>
 </context>
 <context>
+    <name>Downloader</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/downloader.py" line="128"/>
+        <source>Downloading &apos;{0}&apos;...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>EditorWindow</name>
     <message>
         <location filename="src/ui/fomod_editor/editor_window.py" line="91"/>
@@ -259,6 +335,53 @@
         <location filename="src/ui/fomod_editor/editor_window.py" line="153"/>
         <source>Save and close</source>
         <translation type="unfinished">Salvar e fechar</translation>
+    </message>
+</context>
+<context>
+    <name>ErrorDialog</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="109"/>
+        <source>Continue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="114"/>
+        <source>Exit</source>
+        <translation type="unfinished">Sair</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="118"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="124"/>
+        <source>Copy error details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="132"/>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="151"/>
+        <source>Show details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="145"/>
+        <source>Hide details...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExceptionHandler</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/utilities/exception_handler.py" line="79"/>
+        <source>An unexpected error occured: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/utilities/exception_handler.py" line="84"/>
+        <source>Error</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -768,6 +891,50 @@
     </message>
 </context>
 <context>
+    <name>KeyLineEdit</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/key_edit.py" line="50"/>
+        <source>Toggle password visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LoadingDialog</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="268"/>
+        <source>Elapsed time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="357"/>
+        <source>Cancel?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="360"/>
+        <source>Are you sure you want to cancel? This may have unwanted consequences, depending on the current running process!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="368"/>
+        <source>No</source>
+        <translation type="unfinished">Não</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="369"/>
+        <source>Yes</source>
+        <translation type="unfinished">Sim</translation>
+    </message>
+</context>
+<context>
+    <name>LogWindow</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/log_window.py" line="18"/>
+        <source>Log</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWidget</name>
     <message>
         <location filename="src/ui/main_widget.py" line="117"/>
@@ -951,6 +1118,14 @@
     </message>
 </context>
 <context>
+    <name>PlaceholderDropdown</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/placeholder_dropdown.py" line="28"/>
+        <source>Please select...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Plugin</name>
     <message>
         <location filename="src/core/fomod/module_config/plugin/plugin.py" line="61"/>
@@ -1095,6 +1270,77 @@
     </message>
 </context>
 <context>
+    <name>Position</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="69"/>
+        <source>Top</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="70"/>
+        <source>Bottom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="71"/>
+        <source>Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="72"/>
+        <source>Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="73"/>
+        <source>Top Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="74"/>
+        <source>Top Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="77"/>
+        <source>Bottom Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="80"/>
+        <source>Bottom Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ProgressDialog</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="296"/>
+        <source>Elapsed time:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="349"/>
+        <source>Cancel?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="352"/>
+        <source>Are you sure you want to cancel? This may have unwanted consequences, depending on the current running process!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="360"/>
+        <source>No</source>
+        <translation type="unfinished">Não</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="361"/>
+        <source>Yes</source>
+        <translation type="unfinished">Sim</translation>
+    </message>
+</context>
+<context>
     <name>RequiredFilesEditorTab</name>
     <message>
         <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="30"/>
@@ -1110,6 +1356,24 @@
         <location filename="src/ui/fomod_editor/required_files_editor_tab.py" line="44"/>
         <source>This list defines which files and folders must be installed by the installer.</source>
         <translation>Esta lista define quais arquivos e pastas devem ser instalados pelo instalador.</translation>
+    </message>
+</context>
+<context>
+    <name>SearchBar</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="39"/>
+        <source>Search...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="53"/>
+        <source>Live search disabled. Press Enter to search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="64"/>
+        <source>Toggle case sensitivity</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1183,59 +1447,59 @@
         <translation>Confis do App</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="95"/>
+        <location filename="src/ui/settings/settings_widget.py" line="94"/>
         <source>Log level:</source>
         <translation>Nível de log:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="106"/>
+        <location filename="src/ui/settings/settings_widget.py" line="105"/>
         <source>Number of newest log files to keep:</source>
         <translation>Número de arquivos de log mais recentes a serem mantidos:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="120"/>
+        <location filename="src/ui/settings/settings_widget.py" line="119"/>
         <source>Display log at the bottom of the main window</source>
         <translation>Exibir log na parte inferior da janela principal</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="129"/>
+        <location filename="src/ui/settings/settings_widget.py" line="128"/>
         <source>Language:</source>
         <translation>Idioma:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="142"/>
+        <location filename="src/ui/settings/settings_widget.py" line="141"/>
         <source>UI mode:</source>
         <translation>Modo da UI:</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="154"/>
+        <location filename="src/ui/settings/settings_widget.py" line="153"/>
         <source>Clear history of recently opened FOMOD installers</source>
         <translation>Limpar o histórico de instaladores FOMOD abertos recentemente</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="161"/>
+        <location filename="src/ui/settings/settings_widget.py" line="160"/>
         <source>Behavior settings</source>
         <translation>Configs do Behavior</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="168"/>
+        <location filename="src/ui/settings/settings_widget.py" line="167"/>
         <source>Finalize on save (recommended)</source>
         <translation>Finalizar ao salvar (recomendado)</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="171"/>
+        <location filename="src/ui/settings/settings_widget.py" line="170"/>
         <source>Finalizing means copying all files from outside of the FOMOD into the FOMOD&apos;s folder and making the paths relative.
 This makes the entire mod practically ready to be packed in a zip file and distributed.</source>
         <translation>Finalizar significa copiar todos os arquivos de fora do FOMOD para a pasta do FOMOD e tornar os caminhos relativos.
 Isso deixa o mod praticamente pronto para ser compactado em um arquivo zip e distribuído.</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="181"/>
+        <location filename="src/ui/settings/settings_widget.py" line="180"/>
         <source>Validate XML files on save</source>
         <translation>Validar arquivos XML ao salvar</translation>
     </message>
     <message>
-        <location filename="src/ui/settings/settings_widget.py" line="197"/>
+        <location filename="src/ui/settings/settings_widget.py" line="196"/>
         <source>Encoding used for ModuleConfig.xml:</source>
         <translation>Codificação usada para ModuleConfig.xml:</translation>
     </message>
@@ -1351,8 +1615,60 @@ Isso deixa o mod praticamente pronto para ser compactado em um arquivo zip e dis
     </message>
 </context>
 <context>
+    <name>UIMode</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="24"/>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="25"/>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="26"/>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UpdaterDialog</name>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="37"/>
+        <source>An Update is available to download!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="42"/>
+        <source>Installed version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="45"/>
+        <source>Latest version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="57"/>
+        <source>What&apos;s new?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="70"/>
+        <source>Ignore Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="77"/>
+        <source>Download Update</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>UrlEdit</name>
     <message>
+        <location filename="core-lib/src/cutleast_core_lib/ui/widgets/url_edit.py" line="31"/>
         <location filename="src/ui/widgets/url_edit.py" line="30"/>
         <source>Open URL in default browser...</source>
         <translation>Abrir a URL no navegador padrão...</translation>
@@ -1413,6 +1729,21 @@ Isso deixa o mod praticamente pronto para ser compactado em um arquivo zip e dis
         <location filename="src/core/fomod/exceptions.py" line="37"/>
         <source>Failed to save the FOMOD installer! Could not validate &apos;{0}&apos;.</source>
         <translation>Falha ao salvar o instalador do FOMOD! Não foi possível validar ‘{0}’.</translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="89"/>
+        <source>Request to &apos;{0}&apos; failed!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="102"/>
+        <source>Request to &apos;{0}&apos; failed with status code {1}!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="115"/>
+        <source>The process is incomplete and has no result!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
