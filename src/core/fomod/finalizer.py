@@ -402,7 +402,10 @@ class Finalizer(QObject):
                 source.relative_to(fomod_path.parent)
                 if source.is_relative_to(fomod_path)
                 else source
-            ), [f.path for f in DirectoryScanner.scan_folder(source)]
+            ), [
+                f.path.relative_to(source)
+                for f in DirectoryScanner.scan_folder(fomod_path / source)
+            ]
 
         new_folder_path: Path = fomod_path / name / source.name
         new_folder_path.mkdir(parents=True, exist_ok=True)
@@ -410,7 +413,8 @@ class Finalizer(QObject):
         self.log.info(f"Copied '{source}' to '{new_folder_path}'.")
 
         return new_folder_path.relative_to(fomod_path.parent), [
-            f.path for f in DirectoryScanner.scan_folder(new_folder_path)
+            f.path.relative_to(new_folder_path)
+            for f in DirectoryScanner.scan_folder(new_folder_path)
         ]
 
     @staticmethod
