@@ -7,22 +7,22 @@
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="52"/>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="65"/>
         <source>About</source>
-        <translation type="unfinished">Über</translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="91"/>
         <source>Created by Cutleast (&lt;a href=&apos;https://www.nexusmods.com/users/65733731&apos;&gt;NexusMods&lt;/a&gt; | &lt;a href=&apos;https://github.com/cutleast&apos;&gt;GitHub&lt;/a&gt; | &lt;a href=&apos;https://ko-fi.com/cutleast&apos;&gt;Ko-Fi&lt;/a&gt;)&lt;br&gt;&lt;br&gt;Licensed under </source>
-        <translation type="unfinished"></translation>
+        <translation>Erstellt von Cutleast (&lt;a href=&apos;https://www.nexusmods.com/users/65733731&apos; &gt;NexusMods&lt;/a&gt; | &lt;a href=‚https://github.com/cutleast‘&gt;GitHub&lt;/a&gt; | &lt;a href=‚https://ko-fi.com/cutleast‘&gt;Ko-Fi&lt;/a)&lt;br&gt;&lt;br&gt;Lizenziert unter </translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="98"/>
         <source>&lt;&lt;Put your translator information here.&gt;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;&lt;Put your translator information here.&gt;&gt;</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/about_dialog.py" line="110"/>
         <source>Used Software</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwendete Software</translation>
     </message>
 </context>
 <context>
@@ -30,43 +30,43 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="97"/>
         <source>Basic App Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Grundlegende Appeinstellungen</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="106"/>
         <source>Number of newest log files to keep</source>
-        <translation type="unfinished"></translation>
+        <translation>Anzahl der neuesten zu behaltenden Protokolldateien</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="112"/>
         <source>Log Level</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll-Level</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="117"/>
         <source>Display log at the bottom of the main window</source>
-        <translation type="unfinished">Protokoll im unteren Bereich des Hauptfensters anzeigen</translation>
+        <translation>Protokoll im unteren Bereich des Hauptfensters anzeigen</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="126"/>
         <source>Accent Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Akzentfarbe</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="130"/>
         <source>UI Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>UI-Modus</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="132"/>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="148"/>
         <source>Clear Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>Cache leeren</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/settings/app_settings.py" line="157"/>
         <source>Accent color must be a valid hexadecimal color code!</source>
-        <translation type="unfinished"></translation>
+        <translation>Akzentfarbe muss ein gültiger Hexadezimaler Farbcode sein!</translation>
     </message>
 </context>
 <context>
@@ -296,7 +296,7 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/downloader.py" line="128"/>
         <source>Downloading &apos;{0}&apos;...</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;{0}&apos; wird heruntergeladen...</translation>
     </message>
 </context>
 <context>
@@ -342,33 +342,33 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="109"/>
         <source>Continue</source>
-        <translation type="unfinished"></translation>
+        <translation>Fortfahren</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="114"/>
         <source>Exit</source>
-        <translation type="unfinished">Beenden</translation>
+        <translation>Beenden</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="118"/>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="124"/>
         <source>Copy error details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlerdetails kopieren...</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="132"/>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="151"/>
         <source>Show details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Details anzeigen...</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/error_dialog.py" line="145"/>
         <source>Hide details...</source>
-        <translation type="unfinished"></translation>
+        <translation>Details ausblenden...</translation>
     </message>
 </context>
 <context>
@@ -376,12 +376,12 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/utilities/exception_handler.py" line="79"/>
         <source>An unexpected error occured: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ein unerwarteter Fehler ist aufgetreten: </translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/utilities/exception_handler.py" line="84"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler</translation>
     </message>
 </context>
 <context>
@@ -895,7 +895,7 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/key_edit.py" line="50"/>
         <source>Toggle password visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwortsichtbarkeit umschalten</translation>
     </message>
 </context>
 <context>
@@ -903,27 +903,27 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="268"/>
         <source>Elapsed time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergangene Zeit:</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="357"/>
         <source>Cancel?</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen?</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="360"/>
         <source>Are you sure you want to cancel? This may have unwanted consequences, depending on the current running process!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bist du sicher, dass du abbrechen möchtest? Abhängig vom laufenden Prozess, kann dies unbeabsichtigte Konsequenzen haben!</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="368"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/loading_dialog.py" line="369"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
 </context>
 <context>
@@ -931,7 +931,7 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/log_window.py" line="18"/>
         <source>Log</source>
-        <translation type="unfinished"></translation>
+        <translation>Log</translation>
     </message>
 </context>
 <context>
@@ -1122,7 +1122,7 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/placeholder_dropdown.py" line="28"/>
         <source>Please select...</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte auswählen...</translation>
     </message>
 </context>
 <context>
@@ -1274,42 +1274,42 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="69"/>
         <source>Top</source>
-        <translation type="unfinished"></translation>
+        <translation>Oben</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="70"/>
         <source>Bottom</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="71"/>
         <source>Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Links</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="72"/>
         <source>Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Rechts</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="73"/>
         <source>Top Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Oben links</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="74"/>
         <source>Top Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Oben rechts</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="77"/>
         <source>Bottom Left</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten links</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/toast.py" line="80"/>
         <source>Bottom Right</source>
-        <translation type="unfinished"></translation>
+        <translation>Unten rechts</translation>
     </message>
 </context>
 <context>
@@ -1317,27 +1317,27 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="296"/>
         <source>Elapsed time:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vergangene Zeit:</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="349"/>
         <source>Cancel?</source>
-        <translation type="unfinished"></translation>
+        <translation>Abbrechen?</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="352"/>
         <source>Are you sure you want to cancel? This may have unwanted consequences, depending on the current running process!</source>
-        <translation type="unfinished"></translation>
+        <translation>Bist du sicher, dass du abbrechen möchtest? Abhängig vom laufenden Prozess, kann dies unbeabsichtigte Konsequenzen haben!</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="360"/>
         <source>No</source>
-        <translation type="unfinished">Nein</translation>
+        <translation>Nein</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/progress_dialog.py" line="361"/>
         <source>Yes</source>
-        <translation type="unfinished">Ja</translation>
+        <translation>Ja</translation>
     </message>
 </context>
 <context>
@@ -1363,17 +1363,17 @@
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="39"/>
         <source>Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>Suchen...</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="53"/>
         <source>Live search disabled. Press Enter to search.</source>
-        <translation type="unfinished"></translation>
+        <translation>Echtzeitsuche deaktiviert. Drücke Enter, um zu suchen.</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/search_bar.py" line="64"/>
         <source>Toggle case sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation>Groß-/Kleinschreibung beachten</translation>
     </message>
 </context>
 <context>
@@ -1619,17 +1619,17 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="24"/>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="25"/>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation>Hell</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/utilities/ui_mode.py" line="26"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>System</translation>
     </message>
 </context>
 <context>
@@ -1637,32 +1637,32 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="37"/>
         <source>An Update is available to download!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein Update ist zum Herunterladen verfügbar!</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="42"/>
         <source>Installed version</source>
-        <translation type="unfinished"></translation>
+        <translation>Installierte Version</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="45"/>
         <source>Latest version</source>
-        <translation type="unfinished"></translation>
+        <translation>Neueste Version</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="57"/>
         <source>What&apos;s new?</source>
-        <translation type="unfinished"></translation>
+        <translation>Was ist neu?</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="70"/>
         <source>Ignore Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Update ignorieren</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/ui/widgets/updater_dialog.py" line="77"/>
         <source>Download Update</source>
-        <translation type="unfinished"></translation>
+        <translation>Update herunterladen</translation>
     </message>
 </context>
 <context>
@@ -1733,17 +1733,17 @@ Das macht die ganze Mod praktisch fertig, um gepackt und verteilt zu werden.</tr
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="89"/>
         <source>Request to &apos;{0}&apos; failed!</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfrage an &apos;{0}&apos; ist fehlgeschlagen!</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="102"/>
         <source>Request to &apos;{0}&apos; failed with status code {1}!</source>
-        <translation type="unfinished"></translation>
+        <translation>Anfrage an &apos;{0}&apos; ist mit Status Code {1} fehlgeschlagen!</translation>
     </message>
     <message>
         <location filename="core-lib/src/cutleast_core_lib/core/utilities/exceptions.py" line="115"/>
         <source>The process is incomplete and has no result!</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Prozess ist unvollständig und hat kein Ergebnis!</translation>
     </message>
 </context>
 <context>
