@@ -89,7 +89,6 @@ class SettingsWidget(SmoothScrollArea):
         self.__vlayout.addWidget(app_settings_group)
 
         app_settings_glayout = QGridLayout()
-        app_settings_glayout.setContentsMargins(0, 0, 0, 0)
         app_settings_group.setLayout(app_settings_glayout)
 
         log_level_label = QLabel(self.tr("Log level:"))
