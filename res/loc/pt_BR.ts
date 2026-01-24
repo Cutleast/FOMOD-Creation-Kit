@@ -70,6 +70,19 @@
     </message>
 </context>
 <context>
+    <name>CollapsibleLabel</name>
+    <message>
+        <location filename="src/ui/widgets/collapsible_label.py" line="82"/>
+        <source>Reduce</source>
+        <translation type="unfinished">Reduzir</translation>
+    </message>
+    <message>
+        <location filename="src/ui/widgets/collapsible_label.py" line="90"/>
+        <source>Expand</source>
+        <translation type="unfinished">Expandir</translation>
+    </message>
+</context>
+<context>
     <name>CollapsibleTextEdit</name>
     <message>
         <location filename="src/ui/widgets/collapsible_text_edit.py" line="66"/>

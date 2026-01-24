@@ -12,6 +12,7 @@ from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
 from core.fomod.fomod import Fomod
+from ui.widgets.collapsible_label import CollapsibleLabel
 
 type FlagNamesSupplier = Callable[[], list[str]]
 """
@@ -118,8 +119,8 @@ class BaseEditorWidget[T: FomodItem](SmoothScrollArea):
             self._vlayout.addWidget(title_label)
 
         if self.__show_description and self.get_description().strip():
-            help_label = QLabel(self.get_description())
-            help_label.setWordWrap(True)
+            help_label = CollapsibleLabel(self.get_description())
+            help_label.setExpanded(False)
             self._vlayout.addWidget(help_label)
 
     def _post_init(self) -> None:
