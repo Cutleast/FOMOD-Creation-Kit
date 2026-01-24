@@ -101,7 +101,7 @@ class App(BaseApp, Singleton):
                 self.log.info(f"Loaded localisation for {language}.")
 
     @override
-    def exec(self) -> int:
+    def exec(self) -> int:  # pyright: ignore[reportIncompatibleMethodOverride]
         main_window: MainWindow = cast(MainWindow, self.main_window)
         if self.args.fomod:
             main_window.open_fomod(Path(self.args.fomod))

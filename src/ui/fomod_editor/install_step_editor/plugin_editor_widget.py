@@ -152,6 +152,12 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
             scrollable=False,
         )
         tab_widget.addTab(self.__file_list_editor_widget, self.tr("Files"))
+        tab_widget.setTabToolTip(
+            0,
+            self.tr(
+                "A list of files and folders to install if this plugin is selected."
+            ),
+        )
 
         self.__condition_flags_tree_widget = TreeWidgetEditor(
             SetConditionFlag,
@@ -164,6 +170,14 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
         tab_widget.addTab(
             self.__condition_flags_tree_widget, self.tr("Condition Flags")
         )
+        tab_widget.setTabToolTip(
+            1,
+            self.tr(
+                "A list of condition flags to be set to specified values if this plugin "
+                "is selected. These can be used to affect later install steps and "
+                "plugins."
+            ),
+        )
 
         self.__type_descriptor_editor_widget = TypeDescriptorEditorWidget(
             self._item.type_descriptor,
@@ -172,7 +186,7 @@ class PluginEditorWidget(BaseEditorWidget[Plugin]):
             scrollable=False,
         )
         tab_widget.addTab(
-            self.__type_descriptor_editor_widget, self.tr("Type Descriptor")
+            self.__type_descriptor_editor_widget, self.tr("Automated pre-selection")
         )
 
     def __on_image_path_change(self) -> None:

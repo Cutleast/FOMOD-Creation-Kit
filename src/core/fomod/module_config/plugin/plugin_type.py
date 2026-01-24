@@ -67,24 +67,30 @@ class PluginType(BaseXmlModel):
         def get_localized_description(self) -> str:
             locs: dict[PluginType.Type, str] = {
                 PluginType.Type.Required: QApplication.translate(
-                    "PluginType", "The plugin must be installed."
+                    "PluginType",
+                    "The plugin must be installed and cannot be unselected by the user.",
                 ),
                 PluginType.Type.Optional: QApplication.translate(
-                    "PluginType", "The plugin is optional."
+                    "PluginType",
+                    "The plugin is optional (i.e. not pre-selected but can be selected "
+                    "by the user).",
                 ),
                 PluginType.Type.Recommended: QApplication.translate(
-                    "PluginType", "The plugin is recommended for stability."
+                    "PluginType",
+                    "The plugin is recommended for stability (i.e. pre-selected but can "
+                    "be unselected by the user).",
                 ),
                 PluginType.Type.NotUsable: QApplication.translate(
                     "PluginType",
                     "Using the plugin could result in instability (i.e., a prerequisite "
-                    "plugin is missing).",
+                    "plugin is missing; only relevant if linked to a condition).",
                 ),
                 PluginType.Type.CouldBeUsable: QApplication.translate(
                     "PluginType",
                     "Using the plugin could result in instability if loaded with the "
                     "currently active plugins (i.e., a prerequisite plugin is missing), "
-                    "but that the prerequisite plugin is installed, just not activated.",
+                    "but that the prerequisite plugin is installed, just not activated "
+                    "(only relevant if linked to a condition).",
                 ),
             }
 

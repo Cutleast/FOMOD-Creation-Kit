@@ -144,8 +144,8 @@ class InstallStepPreviewWidget(SmoothScrollArea):
     def __init_header(self) -> None:
         help_label = QLabel(
             self.tr(
-                "This is just a non-functional preview below. Edit the step by clicking "
-                "on the edit button next to the title."
+                "This is just a visual preview below. Edit the step by clicking on the "
+                "edit button next to the title."
             )
         )
         help_label.setWordWrap(True)

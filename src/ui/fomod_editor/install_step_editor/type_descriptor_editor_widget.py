@@ -38,10 +38,10 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
         def get_localized_name(self) -> str:
             locs: dict[TypeDescriptorEditorWidget.DescriptorType, str] = {
                 TypeDescriptorEditorWidget.DescriptorType.Static: QApplication.translate(
-                    "TypeDescriptorEditorWidget", "Static Type"
+                    "TypeDescriptorEditorWidget", "Static pre-selection"
                 ),
                 TypeDescriptorEditorWidget.DescriptorType.Dynamic: QApplication.translate(
-                    "TypeDescriptorEditorWidget", "Dynamic Type"
+                    "TypeDescriptorEditorWidget", "Dynamic pre-selection"
                 ),
             }
 
@@ -51,11 +51,13 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
         def get_localized_description(self) -> str:
             locs: dict[TypeDescriptorEditorWidget.DescriptorType, str] = {
                 TypeDescriptorEditorWidget.DescriptorType.Static: QApplication.translate(
-                    "TypeDescriptorEditorWidget", "The type of the plugin is static."
+                    "TypeDescriptorEditorWidget",
+                    "The pre-selection of the plugin is static.",
                 ),
                 TypeDescriptorEditorWidget.DescriptorType.Dynamic: QApplication.translate(
                     "TypeDescriptorEditorWidget",
-                    "The type of the plugin depends on some dependency patterns..",
+                    "The pre-selection of the plugin depends on some dependency "
+                    "patterns.",
                 ),
             }
 
@@ -80,7 +82,7 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "TypeDescriptorEditorWidget", "Edit plugin type descriptor..."
+            "TypeDescriptorEditorWidget", "Edit plugin pre-selection state..."
         )
 
     @override
@@ -88,7 +90,8 @@ class TypeDescriptorEditorWidget(BaseEditorWidget[PluginTypeDescriptor]):
     def get_description(cls) -> str:
         return QApplication.translate(
             "TypeDescriptorEditorWidget",
-            "The type of a plugin determines its pre-selection state.",
+            "This defines if the plugin is pre-selected or not and can be linked to "
+            "certain conditions.",
         )
 
     @override

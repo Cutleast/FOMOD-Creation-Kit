@@ -113,6 +113,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
             FileDependency, self._item.file_dependencies.copy()
         )
         self.__tab_widget.addTab(self.__files_tree_widget_editor, self.tr("Files"))
+        self.__tab_widget.setTabToolTip(
+            0, self.tr("A list of file-state combinations that must be met.")
+        )
 
     def __add_file_dependency(self) -> None:
         file_dependency = FileDependency(file="", state=FileDependency.State.Active)
@@ -145,6 +148,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
             FlagDependency, self._item.flag_dependencies.copy()
         )
         self.__tab_widget.addTab(self.__flags_tree_widget_editor, self.tr("Flags"))
+        self.__tab_widget.setTabToolTip(
+            1, self.tr("A list of flag-value combinations that must be met.")
+        )
 
     def __add_flag_dependency(self) -> None:
         flag_dependency = FlagDependency(flag="", value="")
@@ -175,6 +181,9 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __init_versions_tab(self) -> None:
         versions_tab_widget = QWidget()
         self.__tab_widget.addTab(versions_tab_widget, self.tr("Versions"))
+        self.__tab_widget.setTabToolTip(
+            2, self.tr("A certain game or FOMM version that must be met.")
+        )
 
         glayout = QGridLayout()
         glayout.setAlignment(Qt.AlignmentFlag.AlignTop)
@@ -229,7 +238,14 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
             CompositeDependency, self._item.dependencies.copy()
         )
         self.__tab_widget.addTab(
-            self.__dependencies_tree_widget_editor, self.tr("Dependencies")
+            self.__dependencies_tree_widget_editor, self.tr("Additional Dependencies")
+        )
+        self.__tab_widget.setTabToolTip(
+            3,
+            self.tr(
+                "Additional composite dependencies that can be combined with this one "
+                "using a different operator."
+            ),
         )
 
     def __add_dependency(self) -> None:

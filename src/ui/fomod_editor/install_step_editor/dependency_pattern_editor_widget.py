@@ -34,7 +34,7 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "DependencyPatternEditorWidget", "Edit dependency pattern..."
+            "DependencyPatternEditorWidget", "Edit pre-selection dependency pattern..."
         )
 
     @override
@@ -42,8 +42,8 @@ class DependencyPatternEditorWidget(BaseEditorWidget[DependencyPattern]):
     def get_description(cls) -> str:
         return QApplication.translate(
             "DependencyPatternEditorWidget",
-            "The plugin has the type specified below when the composite dependency at "
-            "the bottom is fulfilled before all other patterns.",
+            "The plugin has the pre-selection type specified below when the "
+            "dependencies at the bottom are fulfilled before all other patterns.",
         )
 
     @override

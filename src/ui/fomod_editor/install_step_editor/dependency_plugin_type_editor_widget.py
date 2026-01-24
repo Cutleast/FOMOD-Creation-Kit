@@ -50,7 +50,7 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
 
             self._tree_widget.setHeaderHidden(False)
             self._tree_widget.setHeaderLabels(
-                [self.tr("Dependencies"), self.tr("Type")]
+                [self.tr("Dependencies"), self.tr("Pre-selection")]
             )
             self._tree_widget.header().resizeSection(0, 400)
 
@@ -90,7 +90,7 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
     @classmethod
     def get_display_name(cls) -> str:
         return QApplication.translate(
-            "DependencyPluginTypeEditorWidget", "Edit dependency plugin type..."
+            "DependencyPluginTypeEditorWidget", "Edit pre-selection dependencies..."
         )
 
     @override
@@ -105,7 +105,7 @@ class DependencyPluginTypeEditorWidget(BaseEditorWidget[DependencyPluginType]):
         self._vlayout.addLayout(hlayout)
 
         default_type_label = QLabel(
-            self.tr("Default type (if no pattern below matches):")
+            self.tr("Default pre-selection (if no pattern below matches):")
         )
         hlayout.addWidget(default_type_label)
 

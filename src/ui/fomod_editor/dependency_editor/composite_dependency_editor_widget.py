@@ -44,7 +44,9 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
     def get_description(cls) -> str:
         return QApplication.translate(
             "CompositeDependencyEditorWidget",
-            "Composite dependencies are used to group multiple dependencies together.",
+            "These are combinations of various dependencies that must be fulfilled. "
+            "They are used to specify that certain conditions must be met in order for "
+            "this dependency to be fulfilled.",
         )
 
     @override
