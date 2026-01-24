@@ -109,3 +109,13 @@ class CompositeDependencyEditorWidget(BaseEditorWidget[CompositeDependency]):
         self.__dependency_group_editor_widget.discard()
 
         self.discarded.emit()
+
+    def setFlagDependencyTabEnabled(self, enabled: bool) -> None:
+        """
+        Sets if the flag dependency tab should be enabled.
+
+        Args:
+            enabled (bool): Whether the flag dependency tab should be enabled.
+        """
+
+        self.__dependency_group_editor_widget.setFlagDependencyTabEnabled(enabled)

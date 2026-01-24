@@ -43,7 +43,9 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
             "DependencyEditorTab",
             "These are the requirements for your mod. If your mod depends on other mods "
             "to be installed and active, you can add their file(s) as file dependencies "
-            "below. If the requirements are not met, the mod will not be installed.",
+            "below. If the requirements are not met, the mod will not be installed.\n"
+            "Using flag dependencies is not possible at this page as there are no flags "
+            "to check at the start of a mod's installation.",
         )
 
     @override
@@ -53,6 +55,7 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
         self.__editor_widget = CompositeDependencyEditorWidget(
             self._item, self._fomod_path, self._flag_names_supplier
         )
+        self.__editor_widget.setFlagDependencyTabEnabled(False)
         self._vlayout.addWidget(self.__editor_widget)
 
     @override

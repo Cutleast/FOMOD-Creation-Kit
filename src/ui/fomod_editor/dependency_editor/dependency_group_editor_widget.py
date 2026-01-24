@@ -34,6 +34,8 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     Widget for editing/creating a dependency group.
     """
 
+    __flag_dependencies_enabled: bool = True
+
     __tab_widget: QTabWidget
     __files_tree_widget_editor: TreeWidgetEditor[FileDependency]
     __flags_tree_widget_editor: TreeWidgetEditor[FlagDependency]
@@ -252,13 +254,12 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
         dependency = CompositeDependency()
+        widget = CompositeDependencyEditorWidget(
+            dependency, self._fomod_path, self._flag_names_supplier
+        )
+        widget.setFlagDependencyTabEnabled(self.__flag_dependencies_enabled)
         window: EditorWindow[CompositeDependencyEditorWidget] = (
-            EditorWindowService.provide_editor_window(
-                CompositeDependencyEditorWidget(
-                    dependency, self._fomod_path, self._flag_names_supplier
-                ),
-                validate_on_init=True,
-            )[0]
+            EditorWindowService.provide_editor_window(widget, validate_on_init=True)[0]
         )
         window.saved.connect(
             lambda: self.__dependencies_tree_widget_editor.addItem(dependency)
@@ -268,12 +269,12 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
     def __edit_dependency(self, item: CompositeDependency) -> None:
         from .composite_dependency_editor_widget import CompositeDependencyEditorWidget
 
+        widget = CompositeDependencyEditorWidget(
+            item, self._fomod_path, self._flag_names_supplier
+        )
+        widget.setFlagDependencyTabEnabled(self.__flag_dependencies_enabled)
         window: EditorWindow[CompositeDependencyEditorWidget] = (
-            EditorWindowService.provide_editor_window(
-                CompositeDependencyEditorWidget(
-                    item, self._fomod_path, self._flag_names_supplier
-                )
-            )[0]
+            EditorWindowService.provide_editor_window(widget)[0]
         )
         window.saved.connect(
             lambda: self.__dependencies_tree_widget_editor.updateItem(item)
@@ -355,3 +356,14 @@ class DependencyGroupEditorWidget(BaseEditorWidget[CompositeDependency]):
         self.__dependencies_tree_widget_editor.setItems(self._item.dependencies)
 
         self.discarded.emit()
+
+    def setFlagDependencyTabEnabled(self, enabled: bool) -> None:
+        """
+        Sets if the flag dependency tab should be enabled.
+
+        Args:
+            enabled (bool): Whether the flag dependency tab should be enabled.
+        """
+
+        self.__tab_widget.setTabEnabled(1, enabled)
+        self.__flag_dependencies_enabled = enabled

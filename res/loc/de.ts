@@ -193,89 +193,91 @@
     </message>
     <message>
         <location filename="src/ui/fomod_editor/dependency_editor_tab.py" line="42"/>
-        <source>These are the requirements for your mod. If your mod depends on other mods to be installed and active, you can add their file(s) as file dependencies below. If the requirements are not met, the mod will not be installed.</source>
-        <translation>Dies sind die Voraussetzungen für deine Mod. Wenn deine Mod davon abhängt, dass andere Mods installiert und aktiv sind, kannst du deren Datei(en) unten als Dateiabhängigkeit(en) hinzufügen. Wenn die Anforderungen nicht erfüllt sind, wird die Mod nicht installiert.</translation>
+        <source>These are the requirements for your mod. If your mod depends on other mods to be installed and active, you can add their file(s) as file dependencies below. If the requirements are not met, the mod will not be installed.
+Using flag dependencies is not possible at this page as there are no flags to check at the start of a mod&apos;s installation.</source>
+        <translation>Dies sind die Anforderungen für deine Mod. Wenn deine Mod davon abhängt, dass andere Mods installiert und aktiv sind, kannst du deren Datei(en) unten als Dateiabhängigkeiten hinzufügen. Wenn die Anforderungen nicht erfüllt sind, wird die Mod nicht installiert.
+Die Verwendung von Bedingungsflag-Abhängigkeiten ist auf dieser Seite nicht möglich, da zu Beginn der Installation einer Mod keine Bedingungsflags überprüft werden.</translation>
     </message>
 </context>
 <context>
     <name>DependencyGroupEditorWidget</name>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="115"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="117"/>
         <source>Files</source>
         <translation>Dateien</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="150"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="152"/>
         <source>Flags</source>
         <translation>Bedingungen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="183"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="185"/>
         <source>Versions</source>
         <translation>Versionen</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="199"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="201"/>
         <source>eg. &quot;1.6.1170.0&quot; or &quot;1.5.97&quot;</source>
         <translation>z.B. &quot;1.6.1170.0&quot; oder &quot;1.5.97&quot;</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="76"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="78"/>
         <source>Edit dependency group...</source>
         <translation>Abhängigkeitengruppe bearbeiten...</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="117"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="119"/>
         <source>A list of file-state combinations that must be met.</source>
         <translation>Eine Liste von Datei-Zustand-Kombinationen, die erfüllt sein müssen.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="152"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="154"/>
         <source>A list of flag-value combinations that must be met.</source>
         <translation>Eine Liste von Bedingungsflag-Wert-Kombinationen, die erfüllt sein müssen.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="185"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="187"/>
         <source>A certain game or FOMM version that must be met.</source>
         <translation>Eine bestimmte Spiel- oder FOMM-Version, die erfüllt sein muss.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="192"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="194"/>
         <source>Game Version</source>
         <translation>Spielversion</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="207"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="209"/>
         <source>When specified, the game must have the version above for this dependency to be fulfilled.</source>
         <translation>Wenn angegeben, muss das Spiel die oben genannte Version haben, damit diese Abhängigkeit erfüllt wird.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="216"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="218"/>
         <source>FOMM Version</source>
         <translation>FOMM-Version</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="228"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="230"/>
         <source>This seems to be an outdated parameter specifying the minimum required version of the Fallout Mod Manager. It is unsure whether this affects anything or is considered by the installing mod manager.</source>
         <translation>Das ist ein veralteter Wert, der angibt, welche Version des Fallout Mod Managers nötig ist. Es ist unklar, ob das irgendetwas beeinflusst oder vom installierenden Mod Manager berücksichtigt wird.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="241"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="243"/>
         <source>Additional Dependencies</source>
         <translation>Weitere Abhängigkeiten</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="246"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="248"/>
         <source>Additional composite dependencies that can be combined with this one using a different operator.</source>
         <translation>Zusätzliche zusammengesetzte Abhängigkeiten, die mit dieser mithilfe eines anderen Operators kombiniert werden können.</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="290"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="291"/>
         <source>Game version is checked but missing!</source>
         <translation>Spielversion ist angehakt, fehlt aber!</translation>
     </message>
     <message>
-        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="298"/>
+        <location filename="src/ui/fomod_editor/dependency_editor/dependency_group_editor_widget.py" line="299"/>
         <source>FOMM version is checked but missing!</source>
         <translation>FOMM-Version ist angehakt, fehlt haber!</translation>
     </message>
