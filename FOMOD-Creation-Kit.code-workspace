@@ -170,7 +170,8 @@
 				"name": "Debug FOMOD Creation Kit",
 				"program": "${workspaceFolder}/src/main.py",
 				"cwd": "${workspaceFolder}",
-				"preLaunchTask": "compile-qrc"
+				"preLaunchTask": "compile-qrc",
+				"console": "internalConsole"
 			},
 			{
 				"type": "debugpy",
@@ -181,7 +182,8 @@
 					"${workspaceFolder}/tests/data/JK's Interiors Patch Collection FOMOD/fomod"
 				],
 				"cwd": "${workspaceFolder}",
-				"preLaunchTask": "compile-qrc"
+				"preLaunchTask": "compile-qrc",
+				"console": "internalConsole"
 			},
 			{
 				"type": "debugpy",
@@ -189,6 +191,7 @@
 				"name": "Debug current file",
 				"program": "${file}",
 				"cwd": "${workspaceFolder}",
+				"console": "internalConsole"
 			}
 		]
 	}
