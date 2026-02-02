@@ -326,7 +326,7 @@ class Finalizer(QObject):
                 item.source, copied_files = self.__process_folder(
                     item.source, folder_name, fomod_path
                 )
-                referenced_files.extend([item.source / f for f in copied_files])
+                referenced_files.extend(copied_files)
 
             else:
                 self.log.error(
@@ -403,8 +403,10 @@ class Finalizer(QObject):
                 if source.is_relative_to(fomod_path)
                 else source
             ), [
-                f.path.relative_to(source)
-                for f in DirectoryScanner.scan_folder(fomod_path / source)
+                f.path.relative_to(fomod_path.parent)
+                for f in DirectoryScanner.scan_folder(
+                    fomod_path / source.relative_to("fomod")
+                )
             ]
 
         new_folder_path: Path = fomod_path / name / source.name
