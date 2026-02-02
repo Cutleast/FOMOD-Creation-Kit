@@ -426,6 +426,7 @@ class TreeWidgetEditor[T: BaseModel](QWidget):
 
         if item not in self._items:
             self._add_item(item)
+            self.setCurrentItem(item)
             self.changed.emit()
 
     def updateItem(self, item: T) -> None:
