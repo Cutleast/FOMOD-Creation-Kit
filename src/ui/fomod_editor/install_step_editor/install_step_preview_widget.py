@@ -192,7 +192,7 @@ class InstallStepPreviewWidget(SmoothScrollArea):
         self.__visibility_label.setVisible(item.visible is not None)
 
         while self.__groups_layout.count():
-            widget: Optional[QWidget] = self.__groups_layout.takeAt(0).widget()
+            widget: Optional[QWidget] = self.__groups_layout.takeAt(0).widget()  # pyright: ignore[reportOptionalMemberAccess]
             if widget is not None:
                 widget.deleteLater()
 
