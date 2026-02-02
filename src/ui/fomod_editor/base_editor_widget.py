@@ -125,7 +125,7 @@ class BaseEditorWidget[T: FomodItem](SmoothScrollArea):
 
     def _post_init(self) -> None:
         """
-        This method is called from the constructer right afer `_init_ui()`.
+        This method is called from the constructor right afer `_init_ui()`.
         """
 
     @classmethod
