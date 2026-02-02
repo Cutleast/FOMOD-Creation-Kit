@@ -72,12 +72,12 @@
 <context>
     <name>CollapsibleLabel</name>
     <message>
-        <location filename="src/ui/widgets/collapsible_label.py" line="82"/>
+        <location filename="src/ui/widgets/collapsible_label.py" line="81"/>
         <source>Reduce</source>
         <translation>Reduzieren</translation>
     </message>
     <message>
-        <location filename="src/ui/widgets/collapsible_label.py" line="90"/>
+        <location filename="src/ui/widgets/collapsible_label.py" line="89"/>
         <source>Expand</source>
         <translation>Erweitern</translation>
     </message>
