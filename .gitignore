@@ -3,6 +3,7 @@
 /experiments
 /qt_lupdate.json
 /src/resources_rc.py
+/src/*.egg-info
 /.pytest_cache
 /.venv
 /.vscode

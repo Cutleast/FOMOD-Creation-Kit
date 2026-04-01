@@ -7,7 +7,7 @@ Script to build the FCK executables and pack all their dependencies in one folde
 import logging
 import re
 from pathlib import Path
-from typing import override
+from typing import Any, override
 
 from cutleast_core_lib.builder.backends.cx_freeze_backend import CxFreezeBackend
 from cutleast_core_lib.builder.build_config import BuildConfig
@@ -24,6 +24,19 @@ class Backend(CxFreezeBackend):
     VERSION_PATTERN: re.Pattern[str] = re.compile(
         r'(?<=APP_VERSION: str = ")[^"]+(?=")'
     )
+
+    @override
+    def get_additional_build_options(
+        self,
+        main_module: Path,
+        exe_stem: str,
+        icon_path: Path | None,
+        metadata: BuildMetadata,
+    ) -> dict[str, Any]:
+        return {
+            "packages": ["chardet"],
+            "includes": ["chardet.pipeline"],
+        }
 
     @override
     def preprocess_source(self, source_folder: Path, metadata: BuildMetadata) -> None:
