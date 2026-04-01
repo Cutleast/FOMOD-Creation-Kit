@@ -45,7 +45,7 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
         hlayout = QHBoxLayout()
         self._vlayout.addLayout(hlayout)
 
-        hlayout.addWidget(QLabel(self.tr("Type:")))
+        hlayout.addWidget(QLabel(self.tr("Selection type:")))
 
         self.__type_dropdown = EnumDropdown(
             enum_type=Group.Type, initial_value=self._item.type
@@ -55,8 +55,8 @@ class GroupEditorWidget(BaseEditorWidget[Group]):
         hlayout.addWidget(
             HelpLabel(
                 self.tr(
-                    "The type of a group specifies if and how many plugins in the group "
-                    "must be selected by the user to be able to continue."
+                    "The selection type of a group specifies if and how many plugins in "
+                    "the group must be selected by the user to be able to continue."
                 )
                 + "\n\n"
                 + Group.Type.get_localized_summary()

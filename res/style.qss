@@ -58,6 +58,14 @@ CollapsibleTextEdit QPushButton#toggle_button {
     border-color: transparent;
 }
 
+/* Collapsible label */
+CollapsibleLabel[expandable=true] {
+    padding-right: 40px;
+}
+CollapsibleLabel QPushButton#toggle_button {
+    border-color: transparent;
+}
+
 /* Auto complete combobox */
 QAbstractItemView#completer_popup {
     background-color: @popup_bg_color;

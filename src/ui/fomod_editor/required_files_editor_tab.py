@@ -44,7 +44,8 @@ class RequiredFilesEditorTab(BaseEditorWidget[FileList]):
         return QApplication.translate(
             "RequiredFilesEditorTab",
             "This list defines which files and folders must be installed by the "
-            "installer.",
+            "installer. These files are usually the main part of a mod that is required "
+            "for its core functionality.",
         )
 
     @override

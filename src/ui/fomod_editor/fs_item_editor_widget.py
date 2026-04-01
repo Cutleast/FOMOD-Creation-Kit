@@ -135,7 +135,10 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             base_path=self._fomod_path.parent if self._fomod_path is not None else None
         )
         self.__source_entry.setToolTip(
-            self.tr("The path to the file or folder in the FOMOD folder.")
+            self.tr(
+                "The path to the file or folder on your computer. If you disabled FOMOD "
+                "finalization the path must be relative to the FOMOD folder."
+            )
         )
         self.__source_entry.setPlaceholderText(self.tr('eg. "core\\test.esp"'))
         if self._item.source != Path("__default__"):
@@ -151,8 +154,10 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         self.__destination_entry = QLineEdit()
         self.__destination_entry.setToolTip(
             self.tr(
-                "The path to which the file or folder should be installed. If omitted, "
-                "the destination is the same as the source."
+                "This path specifies where the file or folder is installed within the "
+                "installed mod and affects its final location in the game folder.\n"
+                "Omitting this will result in the same path as the source (not "
+                "recommended)."
             )
         )
         self.__destination_entry.setPlaceholderText(
@@ -162,7 +167,9 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
             self.__destination_entry.setText(str(self._item.destination))
         flayout.addRow(self.tr("Destination (optional):"), self.__destination_entry)
 
-        self.__always_install_checkbox = QCheckBox(self.tr("Always install"))
+        self.__always_install_checkbox = QCheckBox(
+            self.tr("Always install (only relevant within a plugin)")
+        )
         self.__always_install_checkbox.setToolTip(
             self.tr(
                 "Indicates that the file or folder should always be installed, "
@@ -172,7 +179,9 @@ class FsItemEditorWidget(BaseEditorWidget[FileSystemItem]):
         self.__always_install_checkbox.setChecked(self._item.always_install)
         flayout.addRow(self.__always_install_checkbox)
 
-        self.__install_if_usable_checkbox = QCheckBox(self.tr("Install if usable"))
+        self.__install_if_usable_checkbox = QCheckBox(
+            self.tr("Install if usable (only relevant within a plugin)")
+        )
         self.__install_if_usable_checkbox.setToolTip(
             self.tr(
                 "Indicates that the file or folder should always be installed if the "

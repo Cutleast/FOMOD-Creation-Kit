@@ -29,22 +29,23 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
     @override
     @classmethod
     def get_display_name(cls) -> str:
-        return QApplication.translate(
-            "DependencyEditorTab", "Edit module dependencies..."
-        )
+        return QApplication.translate("DependencyEditorTab", "Edit mod requirements...")
 
     @override
     @classmethod
     def get_title(cls) -> str:
-        return QApplication.translate("DependencyEditorTab", "Module Dependencies")
+        return QApplication.translate("DependencyEditorTab", "Mod Requirements")
 
     @override
     @classmethod
     def get_description(cls) -> str:
         return QApplication.translate(
             "DependencyEditorTab",
-            "These are the dependencies the mod depends on. It is up to the mod manager "
-            "whether this is considered or not.",
+            "These are the requirements for your mod. If your mod depends on other mods "
+            "to be installed and active, you can add their file(s) as file dependencies "
+            "below. If the requirements are not met, the mod will not be installed.\n"
+            "Using flag dependencies is not possible at this page as there are no flags "
+            "to check at the start of a mod's installation.",
         )
 
     @override
@@ -54,6 +55,7 @@ class DependencyEditorTab(BaseEditorWidget[CompositeDependency]):
         self.__editor_widget = CompositeDependencyEditorWidget(
             self._item, self._fomod_path, self._flag_names_supplier
         )
+        self.__editor_widget.setFlagDependencyTabEnabled(False)
         self._vlayout.addWidget(self.__editor_widget)
 
     @override

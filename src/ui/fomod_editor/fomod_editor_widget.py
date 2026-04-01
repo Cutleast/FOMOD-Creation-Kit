@@ -5,6 +5,7 @@ Copyright (c) Cutleast
 from pathlib import Path
 from typing import Optional
 
+from cutleast_core_lib.ui.utilities import apply_shadow
 from cutleast_core_lib.ui.utilities.icon_provider import IconProvider
 from cutleast_core_lib.ui.widgets.loading_dialog import LoadingDialog
 from PySide6.QtCore import QSize, Qt, Signal
@@ -75,6 +76,7 @@ class FomodEditorWidget(QWidget):
 
         self.__status_banner = QLabel()
         self.__status_banner.setObjectName("status_banner")
+        apply_shadow(self.__status_banner, shadow_color="#18181877")
         self.__status_banner.setWordWrap(True)
         # prevent banner from increasing the window's size
         self.__status_banner.setMinimumWidth(100)
@@ -182,7 +184,7 @@ class FomodEditorWidget(QWidget):
             ),
             "",
         )
-        self.__tab_widget.setTabToolTip(i, self.tr("Module Dependencies"))
+        self.__tab_widget.setTabToolTip(i, self.__dependency_editor_tab.get_title())
 
     def __init_required_files_editor_tab(self) -> None:
         if self.__current_fomod is None or self.__flag_names_supplier is None:
@@ -205,7 +207,7 @@ class FomodEditorWidget(QWidget):
             ),
             "",
         )
-        self.__tab_widget.setTabToolTip(i, self.tr("Required files to install"))
+        self.__tab_widget.setTabToolTip(i, self.__required_files_editor_tab.get_title())
 
     def __init_steps_editor_tab(self) -> None:
         if self.__current_fomod is None or self.__flag_names_supplier is None:
@@ -229,7 +231,7 @@ class FomodEditorWidget(QWidget):
             ),
             "",
         )
-        self.__tab_widget.setTabToolTip(i, self.tr("Installation steps (pages)"))
+        self.__tab_widget.setTabToolTip(i, self.__steps_editor_tab.get_title())
 
     def __init_conditional_files_editor_tab(self) -> None:
         if self.__current_fomod is None or self.__flag_names_supplier is None:
@@ -253,7 +255,9 @@ class FomodEditorWidget(QWidget):
             ),
             "",
         )
-        self.__tab_widget.setTabToolTip(i, self.tr("Conditional files to install"))
+        self.__tab_widget.setTabToolTip(
+            i, self.__conditional_files_editor_tab.get_title()
+        )
 
     def __update_status_banner(self) -> None:
         try:

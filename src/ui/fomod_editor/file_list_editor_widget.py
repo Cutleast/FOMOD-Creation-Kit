@@ -89,7 +89,8 @@ class FileListEditorWidget(BaseEditorWidget[FileList]):
     def get_description(cls) -> str:
         return QApplication.translate(
             "FileListEditorWidget",
-            "The file list defines how files are copied to the destination folder.",
+            "The file list defines what files and folders are installed to which "
+            "location.",
         )
 
     @override
