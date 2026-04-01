@@ -86,7 +86,7 @@ class Fomod:
         """
 
         if path is not None:
-            if self.path is not None:
+            if self.path is not None and self.path != path:
                 self.__create_copy(path)
 
             self.path = path
