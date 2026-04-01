@@ -404,9 +404,7 @@ class Finalizer(QObject):
                 else source
             ), [
                 f.path.relative_to(fomod_path.parent)
-                for f in DirectoryScanner.scan_folder(
-                    fomod_path / source.relative_to("fomod")
-                )
+                for f in DirectoryScanner.scan_folder(fomod_path.parent / source)
             ]
 
         new_folder_path: Path = fomod_path / name / source.name
