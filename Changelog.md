@@ -1,3 +1,10 @@
+# v1.1.1 (Hotfix)
+
+The v1.1.0 build does not know its own version due to a bug introduced by one of the dependencies. In consquence, its update checker is broken.
+
+- Fix application version not being embedded due to a faulty dependency update
+- Fix finalizing when installation folders are parallel to the "fomod" folder (thanks to @Nithog for reporting!)
+
 # v1.1.0
 
 This update focuses on bug fixes and improvements to the user experience and was supported by feedback of @oOMariselaOo.
