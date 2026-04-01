@@ -2,7 +2,11 @@ version = 1
 revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
-    "python_full_version >= '3.13' and sys_platform == 'win32'",
+    "python_full_version >= '3.14' and platform_machine == 'ARM64' and sys_platform == 'win32'",
+    "python_full_version >= '3.13' and platform_machine != 'ARM64' and sys_platform == 'win32'",
+    "python_full_version == '3.13.*' and platform_machine == 'ARM64' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and platform_machine != 'ARM64' and sys_platform == 'win32'",
+    "python_full_version < '3.13' and platform_machine == 'ARM64' and sys_platform == 'win32'",
     "python_full_version >= '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux'",
     "python_full_version < '3.13' and platform_machine == 'x86_64' and sys_platform == 'linux'",
     "python_full_version >= '3.13' and platform_machine == 'i686' and sys_platform == 'linux'",
@@ -16,7 +20,7 @@ resolution-markers = [
     "python_full_version >= '3.13' and platform_machine == 's390x' and sys_platform == 'linux'",
     "python_full_version < '3.13' and platform_machine == 's390x' and sys_platform == 'linux'",
     "(python_full_version >= '3.13' and platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version >= '3.13' and sys_platform != 'linux' and sys_platform != 'win32')",
-    "(python_full_version < '3.13' and platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64') or (python_full_version < '3.13' and sys_platform != 'linux')",
+    "(python_full_version < '3.13' and platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (python_full_version < '3.13' and sys_platform != 'linux' and sys_platform != 'win32')",
 ]
 
 [manifest]
@@ -514,21 +518,21 @@ dev = [
 
 [[package]]
 name = "cx-freeze"
-version = "8.6.3"
+version = "8.5.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "dmgbuild", marker = "sys_platform == 'darwin'" },
     { name = "filelock", marker = "sys_platform == 'linux'" },
     { name = "freeze-core" },
-    { name = "lief", marker = "sys_platform == 'win32'" },
+    { name = "lief", marker = "(python_full_version < '3.14' and sys_platform == 'win32') or (platform_machine != 'ARM64' and sys_platform == 'win32')" },
     { name = "packaging" },
     { name = "patchelf", marker = "(platform_machine == 'aarch64' and sys_platform == 'linux') or (platform_machine == 'armv7l' and sys_platform == 'linux') or (platform_machine == 'i686' and sys_platform == 'linux') or (platform_machine == 'ppc64le' and sys_platform == 'linux') or (platform_machine == 's390x' and sys_platform == 'linux') or (platform_machine == 'x86_64' and sys_platform == 'linux')" },
     { name = "python-msilib", marker = "python_full_version >= '3.13' and sys_platform == 'win32'" },
     { name = "setuptools" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d8/5a/d9b3e85db1639374652ff540e84a4912cb777053a30582d8c365d114f115/cx_freeze-8.6.3.tar.gz", hash = "sha256:d3bcdd0891f78d96f65d4879f362f163ad292bad76a42a1bddf58bcc9dcdb67b", size = 1377551, upload-time = "2026-03-23T22:18:45.68Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/9b/89/6423aa0756dae0465e244ddfe3fe1b69474ce6ae3d34feb093154983eb11/cx_freeze-8.5.3.tar.gz", hash = "sha256:772e41ada72467365342d521f42f124663db51882f6ba495bf88dec399dc6511", size = 1373867, upload-time = "2026-01-03T09:07:12.409Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3a/41/b67808de0f10931ceca7d08e7d19f9fe3cfcb1c95bb14593ff1994e330f6/cx_freeze-8.6.3-py3-none-any.whl", hash = "sha256:b37fe200551d95ef85bad0410651605f2c34be39454fee1303e5f4b7d60d6ce4", size = 251123, upload-time = "2026-03-23T22:18:44.357Z" },
+    { url = "https://files.pythonhosted.org/packages/a7/f0/994556fd23c1d5327448ae478d33d1d7cf73fa12840306dc786a42dbbb4b/cx_freeze-8.5.3-py3-none-any.whl", hash = "sha256:ceafd2ceaf38a93bb562d5d97028b20d12456d578fc47c3545827a3656f81437", size = 248076, upload-time = "2026-01-03T09:07:10.697Z" },
 ]
 
 [[package]]
@@ -545,8 +549,8 @@ name = "dmgbuild"
 version = "1.6.7"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ds-store", marker = "(python_full_version < '3.13' and sys_platform == 'win32') or (platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
-    { name = "mac-alias", marker = "(python_full_version < '3.13' and sys_platform == 'win32') or (platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
+    { name = "ds-store", marker = "(platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
+    { name = "mac-alias", marker = "(platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a7/a5/f4dbd63c96902de8f2427a82518aaeedac0006587409294e55a14e45f367/dmgbuild-1.6.7.tar.gz", hash = "sha256:676b17acd448899f6d4a83b2184e0657480444ecb6ac9c4922889efad9e5dbfb", size = 36938, upload-time = "2026-01-15T23:13:43.779Z" }
 wheels = [
@@ -558,7 +562,7 @@ name = "ds-store"
 version = "1.3.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "mac-alias", marker = "(python_full_version < '3.13' and sys_platform == 'win32') or (platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
+    { name = "mac-alias", marker = "(platform_machine != 'aarch64' and platform_machine != 'armv7l' and platform_machine != 'i686' and platform_machine != 'ppc64le' and platform_machine != 's390x' and platform_machine != 'x86_64' and sys_platform == 'linux') or (sys_platform != 'linux' and sys_platform != 'win32')" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e9/11/971e423750b219ec3f3a7f27dfb9bd74aef3d3fdfee6cc7df10a0217b5cd/ds_store-1.3.2.tar.gz", hash = "sha256:e4da49df901123481a85b9250945f2aac054a0f0c29352cd2cc858c536cdd364", size = 26574, upload-time = "2025-12-04T00:52:46.178Z" }
 wheels = [
@@ -609,7 +613,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "cx-freeze" },
+    { name = "cx-freeze", specifier = "<8.6" },
     { name = "pyfakefs" },
     { name = "pyright" },
     { name = "pytest" },
@@ -751,19 +755,17 @@ sdist = { url = "https://files.pythonhosted.org/packages/5f/c1/3791e39d65c39b4e0
 
 [[package]]
 name = "lief"
-version = "0.17.6"
+version = "0.17.1"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/d9/b9/6b27bff4676de0db4231ca585ed35bc6e13f5430c1bbf0ad0e9d2e9f552f/lief-0.17.6.tar.gz", hash = "sha256:c2164243f152e82c49b0ccd606155b758644f4b1ee221f0dbd4da055469a922f", size = 7171, upload-time = "2026-03-18T06:59:43.351Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a0/16/c83222badede13959735f3b253fb52d231327b5386d6fd2cf9e3d4b83933/lief-0.17.6-cp312-cp312-win32.whl", hash = "sha256:0aca84f35ec67854ffdb38a23b1848cb214df3e3f95eb7579bac3107e9f68cc8", size = 3446288, upload-time = "2026-03-18T06:58:08.987Z" },
-    { url = "https://files.pythonhosted.org/packages/17/d7/cd49540bb32fde031e612044d1345c381e79e5b0729b47ca6b9694a47071/lief-0.17.6-cp312-cp312-win_amd64.whl", hash = "sha256:5a34d651eb82e24a113f837b1a961d23e155be41d72bf39a37407854c6597a8b", size = 3639449, upload-time = "2026-03-18T06:58:10.821Z" },
-    { url = "https://files.pythonhosted.org/packages/2e/96/c557b6757b72cfaea89a432e9d0a5ea669970ef9ae8086a17d1f73274156/lief-0.17.6-cp312-cp312-win_arm64.whl", hash = "sha256:234a422fe7158e755ac0acdd0bfdfd41f75392dad9dac147dd3b9c7a9f1a6811", size = 3461129, upload-time = "2026-03-18T06:58:12.651Z" },
-    { url = "https://files.pythonhosted.org/packages/1a/ea/51e90c58b40bc316307f2081160ab6100b9e7d177fde3225b441085defd2/lief-0.17.6-cp313-cp313-win32.whl", hash = "sha256:2f669d5b4e63c6e66cac48e07d0f23436bf898ec9d0630016d23250e2eb43d28", size = 3446184, upload-time = "2026-03-18T06:58:28.981Z" },
-    { url = "https://files.pythonhosted.org/packages/6b/73/8ddc48c492f3295637a6aa13f07c67387d80c815ee779443938689dc59b4/lief-0.17.6-cp313-cp313-win_amd64.whl", hash = "sha256:51b6c5932d4f36d61fb17fe783d9e1bfba33ec1d72b3d07486c96e6f548781ff", size = 3639310, upload-time = "2026-03-18T06:58:31.162Z" },
-    { url = "https://files.pythonhosted.org/packages/bf/bf/b7802b6578ca3a6506aaac6696ac1e8de500419fee3cd288184e82a8c2aa/lief-0.17.6-cp313-cp313-win_arm64.whl", hash = "sha256:6d4eb8adce400af52cc174ac5cbe40ab10b9df5824193975d12e2d4f85b298a3", size = 3461166, upload-time = "2026-03-18T06:58:32.975Z" },
-    { url = "https://files.pythonhosted.org/packages/8f/51/f79886a906eee3a5abc58dc30da1e6c22c41c868e0df446fb280ff2344cb/lief-0.17.6-cp314-cp314-win32.whl", hash = "sha256:503fd8df6425a6c0386df9ca6e4f4ce29d07d268f0620ee1d4059eb4d48c2562", size = 3446331, upload-time = "2026-03-18T06:58:50.52Z" },
-    { url = "https://files.pythonhosted.org/packages/83/6f/d396dae3808a35699c4be74e356d3e05f58e150fc14b49c39f0bacb62e11/lief-0.17.6-cp314-cp314-win_amd64.whl", hash = "sha256:918ea953830ecf348e5a8d9cf0b1a178035d6d4032bf2a9aa1dc72483e06b3a1", size = 3638021, upload-time = "2026-03-18T06:58:52.275Z" },
-    { url = "https://files.pythonhosted.org/packages/e3/4c/02df1befee243e4c14bf5740c391178ba4f7b4602ff08936da170341afe9/lief-0.17.6-cp314-cp314-win_arm64.whl", hash = "sha256:7dcefa6467f0f0d75413a10e7869e488344347f0c67eff5bc49ec216714f0674", size = 3462306, upload-time = "2026-03-18T06:58:54.937Z" },
+    { url = "https://files.pythonhosted.org/packages/11/bd/9cee7f6233f100ce424d7b5827418ddd2aac2190a2069d34296147f8070d/lief-0.17.1-cp312-cp312-win32.whl", hash = "sha256:86c130a0ec2fc3ebb0a230491fd176aa2f26dc4f87a261932046fe3f6c4fd8a6", size = 3459261, upload-time = "2025-10-25T13:15:12.902Z" },
+    { url = "https://files.pythonhosted.org/packages/09/48/e5c04d04c59db2ef370562f52d24e1f03ca0c190c32b4dc3ac01f73ef731/lief-0.17.1-cp312-cp312-win_amd64.whl", hash = "sha256:72cc7c8b2f9f2e1ad19d6b771dc9865f4e3656fd99a057e9b01c02207c9c7e25", size = 3637722, upload-time = "2025-10-25T13:15:15.142Z" },
+    { url = "https://files.pythonhosted.org/packages/52/b6/9e5945608391c18c675ba2db3dbbfd09a59d1d5006cc8edfbbf4ccad3432/lief-0.17.1-cp312-cp312-win_arm64.whl", hash = "sha256:9f0b267b0771af1ef9de64e437391282e57009e68d509146ae76de1588da0cbf", size = 3473218, upload-time = "2025-10-25T13:15:16.862Z" },
+    { url = "https://files.pythonhosted.org/packages/99/e6/96ef47c1d1cecb6ea00ba72589d1e1de49a59981c461da020a2a4d028338/lief-0.17.1-cp313-cp313-win32.whl", hash = "sha256:571b830523037efbfb9fcd58707c715ae417e2514e5abb3b03dc67b4c50f47fe", size = 3459075, upload-time = "2025-10-25T13:15:34.723Z" },
+    { url = "https://files.pythonhosted.org/packages/29/b6/90960127904fe6120ac76376db72fab88431235e2fce591d2b763de20546/lief-0.17.1-cp313-cp313-win_amd64.whl", hash = "sha256:7ada5acf4d83b5252c5fa46da3ff20c396bcdfa7aeb800c5dd28f8faa6827184", size = 3637804, upload-time = "2025-10-25T13:15:36.823Z" },
+    { url = "https://files.pythonhosted.org/packages/2e/7a/4c4b500dfc57e31d4fbe48f9fbb52970265c78d0c8508366957e6d679126/lief-0.17.1-cp313-cp313-win_arm64.whl", hash = "sha256:52fb1bff33cc8e2d3da8a2b426e9f8e5bdb334e351e70bc21b87db374fd4a837", size = 3472733, upload-time = "2025-10-25T13:15:38.957Z" },
+    { url = "https://files.pythonhosted.org/packages/8f/e5/a5452e109c6a55deaa73a49c34130980d99debabe3f37b8d86b67b2fb382/lief-0.17.1-cp314-cp314-win32.whl", hash = "sha256:f610d5937df9de86962733673f1a2b5255931c50b004e614728e83cbb0620057", size = 3459541, upload-time = "2025-10-25T13:15:54.877Z" },
+    { url = "https://files.pythonhosted.org/packages/7f/d0/b4c959a340dd391df1f6b4c2958920f9272bc45b6b45f8af657b9377e09b/lief-0.17.1-cp314-cp314-win_amd64.whl", hash = "sha256:3dadb33cad8cf01d78a5eb12fb660ed1a06619f0baade38b606fd151e87436e2", size = 3637731, upload-time = "2025-10-25T13:15:56.644Z" },
 ]
 
 [[package]]
@@ -1460,11 +1462,11 @@ wheels = [
 
 [[package]]
 name = "setuptools"
-version = "82.0.1"
+version = "80.10.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/4f/db/cfac1baf10650ab4d1c111714410d2fbb77ac5a616db26775db562c8fab2/setuptools-82.0.1.tar.gz", hash = "sha256:7d872682c5d01cfde07da7bccc7b65469d3dca203318515ada1de5eda35efbf9", size = 1152316, upload-time = "2026-03-09T12:47:17.221Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/76/95/faf61eb8363f26aa7e1d762267a8d602a1b26d4f3a1e758e92cb3cb8b054/setuptools-80.10.2.tar.gz", hash = "sha256:8b0e9d10c784bf7d262c4e5ec5d4ec94127ce206e8738f29a437945fbc219b70", size = 1200343, upload-time = "2026-01-25T22:38:17.252Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9d/76/f789f7a86709c6b087c5a2f52f911838cad707cc613162401badc665acfe/setuptools-82.0.1-py3-none-any.whl", hash = "sha256:a59e362652f08dcd477c78bb6e7bd9d80a7995bc73ce773050228a348ce2e5bb", size = 1006223, upload-time = "2026-03-09T12:47:15.026Z" },
+    { url = "https://files.pythonhosted.org/packages/94/b8/f1f62a5e3c0ad2ff1d189590bfa4c46b4f3b6e49cef6f26c6ee4e575394d/setuptools-80.10.2-py3-none-any.whl", hash = "sha256:95b30ddfb717250edb492926c92b5221f7ef3fbcc2b07579bcd4a27da21d0173", size = 1064234, upload-time = "2026-01-25T22:38:15.216Z" },
 ]
 
 [[package]]
