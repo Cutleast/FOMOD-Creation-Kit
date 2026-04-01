@@ -415,7 +415,7 @@ class Finalizer(QObject):
         self.log.info(f"Copied '{source}' to '{new_folder_path}'.")
 
         return new_folder_path.relative_to(fomod_path.parent), [
-            f.path.relative_to(new_folder_path)
+            f.path.relative_to(fomod_path.parent)
             for f in DirectoryScanner.scan_folder(new_folder_path)
         ]
 
