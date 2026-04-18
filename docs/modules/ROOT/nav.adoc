@@ -1,4 +1,6 @@
 * xref:index.adoc[]
 * xref:fomod-installers.adoc[]
+* Tutorials
+** xref:tutorial-first-fomod.adoc[]
 * xref:glossary.adoc[]
 * xref:faqs.adoc[]

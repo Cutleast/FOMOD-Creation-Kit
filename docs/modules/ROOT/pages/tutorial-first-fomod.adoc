@@ -1,0 +1,337 @@
+= Tutorial: Creating Your First FOMOD Installer
+
+This tutorial walks you through creating a complete FOMOD installer from scratch using the FOMOD Creation Kit.
+By the end you will have a working installer that lets the user choose between two texture variants and automatically installs the main mod file.
+
+No prior knowledge of the FOMOD format is required.
+If you encounter an unfamiliar term at any point, check the xref:glossary.adoc[].
+
+== What we are building
+
+Our example mod is called **"My Landscape Overhaul"**.
+It contains:
+
+* A core `.esp` plugin that must always be installed.
+* Two texture quality options the user can choose from:
+  ** "High Quality" (large textures, looks great)
+  ** "Performance" (smaller textures, better FPS)
+
+The finished installer will present the user with a single page asking which texture variant they want, and will always install the core plugin regardless of that choice.
+
+== Prerequisites
+
+* The FOMOD Creation Kit is installed and running.
+* Your mod files are ready on your computer.
+  For this tutorial we assume the following structure:
+
+[source]
+----
+C:\MyMod\
+├─ MyLandscapeOverhaul.esp          <-- core plugin, always installed
+├─ textures_high\                   <-- high quality textures folder
+│  └─ landscape\
+│     └─ ...
+└─ textures_performance\            <-- performance textures folder
+   └─ landscape\
+      └─ ...
+----
+
+== Step 1: Create a new FOMOD
+
+. Open the FOMOD Creation Kit.
++
+A blank editor opens with five tabs on the left side:
++
+[cols="1,4"]
+|===
+|Tab (icon) |Purpose
+
+|Info
+|Mod name, author, version, website, description, and header image.
+
+|Module Dependencies
+|Prerequisites the whole mod requires (optional, leave empty for now).
+
+|Required Files
+|Files that are always installed, no matter what the user picks.
+
+|Installation Steps
+|The wizard pages with groups and selectable options.
+
+|Conditional Files
+|Files installed automatically based on condition flags (advanced, skip for now).
+|===
+
+== Step 2: Fill in the mod info
+
+. On the info tab fill in the fields:
++
+[cols="1,3"]
+|===
+|Field |What to enter
+
+|**Name** *(required)*
+|`My Landscape Overhaul`
+
+|**Author**
+|Your name or username.
+
+|**Version**
+|`1.0.0`
+
+|**Website**
+|The URL to your mod page (e.g. on Nexus Mods), or leave empty.
+
+|**Description**
+|A short description shown in the mod manager, e.g. `Overhauls the landscape textures.`
+|===
+
+. Optionally, set a **Header Image**: click the browse button next to the image field and select a `.jpg` or `.png` file.
+  This image is shown in the installer window.
++
+image::tutorial_03_info_filled.png[Screenshot: Info tab with filled-in fields,title="Info tab after filling in all fields"]
+
+== Step 3: Add the always-installed core file
+
+The `.esp` plugin must be installed for every user, regardless of which textures they choose.
+This belongs in **Required Files**.
+
+. Click the **Required Files** tab.
++
+image::tutorial_04_required_files_tab.png[Screenshot: Required Files tab,title="The Required Files tab, currently empty"]
++
+. Click the **+** (Add) button in the toolbar above the file list.
+  An editor dialog opens.
++
+image::tutorial_05_add_file_dialog.png[Screenshot: File/Folder entry editor dialog,title="The editor dialog for adding a file or folder entry"]
++
+. Configure the entry:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Type**
+|Select **File** (radio button).
+
+|**Source**
+|Click the browse button and navigate to `C:\MyMod\MyLandscapeOverhaul.esp`.
+
+|**Destination**
+|Enter `MyLandscapeOverhaul.esp` so that the plugin is installed in the data folder of the game.
+
+|**Priority**
+|`0` (default, no change needed).
+|===
++
+. Click **Save**.
+  The file now appears in the Required Files list.
++
+image::tutorial_06_required_files_done.png[Screenshot: Required Files tab with one entry,title="Required Files tab showing the .esp entry"]
+
+== Step 4: Create the installation step
+
+An **installation step** is one page of the wizard.
+We need exactly one step with one group that lets the user pick their texture quality.
+
+=== 4a: Add the step
+
+. Click the **Installation Steps** tab.
++
+image::tutorial_07_steps_tab_empty.png[Screenshot: Installation Steps tab, empty,title="The Installation Steps tab before any step is added"]
++
+. Click the **+** (Add) button above the step list on the left.
+  A **step editor dialog** opens.
++
+image::tutorial_08_step_editor.png[Screenshot: Install Step editor dialog,title="The Install Step editor with the name field at the top"]
++
+. In the **Name** field, type: `Choose texture quality`
+. Leave the **Visibility Condition** section collapsed for now (we do not need it for this tutorial).
+
+=== 4b: Add a group inside the step
+
+The step editor already shows a **File groups** panel.
+
+. Click the **+** button above the groups list.
+  A small **group editor dialog** opens.
++
+image::tutorial_09_group_editor.png[Screenshot: Group editor dialog,title="The Group editor with a name field and selection-type dropdown"]
++
+. Fill in the fields:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Name**
+|`Texture Quality`
+
+|**Selection Type**
+|`Select Exactly One` - the user must pick exactly one of the two options.
+|===
++
+. Click **Save**.
+  The group appears in the Groups list.
+
+=== 4c: Add the first plugin - "High Quality"
+
+The **Plugins** panel (right side of the step editor) shows the plugins inside the currently selected group.
+
+. With the `Texture Quality` group selected, click the **+** button above the Plugins list.
+  The **Plugin editor dialog** opens.
++
+image::tutorial_10_plugin_editor_overview.png[Screenshot: Plugin editor dialog overview,title="The Plugin editor dialog with name, description, image and tabs"]
++
+. Fill in the top section:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Name**
+|`High Quality`
+
+|**Description**
+|`Large, high-resolution landscape textures. Recommended for modern hardware.`
+
+|**Image** *(optional)*
+|Browse to a preview image if you have one.
+|===
++
+. Click **+** in the **Files** panel to add a folder entry:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Type**
+|**Folder**
+
+|**Source**
+|Browse to `C:\MyMod\textures_high\`
+
+|**Destination**
+|`textures` - this installs the contents into the game's `textures` folder.
+|===
++
+. Click **Save** to confirm the file entry.
+
+. Switch to the **Automated pre-selection** tab inside the plugin editor.
++
+image::tutorial_12_plugin_type_tab.png[Screenshot: Plugin editor - Type tab,title="The Type tab showing the Static/Dynamic selector and the type dropdown"]
++
+. Make sure **Static pre-selection** is selected.
+. Set the type to **`Optional`** - the user can freely choose this option but it is not pre-selected.
++
+. Click **Save** in the plugin editor dialog.
+  "High Quality" now appears in the Plugins list.
+
+=== 4d: Add the second plugin - "Performance"
+
+. Click **+** above the Plugins list again.
+. Fill in the new plugin:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Name**
+|`Performance`
+
+|**Description**
+|`Smaller landscape textures optimised for lower-end hardware.`
+|===
++
+. In the **Files** tab, add a folder entry:
++
+[cols="1,3"]
+|===
+|Field |Value
+
+|**Type**
+|**Folder**
+
+|**Source**
+|`C:\MyMod\textures_performance\`
+
+|**Destination**
+|`textures`
+|===
++
+. In the **Automated pre-selection** tab, set the type to **`Recommended`** - this option is pre-selected as the safer default.
+
+. Click **Save**.
+
+Your step editor now looks like this:
+
+image::tutorial_13_step_editor_done.png[Screenshot: Completed step editor,title="The step editor with one group containing two plugins"]
+
+=== 4e: Save the step
+
+. Click **Save** in the step editor dialog.
+  The step `Choose texture quality` now appears in the Installation Steps list.
+
+image::tutorial_14_steps_tab_done.png[Screenshot: Installation Steps tab with one completed step,title="The Installation Steps tab showing the finished step"]
+
+On the right side of the tab you can see a **visual preview** of how the step will look to the user in the mod manager.
+
+== Step 5: Save the FOMOD
+
+. Press **Ctrl+S** or go to **File** > **Save As**.
++
+image::tutorial_15_save_dialog.png[Screenshot: Save As dialog,title="The Save As file dialog for choosing the output folder"]
++
+. Navigate to the output's root folder (e.g. `C:\MyModWithFOMOD\`) and confirm.
+
+The tool creates a `fomod/` subfolder and writes `info.xml` and `ModuleConfig.xml` into it.
+Because **Finalize on save** is enabled by default, all referenced files (the `.esp` and the two texture folders) are automatically copied into `fomod/` and all paths become relative.
+
+Your output folder now looks like this:
+
+[source]
+----
+C:\MyModWithFOMOD\
+└─ fomod\
+   ├─ info.xml
+   ├─ ModuleConfig.xml
+   ├─ files\
+   │  ├─ required_install_files\
+   │  │  └─ MyLandscapeOverhaul.esp
+   │  └─ install_steps\
+   │     └─ Choose texture quality\
+   │        └─ Texture Quality\
+   │           ├─ High Quality\
+   │           │  └─ textures_high\
+   │           └─ Performance\
+   │              └─ textures_performance\
+   └─ (optional header image)
+----
+
+NOTE: The exact folder structure inside `fomod/files/` is managed automatically by the FOMOD Creation Kit.
+You do not need to create or rename any folders manually.
+
+== What you have built
+
+[source]
+----
+Installer page: "Choose texture quality"
+└─ Group "Texture Quality"  [Select Exactly One]
+    ├─ Plugin "High Quality"   > installs textures_high/  as textures/
+    └─ Plugin "Performance"    > installs textures_performance/  as textures/
+                                 (pre-selected as Recommended)
+
+Always installed: MyLandscapeOverhaul.esp
+----
+
+== Next steps
+
+Now that you know the basics, here are some things to explore next:
+
+* **Add a header image** to make your installer look polished (revisit Step 2).
+* **Add more steps** - for example a second page for optional extras.
+* **Use flags** to let users answer questions in early steps that affect later steps.
+  See xref:fomod-installers.adoc#_flags[Flags] and xref:fomod-installers.adoc#_conditional_file_installs[Conditional File Installs].
+* **Use dynamic pre-selections** to automatically recommend a plugin when a compatible mod is detected.
+  See xref:fomod-installers.adoc#_dynamic_plugin_types[Dynamic Plugin Types].
+
+TIP: If you get stuck, check the xref:faqs.adoc[] or ask on the link:https://discord.gg/pqEHdWDf8z[Official Modding Forge Discord server].
