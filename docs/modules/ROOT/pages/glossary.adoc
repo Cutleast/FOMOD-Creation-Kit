@@ -1,0 +1,243 @@
+= Glossary
+
+This page defines all technical terms used in this documentation and in the FOMOD Creation Kit.
+
+[[composite-dependency]]
+== Composite Dependency
+
+A group of one or more xref:#dependency[dependencies] combined with an xref:#operator[operator].
+Composite dependencies can be nested inside each other to build complex logical expressions
+(e.g. "file A is active, *and* either flag X is set *or* file B is active").
+
+See also: xref:fomod-installers.adoc#_dependencies[Understanding FOMOD Installers - Dependencies].
+
+[[condition-flag]]
+== Condition Flag (Flag)
+
+A temporary key-value pair (e.g. `Readme=On`) that exists only during an installation session.
+Flags are set by xref:#plugin[plugins] and read by xref:#dependency[flag dependencies],
+xref:#step-visibility[step visibility conditions], and xref:#conditional-file-installs[conditional file installs].
+
+They are the primary way to pass information from one xref:#install-step[install step] to the next.
+
+See also: xref:fomod-installers.adoc#_flags[Understanding FOMOD Installers - Flags].
+
+[[conditional-file-installs]]
+== Conditional File Installs
+
+A section at the end of the xref:#module-config[`ModuleConfig.xml`] that contains a list of patterns.
+After all xref:#install-step[install steps] are completed, every pattern whose
+xref:#dependency[dependencies] are satisfied automatically installs its files.
+
+Commonly used to silently install compatibility patches without asking the user.
+
+See also: xref:fomod-installers.adoc#_conditional_file_installs[Understanding FOMOD Installers - Conditional File Installs].
+
+[[dependency]]
+== Dependency
+
+A single condition checked against the user's current game installation.
+The three dependency types are:
+
+* **File Dependency** - checks whether a game plugin file is missing, inactive, or active.
+* **Flag Dependency** - checks whether a xref:#condition-flag[condition flag] has a specific value.
+* **Version Dependency** - checks whether the game or mod manager meets a minimum version.
+
+Multiple dependencies are combined inside a xref:#composite-dependency[composite dependency].
+
+See also: xref:fomod-installers.adoc#_dependencies[Understanding FOMOD Installers - Dependencies].
+
+[[dependency-type]]
+== Dependency Type (Dynamic Plugin Type)
+
+An alternative to a static xref:#plugin-type[plugin type] for a xref:#plugin[plugin].
+Instead of a fixed type, the installer evaluates a list of patterns at runtime.
+The first pattern whose xref:#dependency[dependencies] are met determines the plugin's type.
+If no pattern matches, a configured default type is used.
+
+See also: xref:fomod-installers.adoc#_dynamic_plugin_types[Understanding FOMOD Installers - Dynamic Plugin Types].
+
+[[destination]]
+== Destination
+
+The path inside the game's data directory where a file or folder is placed during installation.
+Part of every xref:#file-system-item[file/folder entry] in a xref:#plugin[plugin] or
+xref:#required-install-files[required install files] list.
+
+If the destination is omitted, the file is placed at the same relative path as the xref:#source[source].
+
+[[file-system-item]]
+== File / Folder Entry
+
+A reference to a file or folder that should be installed.
+Each entry has a xref:#source[source] path, an optional xref:#destination[destination] path,
+a xref:#priority[priority], and optional flags (`alwaysInstall`, `installIfUsable`).
+
+[[fomod]]
+== FOMOD
+
+Short for **F**allout **M**od **O**rganizer **D**ata.
+Originally the format for Fallout mod packages, it has since been adopted by mod managers for many
+other games (including the entire Elder Scrolls series, Starfield, and more).
+
+A FOMOD installer is the two-file package inside the `fomod/` subfolder of a mod that drives the
+installation wizard shown by the mod manager.
+
+See also: xref:fomod-installers.adoc[Understanding FOMOD Installers].
+
+[[group]]
+== Group
+
+A container for a set of xref:#plugin[plugins] inside an xref:#install-step[install step].
+Each group has a name and a xref:#group-type[selection type] that controls how many plugins
+the user may select.
+
+See also: xref:fomod-installers.adoc#_groups[Understanding FOMOD Installers - Groups].
+
+[[group-type]]
+== Group Type
+
+The selection rule applied to a xref:#group[group]:
+
+[cols="1,3"]
+|===
+|Value |Meaning
+
+|`SelectAtLeastOne`
+|At least one plugin must be selected.
+
+|`SelectAtMostOne`
+|Zero or one plugin may be selected.
+
+|`SelectExactlyOne`
+|Exactly one plugin must be selected.
+
+|`SelectAll`
+|All plugins are always selected; the user cannot change this.
+
+|`SelectAny`
+|Any combination (including none) may be selected.
+|===
+
+[[header-image]]
+== Header Image (Module Image)
+
+An optional image displayed at the top of the installer window.
+Set via the `moduleImage` field in the xref:#module-config[`ModuleConfig.xml`].
+
+[[info-xml]]
+== info.xml
+
+One of the two XML files that make up a FOMOD installer.
+Contains metadata: mod name, author, version, website, and description.
+
+See also: xref:fomod-installers.adoc#_info_xml_mod_metadata[Understanding FOMOD Installers - info.xml].
+
+[[install-step]]
+== Install Step
+
+One page (screen) of the installation wizard.
+Each step has a name, an optional xref:#step-visibility[visibility condition], and one or more
+xref:#group[groups].
+
+See also: xref:fomod-installers.adoc#_install_steps[Understanding FOMOD Installers - Install Steps].
+
+[[module-config]]
+== ModuleConfig.xml
+
+One of the two XML files that make up a FOMOD installer.
+Contains the entire installation logic: steps, groups, plugins, files, and conditions.
+
+See also: xref:fomod-installers.adoc#_moduleconfigxml_the_installer_logic[Understanding FOMOD Installers - ModuleConfig.xml].
+
+[[module-dependencies]]
+== Module Dependencies
+
+Optional xref:#composite-dependency[composite dependency] placed at the very top of the
+xref:#module-config[`ModuleConfig.xml`].
+Defines requirements for the *entire* mod.
+If the user's setup does not satisfy them, the mod manager may refuse to install the mod.
+
+See also: xref:fomod-installers.adoc#_module_dependencies[Understanding FOMOD Installers - Module Dependencies].
+
+[[operator]]
+== Operator
+
+Controls how multiple xref:#dependency[dependencies] inside a xref:#composite-dependency[composite dependency]
+are evaluated:
+
+* **And** - every listed dependency must be satisfied.
+* **Or** - at least one listed dependency must be satisfied.
+
+[[plugin]]
+== Plugin
+
+A single selectable option inside a xref:#group[group] - for example "High-Resolution Textures".
+Not to be confused with a game plugin (`.esp` / `.esm` file).
+
+Each plugin has a name, an optional description and image, a list of files to install,
+optional xref:#condition-flag[condition flags] to set, and a xref:#plugin-type[type].
+
+See also: xref:fomod-installers.adoc#_plugins_options[Understanding FOMOD Installers - Plugins].
+
+[[plugin-type]]
+== Plugin Type
+
+Controls how the mod manager presents a xref:#plugin[plugin] to the user:
+
+[cols="1,3"]
+|===
+|Value |Behaviour
+
+|`Optional`
+|Not pre-selected; the user may freely choose it.
+
+|`Required`
+|Always selected; the user cannot deselect it.
+
+|`Recommended`
+|Pre-selected but the user can deselect it.
+
+|`NotUsable`
+|Greyed out; selecting it would likely break the game.
+
+|`CouldBeUsable`
+|Shown as partially available; the prerequisite exists but is not active.
+|===
+
+The type can be static (always the same) or dynamic (see xref:#dependency-type[Dependency Type]).
+
+See also: xref:fomod-installers.adoc#_plugin_types[Understanding FOMOD Installers - Plugin Types].
+
+[[priority]]
+== Priority
+
+A number on a xref:#file-system-item[file/folder entry] that determines the installation order
+when multiple plugins write to the same destination path.
+A **higher** number means the file is installed **later** and therefore takes precedence.
+
+[[required-install-files]]
+== Required Install Files
+
+An optional list of files and folders in the xref:#module-config[`ModuleConfig.xml`] that are
+always installed, regardless of the user's choices in the wizard.
+Typically used for the mod's core files that every user needs.
+
+See also: xref:fomod-installers.adoc#_the_big_picture[Understanding FOMOD Installers - The Big Picture].
+
+[[source]]
+== Source
+
+The path to a file or folder *inside the FOMOD package* that should be installed.
+Part of every xref:#file-system-item[file/folder entry].
+
+See also: xref:#destination[Destination].
+
+[[step-visibility]]
+== Step Visibility Condition
+
+An optional xref:#composite-dependency[composite dependency] on an xref:#install-step[install step].
+If the condition is not met, the entire step is skipped and the user never sees it.
+Commonly used to show follow-up questions only when they are relevant.
+
+See also: xref:fomod-installers.adoc#_install_steps[Understanding FOMOD Installers - Install Steps].

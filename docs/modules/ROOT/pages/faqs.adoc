@@ -1,0 +1,28 @@
+= Frequently Asked Questions
+
+Answers to the most common questions about the FOMOD Creation Kit and FOMOD installers in general.
+
+TIP: If your question is not listed here, feel free to ask on the link:https://discord.gg/pqEHdWDf8z[Official Modding Forge Discord server].
+
+== What is a FOMOD installer?
+
+A FOMOD installer is a small configuration package (two XML files) that mod managers use to
+display a step-by-step installation wizard for a mod.
+It lets users choose between different variants, optional files, and compatibility patches.
+
+For a detailed explanation, read xref:fomod-installers.adoc[].
+
+== Which games and mod managers support FOMOD installers?
+
+FOMOD installers are supported by all major mod managers, including:
+
+* **Mod Organizer 2 (MO2)**
+* **Vortex**
+
+They work for any game managed by these tools, most commonly games in the Elder Scrolls
+and Fallout series, as well as Starfield and many others.
+
+== Do I need to write XML by hand?
+
+No. The FOMOD Creation Kit provides a graphical editor so you never have to touch raw XML.
+The tool generates and validates both `info.xml` and `ModuleConfig.xml` for you.

@@ -1,1 +1,4 @@
 * xref:index.adoc[]
+* xref:fomod-installers.adoc[]
+* xref:glossary.adoc[]
+* xref:faqs.adoc[]

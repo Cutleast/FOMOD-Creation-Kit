@@ -74,6 +74,7 @@ image::UI_InstallStepEditorWidget_annotated.png[]
 
 This documentation is meant to give you all information you need to efficiently create and edit FOMOD installers.
 
+* If you want to familiarize yourself with FOMOD installers in general, read xref:fomod-installers.adoc[].
 * If you encountered an unfamiliar term in this documentation, read xref:glossary.adoc[].
 * If you have a question, read xref:faqs.adoc[].
 
